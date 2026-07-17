@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "demo",
+      "password": "demo123",
+      "preferences": ["beach", "culture"]
+    }
+  ],
+  "destinations": [
+    {
+      "id": 1,
+      "name": "Paris",
+      "country": "France",
+      "tags": ["culture", "romance", "city"],
+      "description": "City of lights, famous for the Eiffel Tower and museums."
+    },
+    {
+      "id": 2,
+      "name": "Bali",
+      "country": "Indonesia",
+      "tags": ["beach", "nature", "relaxation"],
+      "description": "Tropical island known for beaches, temples, and rice terraces."
+    },
+    {
+      "id": 3,
+      "name": "Kyoto",
+      "country": "Japan",
+      "tags": ["culture", "history", "nature"],
+      "description": "Ancient capital of Japan, famous for temples and gardens."
+    },
+    {
+      "id": 4,
+      "name": "Cape Town",
+      "country": "South Africa",
+      "tags": ["nature", "adventure", "beach"],
+      "description": "Coastal city with mountains, wildlife, and beaches."
+    },
+    {
+      "id": 5,
+      "name": "New York",
+      "country": "USA",
+      "tags": ["city", "culture", "shopping"],
+      "description": "Iconic skyline, museums, and vibrant city life."
+    }
+  ],
+  "itineraries": []
+}

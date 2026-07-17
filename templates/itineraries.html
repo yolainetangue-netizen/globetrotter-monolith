@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Itineraries - GlobeTrotter</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/itineraries-page">My Itineraries</a>
+      <a href="/register-page">Register</a>
+      <a href="#" id="auth-link">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>My itineraries</h2>
+      <div id="content"></div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const content = document.getElementById("content");
+
+    async function loadItineraries() {
+      if (!isLoggedIn()) {
+        content.innerHTML = `<p class="hint">You need to <a href="/login-page">log in</a> to see your itineraries.</p>`;
+        return;
+      }
+
+      const { ok, data } = await apiRequest("/itineraries", { auth: true });
+
+      if (!ok) {
+        content.innerHTML = `<p class="hint">Could not load itineraries.</p>`;
+        return;
+      }
+
+      if (data.length === 0) {
+        content.innerHTML = `<p class="hint">No itineraries yet. Go to <a href="/destinations-page">Destinations</a> to create one.</p>`;
+        return;
+      }
+
+      const rows = data
+        .map(
+          (it) => `
+        <tr>
+          <td>${it.title}</td>
+          <td>#${it.destination_id}</td>
+          <td>${it.start_date || "-"}</td>
+          <td>${it.end_date || "-"}</td>
+          <td>${it.notes || "-"}</td>
+        </tr>`
+        )
+        .join("");
+
+      content.innerHTML = `
+        <table>
+          <thead>
+            <tr><th>Title</th><th>Destination ID</th><th>Start</th><th>End</th><th>Notes</th></tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    }
+
+    loadItineraries();
+  </script>
+</body>
+</html>

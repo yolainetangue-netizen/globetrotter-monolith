@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinations - GlobeTrotter</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/itineraries-page">My Itineraries</a>
+      <a href="/register-page">Register</a>
+      <a href="#" id="auth-link">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Search destinations</h2>
+      <div class="filters">
+        <input type="text" id="search-q" placeholder="Search by name or country..." />
+        <select id="search-tag">
+          <option value="">All tags</option>
+          <option value="beach">Beach</option>
+          <option value="culture">Culture</option>
+          <option value="nature">Nature</option>
+          <option value="city">City</option>
+          <option value="adventure">Adventure</option>
+          <option value="history">History</option>
+          <option value="relaxation">Relaxation</option>
+          <option value="romance">Romance</option>
+          <option value="shopping">Shopping</option>
+        </select>
+        <button id="search-btn">Search</button>
+      </div>
+      <div id="destinations" class="destination-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2>Recommended for you <span class="badge">login required</span></h2>
+      <p class="hint">Based on the preferences you set at registration.</p>
+      <div id="recommendations" class="destination-grid"></div>
+      <div id="rec-msg" class="message"></div>
+    </div>
+
+    <div class="card" id="create-itinerary-card" style="display:none;">
+      <h2>Create an itinerary</h2>
+      <form id="itinerary-form">
+        <div>
+          <label for="it-title">Title</label>
+          <input type="text" id="it-title" required />
+        </div>
+        <div>
+          <label for="it-destination">Destination</label>
+          <select id="it-destination" required></select>
+        </div>
+        <div>
+          <label for="it-start">Start date</label>
+          <input type="date" id="it-start" />
+        </div>
+        <div>
+          <label for="it-end">End date</label>
+          <input type="date" id="it-end" />
+        </div>
+        <div>
+          <label for="it-notes">Notes</label>
+          <textarea id="it-notes" rows="3"></textarea>
+        </div>
+        <button type="submit">Create itinerary</button>
+      </form>
+      <div id="it-msg" class="message"></div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const grid = document.getElementById("destinations");
+    const recGrid = document.getElementById("recommendations");
+    const recMsg = document.getElementById("rec-msg");
+    const itCard = document.getElementById("create-itinerary-card");
+    const itSelect = document.getElementById("it-destination");
+
+    function renderCards(container, destinations) {
+      container.innerHTML = "";
+      if (destinations.length === 0) {
+        container.innerHTML = "<p class='hint'>No destinations found.</p>";
+        return;
+      }
+      destinations.forEach((d) => {
+        const card = document.createElement("div");
+        card.className = "destination-card";
+        card.innerHTML = `
+          <h3>${d.name}, ${d.country}</h3>
+          <p>${d.description}</p>
+          <div>${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function populateSelect(destinations) {
+      itSelect.innerHTML = destinations
+        .map((d) => `<option value="${d.id}">${d.name}, ${d.country}</option>`)
+        .join("");
+    }
+
+    async function loadDestinations() {
+      const q = document.getElementById("search-q").value.trim();
+      const tag = document.getElementById("search-tag").value;
+      const params = new URLSearchParams();
+      if (q) params.append("q", q);
+      if (tag) params.append("tag", tag);
+
+      const { ok, data } = await apiRequest(`/destinations?${params.toString()}`);
+      if (ok) {
+        renderCards(grid, data);
+        populateSelect(data);
+      }
+    }
+
+    async function loadRecommendations() {
+      if (!isLoggedIn()) {
+        showMessage(recMsg, "Log in to see personalized recommendations.", "error");
+        itCard.style.display = "none";
+        return;
+      }
+      itCard.style.display = "block";
+      const { ok, data } = await apiRequest("/recommendations", { auth: true });
+      if (ok) {
+        renderCards(recGrid, data);
+      } else {
+        showMessage(recMsg, data.error || "Could not load recommendations.", "error");
+      }
+    }
+
+    document.getElementById("search-btn").addEventListener("click", loadDestinations);
+
+    document.getElementById("itinerary-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const itMsg = document.getElementById("it-msg");
+      const body = {
+        title: document.getElementById("it-title").value.trim(),
+        destination_id: parseInt(itSelect.value, 10),
+        start_date: document.getElementById("it-start").value,
+        end_date: document.getElementById("it-end").value,
+        notes: document.getElementById("it-notes").value.trim(),
+      };
+      const { ok, data } = await apiRequest("/itineraries", {
+        method: "POST",
+        auth: true,
+        body,
+      });
+      if (ok) {
+        showMessage(itMsg, "Itinerary created! Check 'My Itineraries'.", "success");
+        e.target.reset();
+      } else {
+        showMessage(itMsg, data.error || "Could not create itinerary.", "error");
+      }
+    });
+
+    loadDestinations();
+    loadRecommendations();
+  </script>
+</body>
+</html>

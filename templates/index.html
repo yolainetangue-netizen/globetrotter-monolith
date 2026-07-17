@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobeTrotter Travel Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/itineraries-page">My Itineraries</a>
+      <a href="/register-page">Register</a>
+      <a href="#" id="auth-link">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-route" aria-hidden="true">
+      <svg viewBox="0 0 800 300" preserveAspectRatio="none">
+        <path class="route-line" d="M40,220 C180,60 260,260 400,120 S620,40 760,90" />
+      </svg>
+      <span class="pin pin-1">Paris</span>
+      <span class="pin pin-2">Bali</span>
+      <span class="pin pin-3">Kyoto</span>
+      <span class="pin pin-4">Cape Town</span>
+      <span class="pin pin-5">New York</span>
+    </div>
+    <div class="hero-content">
+      <p class="eyebrow">Phase 1 &middot; The Monolith</p>
+      <h1 class="hero-title">Plan the trip.<br />Skip the guesswork.</h1>
+      <p class="hero-subtitle">
+        GlobeTrotter turns your interests into a route: search destinations,
+        get picks tailored to you, and build itineraries you'll actually follow.
+      </p>
+      <div class="hero-actions">
+        <a href="/register-page" class="btn-primary">Create an account</a>
+        <a href="/destinations-page" class="btn-ghost">Browse destinations</a>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="card">
+      <h2>Welcome to GlobeTrotter</h2>
+      <p>This is <strong>Phase 1 &mdash; The Monolith</strong>: a single server handling
+      registration, login, destination search, recommendations, and itinerary
+      management, backed by a JSON file.</p>
+      <p class="hint">Demo account: username <code>demo</code>, password <code>demo123</code></p>
+    </div>
+
+    <div class="card">
+      <h2>Get started</h2>
+      <ul>
+        <li><a href="/register-page">Create an account</a></li>
+        <li><a href="/login-page">Log in</a></li>
+        <li><a href="/destinations-page">Browse destinations</a></li>
+        <li><a href="/itineraries-page">View your itineraries</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
