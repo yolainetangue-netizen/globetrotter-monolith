@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GlobeTrotter Douala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/map-page">Carte</a>
+      <a href="/itineraries-page">My Itineraries</a>
+      <a href="/register-page">Register</a>
+      <a href="#" id="auth-link">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="eyebrow">Phase 1 &middot; The Monolith</p>
+        <h1 class="hero-title">Decouvrez Douala.<br />Sans le stress.</h1>
+        <p class="hero-subtitle">
+          GlobeTrotter Douala transforme vos envies en itineraire : recherchez
+          des lieux, recevez des recommandations adaptees a vos gouts, et
+          organisez vos sorties dans la ville.
+        </p>
+        <div class="hero-actions">
+          <a href="/register-page" class="btn-primary">Create an account</a>
+          <a href="/destinations-page" class="btn-ghost">Browse destinations</a>
+        </div>
+      </div>
+
+      <div class="globe-wrap" aria-hidden="true">
+        <svg class="globe-orbit" viewBox="0 0 440 440">
+          <circle class="orbit-ring" cx="220" cy="220" r="185" />
+        </svg>
+
+        <svg class="globe" viewBox="0 0 200 200">
+          <circle class="globe-ocean" cx="100" cy="100" r="92" />
+          <path class="wouri-river" d="M40,100 Q75,80 100,100 T170,95" />
+          <g class="globe-land">
+            <path d="M20,70 Q40,55 65,65 Q80,58 95,68 L95,130 Q80,140 60,132 Q40,140 20,128 Z" />
+            <path d="M105,60 Q125,50 145,62 Q165,55 178,70 L178,125 Q160,138 140,128 Q120,136 105,122 Z" />
+          </g>
+          <ellipse class="globe-shine" cx="72" cy="65" rx="34" ry="20" />
+        </svg>
+
+        <span class="landmark landmark-1">🏛️<em>Bonanjo</em></span>
+        <span class="landmark landmark-2">🛍️<em>Akwa</em></span>
+        <span class="landmark landmark-3">🌉<em>Bonaberi</em></span>
+        <span class="landmark landmark-4">🎨<em>Bonapriso</em></span>
+        <span class="landmark landmark-5">⚓<em>Port de Douala</em></span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="card">
+      <h2>Bienvenue sur GlobeTrotter Douala</h2>
+      <p>Ceci est la <strong>Phase 1 &mdash; Le Monolithe</strong> : un seul serveur qui gere
+      l'inscription, la connexion, la recherche de lieux a Douala, les recommandations
+      et la gestion des itineraires, avec les donnees stockees dans un fichier JSON.</p>
+      <p class="hint">Compte demo : nom d'utilisateur <code>demo</code>, mot de passe <code>demo123</code></p>
+    </div>
+
+    <div class="card">
+      <h2>Pour commencer</h2>
+      <ul>
+        <li><a href="/register-page">Creer un compte</a></li>
+        <li><a href="/login-page">Se connecter</a></li>
+        <li><a href="/destinations-page">Parcourir les lieux</a></li>
+        <li><a href="/itineraries-page">Voir mes itineraires</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

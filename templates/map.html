@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carte - GlobeTrotter Cameroun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <style>
+    #map {
+      width: 100%;
+      height: 65vh;
+      min-height: 420px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .map-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 0.9rem 0 1.2rem 0;
+      font-family: "Inter", sans-serif;
+      font-size: 0.85rem;
+    }
+    .map-legend span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-heritage { background: #1e3a6e; }
+    .dot-nature { background: #2f6b4f; }
+    .dot-fun { background: #ef6c4d; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/map-page">Carte</a>
+      <a href="/itineraries-page">Mes itinéraires</a>
+      <a href="/register-page">Inscription</a>
+      <a href="#" id="auth-link">Connexion</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Carte des destinations au Cameroun</h2>
+      <p class="hint">Explorez les lieux disponibles à travers 7 villes : Douala, Yaoundé, Limbé, Kribi, Bafoussam, Bamenda et Ngaoundéré.</p>
+      <div class="map-legend">
+        <span><i class="dot dot-heritage"></i> Sites historiques</span>
+        <span><i class="dot dot-nature"></i> Nature</span>
+        <span><i class="dot dot-fun"></i> Distractions</span>
+      </div>
+      <div id="map"></div>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const CATEGORY_COLOR = {
+      "Site historique": "#1e3a6e",
+      "Nature": "#2f6b4f",
+      "Distraction": "#ef6c4d",
+    };
+
+    // Centre approximatif du Cameroun, zoom large pour voir toutes les villes
+    const map = L.map('map').setView([5.5, 11.0], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 18,
+    }).addTo(map);
+
+    async function loadMapPoints() {
+      const { ok, data } = await apiRequest('/destinations');
+      if (!ok) return;
+
+      const bounds = [];
+
+      data.forEach((d) => {
+        if (typeof d.lat !== "number" || typeof d.lng !== "number") return;
+
+        const color = CATEGORY_COLOR[d.category] || "#1e3a6e";
+        const marker = L.circleMarker([d.lat, d.lng], {
+          radius: 8,
+          fillColor: color,
+          color: "#ffffff",
+          weight: 2,
+          fillOpacity: 0.9,
+        }).addTo(map);
+
+        marker.bindPopup(`
+          <strong>${d.name}</strong><br/>
+          <span style="color:#6b7280;font-size:0.85em;">${d.city || d.country}</span><br/>
+          <span style="font-size:0.85em;">${d.description}</span>
+        `);
+
+        bounds.push([d.lat, d.lng]);
+      });
+
+      if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: [30, 30] });
+      }
+    }
+
+    loadMapPoints();
+  </script>
+</body>
+</html>

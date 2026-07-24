@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register - GlobeTrotter</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/map-page">Carte</a>
+      <a href="/itineraries-page">My Itineraries</a>
+      <a href="/register-page">Register</a>
+      <a href="#" id="auth-link">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Create an account</h2>
+      <form id="register-form">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <div>
+          <label for="preferences">Preferences (comma-separated, e.g. beach, culture)</label>
+          <input type="text" id="preferences" placeholder="beach, culture, nature" />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+      <div id="msg" class="message"></div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const form = document.getElementById("register-form");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const preferencesRaw = document.getElementById("preferences").value.trim();
+      const preferences = preferencesRaw
+        ? preferencesRaw.split(",").map((p) => p.trim()).filter(Boolean)
+        : [];
+
+      const { ok, data } = await apiRequest("/register", {
+        method: "POST",
+        body: { username, password, preferences },
+      });
+
+      if (ok) {
+        showMessage(msg, "Account created! You can now log in.", "success");
+        form.reset();
+      } else {
+        showMessage(msg, data.error || "Registration failed.", "error");
+      }
+    });
+  </script>
+</body>
+</html>

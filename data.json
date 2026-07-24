@@ -1,0 +1,464 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "demo",
+      "password": "demo123",
+      "preferences": [
+        "beach",
+        "culture"
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "id": 1,
+      "name": "La Pagode (Palais du Roi Manga Bell)",
+      "country": "Bonanjo, Douala",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "/static/images/pagode.jpg",
+      "description": "Residence royale construite en 1905 dans le style japonais, symbole historique du quartier de Bonanjo.",
+      "city": "Douala",
+      "lat": 4.0483,
+      "lng": 9.6928,
+      "long_description": "Surnomme \"La Pagode\" en raison de son architecture originale mêlant styles europeen et asiatique, ce palais fut construit en 1905 par le roi Auguste Manga Ndoumbe, 11e souverain de la dynastie Bell, a son retour d'Angleterre ou il avait etudie le commerce a l'universite de Bristol.\n\nLe surnom \"Pagode\" lui a ete donne par l'ecrivain francais Louis-Ferdinand Celine, qui sejourna a Douala entre 1916 et 1917 et decrivit le batiment dans son roman \"Voyage au bout de la nuit\".\n\nSon fils, Rudolf Douala Manga Bell, y regna de 1908 a 1914 avant d'etre arrete et pendu par les autorites allemandes pour s'etre oppose au projet d'expropriation des populations Douala. Il est aujourd'hui celebre comme l'un des premiers heros de la resistance anticoloniale en Afrique.\n\nLe batiment abrite aujourd'hui l'espace culturel Doual'Art, fonde par une descendante de la dynastie Bell.",
+      "activities": [
+        "Admirer l'architecture unique melant influences europeennes et asiatiques",
+        "Decouvrir l'histoire de la dynastie royale Bell et de la resistance anticoloniale",
+        "Visiter les expositions d'art contemporain de l'espace Doual'Art",
+        "Photographier la facade emblematique, l'une des plus reconnaissables de Douala"
+      ],
+      "practical_info": {
+        "hours": "Variable selon les expositions en cours",
+        "price": "Acces exterieur libre, tarif variable pour les expositions",
+        "best_time": "Matinee, pour une lumiere favorable aux photos",
+        "access": "Quartier Bonanjo, a proximite de la place du Gouvernement"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Musee Maritime de Douala",
+      "country": "Bonanjo, Douala",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "/static/images/musee-maritime.jpg",
+      "description": "Musee en forme de bateau retracant l'histoire maritime du fleuve Wouri et du commerce portuaire.",
+      "city": "Douala",
+      "lat": 4.0469,
+      "lng": 9.6942
+    },
+    {
+      "id": 3,
+      "name": "Marche Central (Marche Sandaga)",
+      "country": "Akwa, Douala",
+      "category": "Distraction",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": "/static/images/marche-sandaga.jpg",
+      "description": "Grand marche anime au coeur d'Akwa, ideal pour l'artisanat local et l'ambiance urbaine.",
+      "city": "Douala",
+      "lat": 4.05,
+      "lng": 9.7
+    },
+    {
+      "id": 4,
+      "name": "Pont sur le Wouri",
+      "country": "Bonaberi, Douala",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "adventure"
+      ],
+      "image": "/static/images/pont-wouri.jpg",
+      "description": "Vue panoramique sur le fleuve Wouri, tres animee au coucher du soleil.",
+      "city": "Douala",
+      "lat": 4.0614,
+      "lng": 9.7
+    },
+    {
+      "id": 5,
+      "name": "Doual'Art (Galerie d'art contemporain)",
+      "country": "Bonanjo, Douala",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "relaxation"
+      ],
+      "image": "/static/images/doual-art.jpg",
+      "description": "Centre d'art contemporain mettant en avant des artistes camerounais et internationaux.",
+      "city": "Douala",
+      "lat": 4.045,
+      "lng": 9.698
+    },
+    {
+      "id": 6,
+      "name": "Temple du Centenaire",
+      "country": "Akwa, Douala",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "/static/images/temple-centenaire.jpg",
+      "description": "Eglise construite au XIXe siecle pour commemorer le premier siecle du christianisme au Cameroun.",
+      "city": "Douala",
+      "lat": 4.052,
+      "lng": 9.701
+    },
+    {
+      "id": 7,
+      "name": "Reserve de Faune de Douala-Edea",
+      "country": "Peripherie de Douala",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "adventure"
+      ],
+      "image": "/static/images/reserve-douala-edea.jpg",
+      "description": "Reserve naturelle abritant lamantins, crocodiles et une grande diversite d'oiseaux, a la sortie de Douala.",
+      "city": "Douala",
+      "lat": 3.85,
+      "lng": 9.75
+    },
+    {
+      "id": 8,
+      "name": "Ile de Jebale",
+      "country": "Fleuve Wouri, Douala",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "relaxation"
+      ],
+      "image": "/static/images/ile-jebale.jpg",
+      "description": "Petite ile accessible par pirogue sur le fleuve Wouri, ambiance paisible loin de l'agitation urbaine.",
+      "city": "Douala",
+      "lat": 4.07,
+      "lng": 9.68
+    },
+    {
+      "id": 9,
+      "name": "Marche Artisanal de Bonapriso",
+      "country": "Bonapriso, Douala",
+      "category": "Distraction",
+      "tags": [
+        "shopping",
+        "culture"
+      ],
+      "image": "/static/images/marche-bonapriso.jpg",
+      "description": "Marche reputee pour l'artisanat, la sculpture sur bois et les objets d'art camerounais.",
+      "city": "Douala",
+      "lat": 4.04,
+      "lng": 9.705
+    },
+    {
+      "id": 10,
+      "name": "Bord du Fleuve a Akwa-Nord",
+      "country": "Akwa-Nord, Douala",
+      "category": "Distraction",
+      "tags": [
+        "relaxation",
+        "city"
+      ],
+      "image": "/static/images/bord-fleuve-akwa.jpg",
+      "description": "Espace de detente et de loisirs au bord du fleuve, prise avec restaurants et bars en soiree.",
+      "city": "Douala",
+      "lat": 4.053,
+      "lng": 9.699
+    },
+    {
+      "id": 11,
+      "name": "Port Autonome de Douala",
+      "country": "Bonaberi / Bonanjo, Douala",
+      "category": "Site historique",
+      "tags": [
+        "history",
+        "city"
+      ],
+      "image": "/static/images/port-douala.jpg",
+      "description": "L'un des plus grands ports d'Afrique centrale, coeur economique historique de la ville.",
+      "city": "Douala",
+      "lat": 4.049,
+      "lng": 9.69
+    },
+    {
+      "id": 12,
+      "name": "Quartier Akwa",
+      "country": "Akwa, Douala",
+      "category": "Distraction",
+      "tags": [
+        "city",
+        "shopping"
+      ],
+      "image": "/static/images/quartier-akwa.jpg",
+      "description": "Quartier animee et commercial, restaurants, boutiques et vie nocturne de Douala.",
+      "city": "Douala",
+      "lat": 4.051,
+      "lng": 9.702
+    },
+    {
+      "id": 13,
+      "name": "Cathedrale Notre-Dame-des-Victoires",
+      "country": "Centre-ville, Yaounde",
+      "city": "Yaounde",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 3.8667,
+      "lng": 11.5167,
+      "description": "Magnifique cathedrale situee en plein coeur de Yaounde, un des monuments religieux les plus connus du pays."
+    },
+    {
+      "id": 14,
+      "name": "Musee National du Cameroun",
+      "country": "Yaounde",
+      "city": "Yaounde",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 3.8721,
+      "lng": 11.5213,
+      "description": "Installe dans l'ancien palais presidentiel, ce musee retrace l'histoire et les traditions du Cameroun."
+    },
+    {
+      "id": 15,
+      "name": "Monument de la Reunification",
+      "country": "Quartier Hippodrome, Yaounde",
+      "city": "Yaounde",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 3.873,
+      "lng": 11.519,
+      "description": "Symbole fort de l'histoire du Cameroun, ce monument represente l'unite du pays."
+    },
+    {
+      "id": 16,
+      "name": "Jardin Botanique de Limbe",
+      "country": "Limbe",
+      "city": "Limbe",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "relaxation"
+      ],
+      "image": "",
+      "lat": 4.0165,
+      "lng": 9.2109,
+      "description": "Cree en 1892, l'un des plus anciens et plus importants jardins botaniques tropicaux d'Afrique."
+    },
+    {
+      "id": 17,
+      "name": "Plage de sable noir de Limbe",
+      "country": "Limbe",
+      "city": "Limbe",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "relaxation"
+      ],
+      "image": "",
+      "lat": 3.9871,
+      "lng": 9.1934,
+      "description": "Plage volcanique de sable noir, avec vue sur le Mont Cameroun en toile de fond."
+    },
+    {
+      "id": 18,
+      "name": "Limbe Wildlife Centre",
+      "country": "Limbe",
+      "city": "Limbe",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "adventure"
+      ],
+      "image": "",
+      "lat": 4.018,
+      "lng": 9.21,
+      "description": "Centre de rehabilitation abritant chimpanzes, gorilles et singes dans un cadre naturel."
+    },
+    {
+      "id": 19,
+      "name": "Chutes de la Lobe",
+      "country": "Kribi",
+      "city": "Kribi",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "adventure"
+      ],
+      "image": "",
+      "lat": 2.8833,
+      "lng": 9.8833,
+      "description": "Chutes d'eau spectaculaires se jetant directement dans l'ocean Atlantique, a 8 km au sud de Kribi."
+    },
+    {
+      "id": 20,
+      "name": "Plage de Ngoye",
+      "country": "Kribi",
+      "city": "Kribi",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "relaxation"
+      ],
+      "image": "",
+      "lat": 2.95,
+      "lng": 9.9,
+      "description": "Plage de sable fin et eaux claires, l'une des plus celebres et paisibles de Kribi."
+    },
+    {
+      "id": 21,
+      "name": "Phare de Kribi",
+      "country": "Kribi",
+      "city": "Kribi",
+      "category": "Site historique",
+      "tags": [
+        "history",
+        "culture"
+      ],
+      "image": "",
+      "lat": 2.9391,
+      "lng": 9.9075,
+      "description": "Construit en 1906 par les colons allemands, ce phare offre une vue panoramique sur l'ocean."
+    },
+    {
+      "id": 22,
+      "name": "Chefferie de Bafoussam",
+      "country": "Bafoussam",
+      "city": "Bafoussam",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 5.4737,
+      "lng": 10.4179,
+      "description": "Chefferie traditionnelle emblematique de l'Ouest Cameroun, temoin des coutumes ancestrales Bamileke."
+    },
+    {
+      "id": 23,
+      "name": "Palais du Sultan des Bamoun (Foumban)",
+      "country": "Foumban, region de Bafoussam",
+      "city": "Bafoussam",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 5.7264,
+      "lng": 10.9,
+      "description": "Palais royal Bamoun abritant un musee de 10 000 pieces retracant l'histoire du royaume, fonde en 1394."
+    },
+    {
+      "id": 24,
+      "name": "Chutes de la Metche",
+      "country": "Pres de Bafoussam",
+      "city": "Bafoussam",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "adventure"
+      ],
+      "image": "",
+      "lat": 5.42,
+      "lng": 10.15,
+      "description": "Belles chutes d'eau situees non loin du carrefour Dschang, a une dizaine de km de Bafoussam."
+    },
+    {
+      "id": 25,
+      "name": "Chefferie de Bafut",
+      "country": "Pres de Bamenda",
+      "city": "Bamenda",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 6.0833,
+      "lng": 10.1,
+      "description": "L'une des plus importantes chefferies du Nord-Ouest, palais royal vieux de plus de deux siecles."
+    },
+    {
+      "id": 26,
+      "name": "Ring Road (route des collines)",
+      "country": "Bamenda",
+      "city": "Bamenda",
+      "category": "Nature",
+      "tags": [
+        "nature",
+        "adventure"
+      ],
+      "image": "",
+      "lat": 6.05,
+      "lng": 10.12,
+      "description": "Route panoramique traversant les hauts plateaux et collines verdoyantes du Nord-Ouest."
+    },
+    {
+      "id": 27,
+      "name": "Marche Central de Bamenda",
+      "country": "Bamenda",
+      "city": "Bamenda",
+      "category": "Distraction",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": "",
+      "lat": 5.9631,
+      "lng": 10.1591,
+      "description": "Grand marche anime au coeur de Bamenda, ideal pour l'artisanat et les produits locaux."
+    },
+    {
+      "id": 28,
+      "name": "Lamidat de Ngaoundere (Palais du Lamido)",
+      "country": "Ngaoundere",
+      "city": "Ngaoundere",
+      "category": "Site historique",
+      "tags": [
+        "culture",
+        "history"
+      ],
+      "image": "",
+      "lat": 7.3167,
+      "lng": 13.5833,
+      "description": "Palais traditionnel du Lamido, chef coutumier peul, symbole de l'histoire de l'Adamaoua."
+    },
+    {
+      "id": 29,
+      "name": "Gare de Ngaoundere",
+      "country": "Ngaoundere",
+      "city": "Ngaoundere",
+      "category": "Site historique",
+      "tags": [
+        "history",
+        "city"
+      ],
+      "image": "",
+      "lat": 7.33,
+      "lng": 13.57,
+      "description": "Terminus historique du chemin de fer Transcamerounais, porte d'entree vers le Grand Nord."
+    }
+  ],
+  "itineraries": []
+}

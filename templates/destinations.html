@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Destinations - GlobeTrotter Douala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/map-page">Carte</a>
+      <a href="/itineraries-page">Mes itinéraires</a>
+      <a href="/register-page">Inscription</a>
+      <a href="#" id="auth-link">Connexion</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>Rechercher un lieu au Cameroun</h2>
+      <p class="hint">Vous pouvez aussi <a href="/map-page">explorer la carte interactive</a> de toutes les destinations.</p>
+      <div class="filters">
+        <input type="text" id="search-q" placeholder="Rechercher par nom ou lieu..." />
+        <select id="search-city">
+          <option value="">Toutes les villes</option>
+          <option value="Douala">Douala</option>
+          <option value="Yaounde">Yaoundé</option>
+          <option value="Limbe">Limbé</option>
+          <option value="Kribi">Kribi</option>
+          <option value="Bafoussam">Bafoussam</option>
+          <option value="Bamenda">Bamenda</option>
+          <option value="Ngaoundere">Ngaoundéré</option>
+        </select>
+        <select id="search-tag">
+          <option value="">Tous les tags</option>
+          <option value="culture">Culture</option>
+          <option value="history">Histoire</option>
+          <option value="shopping">Shopping</option>
+          <option value="city">Ville</option>
+          <option value="nature">Nature</option>
+          <option value="adventure">Aventure</option>
+          <option value="relaxation">Détente</option>
+        </select>
+        <button id="search-btn">Rechercher</button>
+      </div>
+
+      <div class="category-pills" id="category-pills">
+        <button class="pill active" data-category="">Tout</button>
+        <button class="pill" data-category="Site historique">🏛️ Sites historiques</button>
+        <button class="pill" data-category="Nature">🌿 Nature</button>
+        <button class="pill" data-category="Distraction">🎉 Distractions</button>
+      </div>
+
+      <div id="destinations" class="destination-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2>Recommandé pour vous <span class="badge">connexion requise</span></h2>
+      <p class="hint">Basé sur vos préférences renseignées à l'inscription.</p>
+      <div id="recommendations" class="destination-grid"></div>
+      <div id="rec-msg" class="message"></div>
+    </div>
+
+    <div class="card" id="create-itinerary-card" style="display:none;">
+      <h2>Créer un itinéraire</h2>
+      <form id="itinerary-form">
+        <div>
+          <label for="it-title">Titre</label>
+          <input type="text" id="it-title" required />
+        </div>
+        <div>
+          <label for="it-destination">Destination</label>
+          <select id="it-destination" required></select>
+        </div>
+        <div>
+          <label for="it-start">Date de début</label>
+          <input type="date" id="it-start" />
+        </div>
+        <div>
+          <label for="it-end">Date de fin</label>
+          <input type="date" id="it-end" />
+        </div>
+        <div>
+          <label for="it-notes">Notes</label>
+          <textarea id="it-notes" rows="3"></textarea>
+        </div>
+        <button type="submit">Créer l'itinéraire</button>
+      </form>
+      <div id="it-msg" class="message"></div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const grid = document.getElementById("destinations");
+    const recGrid = document.getElementById("recommendations");
+    const recMsg = document.getElementById("rec-msg");
+    const itCard = document.getElementById("create-itinerary-card");
+    const itSelect = document.getElementById("it-destination");
+    const pills = document.querySelectorAll(".pill");
+    let activeCategory = "";
+
+    const CATEGORY_CLASS = {
+      "Site historique": "cat-heritage",
+      "Nature": "cat-nature",
+      "Distraction": "cat-fun",
+    };
+
+    const CATEGORY_ICON = {
+      "Site historique": "🏛️",
+      "Nature": "🌿",
+      "Distraction": "🎉",
+    };
+
+    function destinationCardHTML(d) {
+      const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
+      const icon = CATEGORY_ICON[d.category] || "📍";
+      const media = d.image
+        ? `<img src="${d.image}" alt="${d.name}" loading="lazy" />`
+        : `<div class="placeholder-media ${catClass}"><span>${icon}</span></div>`;
+
+      return `
+        <a href="/destination/${d.id}" class="destination-card-link">
+          <article class="destination-card">
+            <div class="destination-media">${media}</div>
+            <div class="destination-body">
+              <div class="card-badges">
+                <span class="category-tag ${catClass}">${icon} ${d.category || ""}</span>
+                <span class="city-tag">📍 ${d.city || ""}</span>
+              </div>
+              <h3>${d.name}</h3>
+              <p class="destination-location">${d.country}</p>
+              <p>${d.description}</p>
+              <div>${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+            </div>
+          </article>
+        </a>
+      `;
+    }
+
+    function renderCards(container, destinations) {
+      if (destinations.length === 0) {
+        container.innerHTML = "<p class='hint'>Aucun lieu trouvé.</p>";
+        return;
+      }
+      container.innerHTML = destinations.map(destinationCardHTML).join("");
+    }
+
+    function populateSelect(destinations) {
+      itSelect.innerHTML = destinations
+        .map((d) => `<option value="${d.id}">${d.name}</option>`)
+        .join("");
+    }
+
+    async function loadDestinations() {
+      const q = document.getElementById("search-q").value.trim();
+      const tag = document.getElementById("search-tag").value;
+      const city = document.getElementById("search-city").value;
+      const params = new URLSearchParams();
+      if (q) params.append("q", q);
+      if (tag) params.append("tag", tag);
+      if (city) params.append("city", city);
+      if (activeCategory) params.append("category", activeCategory);
+
+      const { ok, data } = await apiRequest(`/destinations?${params.toString()}`);
+      if (ok) {
+        renderCards(grid, data);
+        populateSelect(data);
+      }
+    }
+
+    async function loadRecommendations() {
+      if (!isLoggedIn()) {
+        showMessage(recMsg, "Connectez-vous pour voir vos recommandations personnalisées.", "error");
+        itCard.style.display = "none";
+        return;
+      }
+      itCard.style.display = "block";
+      const { ok, data } = await apiRequest("/recommendations", { auth: true });
+      if (ok) {
+        renderCards(recGrid, data);
+      } else {
+        showMessage(recMsg, data.error || "Impossible de charger les recommandations.", "error");
+      }
+    }
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        pills.forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
+        activeCategory = pill.dataset.category;
+        loadDestinations();
+      });
+    });
+
+    document.getElementById("search-btn").addEventListener("click", loadDestinations);
+
+    document.getElementById("itinerary-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const itMsg = document.getElementById("it-msg");
+      const body = {
+        title: document.getElementById("it-title").value.trim(),
+        destination_id: parseInt(itSelect.value, 10),
+        start_date: document.getElementById("it-start").value,
+        end_date: document.getElementById("it-end").value,
+        notes: document.getElementById("it-notes").value.trim(),
+      };
+      const { ok, data } = await apiRequest("/itineraries", {
+        method: "POST",
+        auth: true,
+        body,
+      });
+      if (ok) {
+        showMessage(itMsg, "Itinéraire créé ! Consultez 'Mes itinéraires'.", "success");
+        e.target.reset();
+      } else {
+        showMessage(itMsg, data.error || "Impossible de créer l'itinéraire.", "error");
+      }
+    });
+
+    loadDestinations();
+    loadRecommendations();
+  </script>
+</body>
+</html>
