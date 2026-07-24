@@ -3,7 +3,7 @@
 A single Flask server handling all requests, with data stored in a JSON file
 (`data.json`). This is the monolithic baseline for the GlobeTrotter capstone
 project, scoped to a single locality — Douala, Cameroon — per the project
-brief. No database, no microservices, single point of failure by 
+brief. No database, no microservices, single point of failure by design.
 
 ## Architecture
 
