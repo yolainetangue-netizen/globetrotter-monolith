@@ -52,7 +52,21 @@
       "description": "Musee en forme de bateau retracant l'histoire maritime du fleuve Wouri et du commerce portuaire.",
       "city": "Douala",
       "lat": 4.0469,
-      "lng": 9.6942
+      "lng": 9.6942,
+      "long_description": "Inaugure le 17 decembre 2013 dans le quartier de Bonanjo, non loin de la zone portuaire, le Musee Maritime de Douala occupe un batiment moderne dont l'architecture evoque la forme d'un navire. C'est le troisieme emplacement du musee depuis sa creation initiale en 1986 par le Conseil National des Chargeurs du Cameroun.\n\nLa mission du musee est de collecter, restaurer et transmettre le patrimoine maritime camerounais : richesses ancestrales et modernes, culture des peuples cotiers, histoire des echanges commerciaux dans les ports du pays. Ses collections comptent environ 3 000 objets historiques, culturels et artistiques : sculptures, peintures, photographies, cartes, instruments de peche et de navigation traditionnels.\n\nLe parcours de visite se deploie sur plusieurs etages : le rez-de-chaussee retrace l'histoire de la cote du Wouri, du peuple Sawa et de l'origine du nom \"Cameroun\" ; un autre niveau est consacre a la navigation, avec une salle de controle de navire reconstituee et une exposition sur les differents types de bateaux.",
+      "activities": [
+        "Explorer les collections d'objets maritimes traditionnels et modernes (environ 3000 pieces)",
+        "Tester le simulateur de navigation, pour se mettre dans la peau d'un marin",
+        "Vivre l'experience de la Case des tempetes, dispositif 3D simulant un voyage en haute mer",
+        "Suivre une visite guidee sur l'histoire des peuples Sawa et l'origine du nom Cameroun",
+        "Assister aux expositions temporaires organisees lors du festival Ngondo"
+      ],
+      "practical_info": {
+        "hours": "Du mardi au dimanche, visites guidees et libres",
+        "price": "Tarif d'entree variable selon visite libre ou guidee",
+        "best_time": "Toute l'annee, prevoir 1h30 a 2h pour une visite complete",
+        "access": "Quartier Bonanjo, a proximite immediate de la zone portuaire"
+      }
     },
     {
       "id": 3,
@@ -67,7 +81,21 @@
       "description": "Grand marche anime au coeur d'Akwa, ideal pour l'artisanat local et l'ambiance urbaine.",
       "city": "Douala",
       "lat": 4.05,
-      "lng": 9.7
+      "lng": 9.7,
+      "long_description": "Situe entre les quartiers Akwa et Deido, au lieu-dit \"rond-point quatrieme\", le marche Sandaga est ne d'un jumelage entre les communautes urbaines de Douala et de Dakar. A l'origine simple espace d'organisation de foires, il devient le 2 novembre 1996 le plus grand marche de vivres frais de la sous-region lorsque les commercants du marche de Mboppi y sont recases.\n\nAujourd'hui, plus de 4000 commercants y sont recenses. C'est le plus grand marche dedie aux produits frais d'Afrique centrale : tomates, carottes, choux, poivrons, epinards et concombres arrivent chaque jour des regions de l'Ouest et du Nord-Ouest (Dschang, Bangangte, Bafoussam, Foumban, Buea, Bamenda).\n\nChaque mardi, le marche prend une ampleur particuliere avec l'arrivee de milliers de commercants venus du Gabon, de Guinee equatoriale et de Republique centrafricaine pour s'approvisionner en gros. Le marche est aussi un lieu de vie sociale intense, porte par de nombreuses femmes vendeuses appelees \"bayam sellam\" en pidgin, expression signifiant \"acheter et vendre\".",
+      "activities": [
+        "Decouvrir l'ambiance authentique d'un grand marche vivrier africain",
+        "Acheter fruits, legumes et epices frais directement aupres des producteurs",
+        "Observer le grand marche international du mardi, avec des commercants regionaux",
+        "Rencontrer les \"bayam sellam\", figures emblematiques du commerce local",
+        "Photographier les etals colores typiques de l'Afrique centrale"
+      ],
+      "practical_info": {
+        "hours": "Tous les jours, activite maximale tot le matin",
+        "price": "Acces libre, prevoir du liquide pour les achats",
+        "best_time": "Le mardi pour l'ambiance de grand marche regional, sinon le matin en semaine",
+        "access": "Entre Akwa et Deido, au rond-point quatrieme"
+      }
     },
     {
       "id": 4,
@@ -82,7 +110,20 @@
       "description": "Vue panoramique sur le fleuve Wouri, tres animee au coucher du soleil.",
       "city": "Douala",
       "lat": 4.0614,
-      "lng": 9.7
+      "lng": 9.7,
+      "long_description": "Le premier pont sur le Wouri, aussi appele pont de Bonaberi, est mis en service en 1954 apres avoir ete construit entre 1951 et 1954 par des entreprises francaises (Societe de construction des Batignolles, Campenon-Bernard, Hersent). Long de 1830 metres, il est a son inauguration le 3e pont le plus long d'Afrique et le plus long pont en beton du continent.\n\nFace a la saturation croissante du trafic, un deuxieme pont est construit entre 2013 et 2017, situe seulement 8 metres en aval du premier. Long de 760 metres et large de 25 metres, ce second ouvrage comprend cinq voies routieres et deux voies ferroviaires, pour un investissement d'environ 119 milliards de francs CFA finance par l'Agence Francaise de Developpement.\n\nEnsemble, ces deux ponts relient Bonaberi (zone industrielle) au centre-ville de Douala et constituent le passage oblige vers le port autonome, l'aeroport, et les grands axes routiers reliant le Nord-Ouest, le Sud-Ouest et l'Ouest du pays. Un troisieme pont, plus en amont, est a l'etude depuis 2019.",
+      "activities": [
+        "Admirer la vue panoramique sur le fleuve Wouri, particulierement au coucher du soleil",
+        "Observer le va-et-vient incessant des pirogues et bateaux de peche",
+        "Photographier les deux ponts cote a cote depuis les berges",
+        "Decouvrir un ouvrage embleme du developpement economique du Cameroun"
+      ],
+      "practical_info": {
+        "hours": "Accessible en permanence (pont routier ouvert 24h/24)",
+        "price": "Gratuit",
+        "best_time": "Fin d'apres-midi pour la lumiere du coucher de soleil sur le fleuve",
+        "access": "Relie le centre-ville de Douala au quartier de Bonaberi"
+      }
     },
     {
       "id": 5,
@@ -97,7 +138,21 @@
       "description": "Centre d'art contemporain mettant en avant des artistes camerounais et internationaux.",
       "city": "Douala",
       "lat": 4.045,
-      "lng": 9.698
+      "lng": 9.698,
+      "long_description": "Fonde en 1991 par Marilyn Douala Bell et Didier Schaub, Doual'Art est un centre d'art contemporain et un laboratoire experimental de nouvelles pratiques urbaines. Depuis 1999, il occupe un batiment de la Place du Gouvernement a Bonanjo, dans lequel est enchasse un vestige de l'ancien Palais des Rois Doualas.\n\nSa mission est de soutenir la creation contemporaine camerounaise tout en questionnant la place de l'art dans l'espace public. Doual'Art diffuse en moyenne huit expositions par an et a produit plus de 60 projets artistiques permanents ou temporaires disperses dans la ville, dont la celebre statue \"La Nouvelle Liberte\" de Joseph-Francis Sumegne (1996), devenue un des monuments les plus reconnaissables de Douala.\n\nDepuis 2007, l'institution organise le Salon Urbain de Douala (SUD), un festival triennal reunissant une vingtaine d'artistes camerounais et internationaux autour de thematiques urbaines. Le Prince Claus Fund decrit Doual'Art comme une \"organisation qui a revolutionne la scene artistique au Cameroun\".",
+      "activities": [
+        "Visiter les expositions temporaires d'artistes camerounais et internationaux",
+        "Decouvrir le vestige de l'ancien Palais des Rois Doualas integre au batiment",
+        "Se detendre dans le jardin et la cafeteria de l'espace",
+        "Explorer le parcours d'oeuvres d'art public disseminees dans Douala",
+        "Assister a des conferences, ateliers ou residences d'artistes selon la programmation"
+      ],
+      "practical_info": {
+        "hours": "Du mardi au samedi, journee",
+        "price": "Entree generalement libre pour les expositions",
+        "best_time": "Toute l'annee ; le SUD (festival triennal) a lieu en decembre",
+        "access": "Place du Gouvernement, quartier Bonanjo"
+      }
     },
     {
       "id": 6,
@@ -112,7 +167,20 @@
       "description": "Eglise construite au XIXe siecle pour commemorer le premier siecle du christianisme au Cameroun.",
       "city": "Douala",
       "lat": 4.052,
-      "lng": 9.701
+      "lng": 9.701,
+      "long_description": "Construit et inaugure le 30 mars 1947, le Temple du Centenaire commemore les cent ans de l'arrivee du christianisme a Douala : en 1847, le pasteur britannique Alfred Saker y avait fait edifier la premiere eglise chretienne du pays, nommee \"Bethel\", sur un terrain mis a disposition par le roi Akwa.\n\nAlfred Saker, premier Europeen autorise a s'installer durablement sur le sol camerounais des 1845, restera la figure emblematique de la mission protestante au Cameroun jusqu'a son depart en 1876. Le temple, affilie a l'Eglise Evangelique du Cameroun, se dresse aujourd'hui a l'emplacement exact de ce premier lieu de culte historique.\n\nSon architecture, melant elements modernes et traditionnels, se distingue par sa haute facade blanche surmontee d'un clocher elance et son toit vert caracteristique. Situe dans le quartier tres anime d'Akwa I, le temple reste un lieu de culte actif et un point de repere incontournable du patrimoine religieux de la ville.",
+      "activities": [
+        "Admirer l'architecture typique, entre modernite et tradition, avec sa haute facade blanche et son toit vert",
+        "Decouvrir l'histoire de l'arrivee du christianisme au Cameroun en 1847",
+        "Assister a un culte pour vivre l'ambiance de la communaute evangelique locale",
+        "Explorer le quartier animee d'Akwa aux alentours du temple"
+      ],
+      "practical_info": {
+        "hours": "Ouvert lors des cultes et evenements religieux",
+        "price": "Acces libre",
+        "best_time": "Dimanche matin pour assister a un culte, ou en journee pour l'architecture",
+        "access": "Quartier Akwa I, a proximite du boulevard de la Liberte"
+      }
     },
     {
       "id": 7,
@@ -127,7 +195,21 @@
       "description": "Reserve naturelle abritant lamantins, crocodiles et une grande diversite d'oiseaux, a la sortie de Douala.",
       "city": "Douala",
       "lat": 3.85,
-      "lng": 9.75
+      "lng": 9.75,
+      "long_description": "Creee en 1932 par l'administration coloniale francaise, la reserve de faune de Douala-Edea est l'une des plus anciennes aires protegees du Cameroun. Situee dans le departement de la Sanaga Maritime, elle s'etend sur environ 160 000 a 262 935 hectares (selon les sources) le long de la cote atlantique, a la sortie de Douala.\n\nLe 25 septembre 2018, un decret presidentiel a acte sa transformation en Parc National de Douala-Edea, une reclassification destinee a mieux proteger sa biodiversite exceptionnelle face aux pressions demographiques et environnementales croissantes.\n\nLe site est compose a 80% de foret tropicale humide et 15% de mangroves atlantiques, traverse par plusieurs cours d'eau (dont l'embouchure des fleuves Sanaga, Nyong, Dibamba et Wouri) et parseme de lacs, le plus grand etant le lac Tissongo. Plus de 80 especes de grands et moyens mammiferes y ont ete recensees, dont l'elephant de foret, le chimpanzé, le lamantin (une espece menacee), le drill et le crocodile nain, ainsi que plus de 230 especes d'oiseaux. Des tortues marines viennent pondre sur les plages du littoral entre novembre et janvier.",
+      "activities": [
+        "Observer la faune sauvage lors de safaris guides (elephants, chimpanzes, oiseaux)",
+        "Naviguer en pirogue a travers les chenaux de mangrove",
+        "Assister a la ponte des tortues marines (saison novembre-janvier)",
+        "Decouvrir le lac Tissongo et les paysages de foret inondee",
+        "Rencontrer les communautes de pecheurs installees le long des rivieres"
+      ],
+      "practical_info": {
+        "hours": "Visites organisees en journee, generalement avec un guide",
+        "price": "Variable selon excursion (safari, pirogue, guide) - se renseigner aupres d'agences locales",
+        "best_time": "Novembre a janvier pour la ponte des tortues marines ; saison seche pour les safaris",
+        "access": "A la sortie sud de Douala, accessible par route puis pirogue selon les zones"
+      }
     },
     {
       "id": 8,
@@ -142,7 +224,21 @@
       "description": "Petite ile accessible par pirogue sur le fleuve Wouri, ambiance paisible loin de l'agitation urbaine.",
       "city": "Douala",
       "lat": 4.07,
-      "lng": 9.68
+      "lng": 9.68,
+      "long_description": "Situee au coeur du fleuve Wouri, l'ile de Djebale (aussi orthographiee Jebale ou Jébalè) est une ile fluviale d'environ 3000 hectares administrativement rattachee a la commune de Bonaberi (Douala IV). Selon la legende locale, son nom viendrait de Djobalè, une femme sirene rencontree par l'ancetre fondateur Malè Mbongo, frere de Mbedi Mbongo, geniteur du peuple Douala.\n\nLa traversee s'effectue depuis le debarcadere de Bonassama, en pirogue a pagaie (45 minutes) ou a moteur (15 minutes seulement). L'ile, peuplee d'environ 300 a 1000 habitants selon les sources, a conserve un charme unique : maisons de style colonial aux murs defraichis, vestiges de la Premiere Guerre mondiale (dont un canon), et certaines des plus anciennes ecoles et eglises du pays.\n\nJebale est aussi un haut lieu spirituel et culturel du peuple Sawa, abritant le sanctuaire du celebre festival Ngondo. Depuis 2018, le festival culturel \"Musina\" y est organise chaque annee en fevrier par les jeunes originaires de l'ile, contribuant a faire connaitre ce village longtemps reste isole malgre sa proximite avec Douala.",
+      "activities": [
+        "Traverser le fleuve Wouri en pirogue depuis le debarcadere de Bonassama",
+        "Decouvrir les vestiges coloniaux, dont un canon de la Premiere Guerre mondiale",
+        "Visiter les plus anciennes ecoles et eglises du Cameroun",
+        "Se promener dans les ruelles etroites du village au rythme de la vie insulaire",
+        "Assister au festival Musina en fevrier, celebrant le patrimoine culturel Sawa"
+      ],
+      "practical_info": {
+        "hours": "Traversees en journee depuis le debarcadere de Bonassama",
+        "price": "Prix de la traversee en pirogue variable selon negociation",
+        "best_time": "Week-ends, ou en fevrier pour le festival Musina",
+        "access": "Depart en pirogue depuis le debarcadere de Bonassama (Douala IV)"
+      }
     },
     {
       "id": 9,
@@ -157,7 +253,20 @@
       "description": "Marche reputee pour l'artisanat, la sculpture sur bois et les objets d'art camerounais.",
       "city": "Douala",
       "lat": 4.04,
-      "lng": 9.705
+      "lng": 9.705,
+      "long_description": "Bonapriso est le quartier le plus prestigieux et huppe de Douala, prise pour son melange unique d'elegance, de scene artistique active et de vie nocturne animee. Ses rues arborees abritent des galeries d'art contemporain africain, des marches artisanaux reputes pour la sculpture sur bois, la vannerie et les objets d'art, ainsi qu'une offre gastronomique exceptionnelle allant de la cuisine camerounaise traditionnelle a la gastronomie francaise et internationale.\n\nLe quartier est particulierement recherche par la communaute diplomatique et les cadres expatries pour son cadre securise et arbore, dominee par des villas et residences haut de gamme. Le soir venu, Bonapriso devient l'un des principaux poles de la vie nocturne doualaise, avec de nombreux bars, lounges et maquis (restaurants populaires camerounais) ou se cotoient musique live et ambiance conviviale jusque tard dans la nuit.\n\nLe marche artisanal de Bonapriso en particulier est une adresse incontournable pour trouver des masques traditionnels, des sculptures, de la vannerie et des objets d'art authentiques, fabriques par des artisans locaux.",
+      "activities": [
+        "Flaner dans les rues arborees et decouvrir les galeries d'art contemporain",
+        "Acheter masques, sculptures et vannerie au marche artisanal",
+        "Diner dans l'un des nombreux restaurants gastronomiques du quartier",
+        "Profiter de la vie nocturne animee (bars, lounges, maquis)"
+      ],
+      "practical_info": {
+        "hours": "Marche en journee ; restaurants et bars actifs surtout le soir",
+        "price": "Variable ; quartier plutot haut de gamme pour la restauration",
+        "best_time": "Toute l'annee ; soiree pour l'ambiance nocturne",
+        "access": "Quartier Bonapriso, a proximite du centre des affaires de Douala"
+      }
     },
     {
       "id": 10,
@@ -172,7 +281,20 @@
       "description": "Espace de detente et de loisirs au bord du fleuve, prise avec restaurants et bars en soiree.",
       "city": "Douala",
       "lat": 4.053,
-      "lng": 9.699
+      "lng": 9.699,
+      "long_description": "Akwa-Nord est l'un des quartiers les plus animes de Douala, prolongement direct du centre des affaires d'Akwa vers les berges du fleuve Wouri. C'est un espace de detente prise des Doualais, ou se melent restaurants, bars et lieux de loisirs installes en bordure d'eau.\n\nLe quartier, comme Akwa dans son ensemble, s'anime particulierement en soiree lorsque les habitants viennent profiter de la fraicheur du fleuve, discuter entre amis ou en famille, et savourer des plats locaux dans une ambiance conviviale et decontractee. La proximite immediate avec le centre economique de la ville en fait un lieu de passage frequent, aussi bien pour les habitants que pour les visiteurs de passage a Douala.",
+      "activities": [
+        "Se detendre au bord du fleuve Wouri en fin de journee",
+        "Diner dans un restaurant ou bar les pieds dans l'eau",
+        "Observer l'activite fluviale (pirogues, bateaux de peche)",
+        "Profiter de l'ambiance conviviale caracteristique des soirees doualaises"
+      ],
+      "practical_info": {
+        "hours": "Actif surtout en fin d'apres-midi et en soiree",
+        "price": "Variable selon les etablissements",
+        "best_time": "Coucher du soleil, pour la lumiere sur le fleuve",
+        "access": "Quartier Akwa-Nord, en bordure du fleuve Wouri"
+      }
     },
     {
       "id": 11,
@@ -187,7 +309,20 @@
       "description": "L'un des plus grands ports d'Afrique centrale, coeur economique historique de la ville.",
       "city": "Douala",
       "lat": 4.049,
-      "lng": 9.69
+      "lng": 9.69,
+      "long_description": "Cree en 1868 par les autorites allemandes et inaugure en 1875, le Port Autonome de Douala (PAD) celebre en 2025 ses 150 ans d'existence. C'est aujourd'hui le principal moteur economique du Cameroun : il represente plus de 70% du commerce exterieur du pays et assure 75% de ses echanges maritimes, tout en desservant les pays enclaves voisins (Tchad, Republique Centrafricaine, nord du Congo).\n\nSitue dans l'estuaire du fleuve Wouri, le port dispose de 66 000 m² de magasins, 10 km de quais, 20 km de routes bitumees et 20 km de voies ferrees connectees au chemin de fer Transcamerounais (Douala-Yaounde-Ngaoundere). Il est le premier port de la zone CEMAC (Communaute economique et monetaire de l'Afrique centrale).\n\nAu-dela de son role economique majeur, le port porte une histoire riche : c'est sur ses rives que fut signe en 1884 le traite de protectorat germano-douala, moment fondateur de l'histoire coloniale du Cameroun. La celebration de son cent-cinquantenaire en septembre 2025 a mis a l'honneur l'heritage culturel des peuples Sawa, historiquement lies au developpement du port.",
+      "activities": [
+        "Observer l'activite portuaire intense (cargos, conteneurs, pirogues de peche)",
+        "Decouvrir un lieu charge d'histoire, temoin du traite de protectorat de 1884",
+        "Photographier le contraste entre activite industrielle moderne et vie fluviale traditionnelle",
+        "Comprendre le role economique cle du port pour le Cameroun et l'Afrique centrale"
+      ],
+      "practical_info": {
+        "hours": "Zone portuaire active en continu ; acces reglemente aux zones industrielles",
+        "price": "Observation depuis les berges generalement libre",
+        "best_time": "Matinee pour l'activite portuaire, fin de journee pour la lumiere",
+        "access": "Estuaire du Wouri, entre Bonaberi et Bonanjo"
+      }
     },
     {
       "id": 12,
@@ -202,7 +337,20 @@
       "description": "Quartier animee et commercial, restaurants, boutiques et vie nocturne de Douala.",
       "city": "Douala",
       "lat": 4.051,
-      "lng": 9.702
+      "lng": 9.702,
+      "long_description": "Akwa est le veritable coeur commercial et economique de Douala, souvent surnomme le \"centre-ville\" de la capitale economique du Cameroun. C'est ici que se concentrent banques, sieges d'entreprises, grands magasins, hotels et une intense vie nocturne, faisant du quartier l'un des poles les plus animes de toute la ville.\n\nHistoriquement, Akwa doit son nom au roi Akwa, l'un des souverains locaux ayant negocie avec les puissances europeennes au XIXe siecle. Aujourd'hui, le quartier melange architecture moderne (tours d'affaires, hotels comme l'embleme Akwa Palace) et scenes de rue tres animees, avec ses artisans, ses vendeurs ambulants et ses embouteillages caracteristiques aux heures de pointe.\n\nAkwa est egalement reconnu, avec Bonapriso, comme l'un des principaux centres de la vie nocturne doualaise : bars, restaurants et clubs y attirent une population jeune et dynamique en quete d'animation apres la tombee de la nuit.",
+      "activities": [
+        "Explorer le centre des affaires et observer l'effervescence urbaine",
+        "Faire du shopping dans les boutiques et grands magasins du quartier",
+        "Decouvrir l'hotel emblematique Akwa Palace, embleme architectural de Douala",
+        "Profiter de la vie nocturne animee (bars, restaurants, clubs)"
+      ],
+      "practical_info": {
+        "hours": "Actif toute la journee, tres anime en soiree",
+        "price": "Variable selon activites",
+        "best_time": "Journee pour le shopping, soiree pour l'ambiance nocturne",
+        "access": "Centre-ville de Douala, facilement accessible en taxi"
+      }
     },
     {
       "id": 13,
