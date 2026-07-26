@@ -71,6 +71,16 @@ def itineraries_page():
     return render_template("itineraries.html")
 
 
+@app.route("/map-page")
+def map_page():
+    return render_template("map.html")
+
+
+@app.route("/destination/<int:destination_id>")
+def destination_detail_page(destination_id):
+    return render_template("destination_detail.html", destination_id=destination_id)
+
+
 # ---------------------------------------------------------------------------
 # API Layer - Authentication
 # ---------------------------------------------------------------------------
@@ -124,12 +134,14 @@ def login():
 # ---------------------------------------------------------------------------
 @app.route("/destinations", methods=["GET"])
 def get_destinations():
-    """Search destinations, optionally filtered by name, country or tag."""
+    """Search destinations, optionally filtered by name, country, tag, category or city."""
     data = load_data()
     destinations = data["destinations"]
 
     query = request.args.get("q", "").strip().lower()
     tag = request.args.get("tag", "").strip().lower()
+    category = request.args.get("category", "").strip().lower()
+    city = request.args.get("city", "").strip().lower()
 
     if query:
         destinations = [
@@ -140,7 +152,23 @@ def get_destinations():
     if tag:
         destinations = [d for d in destinations if tag in [t.lower() for t in d["tags"]]]
 
+    if category:
+        destinations = [d for d in destinations if d.get("category", "").lower() == category]
+
+    if city:
+        destinations = [d for d in destinations if d.get("city", "").lower() == city]
+
     return jsonify(destinations), 200
+
+
+@app.route("/destinations/<int:destination_id>", methods=["GET"])
+def get_destination_by_id(destination_id):
+    """Return a single destination's full details."""
+    data = load_data()
+    destination = next((d for d in data["destinations"] if d["id"] == destination_id), None)
+    if not destination:
+        return jsonify({"error": "destination not found"}), 404
+    return jsonify(destination), 200
 
 
 # ---------------------------------------------------------------------------
