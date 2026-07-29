@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transport - GlobeTrotter Cameroun</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/map-page">Carte</a>
+      <a href="/transport-page" class="active-link">Transport</a>
+      <a href="/itineraries-page">Mes itinéraires</a>
+      <a href="/register-page">Inscription</a>
+      <a href="#" id="auth-link" class="nav-cta">Connexion</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>🚖 Comparateur de transport</h2>
+      <p class="hint">
+        Estimation des prix pour rejoindre chaque destination selon le moyen de transport choisi.
+        Les tarifs sont indicatifs : ils varient selon la négociation, l'affluence et le trafic.
+      </p>
+
+      <div class="filters">
+        <select id="transport-city">
+          <option value="">Toutes les villes</option>
+          <option value="Douala">Douala</option>
+          <option value="Yaounde">Yaoundé</option>
+          <option value="Limbe">Limbé</option>
+          <option value="Kribi">Kribi</option>
+          <option value="Bafoussam">Bafoussam</option>
+          <option value="Bamenda">Bamenda</option>
+          <option value="Ngaoundere">Ngaoundéré</option>
+        </select>
+        <select id="transport-mode">
+          <option value="">Tous les moyens</option>
+          <option value="moto">🏍️ Moto-taxi</option>
+          <option value="taxi">🚕 Taxi</option>
+        </select>
+      </div>
+
+      <div class="transport-mode-legend">
+        <span class="mode-chip mode-taxi">🚕 Taxi — confortable, un peu plus cher</span>
+        <span class="mode-chip mode-moto">🏍️ Moto-taxi — rapide et économique, à privilégier sur de courtes distances</span>
+      </div>
+
+      <div id="transport-list" class="transport-grid"></div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const listEl = document.getElementById("transport-list");
+    const cityFilter = document.getElementById("transport-city");
+    const modeFilter = document.getElementById("transport-mode");
+
+    const CATEGORY_ICON = {
+      "Site historique": "🏛️",
+      "Nature": "🌿",
+      "Distraction": "🎉",
+      "Restaurant": "🍽️",
+    };
+
+    function transportRowHTML(d) {
+      const icon = CATEGORY_ICON[d.category] || "📍";
+      const t = (typeof d.transport === "object" && d.transport) ? d.transport : null;
+      const taxi = t ? t.taxi : (d.transport || "Non renseigné");
+      const moto = t ? t.moto : "Non renseigné";
+      const note = t && t.note ? `<p class="transport-note">ℹ️ ${t.note}</p>` : "";
+
+      const showTaxi = !modeFilter.value || modeFilter.value === "taxi";
+      const showMoto = !modeFilter.value || modeFilter.value === "moto";
+
+      return `
+        <a href="/destination/${d.id}" class="transport-card-link">
+          <article class="transport-card">
+            <div class="transport-card-head">
+              <span>${icon} ${d.name}</span>
+              <span class="city-tag">📍 ${d.city || ""}</span>
+            </div>
+            <div class="transport-prices">
+              ${showTaxi ? `<div class="price-line price-taxi"><span>🚕 Taxi</span><strong>${taxi}</strong></div>` : ""}
+              ${showMoto ? `<div class="price-line price-moto"><span>🏍️ Moto-taxi</span><strong>${moto}</strong></div>` : ""}
+            </div>
+            ${note}
+          </article>
+        </a>
+      `;
+    }
+
+    async function loadTransport() {
+      const params = new URLSearchParams();
+      if (cityFilter.value) params.append("city", cityFilter.value);
+
+      const { ok, data } = await apiRequest(`/destinations?${params.toString()}`);
+      if (!ok) {
+        listEl.innerHTML = "<p class='hint'>Impossible de charger les informations de transport.</p>";
+        return;
+      }
+      if (data.length === 0) {
+        listEl.innerHTML = "<p class='hint'>Aucune destination trouvée.</p>";
+        return;
+      }
+      listEl.innerHTML = data.map(transportRowHTML).join("");
+    }
+
+    cityFilter.addEventListener("change", loadTransport);
+    modeFilter.addEventListener("change", loadTransport);
+
+    loadTransport();
+  </script>
+</body>
+</html>

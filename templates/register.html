@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription - GlobeTrotter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header>
+    <h1>🌍 GlobeTrotter</h1>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/destinations-page">Destinations</a>
+      <a href="/map-page">Carte</a>
+      <a href="/itineraries-page">Mes itineraires</a>
+      <a href="/register-page">Inscription</a>
+      <a href="#" id="auth-link" class="nav-cta">Connexion</a>
+    </nav>
+  </header>
+
+  <section class="auth-hero">
+    <div class="auth-card">
+      <p class="auth-eyebrow">GlobeTrotter</p>
+      <p class="auth-tagline">Explorez le Cameroun. Voyagez mieux.</p>
+
+      <h2 class="auth-title">Creer un compte</h2>
+      <p class="auth-subtitle">Rejoignez la communaute des explorateurs</p>
+
+      <form id="register-form">
+        <div class="input-icon-wrap">
+          <span class="input-icon">👤</span>
+          <input type="text" id="username" placeholder="Nom d'utilisateur" required />
+        </div>
+        <div class="input-icon-wrap">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="password" placeholder="Mot de passe" required />
+        </div>
+
+        <p class="pref-label">Qu'est-ce qui vous interesse ?</p>
+        <p class="pref-hint">Vos choix alimentent vos recommandations personnalisees</p>
+        <div class="pref-pills" id="pref-pills">
+          <button type="button" class="pref-pill" data-value="culture">Culture</button>
+          <button type="button" class="pref-pill" data-value="history">Histoire</button>
+          <button type="button" class="pref-pill" data-value="nature">Nature</button>
+          <button type="button" class="pref-pill" data-value="adventure">Aventure</button>
+          <button type="button" class="pref-pill" data-value="shopping">Shopping</button>
+          <button type="button" class="pref-pill" data-value="relaxation">Detente</button>
+          <button type="button" class="pref-pill" data-value="city">Vie urbaine</button>
+        </div>
+
+        <button type="submit" class="auth-submit">Creer mon compte →</button>
+      </form>
+      <div id="msg" class="message"></div>
+
+      <div class="auth-divider"><span>ou</span></div>
+
+      <a href="/login-page" class="auth-alt-btn">J'ai deja un compte</a>
+    </div>
+  </section>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const form = document.getElementById("register-form");
+    const msg = document.getElementById("msg");
+    const pills = document.querySelectorAll(".pref-pill");
+    const selected = new Set();
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const val = pill.dataset.value;
+        if (selected.has(val)) {
+          selected.delete(val);
+          pill.classList.remove("active");
+        } else {
+          selected.add(val);
+          pill.classList.add("active");
+        }
+      });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const preferences = Array.from(selected);
+
+      const { ok, data } = await apiRequest("/register", {
+        method: "POST",
+        body: { username, password, preferences },
+      });
+
+      if (ok) {
+        showMessage(msg, "Compte cree ! Vous pouvez vous connecter.", "success");
+        form.reset();
+        pills.forEach((p) => p.classList.remove("active"));
+        selected.clear();
+      } else {
+        showMessage(msg, data.error || "Inscription echouee.", "error");
+      }
+    });
+  </script>
+</body>
+</html>
