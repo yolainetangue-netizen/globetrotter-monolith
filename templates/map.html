@@ -39,6 +39,8 @@
     .dot-heritage { background: #1e3a6e; }
     .dot-nature { background: #2f6b4f; }
     .dot-fun { background: #ef6c4d; }
+    .dot-food { background: #b8460e; }
+    .dot-hotel { background: #6d4aa8; }
   </style>
 </head>
 <body>
@@ -48,6 +50,7 @@
       <a href="/">Accueil</a>
       <a href="/destinations-page">Destinations</a>
       <a href="/map-page">Carte</a>
+      <a href="/transport-page">Transport</a>
       <a href="/itineraries-page">Mes itinéraires</a>
       <a href="/register-page">Inscription</a>
       <a href="#" id="auth-link" class="nav-cta">Connexion</a>
@@ -57,12 +60,37 @@
   <main>
     <div class="card">
       <h2>Carte des destinations au Cameroun</h2>
-      <p class="hint">Explorez les lieux disponibles à travers 7 villes : Douala, Yaoundé, Limbé, Kribi, Bafoussam, Bamenda et Ngaoundéré.</p>
+      <p class="hint">Explorez 75 lieux à travers 3 villes : Douala, Kribi et Ngaoundéré.</p>
       <div class="map-legend">
         <span><i class="dot dot-heritage"></i> Sites historiques</span>
         <span><i class="dot dot-nature"></i> Nature</span>
         <span><i class="dot dot-fun"></i> Distractions</span>
+        <span><i class="dot dot-food"></i> Restaurants</span>
+        <span><i class="dot dot-hotel"></i> Hôtels</span>
       </div>
+
+      <div class="map-controls">
+        <div class="map-control-group">
+          <label for="departure-city">📍 Point de départ</label>
+          <div class="map-control-row">
+            <select id="departure-city">
+              <option value="">-- Choisir une ville --</option>
+            </select>
+            <button type="button" id="gps-btn" class="map-btn">🛰️ Utiliser ma position GPS</button>
+          </div>
+          <span id="departure-status" class="hint"></span>
+        </div>
+
+        <div class="map-control-group">
+          <label for="destination-search">🔎 Aller à une destination</label>
+          <select id="destination-search">
+            <option value="">-- Choisir une destination (A → Z) --</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="distance-panel" class="distance-panel" style="display:none;"></div>
+
       <div id="map"></div>
     </div>
   </main>
@@ -74,6 +102,14 @@
       "Site historique": "#1e3a6e",
       "Nature": "#2f6b4f",
       "Distraction": "#ef6c4d",
+      "Restaurant": "#b8460e",
+      "Hôtel": "#6d4aa8",
+    };
+
+    const CITY_COORDS = {
+      "Douala": [4.0511, 9.7679],
+      "Kribi": [2.9464, 9.9074],
+      "Ngaoundéré": [7.3167, 13.5833],
     };
 
     // Centre approximatif du Cameroun, zoom large pour voir toutes les villes
@@ -84,15 +120,140 @@
       maxZoom: 18,
     }).addTo(map);
 
+    let allDestinations = [];
+    const markersById = {};
+    let departureCoords = null;
+    let departureMarker = null;
+    let routeLine = null;
+
+    const departureSelect = document.getElementById("departure-city");
+    const destinationSelect = document.getElementById("destination-search");
+    const departureStatus = document.getElementById("departure-status");
+    const distancePanel = document.getElementById("distance-panel");
+    const gpsBtn = document.getElementById("gps-btn");
+
+    Object.keys(CITY_COORDS).sort((a, b) => a.localeCompare(b, "fr")).forEach((city) => {
+      const opt = document.createElement("option");
+      opt.value = city;
+      opt.textContent = city;
+      departureSelect.appendChild(opt);
+    });
+
+    function haversineKm(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const toRad = (v) => (v * Math.PI) / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function estimateTransportCost(straightKm) {
+      // Approximation route reelle ~ 1,3x la distance a vol d'oiseau
+      const roadKm = straightKm * 1.3;
+      const taxi = Math.round((500 + roadKm * 180) / 100) * 100;
+      let moto = null;
+      if (roadKm <= 30) {
+        moto = Math.round((300 + roadKm * 100) / 100) * 100;
+      }
+      return { roadKm, taxi, moto };
+    }
+
+    function updateDistancePanel(destination) {
+      if (!departureCoords || !destination) {
+        distancePanel.style.display = "none";
+        return;
+      }
+      const straightKm = haversineKm(departureCoords[0], departureCoords[1], destination.lat, destination.lng);
+      const { roadKm, taxi, moto } = estimateTransportCost(straightKm);
+
+      distancePanel.style.display = "block";
+      distancePanel.innerHTML = `
+        <p class="distance-headline">📏 <strong>${straightKm.toFixed(0)} km</strong> à vol d'oiseau depuis le point de départ
+        (≈ <strong>${roadKm.toFixed(0)} km</strong> par la route, estimation)</p>
+        <div class="distance-prices">
+          <span class="price-line price-taxi">🚕 Taxi (estimation) <strong>≈ ${taxi.toLocaleString("fr-FR")} FCFA</strong></span>
+          ${moto !== null
+            ? `<span class="price-line price-moto">🏍️ Moto-taxi (estimation) <strong>≈ ${moto.toLocaleString("fr-FR")} FCFA</strong></span>`
+            : `<span class="price-line price-moto">🏍️ Moto-taxi non recommandée sur cette distance — privilégiez un taxi ou une agence de voyage.</span>`
+          }
+        </div>
+        <p class="hint">⚠️ Estimation basée uniquement sur la distance, sans tenir compte du trafic en temps réel ni de l'état des routes. Les tarifs affichés sur chaque fiche destination restent les références locales pour un trajet en ville.</p>
+      `;
+
+      if (routeLine) map.removeLayer(routeLine);
+      routeLine = L.polyline([departureCoords, [destination.lat, destination.lng]], {
+        color: "#f2751a",
+        weight: 3,
+        dashArray: "6,8",
+      }).addTo(map);
+    }
+
+    function setDeparture(coords, label) {
+      departureCoords = coords;
+      departureStatus.textContent = `Départ : ${label}`;
+
+      if (departureMarker) map.removeLayer(departureMarker);
+      departureMarker = L.marker(coords, {
+        icon: L.divIcon({ className: "departure-pin", html: "🚩", iconSize: [24, 24] }),
+      }).addTo(map).bindPopup(`Départ : ${label}`);
+
+      const selectedId = destinationSelect.value;
+      if (selectedId) {
+        const dest = allDestinations.find((d) => String(d.id) === selectedId);
+        updateDistancePanel(dest);
+      }
+    }
+
+    departureSelect.addEventListener("change", () => {
+      const city = departureSelect.value;
+      if (!city) return;
+      setDeparture(CITY_COORDS[city], city);
+    });
+
+    gpsBtn.addEventListener("click", () => {
+      if (!navigator.geolocation) {
+        departureStatus.textContent = "La géolocalisation n'est pas disponible sur ce navigateur.";
+        return;
+      }
+      departureStatus.textContent = "Localisation en cours...";
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          departureSelect.value = "";
+          setDeparture([pos.coords.latitude, pos.coords.longitude], "ma position actuelle");
+        },
+        () => {
+          departureStatus.textContent = "Impossible d'obtenir votre position. Choisissez une ville de départ.";
+        }
+      );
+    });
+
+    destinationSelect.addEventListener("change", () => {
+      const id = destinationSelect.value;
+      if (!id) {
+        distancePanel.style.display = "none";
+        return;
+      }
+      const dest = allDestinations.find((d) => String(d.id) === id);
+      if (!dest) return;
+
+      map.setView([dest.lat, dest.lng], 14);
+      const marker = markersById[dest.id];
+      if (marker) marker.openPopup();
+
+      updateDistancePanel(dest);
+    });
+
     async function loadMapPoints() {
       const { ok, data } = await apiRequest('/destinations');
       if (!ok) return;
 
+      allDestinations = data.filter((d) => typeof d.lat === "number" && typeof d.lng === "number");
       const bounds = [];
 
-      data.forEach((d) => {
-        if (typeof d.lat !== "number" || typeof d.lng !== "number") return;
-
+      allDestinations.forEach((d) => {
         const color = CATEGORY_COLOR[d.category] || "#1e3a6e";
         const marker = L.circleMarker([d.lat, d.lng], {
           radius: 8,
@@ -105,15 +266,25 @@
         marker.bindPopup(`
           <strong>${d.name}</strong><br/>
           <span style="color:#6b7280;font-size:0.85em;">${d.city || d.country}</span><br/>
-          <span style="font-size:0.85em;">${d.description}</span>
+          <span style="font-size:0.85em;">${d.description}</span><br/>
+          <a href="/destination/${d.id}" style="font-size:0.85em;">Voir la fiche &rarr;</a>
         `);
 
+        markersById[d.id] = marker;
         bounds.push([d.lat, d.lng]);
       });
 
       if (bounds.length > 0) {
         map.fitBounds(bounds, { padding: [30, 30] });
       }
+
+      const sorted = [...allDestinations].sort((a, b) => a.name.localeCompare(b.name, "fr"));
+      sorted.forEach((d) => {
+        const opt = document.createElement("option");
+        opt.value = d.id;
+        opt.textContent = `${d.name} (${d.city})`;
+        destinationSelect.appendChild(opt);
+      });
     }
 
     loadMapPoints();

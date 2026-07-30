@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,12 +13,13 @@
   <header>
     <h1>🌍 GlobeTrotter</h1>
     <nav>
-      <a href="/">Home</a>
+      <a href="/">Accueil</a>
       <a href="/destinations-page">Destinations</a>
       <a href="/map-page">Carte</a>
-      <a href="/itineraries-page">My Itineraries</a>
-      <a href="/register-page">Register</a>
-      <a href="#" id="auth-link" class="nav-cta">Login</a>
+      <a href="/transport-page">Transport</a>
+      <a href="/itineraries-page">Mes itinéraires</a>
+      <a href="/register-page">Inscription</a>
+      <a href="#" id="auth-link" class="nav-cta">Connexion</a>
     </nav>
   </header>
 
@@ -30,7 +31,7 @@
         <h1 class="hero-title">Le Cameroun.<br />A votre rythme.</h1>
         <p class="hero-subtitle">
           GlobeTrotter Explore transforme vos envies en itineraire : recherchez
-          des lieux a travers 7 villes du Cameroun, recevez des recommandations
+          des lieux a travers 3 villes du Cameroun, recevez des recommandations
           adaptees a vos gouts, et organisez vos sorties.
         </p>
         <div class="hero-actions">
@@ -55,46 +56,101 @@
         </svg>
 
         <span class="landmark landmark-1">🏛️<em>Douala</em></span>
-        <span class="landmark landmark-2">🏛️<em>Yaounde</em></span>
-        <span class="landmark landmark-3">🏖️<em>Limbe</em></span>
         <span class="landmark landmark-4">🌊<em>Kribi</em></span>
-        <span class="landmark landmark-5">⛰️<em>Bamenda</em></span>
+        <span class="landmark landmark-5">⛰️<em>Ngaoundéré</em></span>
       </div>
     </div>
+  </section>
+
+  <section class="stat-strip">
+    <div class="stat-item"><span class="stat-num">75</span><span class="stat-label">Destinations &amp; adresses</span></div>
+    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Villes couvertes</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Categories a explorer</span></div>
+    <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">Moyens de transport comparés</span></div>
   </section>
 
   <main>
     <div class="card">
       <h2>Bienvenue sur GlobeTrotter Explore</h2>
-      <p>Ceci est la <strong>Phase 1 &mdash; Le Monolithe</strong> : un seul serveur qui gere
-      l'inscription, la connexion, la recherche de lieux a travers 7 villes du Cameroun,
-      les recommandations et la gestion des itineraires, avec les donnees stockees dans un fichier JSON.</p>
+      <p>GlobeTrotter Explore transforme vos envies en itineraire : recherchez des lieux et des adresses
+      a travers 3 villes du Cameroun (Douala, Kribi, Ngaoundere), comparez les prix selon la saison et le moyen de transport
+      (taxi ou moto), recevez des recommandations adaptees a vos gouts, et organisez vos sorties.</p>
       <p class="hint">Compte demo : nom d'utilisateur <code>demo</code>, mot de passe <code>demo123</code></p>
     </div>
 
     <div class="card">
       <h2>Pour commencer</h2>
       <div class="wood-buttons">
-        <a href="/register-page" class="wood-btn">
+        <a href="/register-page" class="wood-btn wood-btn-violet">
           <span class="wood-btn-icon">📝</span>
-          <span>Creer un compte</span>
+          <span>Créer un compte</span>
         </a>
-        <a href="/login-page" class="wood-btn">
+        <a href="/login-page" class="wood-btn wood-btn-orange">
           <span class="wood-btn-icon">🔑</span>
           <span>Se connecter</span>
         </a>
-        <a href="/destinations-page" class="wood-btn">
+        <a href="/destinations-page" class="wood-btn wood-btn-teal">
           <span class="wood-btn-icon">🧭</span>
           <span>Parcourir les lieux</span>
         </a>
-        <a href="/itineraries-page" class="wood-btn">
+        <a href="/transport-page" class="wood-btn wood-btn-coral">
+          <span class="wood-btn-icon">🚖</span>
+          <span>Comparer les transports</span>
+        </a>
+        <a href="/map-page" class="wood-btn wood-btn-violet">
           <span class="wood-btn-icon">🗺️</span>
-          <span>Voir mes itineraires</span>
+          <span>Explorer la carte</span>
+        </a>
+        <a href="/itineraries-page" class="wood-btn wood-btn-orange">
+          <span class="wood-btn-icon">📅</span>
+          <span>Mes itinéraires</span>
         </a>
       </div>
+    </div>
+
+    <div class="card">
+      <h2>À la une</h2>
+      <p class="hint">Un aperçu de destinations et adresses populaires, des sites historiques aux tables de Kribi.</p>
+      <div id="featured-grid" class="destination-grid"></div>
     </div>
   </main>
 
   <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script>
+    const FEATURED_IDS = [12, 31, 35, 60];
+    const CATEGORY_CLASS = { "Site historique": "cat-heritage", "Nature": "cat-nature", "Distraction": "cat-fun", "Restaurant": "cat-food", "Hôtel": "cat-hotel" };
+    const CATEGORY_ICON = { "Site historique": "🏛️", "Nature": "🌿", "Distraction": "🎉", "Restaurant": "🍽️", "Hôtel": "🏨" };
+
+    async function loadFeatured() {
+      const grid = document.getElementById("featured-grid");
+      const results = await Promise.all(FEATURED_IDS.map((id) => apiRequest(`/destinations/${id}`)));
+      const cards = results
+        .filter((r) => r.ok)
+        .map(({ data: d }) => {
+          const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
+          const icon = CATEGORY_ICON[d.category] || "📍";
+          const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
+          return `
+            <a href="/destination/${d.id}" class="destination-card-link">
+              <article class="destination-card">
+                <div class="destination-media"><div class="placeholder-media photo-slot ${catClass}" data-photo-query="${query}"><span>${icon}</span></div></div>
+                <div class="destination-body">
+                  <div class="card-badges">
+                    <span class="category-tag ${catClass}">${icon} ${d.category || ""}</span>
+                    <span class="city-tag">📍 ${d.city || ""}</span>
+                  </div>
+                  <h3>${d.name}</h3>
+                  <p>${d.description}</p>
+                </div>
+              </article>
+            </a>
+          `;
+        });
+      grid.innerHTML = cards.join("");
+      hydratePhotos(grid);
+    }
+
+    loadFeatured();
+  </script>
 </body>
 </html>

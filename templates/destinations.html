@@ -16,6 +16,7 @@
       <a href="/">Accueil</a>
       <a href="/destinations-page">Destinations</a>
       <a href="/map-page">Carte</a>
+      <a href="/transport-page">Transport</a>
       <a href="/itineraries-page">Mes itinéraires</a>
       <a href="/register-page">Inscription</a>
       <a href="#" id="auth-link" class="nav-cta">Connexion</a>
@@ -31,22 +32,21 @@
         <select id="search-city">
           <option value="">Toutes les villes</option>
           <option value="Douala">Douala</option>
-          <option value="Yaounde">Yaoundé</option>
-          <option value="Limbe">Limbé</option>
           <option value="Kribi">Kribi</option>
-          <option value="Bafoussam">Bafoussam</option>
-          <option value="Bamenda">Bamenda</option>
           <option value="Ngaoundere">Ngaoundéré</option>
         </select>
         <select id="search-tag">
           <option value="">Tous les tags</option>
           <option value="culture">Culture</option>
+          <option value="histoire">Histoire</option>
           <option value="history">Histoire</option>
           <option value="shopping">Shopping</option>
           <option value="city">Ville</option>
           <option value="nature">Nature</option>
           <option value="adventure">Aventure</option>
           <option value="relaxation">Détente</option>
+          <option value="gastronomie">Gastronomie</option>
+          <option value="hebergement">Hébergement</option>
         </select>
         <button id="search-btn">Rechercher</button>
       </div>
@@ -56,6 +56,8 @@
         <button class="pill" data-category="Site historique">🏛️ Sites historiques</button>
         <button class="pill" data-category="Nature">🌿 Nature</button>
         <button class="pill" data-category="Distraction">🎉 Distractions</button>
+        <button class="pill" data-category="Restaurant">🍽️ Restaurants</button>
+        <button class="pill" data-category="Hôtel">🏨 Hôtels</button>
       </div>
 
       <div id="destinations" class="destination-grid"></div>
@@ -111,20 +113,23 @@
       "Site historique": "cat-heritage",
       "Nature": "cat-nature",
       "Distraction": "cat-fun",
+      "Restaurant": "cat-food",
+      "Hôtel": "cat-hotel",
     };
 
     const CATEGORY_ICON = {
       "Site historique": "🏛️",
       "Nature": "🌿",
       "Distraction": "🎉",
+      "Restaurant": "🍽️",
+      "Hôtel": "🏨",
     };
 
     function destinationCardHTML(d) {
       const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
       const icon = CATEGORY_ICON[d.category] || "📍";
-      const media = d.image
-        ? `<img src="${d.image}" alt="${d.name}" loading="lazy" />`
-        : `<div class="placeholder-media ${catClass}"><span>${icon}</span></div>`;
+      const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
+      const media = `<div class="placeholder-media photo-slot ${catClass}" data-photo-query="${query}"><span>${icon}</span></div>`;
 
       return `
         <a href="/destination/${d.id}" class="destination-card-link">
@@ -150,7 +155,9 @@
         container.innerHTML = "<p class='hint'>Aucun lieu trouvé.</p>";
         return;
       }
-      container.innerHTML = destinations.map(destinationCardHTML).join("");
+      const sorted = [...destinations].sort((a, b) => a.name.localeCompare(b.name, "fr"));
+      container.innerHTML = sorted.map(destinationCardHTML).join("");
+      hydratePhotos(container);
     }
 
     function populateSelect(destinations) {

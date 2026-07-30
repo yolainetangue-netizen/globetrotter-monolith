@@ -35,11 +35,7 @@
         <select id="transport-city">
           <option value="">Toutes les villes</option>
           <option value="Douala">Douala</option>
-          <option value="Yaounde">Yaoundé</option>
-          <option value="Limbe">Limbé</option>
           <option value="Kribi">Kribi</option>
-          <option value="Bafoussam">Bafoussam</option>
-          <option value="Bamenda">Bamenda</option>
           <option value="Ngaoundere">Ngaoundéré</option>
         </select>
         <select id="transport-mode">
@@ -69,6 +65,7 @@
       "Nature": "🌿",
       "Distraction": "🎉",
       "Restaurant": "🍽️",
+      "Hôtel": "🏨",
     };
 
     function transportRowHTML(d) {
@@ -111,7 +108,8 @@
         listEl.innerHTML = "<p class='hint'>Aucune destination trouvée.</p>";
         return;
       }
-      listEl.innerHTML = data.map(transportRowHTML).join("");
+      const sorted = [...data].sort((a, b) => a.name.localeCompare(b.name, "fr"));
+      listEl.innerHTML = sorted.map(transportRowHTML).join("");
     }
 
     cityFilter.addEventListener("change", loadTransport);

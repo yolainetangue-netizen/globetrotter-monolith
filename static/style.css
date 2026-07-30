@@ -1287,3 +1287,215 @@ th, td {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------------------------------------------------------------------
+   Avis des visiteurs
+   --------------------------------------------------------------------- */
+.reviews-summary {
+  margin-bottom: 1rem;
+}
+
+.review-average {
+  color: var(--orange-deep);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.review-item {
+  background: #faf7f2;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.8rem 1rem;
+}
+
+.review-item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.3rem;
+}
+
+.review-item-stars {
+  color: var(--orange-deep);
+  letter-spacing: 1px;
+}
+
+.review-item p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
+.review-date {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.review-form {
+  border-top: 1px solid var(--border);
+  padding-top: 1.1rem;
+}
+
+.review-form h3 {
+  margin: 0 0 0.7rem 0;
+  font-family: "Fraunces", serif;
+  font-size: 1.05rem;
+}
+
+.review-form-row {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.review-form-row input[type="text"] {
+  flex: 1;
+  min-width: 180px;
+}
+
+.review-stars {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  color: #d8cfc2;
+}
+
+.review-stars span {
+  transition: color 0.1s ease;
+}
+
+.review-stars span.filled,
+.review-stars span:hover,
+.review-stars span:hover ~ span {
+  color: var(--orange-deep);
+}
+
+.review-form textarea {
+  width: 100%;
+  margin-bottom: 0.8rem;
+  font-family: "Inter", sans-serif;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  resize: vertical;
+}
+
+/* ---------------------------------------------------------------------
+   Carte : contrôles de départ / recherche de destination
+   --------------------------------------------------------------------- */
+.map-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.map-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.map-control-group label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.map-control-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.map-control-group select {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.55rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-family: "Inter", sans-serif;
+  font-size: 0.88rem;
+  background: #fff;
+}
+
+.map-btn {
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.map-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(15, 155, 142, 0.3);
+}
+
+@media (max-width: 700px) {
+  .map-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   Carte : panneau de distance / estimation de prix
+   --------------------------------------------------------------------- */
+.distance-panel {
+  background: linear-gradient(160deg, #fff7ed 0%, #ffe9d1 100%);
+  border: 1px solid rgba(242, 117, 26, 0.25);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.distance-headline {
+  margin: 0 0 0.6rem 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  color: var(--earth-deep);
+}
+
+.distance-prices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.distance-prices .price-line {
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+.departure-pin {
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 24px;
+}
+
+/* ---------------------------------------------------------------------
+   Nouvelle categorie : Hôtel
+   --------------------------------------------------------------------- */
+.placeholder-media.cat-hotel {
+  background: linear-gradient(135deg, var(--violet) 0%, #3a1f6b 100%);
+}
+
+.category-tag.cat-hotel {
+  background: var(--violet);
+}

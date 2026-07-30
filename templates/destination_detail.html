@@ -17,6 +17,7 @@
       <a href="/">Accueil</a>
       <a href="/destinations-page">Destinations</a>
       <a href="/map-page">Carte</a>
+      <a href="/transport-page">Transport</a>
       <a href="/itineraries-page">Mes itinéraires</a>
       <a href="/register-page">Inscription</a>
       <a href="#" id="auth-link" class="nav-cta">Connexion</a>
@@ -41,19 +42,22 @@
       "Site historique": "cat-heritage",
       "Nature": "cat-nature",
       "Distraction": "cat-fun",
+      "Restaurant": "cat-food",
+      "Hôtel": "cat-hotel",
     };
     const CATEGORY_ICON = {
       "Site historique": "🏛️",
       "Nature": "🌿",
       "Distraction": "🎉",
+      "Restaurant": "🍽️",
+      "Hôtel": "🏨",
     };
 
     function renderDetail(d) {
       const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
       const icon = CATEGORY_ICON[d.category] || "📍";
-      const media = d.image
-        ? `<img src="${d.image}" alt="${d.name}" />`
-        : `<div class="placeholder-media ${catClass} detail-placeholder"><span>${icon}</span></div>`;
+      const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
+      const media = `<div class="placeholder-media photo-slot ${catClass} detail-placeholder" data-photo-query="${query}"><span>${icon}</span></div>`;
 
       const activities = (d.activities || [])
         .map((a) => `<li>${a}</li>`)
@@ -73,15 +77,42 @@
         `
         : "";
 
-      const budgetTransport = (d.budget || d.transport)
+      const hasSeasonal = d.budget_saison_seche || d.budget_saison_pluies;
+      const budgetBlock = (d.budget || hasSeasonal)
         ? `
           <div class="card">
-            <h2>💰 Budget &amp; 🚖 Transport</h2>
-            <table class="practical-table">
-              ${d.budget ? `<tr><td>Budget indicatif</td><td>${d.budget}</td></tr>` : ""}
-              ${d.transport ? `<tr><td>Comment y aller</td><td>${d.transport}</td></tr>` : ""}
+            <h2>💰 Budget selon la saison</h2>
+            ${hasSeasonal ? `
+              <div class="season-grid">
+                <div class="season-box season-dry">
+                  <p class="season-label">☀️ Saison sèche</p>
+                  <p>${d.budget_saison_seche || d.budget || ""}</p>
+                </div>
+                <div class="season-box season-wet">
+                  <p class="season-label">🌧️ Saison des pluies</p>
+                  <p>${d.budget_saison_pluies || d.budget || ""}</p>
+                </div>
+              </div>
+            ` : `<p>${d.budget}</p>`}
+            <p class="hint">Les prix sont indicatifs, à confirmer sur place ; ils varient selon la négociation et l'affluence.</p>
+          </div>
+        `
+        : "";
+
+      const transportBlock = d.transport
+        ? `
+          <div class="card">
+            <h2>🚖 Transport</h2>
+            <table class="practical-table transport-table">
+              ${typeof d.transport === "object"
+                ? `
+                  <tr><td>🚕 Taxi</td><td>${d.transport.taxi || "—"}</td></tr>
+                  <tr><td>🏍️ Moto-taxi</td><td>${d.transport.moto || "—"}</td></tr>
+                  ${d.transport.note ? `<tr><td>ℹ️ Bon à savoir</td><td>${d.transport.note}</td></tr>` : ""}
+                `
+                : `<tr><td>Comment y aller</td><td>${d.transport}</td></tr>`
+              }
             </table>
-            <p class="hint">Les prix sont indicatifs et peuvent varier selon la saison, la negociation et le trafic routier.</p>
           </div>
         `
         : "";
@@ -111,7 +142,8 @@
         ` : ""}
 
         ${practical}
-        ${budgetTransport}
+        ${budgetBlock}
+        ${transportBlock}
 
         <div class="card">
           <h2>Localisation</h2>
@@ -121,7 +153,29 @@
         <div class="card">
           <div>${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
         </div>
+
+        <div class="card">
+          <h2>⭐ Avis des visiteurs</h2>
+          <div id="reviews-summary" class="reviews-summary"></div>
+          <div id="reviews-list" class="reviews-list"></div>
+
+          <form id="review-form" class="review-form">
+            <h3>Laisser un avis</h3>
+            <div class="review-form-row">
+              <input type="text" id="review-author" placeholder="Votre nom (facultatif)" maxlength="60" />
+              <div id="review-stars" class="review-stars" data-rating="0">
+                <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
+              </div>
+            </div>
+            <textarea id="review-comment" rows="3" placeholder="Partagez votre expérience sur place..." maxlength="1000"></textarea>
+            <button type="submit" class="wood-btn wood-btn-teal" style="max-width:220px;">Publier mon avis</button>
+            <p id="review-message" class="message"></p>
+          </form>
+        </div>
       `;
+
+      hydratePhotos(container);
+      initReviews();
 
       if (typeof d.lat === "number" && typeof d.lng === "number") {
         const map = L.map('detail-map').setView([d.lat, d.lng], 13);
@@ -139,6 +193,79 @@
       } else {
         container.innerHTML = "<p class='hint'>Ce lieu est introuvable.</p>";
       }
+    }
+
+    function starsHTML(rating) {
+      const full = Math.round(rating);
+      return Array.from({ length: 5 }, (_, i) => (i < full ? "★" : "☆")).join("");
+    }
+
+    async function loadReviews() {
+      const { ok, data } = await apiRequest(`/destinations/${DESTINATION_ID}/reviews`);
+      const summaryEl = document.getElementById("reviews-summary");
+      const listEl = document.getElementById("reviews-list");
+      if (!ok) return;
+
+      summaryEl.innerHTML = data.count > 0
+        ? `<span class="review-average">${starsHTML(data.average)} ${data.average}/5</span> <span class="hint">(${data.count} avis)</span>`
+        : `<p class="hint">Aucun avis pour le moment. Soyez le premier à partager votre expérience !</p>`;
+
+      listEl.innerHTML = data.reviews.map((r) => `
+        <div class="review-item">
+          <div class="review-item-head">
+            <strong>${r.author}</strong>
+            <span class="review-item-stars">${starsHTML(r.rating)}</span>
+          </div>
+          <p>${r.comment}</p>
+          <span class="review-date">${new Date(r.date).toLocaleDateString("fr-FR")}</span>
+        </div>
+      `).join("");
+    }
+
+    function initReviews() {
+      loadReviews();
+
+      const starsEl = document.getElementById("review-stars");
+      const stars = starsEl.querySelectorAll("span");
+      stars.forEach((star) => {
+        star.addEventListener("click", () => {
+          starsEl.dataset.rating = star.dataset.value;
+          stars.forEach((s) => s.classList.toggle("filled", s.dataset.value <= star.dataset.value));
+        });
+      });
+
+      const form = document.getElementById("review-form");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const msgEl = document.getElementById("review-message");
+        const rating = parseInt(starsEl.dataset.rating, 10);
+        const author = document.getElementById("review-author").value.trim();
+        const comment = document.getElementById("review-comment").value.trim();
+
+        if (!rating) {
+          showMessage(msgEl, "Merci de choisir une note (1 à 5 étoiles).", "error");
+          return;
+        }
+        if (!comment) {
+          showMessage(msgEl, "Merci d'écrire un petit commentaire.", "error");
+          return;
+        }
+
+        const { ok, data } = await apiRequest(`/destinations/${DESTINATION_ID}/reviews`, {
+          method: "POST",
+          body: { author, rating, comment },
+        });
+
+        if (ok) {
+          showMessage(msgEl, "Merci pour votre avis !", "success");
+          form.reset();
+          starsEl.dataset.rating = "0";
+          stars.forEach((s) => s.classList.remove("filled"));
+          loadReviews();
+        } else {
+          showMessage(msgEl, data.error || "Une erreur est survenue.", "error");
+        }
+      });
     }
 
     loadDetail();
