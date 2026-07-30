@@ -53,11 +53,98 @@
       "Hôtel": "🏨",
     };
 
+    // ---------------------------------------------------------------------
+    // Météo (Open-Meteo, via /api/weather)
+    // ---------------------------------------------------------------------
+    const WEATHER_CODES = {
+      0: { icon: "☀️", label: "Ciel dégagé" },
+      1: { icon: "🌤️", label: "Plutôt dégagé" },
+      2: { icon: "⛅", label: "Partiellement nuageux" },
+      3: { icon: "☁️", label: "Couvert" },
+      45: { icon: "🌫️", label: "Brouillard" },
+      48: { icon: "🌫️", label: "Brouillard givrant" },
+      51: { icon: "🌦️", label: "Bruine légère" },
+      53: { icon: "🌦️", label: "Bruine" },
+      55: { icon: "🌦️", label: "Bruine dense" },
+      61: { icon: "🌧️", label: "Pluie légère" },
+      63: { icon: "🌧️", label: "Pluie" },
+      65: { icon: "🌧️", label: "Forte pluie" },
+      80: { icon: "🌦️", label: "Averses" },
+      81: { icon: "🌦️", label: "Fortes averses" },
+      82: { icon: "⛈️", label: "Averses violentes" },
+      95: { icon: "⛈️", label: "Orage" },
+      96: { icon: "⛈️", label: "Orage avec grêle" },
+      99: { icon: "⛈️", label: "Orage violent" },
+    };
+
+    function weatherInfo(code) {
+      return WEATHER_CODES[code] || { icon: "🌡️", label: "Conditions variables" };
+    }
+
+    const DAY_LABELS = ["Aujourd'hui", "Demain", "Après-demain", "Dans 3 jours"];
+
+    async function loadWeather(lat, lng) {
+      const card = document.getElementById("weather-card");
+      const content = document.getElementById("weather-content");
+      try {
+        const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}`);
+        const data = await res.json();
+        if (!res.ok || data.error || !data.current_weather) {
+          return; // pas de meteo disponible : on laisse simplement le bloc masque
+        }
+
+        const cur = data.current_weather;
+        const curInfo = weatherInfo(cur.weathercode);
+        const month = new Date().getMonth() + 1; // 1-12
+        const isDrySeason = month <= 3 || month >= 11;
+        const seasonNote = isDrySeason
+          ? "Nous sommes en grande saison sèche : les tarifs \"saison sèche\" affichés plus bas sont les plus pertinents en ce moment."
+          : "Nous sommes en saison des pluies : les tarifs \"saison des pluies\" affichés plus bas sont les plus pertinents en ce moment.";
+
+        const daily = data.daily;
+        let forecastHTML = "";
+        if (daily && daily.time) {
+          forecastHTML = `
+            <div class="weather-forecast">
+              ${daily.time.map((date, i) => {
+                if (i === 0) return "";
+                const info = weatherInfo(daily.weathercode[i]);
+                return `
+                  <div class="weather-day">
+                    <p class="weather-day-label">${DAY_LABELS[i] || date}</p>
+                    <p class="weather-day-icon">${info.icon}</p>
+                    <p class="weather-day-temp">${Math.round(daily.temperature_2m_max[i])}° / ${Math.round(daily.temperature_2m_min[i])}°</p>
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          `;
+        }
+
+        content.innerHTML = `
+          <div class="weather-current">
+            <span class="weather-current-icon">${curInfo.icon}</span>
+            <div>
+              <p class="weather-current-temp">${Math.round(cur.temperature)}°C</p>
+              <p class="weather-current-label">${curInfo.label}</p>
+            </div>
+          </div>
+          ${forecastHTML}
+          <p class="hint">🔎 ${seasonNote}</p>
+          <p class="hint" style="font-size:0.72rem;">Données fournies par Open-Meteo, mises à jour régulièrement.</p>
+        `;
+        card.style.display = "block";
+      } catch {
+        // API indisponible : le bloc reste simplement masque, sans casser la page.
+      }
+    }
+
     function renderDetail(d) {
       const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
       const icon = CATEGORY_ICON[d.category] || "📍";
       const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
-      const media = `<div class="placeholder-media photo-slot ${catClass} detail-placeholder" data-photo-query="${query}"><span>${icon}</span></div>`;
+      const fallbackQuery = (d.image_query_fallback || "").replace(/"/g, "");
+      const media = `<div class="placeholder-media photo-slot ${catClass} detail-placeholder" data-photo-query="${query}" data-photo-fallback="${fallbackQuery}"><span>${icon}</span></div>`;
 
       const activities = (d.activities || [])
         .map((a) => `<li>${a}</li>`)
@@ -142,6 +229,12 @@
         ` : ""}
 
         ${practical}
+
+        <div class="card" id="weather-card" style="display:none;">
+          <h2>🌤️ Météo actuelle</h2>
+          <div id="weather-content"></div>
+        </div>
+
         ${budgetBlock}
         ${transportBlock}
 
@@ -176,6 +269,9 @@
 
       hydratePhotos(container);
       initReviews();
+      if (typeof d.lat === "number" && typeof d.lng === "number") {
+        loadWeather(d.lat, d.lng);
+      }
 
       if (typeof d.lat === "number" && typeof d.lng === "number") {
         const map = L.map('detail-map').setView([d.lat, d.lng], 13);

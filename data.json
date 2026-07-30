@@ -21,7 +21,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Aéroport International de Douala Douala Cameroun",
+      "image_query": "Aéroport International de Douala Douala Cameroon",
       "description": "Principale porte d'entree aerienne du Cameroun, situe a quelques kilometres du centre-ville.",
       "city": "Douala",
       "lat": 4.0061,
@@ -45,7 +45,8 @@
         "taxi": "environ 4000-6000 FCFA depuis le centre-ville de Douala (20-30 min)",
         "moto": "environ 2000-3000 FCFA",
         "note": "Prevoir plus de temps aux heures de pointe ; de nombreux taxis stationnent a la sortie des arrivees."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 2,
@@ -57,7 +58,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Base Navale de Douala Douala Cameroun",
+      "image_query": "Base Navale de Douala Douala Cameroon",
       "description": "Base principale de la Marine Nationale camerounaise, implantee le long du fleuve Wouri.",
       "city": "Douala",
       "lat": 4.045,
@@ -80,7 +81,8 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville (15-20 min)",
         "moto": "environ 1000-1500 FCFA",
         "note": "Zone sensible : eviter toute prise de vue rapprochee des installations militaires."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 3,
@@ -115,9 +117,10 @@
         "moto": "environ 150-350 FCFA",
         "note": "(5 min), zone tres centrale."
       },
-      "image_query": "Bord du Fleuve a Akwa-Nord Douala Cameroun",
+      "image_query": "Bord du Fleuve a Akwa-Nord Douala Cameroon",
       "budget_saison_seche": "Acces libre. Compter 3300-8800 FCFA pour un repas/boisson dans un etablissement du bord du fleuve. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Acces libre. Compter 2800-7600 FCFA pour un repas/boisson dans un etablissement du bord du fleuve. (basse saison : tarifs plus souples)."
+      "budget_saison_pluies": "Acces libre. Compter 2800-7600 FCFA pour un repas/boisson dans un etablissement du bord du fleuve. (basse saison : tarifs plus souples).",
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 4,
@@ -129,7 +132,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Cathédrale Saint-Pierre-et-Paul de Douala Douala Cameroun",
+      "image_query": "Cathédrale Saint-Pierre-et-Paul de Douala Douala Cameroon",
       "description": "Principale cathedrale catholique de Douala, un edifice marquant du paysage religieux de la ville.",
       "city": "Douala",
       "lat": 4.048,
@@ -153,7 +156,8 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Situee en plein centre-ville, tres accessible."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 5,
@@ -166,7 +170,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Croisière sur le Fleuve Wouri Douala Cameroun",
+      "image_query": "Croisière sur le Fleuve Wouri Douala Cameroon",
       "description": "Balade en bateau sur le fleuve Wouri, avec vue sur le port, le pont et les rives de Douala.",
       "city": "Douala",
       "lat": 4.048,
@@ -190,7 +194,8 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville jusqu'a l'embarcadere",
         "moto": "environ 500-800 FCFA",
         "note": "Reserver a l'avance aupres d'un operateur local, les departs dependent de la maree."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 6,
@@ -226,9 +231,10 @@
         "moto": "environ 250-600 FCFA",
         "note": "(10 min). Situe Place du Gouvernement, Bonanjo."
       },
-      "image_query": "Doual'Art Douala Cameroun",
+      "image_query": "Doual'Art Douala Cameroon",
       "budget_saison_seche": "Entree generalement libre pour les expositions courantes. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Entree generalement libre pour les expositions courantes. Aucune variation saisonniere (acces gratuit)."
+      "budget_saison_pluies": "Entree generalement libre pour les expositions courantes. Aucune variation saisonniere (acces gratuit).",
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 7,
@@ -264,9 +270,10 @@
         "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
         "note": "Coeur de ville, accessible facilement en taxi (300-500 FCFA depuis Akwa) ou a pied."
       },
-      "image_query": "Hotel Akwa Palace Douala Cameroun",
+      "image_query": "Hotel Akwa Palace Douala Cameroon",
       "budget_saison_seche": "Repas restaurant : 8800-22000 FCFA. Chambre : a partir de 44000-66000 FCFA/nuit selon saison. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Repas restaurant : 7600-19000 FCFA. Chambre : a partir de 38000-57000 FCFA/nuit selon saison. (basse saison : tarifs plus souples)."
+      "budget_saison_pluies": "Repas restaurant : 7600-19000 FCFA. Chambre : a partir de 38000-57000 FCFA/nuit selon saison. (basse saison : tarifs plus souples).",
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 8,
@@ -278,7 +285,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Hôtel Ibis Douala Douala Cameroun",
+      "image_query": "Hôtel Ibis Douala Douala Cameroon",
       "description": "Hotel international de standing moyen-superieur, situe en plein centre des affaires de Douala.",
       "city": "Douala",
       "lat": 4.05,
@@ -302,7 +309,8 @@
         "taxi": "environ 1500-2000 FCFA depuis l'aeroport (compris souvent dans les navettes hotel)",
         "moto": "environ 800-1200 FCFA",
         "note": "Situe en plein centre-ville, tres accessible depuis l'aeroport et le port."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 9,
@@ -314,7 +322,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Hôtel Pullman Douala Rabingha Douala Cameroun",
+      "image_query": "Hôtel Pullman Douala Rabingha Douala Cameroon",
       "description": "Hotel haut de gamme de Douala, prise pour ses evenements d'affaires et sa vue sur le Wouri.",
       "city": "Douala",
       "lat": 4.043,
@@ -338,7 +346,8 @@
         "taxi": "environ 2000-3000 FCFA depuis l'aeroport",
         "moto": "environ 1000-1500 FCFA",
         "note": "Adresse centrale bien desservie, navette possible depuis l'aeroport."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 10,
@@ -374,9 +383,10 @@
         "moto": "environ 500-1200 FCFA",
         "note": "Puis pirogue : 15-45 min selon le type."
       },
-      "image_query": "Ile de Jebale Douala Cameroun",
+      "image_query": "Ile de Jebale Douala Cameroon",
       "budget_saison_seche": "Traversee en pirogue : 600-2300 FCFA selon negociation et type de pirogue (pagaie ou moteur). (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
-      "budget_saison_pluies": "Traversee en pirogue : 400-1800 FCFA selon negociation et type de pirogue (pagaie ou moteur). (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies)."
+      "budget_saison_pluies": "Traversee en pirogue : 400-1800 FCFA selon negociation et type de pirogue (pagaie ou moteur). (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 11,
@@ -412,9 +422,10 @@
         "moto": "environ 250-600 FCFA",
         "note": "(10 min), quartier Bonanjo."
       },
-      "image_query": "K Hotel Douala Douala Cameroun",
+      "image_query": "K Hotel Douala Douala Cameroon",
       "budget_saison_seche": "Repas restaurant : 11000-27500 FCFA. Chambre : a partir de 55000-77000 FCFA/nuit selon saison. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Repas restaurant : 9500-23800 FCFA. Chambre : a partir de 47500-66500 FCFA/nuit selon saison. (basse saison : tarifs plus souples)."
+      "budget_saison_pluies": "Repas restaurant : 9500-23800 FCFA. Chambre : a partir de 47500-66500 FCFA/nuit selon saison. (basse saison : tarifs plus souples).",
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 12,
@@ -449,9 +460,10 @@
         "moto": "environ 250-600 FCFA",
         "note": "(10-15 min). Accessible aussi a pied depuis Bonanjo."
       },
-      "image_query": "La Pagode Douala Cameroun",
+      "image_query": "La Pagode Douala Cameroon",
       "budget_saison_seche": "Acces exterieur gratuit. Entree exposition Doual'Art : 0 - 2000 FCFA selon evenement. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Acces exterieur gratuit. Entree exposition Doual'Art : 0 - 2000 FCFA selon evenement. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison)."
+      "budget_saison_pluies": "Acces exterieur gratuit. Entree exposition Doual'Art : 0 - 2000 FCFA selon evenement. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 13,
@@ -463,7 +475,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Lac Municipal de Douala Douala Cameroun",
+      "image_query": "Lac Municipal de Douala Douala Cameroon",
       "description": "Petit lac amenage au coeur de Douala, prise pour une promenade ou une pause au calme.",
       "city": "Douala",
       "lat": 4.043,
@@ -487,7 +499,8 @@
         "taxi": "environ 1000-2000 FCFA depuis le centre-ville",
         "moto": "environ 500-1000 FCFA",
         "note": "Facilement accessible depuis la plupart des quartiers centraux."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 14,
@@ -499,7 +512,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Lycée Général Leclerc de Douala Douala Cameroun",
+      "image_query": "Lycée Général Leclerc de Douala Douala Cameroon",
       "description": "L'un des lycees historiques et reputes de Douala, etabli depuis l'epoque coloniale.",
       "city": "Douala",
       "lat": 4.057,
@@ -522,7 +535,8 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Situe en centre-ville, facilement accessible."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 15,
@@ -558,9 +572,10 @@
         "moto": "environ 250-600 FCFA",
         "note": "(10 min). Zone facilement accessible en journee."
       },
-      "image_query": "Musee Maritime de Douala Douala Cameroun",
+      "image_query": "Musee Maritime de Douala Douala Cameroon",
       "budget_saison_seche": "Visite libre : environ 2000 FCFA. Visite guidee : 5000 FCFA. Tarif reduit etudiants/enfants. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Visite libre : environ 2000 FCFA. Visite guidee : 5000 FCFA. Tarif reduit etudiants/enfants. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison)."
+      "budget_saison_pluies": "Visite libre : environ 2000 FCFA. Visite guidee : 5000 FCFA. Tarif reduit etudiants/enfants. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 16,
@@ -595,9 +610,10 @@
         "moto": "environ 500-800 FCFA",
         "note": "(15-20 min selon trafic)."
       },
-      "image_query": "Pont sur le Wouri Douala Cameroun",
+      "image_query": "Pont sur le Wouri Douala Cameroon",
       "budget_saison_seche": "Gratuit (observation depuis les berges ou en passant sur le pont). Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Gratuit (observation depuis les berges ou en passant sur le pont). Aucune variation saisonniere (acces gratuit)."
+      "budget_saison_pluies": "Gratuit (observation depuis les berges ou en passant sur le pont). Aucune variation saisonniere (acces gratuit).",
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 17,
@@ -632,9 +648,10 @@
         "moto": "environ 500-700 FCFA",
         "note": "(15 min selon trafic, souvent dense pres du port)."
       },
-      "image_query": "Port Autonome de Douala Douala Cameroun",
+      "image_query": "Port Autonome de Douala Douala Cameroon",
       "budget_saison_seche": "Observation depuis les berges gratuite. Acces aux zones industrielles reglemente. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Observation depuis les berges gratuite. Acces aux zones industrielles reglemente. Aucune variation saisonniere (acces gratuit)."
+      "budget_saison_pluies": "Observation depuis les berges gratuite. Acces aux zones industrielles reglemente. Aucune variation saisonniere (acces gratuit).",
+      "image_query_fallback": "old african building heritage"
     },
     {
       "id": 18,
@@ -669,9 +686,10 @@
         "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
         "note": "Coeur de ville, accessible facilement en taxi (300-500 FCFA) ou a pied depuis les quartiers voisins."
       },
-      "image_query": "Quartier Akwa Douala Cameroun",
+      "image_query": "Quartier Akwa Douala Cameroon",
       "budget_saison_seche": "Acces libre au quartier. Restaurants/bars : 3300-16500 FCFA selon l'etablissement. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Acces libre au quartier. Restaurants/bars : 2800-14200 FCFA selon l'etablissement. (basse saison : tarifs plus souples)."
+      "budget_saison_pluies": "Acces libre au quartier. Restaurants/bars : 2800-14200 FCFA selon l'etablissement. (basse saison : tarifs plus souples).",
+      "image_query_fallback": "african market colorful stalls"
     },
     {
       "id": 19,
@@ -707,9 +725,10 @@
         "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
         "note": "Taxi ou vehicule prive depuis Douala : 30-45 min jusqu'a l'embarcadere, puis pirogue. Compter 15000-25000 FCFA pour un aller-retour en taxi/vehicule loue."
       },
-      "image_query": "Reserve de Faune de Douala-Edea Douala Cameroun",
+      "image_query": "Reserve de Faune de Douala-Edea Douala Cameroon",
       "budget_saison_seche": "Safari guide : 17200-34500 FCFA selon duree et prestataire. Sortie pirogue en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
-      "budget_saison_pluies": "Safari guide : 13500-27000 FCFA selon duree et prestataire. Sortie pirogue en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies)."
+      "budget_saison_pluies": "Safari guide : 13500-27000 FCFA selon duree et prestataire. Sortie pirogue en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 20,
@@ -721,7 +740,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Restaurant La Marina Douala Cameroun",
+      "image_query": "Restaurant La Marina Douala Cameroon",
       "description": "Restaurant en bord du fleuve Wouri, reputé pour ses poissons et fruits de mer.",
       "city": "Douala",
       "lat": 4.046,
@@ -745,7 +764,8 @@
         "taxi": "environ 1500-2000 FCFA depuis le centre-ville",
         "moto": "environ 800-1200 FCFA",
         "note": "Adresse centrale, facilement accessible."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 21,
@@ -757,7 +777,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Stade de la Réunification Douala Cameroun",
+      "image_query": "Stade de la Réunification Douala Cameroon",
       "description": "Stade omnisport historique de Douala, haut lieu du football et des grands evenements sportifs.",
       "city": "Douala",
       "lat": 4.0392,
@@ -781,7 +801,8 @@
         "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
         "moto": "environ 800-1200 FCFA",
         "note": "Prevoir plus de temps les jours de grand match en raison de l'affluence."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 22,
@@ -816,9 +837,10 @@
         "moto": "environ 250-450 FCFA",
         "note": "(5-10 min), tres central."
       },
-      "image_query": "Temple du Centenaire Douala Cameroun",
+      "image_query": "Temple du Centenaire Douala Cameroon",
       "budget_saison_seche": "Acces libre. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Acces libre. Aucune variation saisonniere (acces gratuit)."
+      "budget_saison_pluies": "Acces libre. Aucune variation saisonniere (acces gratuit).",
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 23,
@@ -830,7 +852,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Université de Douala Douala Cameroun",
+      "image_query": "Université de Douala Douala Cameroon",
       "description": "Grande universite publique camerounaise, repartie sur plusieurs campus dans la ville.",
       "city": "Douala",
       "lat": 4.05,
@@ -854,7 +876,8 @@
         "taxi": "environ 1000-2000 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Bien desservi, plusieurs campus a des endroits differents de la ville."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 24,
@@ -866,7 +889,7 @@
         "shopping"
       ],
       "image": null,
-      "image_query": "Village Artisanal de Douala Douala Cameroun",
+      "image_query": "Village Artisanal de Douala Douala Cameroon",
       "description": "Marche artisanal regroupant sculpteurs, tisserands et artisans du bois et du bronze.",
       "city": "Douala",
       "lat": 4.051,
@@ -890,7 +913,8 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Marche facilement accessible, prevoir de negocier les prix."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 25,
@@ -903,7 +927,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Île de Manoka Douala Cameroun",
+      "image_query": "Île de Manoka Douala Cameroon",
       "description": "Ile paisible de l'estuaire du Wouri, accessible en pirogue, avec plages et villages de pecheurs.",
       "city": "Douala",
       "lat": 3.9333,
@@ -927,7 +951,8 @@
         "taxi": "non applicable (traversee fluviale requise, pas de route directe)",
         "moto": "non applicable (traversee fluviale requise)",
         "note": "L'acces se fait uniquement par bateau depuis l'embarcadere de Douala ; se renseigner sur les horaires de depart."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 26,
@@ -939,7 +964,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Akiba Beach Lounge Kribi Cameroun",
+      "image_query": "Akiba Beach Lounge Kribi Cameroon",
       "description": "Lounge-bar en bord de plage, ideal pour un cocktail ou un repas dans une ambiance festive et decontractee.",
       "city": "Kribi",
       "lat": 2.949,
@@ -963,7 +988,8 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 27,
@@ -974,7 +1000,7 @@
         "gastronomie"
       ],
       "image": null,
-      "image_query": "Au Plaisir du Goût Kribi Cameroun",
+      "image_query": "Au Plaisir du Goût Kribi Cameroon",
       "description": "Restaurant familial proposant une cuisine camerounaise generereuse a prix accessible.",
       "city": "Kribi",
       "lat": 2.946,
@@ -998,7 +1024,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
         "note": "Situe en centre-ville, facile d'acces a pied ou en moto-taxi."
-      }
+      },
+      "image_query_fallback": "african restaurant food dining"
     },
     {
       "id": 28,
@@ -1010,7 +1037,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Aérodrome de Kribi Kribi Cameroun",
+      "image_query": "Aérodrome de Kribi Kribi Cameroon",
       "description": "Petit aerodrome local de Kribi, utilise principalement pour des vols lies a l'activite economique regionale.",
       "city": "Kribi",
       "lat": 2.97,
@@ -1033,7 +1060,8 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville de Kribi (15-20 min)",
         "moto": "environ 1000-1500 FCFA",
         "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 29,
@@ -1045,7 +1073,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Base Navale de Kribi Kribi Cameroun",
+      "image_query": "Base Navale de Kribi Kribi Cameroon",
       "description": "Point d'appui de la Marine Nationale a Kribi, en lien avec le developpement du port en eau profonde.",
       "city": "Kribi",
       "lat": 2.955,
@@ -1068,7 +1096,8 @@
         "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
         "moto": "environ 800-1200 FCFA",
         "note": "Zone sensible : eviter les prises de vue rapprochees des installations."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 30,
@@ -1080,7 +1109,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Campements Bagyeli Kribi Cameroun",
+      "image_query": "Campements Bagyeli Kribi Cameroon",
       "description": "Rencontre avec les communautes Bagyeli, peuple autochtone de la foret, pour decouvrir leur mode de vie traditionnel.",
       "city": "Kribi",
       "lat": 2.85,
@@ -1105,7 +1134,8 @@
         "taxi": "environ 12000-18000 FCFA pour un aller-retour taxi/vehicule depuis Kribi (1h-1h30)",
         "moto": "envisageable par temps sec uniquement, tarif a negocier",
         "note": "Passer par une association locale ou un guide de Kribi est recommande pour organiser une visite respectueuse."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 31,
@@ -1140,9 +1170,10 @@
         "moto": "environ 1000-1500 FCFA",
         "note": "(15-20 min, 7 km)."
       },
-      "image_query": "Chutes de la Lobe Kribi Cameroun",
+      "image_query": "Chutes de la Lobe Kribi Cameroon",
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
-      "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies)."
+      "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 32,
@@ -1155,7 +1186,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Ebodjé Kribi Cameroun",
+      "image_query": "Ebodjé Kribi Cameroon",
       "description": "Village cotier au sud de Kribi, connu pour la protection des tortues marines et son ecotourisme communautaire.",
       "city": "Kribi",
       "lat": 2.6,
@@ -1180,7 +1211,8 @@
         "taxi": "environ 15000-20000 FCFA pour un aller-retour taxi/vehicule depuis Kribi (1h-1h15, 50 km)",
         "moto": "deconseille sur cette distance ; taxi ou vehicule loue recommande",
         "note": "Piste en partie non bitumee ; prevoir un vehicule robuste, surtout en saison des pluies."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 33,
@@ -1192,7 +1224,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Estuaire de la Kienké Kribi Cameroun",
+      "image_query": "Estuaire de la Kienké Kribi Cameroon",
       "description": "Embouchure de la riviere Kienke a Kribi, ou l'eau douce rencontre l'ocean Atlantique.",
       "city": "Kribi",
       "lat": 2.95,
@@ -1216,7 +1248,8 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Facilement accessible a pied depuis le centre-ville selon l'hebergement."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 34,
@@ -1228,7 +1261,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Framotel Kribi Kribi Cameroun",
+      "image_query": "Framotel Kribi Kribi Cameroon",
       "description": "Etablissement hotelier de standing a Kribi, appreciee pour son confort et son emplacement central.",
       "city": "Kribi",
       "lat": 2.948,
@@ -1252,7 +1285,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Emplacement central, tres accessible."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 35,
@@ -1264,7 +1298,7 @@
         "nature"
       ],
       "image": null,
-      "image_query": "Hôtel Ilomba Kribi Kribi Cameroun",
+      "image_query": "Hôtel Ilomba Kribi Kribi Cameroon",
       "description": "Hotel de bord de plage a Kribi, reputé pour son cadre tropical et sa piscine face a l'ocean.",
       "city": "Kribi",
       "lat": 2.942,
@@ -1288,7 +1322,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
         "note": "Situe sur le front de mer, tres accessible depuis le centre-ville."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 36,
@@ -1299,7 +1334,7 @@
         "gastronomie"
       ],
       "image": null,
-      "image_query": "La Fourchette Kribi Cameroun",
+      "image_query": "La Fourchette Kribi Cameroon",
       "description": "Restaurant de quartier propose une cuisine simple et copieuse a Kribi, appreciee pour son bon rapport qualite-prix.",
       "city": "Kribi",
       "lat": 2.945,
@@ -1322,7 +1357,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
         "note": "Adresse de quartier facilement accessible."
-      }
+      },
+      "image_query_fallback": "african restaurant food dining"
     },
     {
       "id": 37,
@@ -1334,7 +1370,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Le Boj Kribi Cameroun",
+      "image_query": "Le Boj Kribi Cameroon",
       "description": "Adresse conviviale de Kribi reputee pour ses grillades et son ambiance bar-restaurant.",
       "city": "Kribi",
       "lat": 2.9455,
@@ -1358,7 +1394,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
         "note": "Situe en centre-ville, accessible facilement."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 38,
@@ -1370,7 +1407,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Le Glacier Moderne Kribi Cameroun",
+      "image_query": "Le Glacier Moderne Kribi Cameroon",
       "description": "Salon de glaces et de patisseries a Kribi, ideal pour une pause sucree en famille.",
       "city": "Kribi",
       "lat": 2.9475,
@@ -1394,7 +1431,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
         "note": "Adresse centrale, tres accessible a pied."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 39,
@@ -1407,7 +1445,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Londji Kribi Cameroun",
+      "image_query": "Londji Kribi Cameroon",
       "description": "Village de pecheurs paisible au nord de Kribi, reputé pour sa plage sauvage et ses pirogues traditionnelles colorees.",
       "city": "Kribi",
       "lat": 2.98,
@@ -1432,7 +1470,8 @@
         "taxi": "environ 3000-4500 FCFA depuis le centre de Kribi (15-20 min)",
         "moto": "environ 1500-2500 FCFA",
         "note": "Piste praticable ; prevoir un peu plus de temps en saison des pluies."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 40,
@@ -1444,7 +1483,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Lycée Bilingue de Kribi Kribi Cameroun",
+      "image_query": "Lycée Bilingue de Kribi Kribi Cameroon",
       "description": "Etablissement scolaire public de reference a Kribi, offrant un enseignement bilingue francais-anglais.",
       "city": "Kribi",
       "lat": 2.945,
@@ -1467,7 +1506,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Facilement accessible en centre-ville."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 41,
@@ -1479,7 +1519,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Maison H Kribi Cameroun",
+      "image_query": "Maison H Kribi Cameroon",
       "description": "Restaurant au cadre soigne, entre cuisine camerounaise revisitee et influences internationales.",
       "city": "Kribi",
       "lat": 2.9465,
@@ -1503,7 +1543,8 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Facilement accessible depuis les hebergements du centre-ville."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 42,
@@ -1515,7 +1556,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Marché Central de Kribi Kribi Cameroun",
+      "image_query": "Marché Central de Kribi Kribi Cameroon",
       "description": "Marche animee de Kribi, ou trouver produits locaux, poissons frais et artisanat.",
       "city": "Kribi",
       "lat": 2.946,
@@ -1539,7 +1580,8 @@
         "taxi": "environ 500-1000 FCFA depuis n'importe quel point du centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Marche central tres accessible a pied depuis la plupart des hebergements."
-      }
+      },
+      "image_query_fallback": "african market colorful stalls"
     },
     {
       "id": 43,
@@ -1551,7 +1593,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Parc National de Campo-Ma'an Kribi Cameroun",
+      "image_query": "Parc National de Campo-Ma'an Kribi Cameroon",
       "description": "Vaste parc national du sud Cameroun abritant gorilles, elephants de foret et une biodiversite exceptionnelle.",
       "city": "Kribi",
       "lat": 2.3667,
@@ -1576,7 +1618,8 @@
         "taxi": "environ 20000-30000 FCFA pour un vehicule loue depuis Kribi jusqu'au poste de Campo (1h30-2h, 75 km)",
         "moto": "non recommande sur cette distance en foret",
         "note": "Un 4x4 ou un vehicule loue avec chauffeur est fortement recommande ; certaines pistes sont impraticables en saison des pluies."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 44,
@@ -1589,7 +1632,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Parcours Vita de Kribi Kribi Cameroun",
+      "image_query": "Parcours Vita de Kribi Kribi Cameroon",
       "description": "Piste sportive amenagee en foret littorale, ideale pour la course a pied et les exercices en plein air en bord de mer.",
       "city": "Kribi",
       "lat": 2.945,
@@ -1614,7 +1657,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
         "note": "Situe en plein centre touristique de Kribi, facilement accessible a pied depuis la plupart des hebergements."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 45,
@@ -1649,9 +1693,10 @@
         "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
         "note": "A pied depuis la plage de Kribi, ou taxi pour environ 500 FCFA (5 min)."
       },
-      "image_query": "Phare de Kribi Kribi Cameroun",
+      "image_query": "Phare de Kribi Kribi Cameroon",
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit)."
+      "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
+      "image_query_fallback": "old african building heritage"
     },
     {
       "id": 46,
@@ -1686,9 +1731,10 @@
         "moto": "environ 250-600 FCFA",
         "note": "(5-10 min)."
       },
-      "image_query": "Plage de Ngoye Kribi Cameroun",
+      "image_query": "Plage de Ngoye Kribi Cameroon",
       "budget_saison_seche": "Acces gratuit. Location transat/parasol : 1200-2300 FCFA selon etablissement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
-      "budget_saison_pluies": "Acces gratuit. Location transat/parasol : 900-1800 FCFA selon etablissement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies)."
+      "budget_saison_pluies": "Acces gratuit. Location transat/parasol : 900-1800 FCFA selon etablissement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 47,
@@ -1700,7 +1746,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Port en eau profonde de Kribi (Port de Kribi-Mboro) Kribi Cameroun",
+      "image_query": "Port en eau profonde de Kribi Kribi Cameroon",
       "description": "Grand port en eau profonde du Cameroun, situe a Mboro/Lolabe au nord de Kribi, symbole du developpement economique de la region.",
       "city": "Kribi",
       "lat": 3.15,
@@ -1724,7 +1770,8 @@
         "taxi": "environ 8000-12000 FCFA pour un aller-retour taxi depuis Kribi (35-40 min, 30 km)",
         "moto": "environ 4000-6000 FCFA, trajet plus long recommande en taxi",
         "note": "Route bitumee, accessible toute l'annee ; prevoir un vehicule pour l'aller-retour."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 48,
@@ -1736,7 +1783,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Restaurant Idodo Kribi Cameroun",
+      "image_query": "Restaurant Idodo Kribi Cameroon",
       "description": "Restaurant reputé de Kribi pour ses fruits de mer et poissons grilles servis en bord de plage.",
       "city": "Kribi",
       "lat": 2.947,
@@ -1760,7 +1807,8 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Situe en bord de plage, facilement accessible depuis la plupart des hotels de Kribi."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 49,
@@ -1772,7 +1820,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Terrasse de l'Océan Kribi Cameroun",
+      "image_query": "Terrasse de l'Océan Kribi Cameroon",
       "description": "Restaurant-terrasse avec vue directe sur l'ocean Atlantique, specialise dans les produits de la mer.",
       "city": "Kribi",
       "lat": 2.948,
@@ -1796,7 +1844,8 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Adresse centrale du front de mer, tres accessible."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 50,
@@ -1808,7 +1857,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Îlot aux Oiseaux de Kribi Kribi Cameroun",
+      "image_query": "Îlot aux Oiseaux de Kribi Kribi Cameroon",
       "description": "Petit ilot rocheux au large de Kribi, refuge pour de nombreuses especes d'oiseaux marins.",
       "city": "Kribi",
       "lat": 2.92,
@@ -1832,7 +1881,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville jusqu'au point de depart",
         "moto": "environ 300-500 FCFA",
         "note": "Sortie soumise aux conditions meteo ; confirmer le depart avec le piroguier le jour meme."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 51,
@@ -1844,7 +1894,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Auberge La Flamme Ngaoundere Cameroun",
+      "image_query": "Auberge La Flamme Ngaoundere Cameroon",
       "description": "Auberge simple et economique de Ngaoundere, prisee des voyageurs a petit budget.",
       "city": "Ngaoundere",
       "lat": 7.328,
@@ -1868,7 +1918,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Emplacement central, facile d'acces."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 52,
@@ -1880,7 +1931,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Aéroport de Ngaoundéré Salak Ngaoundere Cameroun",
+      "image_query": "Aéroport de Ngaoundéré Salak Ngaoundere Cameroon",
       "description": "Aeroport regional desservant Ngaoundere et le plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.3561,
@@ -1903,7 +1954,8 @@
         "taxi": "environ 8000-12000 FCFA depuis le centre-ville (30-40 min)",
         "moto": "non recommande sur cette distance",
         "note": "Prevoir un vehicule pour rejoindre l'aeroport, situe en dehors de la ville."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 53,
@@ -1915,7 +1967,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Camp Militaire de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Camp Militaire de Ngaoundéré Ngaoundere Cameroon",
       "description": "Garnison militaire historique de Ngaoundere, temoin de la presence de l'armee dans le plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.33,
@@ -1938,7 +1990,8 @@
         "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
         "moto": "environ 800-1200 FCFA",
         "note": "Zone sensible : eviter toute prise de vue rapprochee."
-      }
+      },
+      "image_query_fallback": "african historic monument architecture"
     },
     {
       "id": 54,
@@ -1950,7 +2003,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Cathédrale de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Cathédrale de Ngaoundéré Ngaoundere Cameroon",
       "description": "Principale eglise catholique de Ngaoundere, reflet de la diversite religieuse de la ville.",
       "city": "Ngaoundere",
       "lat": 7.318,
@@ -1974,7 +2027,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Facilement accessible en centre-ville."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 55,
@@ -1986,7 +2040,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Chutes de Ndaka Ngaoundere Cameroun",
+      "image_query": "Chutes de Ndaka Ngaoundere Cameroon",
       "description": "Cascade moins frequentee que celle de Tello, appreciee pour son cadre sauvage et paisible.",
       "city": "Ngaoundere",
       "lat": 7.45,
@@ -2010,7 +2064,8 @@
         "taxi": "environ 7000-10000 FCFA pour un aller-retour depuis Ngaoundere",
         "moto": "environ 3500-5000 FCFA, praticable par temps sec uniquement",
         "note": "Site moins amenage que les Chutes de Tello ; un guide local est recommande."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 56,
@@ -2022,7 +2077,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Chutes de Tello Ngaoundere Cameroun",
+      "image_query": "Chutes de Tello Ngaoundere Cameroon",
       "description": "Chutes d'eau pittoresques sur le plateau de l'Adamaoua, entourees de paysages de savane.",
       "city": "Ngaoundere",
       "lat": 7.2,
@@ -2046,7 +2101,8 @@
         "taxi": "environ 8000-12000 FCFA pour un aller-retour taxi/vehicule depuis Ngaoundere",
         "moto": "environ 4000-6000 FCFA, praticable par temps sec uniquement",
         "note": "Piste rurale ; un vehicule robuste est recommande, surtout en saison des pluies."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 57,
@@ -2062,7 +2118,7 @@
       "lat": 7.33,
       "lng": 13.57,
       "description": "Terminus historique du chemin de fer Transcamerounais, porte d'entree vers le Grand Nord.",
-      "image_query": "Gare de Ngaoundere Ngaoundere Cameroun",
+      "image_query": "Gare de Ngaoundere Ngaoundere Cameroon",
       "budget": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe.",
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Ngaoundere",
@@ -2070,7 +2126,8 @@
         "note": "Terminus historique de la ligne Camrail reliant Ngaoundere a Yaounde."
       },
       "budget_saison_seche": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison)."
+      "budget_saison_pluies": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
+      "image_query_fallback": "old african building heritage"
     },
     {
       "id": 58,
@@ -2082,7 +2139,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Hôtel Relais Saint-Hubert Ngaoundere Cameroun",
+      "image_query": "Hôtel Relais Saint-Hubert Ngaoundere Cameroon",
       "description": "Hotel calme de Ngaoundere, appreciee pour son jardin et son ambiance familiale.",
       "city": "Ngaoundere",
       "lat": 7.315,
@@ -2106,7 +2163,8 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Legerement excentre, prevoir un moyen de transport le soir."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 59,
@@ -2118,7 +2176,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Hôtel Transcam Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Hôtel Transcam Ngaoundéré Ngaoundere Cameroon",
       "description": "Hotel historique de Ngaoundere, lie a l'epoque de la construction de la voie ferree Transcamerounaise.",
       "city": "Ngaoundere",
       "lat": 7.324,
@@ -2142,7 +2200,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Emplacement central, tres accessible."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 60,
@@ -2154,7 +2213,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Lac Tison Ngaoundere Cameroun",
+      "image_query": "Lac Tison Ngaoundere Cameroon",
       "description": "Lac de cratere paisible pres de Ngaoundere, entoure de collines verdoyantes.",
       "city": "Ngaoundere",
       "lat": 7.4,
@@ -2178,7 +2237,8 @@
         "taxi": "environ 5000-7000 FCFA pour un aller-retour depuis Ngaoundere",
         "moto": "environ 2500-4000 FCFA",
         "note": "Piste praticable, un peu plus difficile en saison des pluies."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 61,
@@ -2194,7 +2254,7 @@
       "lat": 7.3167,
       "lng": 13.5833,
       "description": "Palais traditionnel du Lamido, chef coutumier peul, symbole de l'histoire de l'Adamaoua.",
-      "image_query": "Lamidat de Ngaoundere Ngaoundere Cameroun",
+      "image_query": "Lamidat de Ngaoundere Ngaoundere Cameroon",
       "budget": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA.",
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Ngaoundere (10 min)",
@@ -2202,7 +2262,8 @@
         "note": "Situe pres du centre-ville, facile d'acces."
       },
       "budget_saison_seche": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison)."
+      "budget_saison_pluies": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 62,
@@ -2214,7 +2275,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Le Foyer du Cheminot Ngaoundere Cameroun",
+      "image_query": "Le Foyer du Cheminot Ngaoundere Cameroon",
       "description": "Bar-restaurant historique pres de la gare, lie a la culture des cheminots du Transcamerounais.",
       "city": "Ngaoundere",
       "lat": 7.317,
@@ -2238,7 +2299,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Situe pres de la gare, facilement accessible."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 63,
@@ -2250,7 +2312,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Lycée Classique de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Lycée Classique de Ngaoundéré Ngaoundere Cameroon",
       "description": "L'un des lycees historiques de la ville, formant des generations d'eleves du plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.322,
@@ -2273,7 +2335,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Situe en centre-ville, facile d'acces."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 64,
@@ -2285,7 +2348,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Marché Central de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Marché Central de Ngaoundéré Ngaoundere Cameroon",
       "description": "Marche anime du centre-ville, reputé pour l'artisanat en cuir et les produits d'elevage.",
       "city": "Ngaoundere",
       "lat": 7.321,
@@ -2309,7 +2372,8 @@
         "taxi": "environ 500-1000 FCFA depuis n'importe quel point du centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Marche central tres accessible a pied depuis le centre-ville."
-      }
+      },
+      "image_query_fallback": "african market colorful stalls"
     },
     {
       "id": 65,
@@ -2321,7 +2385,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Mosquée Centrale de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Mosquée Centrale de Ngaoundéré Ngaoundere Cameroon",
       "description": "Grande mosquee de Ngaoundere, temoin de l'importance de la tradition islamique dans la region.",
       "city": "Ngaoundere",
       "lat": 7.326,
@@ -2345,7 +2409,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Situee en plein centre-ville, tres accessible."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 66,
@@ -2357,7 +2422,7 @@
         "histoire"
       ],
       "image": null,
-      "image_query": "Musée Régional de l'Adamaoua Ngaoundere Cameroun",
+      "image_query": "Musée Régional de l'Adamaoua Ngaoundere Cameroon",
       "description": "Musee presentant l'histoire, l'artisanat et les traditions des peuples du plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.323,
@@ -2381,7 +2446,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Situe en centre-ville, facilement accessible."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 67,
@@ -2393,7 +2459,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Plateau de l'Adamaoua (point de vue) Ngaoundere Cameroun",
+      "image_query": "Plateau de l'Adamaoua Ngaoundere Cameroon",
       "description": "Point de vue panoramique sur les vastes prairies et collines du plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.28,
@@ -2417,7 +2483,8 @@
         "taxi": "environ 6000-9000 FCFA pour un aller-retour depuis Ngaoundere",
         "moto": "environ 3000-4500 FCFA",
         "note": "Piste rurale, prevoir un vehicule adapte selon la saison."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 68,
@@ -2429,7 +2496,7 @@
         "culture"
       ],
       "image": null,
-      "image_query": "Ranch de Wassande Ngaoundere Cameroun",
+      "image_query": "Ranch de Wassande Ngaoundere Cameroon",
       "description": "Vaste ranch d'elevage bovin, embleme de la tradition pastorale du plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.25,
@@ -2453,7 +2520,8 @@
         "taxi": "environ 10000-15000 FCFA pour un aller-retour vehicule depuis Ngaoundere",
         "moto": "non recommande sur cette distance",
         "note": "Prevoir un vehicule ; contacter le ranch a l'avance pour organiser la visite."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 69,
@@ -2464,7 +2532,7 @@
         "gastronomie"
       ],
       "image": null,
-      "image_query": "Restaurant Chez Maman Adamaoua Ngaoundere Cameroun",
+      "image_query": "Restaurant Chez Maman Adamaoua Ngaoundere Cameroon",
       "description": "Restaurant familial de Ngaoundere, prise pour sa cuisine traditionnelle genereuse et abordable.",
       "city": "Ngaoundere",
       "lat": 7.32,
@@ -2488,7 +2556,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Adresse de quartier facilement accessible."
-      }
+      },
+      "image_query_fallback": "african restaurant food dining"
     },
     {
       "id": 70,
@@ -2500,7 +2569,7 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Restaurant Le Relais de l'Adamaoua Ngaoundere Cameroun",
+      "image_query": "Restaurant Le Relais de l'Adamaoua Ngaoundere Cameroon",
       "description": "Restaurant reputé de Ngaoundere pour ses grillades de boeuf, specialite du plateau d'elevage.",
       "city": "Ngaoundere",
       "lat": 7.323,
@@ -2524,7 +2593,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Adresse centrale, facilement accessible."
-      }
+      },
+      "image_query_fallback": "hotel resort pool relaxation"
     },
     {
       "id": 71,
@@ -2536,7 +2606,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Rivière Vina Ngaoundere Cameroun",
+      "image_query": "Rivière Vina Ngaoundere Cameroon",
       "description": "Riviere traversant le plateau de l'Adamaoua, appreciee pour ses rives paisibles et sa peche.",
       "city": "Ngaoundere",
       "lat": 7.35,
@@ -2560,7 +2630,8 @@
         "taxi": "environ 5000-7000 FCFA pour un aller-retour depuis Ngaoundere",
         "moto": "environ 2500-4000 FCFA",
         "note": "Piste rurale praticable, plus difficile en saison des pluies."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 72,
@@ -2572,7 +2643,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Réserve de Faune du Mbam et Djerem Ngaoundere Cameroun",
+      "image_query": "Réserve de Faune du Mbam et Djerem Ngaoundere Cameroon",
       "description": "Vaste reserve de faune abritant elephants, buffles et une riche biodiversite du centre du Cameroun.",
       "city": "Ngaoundere",
       "lat": 6.4,
@@ -2596,7 +2667,8 @@
         "taxi": "vehicule 4x4 avec chauffeur recommande pour le trajet complet : tarif a negocier (agence de voyage conseillee)",
         "moto": "non applicable sur cette distance",
         "note": "Distance importante depuis Ngaoundere ; organiser le trajet via une agence ou un vehicule loue avec chauffeur, plusieurs jours conseilles."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 73,
@@ -2608,7 +2680,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Stade Omnisport de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Stade Omnisport de Ngaoundéré Ngaoundere Cameroon",
       "description": "Principal stade de Ngaoundere, lieu des matchs de football et evenements sportifs regionaux.",
       "city": "Ngaoundere",
       "lat": 7.327,
@@ -2632,7 +2704,8 @@
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
         "note": "Facilement accessible en centre-ville."
-      }
+      },
+      "image_query_fallback": "african waterfall river adventure"
     },
     {
       "id": 74,
@@ -2644,7 +2717,7 @@
         "city"
       ],
       "image": null,
-      "image_query": "Université de Ngaoundéré Ngaoundere Cameroun",
+      "image_query": "Université de Ngaoundéré Ngaoundere Cameroon",
       "description": "Universite publique du plateau de l'Adamaoua, avec plusieurs facultes et instituts.",
       "city": "Ngaoundere",
       "lat": 7.32,
@@ -2667,7 +2740,8 @@
         "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
         "moto": "environ 800-1200 FCFA",
         "note": "Situe en peripherie, prevoir un moyen de transport."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     },
     {
       "id": 75,
@@ -2679,7 +2753,7 @@
         "histoire"
       ],
       "image": null,
-      "image_query": "Village Peul Traditionnel Ngaoundere Cameroun",
+      "image_query": "Village Peul Traditionnel Ngaoundere Cameroon",
       "description": "Village illustrant le mode de vie traditionnel des eleveurs peuls du plateau de l'Adamaoua.",
       "city": "Ngaoundere",
       "lat": 7.3,
@@ -2703,9 +2777,20 @@
         "taxi": "environ 6000-9000 FCFA pour un aller-retour depuis Ngaoundere",
         "moto": "environ 3000-4500 FCFA, praticable par temps sec",
         "note": "Passer par un guide local pour une visite respectueuse de la communaute."
-      }
+      },
+      "image_query_fallback": "african traditional culture heritage"
     }
   ],
-  "itineraries": [],
+  "itineraries": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "title": "divertisement",
+      "destination_id": 44,
+      "start_date": "2026-07-30",
+      "end_date": "2026-07-31",
+      "notes": ""
+    }
+  ],
   "reviews": []
 }

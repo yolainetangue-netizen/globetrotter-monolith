@@ -129,7 +129,8 @@
       const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
       const icon = CATEGORY_ICON[d.category] || "📍";
       const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
-      const media = `<div class="placeholder-media photo-slot ${catClass}" data-photo-query="${query}"><span>${icon}</span></div>`;
+      const fallbackQuery = (d.image_query_fallback || "").replace(/"/g, "");
+      const media = `<div class="placeholder-media photo-slot ${catClass}" data-photo-query="${query}" data-photo-fallback="${fallbackQuery}"><span>${icon}</span></div>`;
 
       return `
         <a href="/destination/${d.id}" class="destination-card-link">

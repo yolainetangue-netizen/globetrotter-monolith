@@ -5,8 +5,11 @@ A single Flask server handling all requests, with data stored in a JSON file.
 
 import json
 import os
-from datetime import timedelta
+import time
+from datetime import datetime, timedelta
 
+import requests
+from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, request
 from flask_jwt_extended import (
     JWTManager,
@@ -14,6 +17,8 @@ from flask_jwt_extended import (
     get_jwt_identity,
     jwt_required,
 )
+
+load_dotenv()  # charge automatiquement les variables definies dans un fichier .env
 
 # ---------------------------------------------------------------------------
 # App configuration
@@ -24,6 +29,20 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=6)
 jwt = JWTManager(app)
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
+
+# ---------------------------------------------------------------------------
+# Image API configuration (Pexels — gratuit, cle sur https://www.pexels.com/api/)
+# ---------------------------------------------------------------------------
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "")
+PEXELS_SEARCH_URL = "https://api.pexels.com/v1/search"
+_photo_cache = {}  # simple cache memoire : {query: url_or_None}
+
+# ---------------------------------------------------------------------------
+# Weather API configuration (Open-Meteo — gratuit, sans cle)
+# ---------------------------------------------------------------------------
+OPEN_METEO_URL = "https://api.open-meteo.com/v1/forecast"
+_weather_cache = {}  # {"lat,lng": {"data": ..., "ts": ...}}
+WEATHER_CACHE_TTL = 1800  # 30 minutes
 
 
 # ---------------------------------------------------------------------------
@@ -76,9 +95,168 @@ def map_page():
     return render_template("map.html")
 
 
+@app.route("/transport-page")
+def transport_page():
+    return render_template("transport.html")
+
+
 @app.route("/destination/<int:destination_id>")
 def destination_detail_page(destination_id):
     return render_template("destination_detail.html", destination_id=destination_id)
+
+
+# ---------------------------------------------------------------------------
+# API Layer - Images
+# Priorite 1 : Wikimedia Commons (gratuit, sans cle, souvent plus pertinent
+#              pour des lieux precis - musees, monuments, sites touristiques).
+# Priorite 2 : Pexels (banque generaliste, sert de repli si rien trouve).
+# ---------------------------------------------------------------------------
+WIKIMEDIA_API_URL = "https://commons.wikimedia.org/w/api.php"
+
+
+def _search_wikimedia_commons(query):
+    """Cherche une image libre de droits sur Wikimedia Commons pour la requete.
+
+    Retourne l'URL de l'image (thumbnail large) ou None si rien de pertinent.
+    """
+    try:
+        # Etape 1 : rechercher des fichiers image correspondant a la requete
+        search_resp = requests.get(
+            WIKIMEDIA_API_URL,
+            params={
+                "action": "query",
+                "list": "search",
+                "srsearch": f"{query} filetype:bitmap",
+                "srnamespace": 6,  # namespace "File:"
+                "srlimit": 1,
+                "format": "json",
+            },
+            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            timeout=6,
+        )
+        search_resp.raise_for_status()
+        results = search_resp.json().get("query", {}).get("search", [])
+        if not results:
+            return None
+
+        title = results[0]["title"]
+
+        # Etape 2 : recuperer l'URL de l'image a partir de son titre
+        info_resp = requests.get(
+            WIKIMEDIA_API_URL,
+            params={
+                "action": "query",
+                "titles": title,
+                "prop": "imageinfo",
+                "iiprop": "url",
+                "iiurlwidth": 800,
+                "format": "json",
+            },
+            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            timeout=6,
+        )
+        info_resp.raise_for_status()
+        pages = info_resp.json().get("query", {}).get("pages", {})
+        for page in pages.values():
+            imageinfo = page.get("imageinfo")
+            if imageinfo:
+                return imageinfo[0].get("thumburl") or imageinfo[0].get("url")
+        return None
+    except (requests.RequestException, ValueError, KeyError, IndexError):
+        return None
+
+
+def _search_pexels(query):
+    """Cherche une photo libre de droits sur Pexels (banque generaliste)."""
+    if not PEXELS_API_KEY:
+        return None
+    try:
+        resp = requests.get(
+            PEXELS_SEARCH_URL,
+            params={"query": query, "per_page": 1, "orientation": "landscape"},
+            headers={"Authorization": PEXELS_API_KEY},
+            timeout=6,
+        )
+        resp.raise_for_status()
+        photos = resp.json().get("photos", [])
+        return photos[0]["src"]["large"] if photos else None
+    except (requests.RequestException, ValueError, KeyError, IndexError):
+        return None
+
+
+@app.route("/api/photo", methods=["GET"])
+def get_photo():
+    """Retourne l'URL d'une photo libre de droits correspondant a la requete.
+
+    Essaie d'abord Wikimedia Commons avec la requete precise (nom du lieu),
+    puis Pexels avec la meme requete, puis Pexels avec une requete generique
+    de repli (?fallback=) si rien de pertinent n'a ete trouve. Si aucune
+    source ne renvoie de resultat, url=None : le frontend affiche alors une
+    vignette generique (icone de categorie).
+    """
+    query = request.args.get("q", "").strip()
+    fallback_query = request.args.get("fallback", "").strip()
+    if not query:
+        return jsonify({"url": None}), 200
+
+    cache_key = f"{query}|{fallback_query}"
+    if cache_key in _photo_cache:
+        return jsonify({"url": _photo_cache[cache_key]}), 200
+
+    url = _search_wikimedia_commons(query)
+    source = "wikimedia" if url else None
+
+    if not url:
+        url = _search_pexels(query)
+        source = "pexels" if url else None
+
+    if not url and fallback_query:
+        url = _search_pexels(fallback_query)
+        source = "pexels-fallback" if url else None
+
+    _photo_cache[cache_key] = url
+    return jsonify({"url": url, "source": source}), 200
+
+
+@app.route("/api/weather", methods=["GET"])
+def get_weather():
+    """Retourne la meteo actuelle + prevision 4 jours pour des coordonnees GPS.
+
+    Utilise Open-Meteo (https://open-meteo.com), gratuit et sans cle API.
+    Reponse mise en cache 30 minutes par coordonnees pour eviter les appels
+    repetes.
+    """
+    lat = request.args.get("lat")
+    lng = request.args.get("lng")
+    if not lat or not lng:
+        return jsonify({"error": "parametres lat et lng requis"}), 400
+
+    cache_key = f"{lat},{lng}"
+    now = time.time()
+    cached = _weather_cache.get(cache_key)
+    if cached and (now - cached["ts"]) < WEATHER_CACHE_TTL:
+        return jsonify(cached["data"]), 200
+
+    try:
+        resp = requests.get(
+            OPEN_METEO_URL,
+            params={
+                "latitude": lat,
+                "longitude": lng,
+                "current_weather": "true",
+                "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode",
+                "timezone": "auto",
+                "forecast_days": 4,
+            },
+            timeout=6,
+        )
+        resp.raise_for_status()
+        payload = resp.json()
+    except (requests.RequestException, ValueError):
+        return jsonify({"error": "meteo indisponible pour le moment"}), 502
+
+    _weather_cache[cache_key] = {"data": payload, "ts": now}
+    return jsonify(payload), 200
 
 
 # ---------------------------------------------------------------------------
@@ -169,6 +347,61 @@ def get_destination_by_id(destination_id):
     if not destination:
         return jsonify({"error": "destination not found"}), 404
     return jsonify(destination), 200
+
+
+# ---------------------------------------------------------------------------
+# API Layer - Avis / Reviews
+# ---------------------------------------------------------------------------
+@app.route("/destinations/<int:destination_id>/reviews", methods=["GET"])
+def get_reviews(destination_id):
+    """Retourne les avis d'une destination, triés du plus récent au plus ancien,
+    ainsi que la note moyenne."""
+    data = load_data()
+    if not any(d["id"] == destination_id for d in data["destinations"]):
+        return jsonify({"error": "destination not found"}), 404
+
+    reviews = [r for r in data.get("reviews", []) if r["destination_id"] == destination_id]
+    reviews.sort(key=lambda r: r["date"], reverse=True)
+    average = round(sum(r["rating"] for r in reviews) / len(reviews), 1) if reviews else None
+
+    return jsonify({"reviews": reviews, "average": average, "count": len(reviews)}), 200
+
+
+@app.route("/destinations/<int:destination_id>/reviews", methods=["POST"])
+def create_review(destination_id):
+    """Ajoute un avis (note + commentaire) sur une destination. Ouvert a tous,
+    connecte ou non (un pseudonyme facultatif peut etre fourni)."""
+    data = load_data()
+    if not any(d["id"] == destination_id for d in data["destinations"]):
+        return jsonify({"error": "destination not found"}), 404
+
+    body = request.get_json(silent=True) or {}
+    author = (body.get("author") or "").strip() or "Visiteur anonyme"
+    comment = (body.get("comment") or "").strip()
+    rating = body.get("rating")
+
+    try:
+        rating = int(rating)
+    except (TypeError, ValueError):
+        return jsonify({"error": "rating must be an integer between 1 and 5"}), 400
+
+    if rating < 1 or rating > 5:
+        return jsonify({"error": "rating must be between 1 and 5"}), 400
+    if not comment:
+        return jsonify({"error": "comment is required"}), 400
+
+    review = {
+        "id": next_id(data.get("reviews", [])),
+        "destination_id": destination_id,
+        "author": author[:60],
+        "rating": rating,
+        "comment": comment[:1000],
+        "date": datetime.utcnow().isoformat() + "Z",
+    }
+    data.setdefault("reviews", []).append(review)
+    save_data(data)
+
+    return jsonify({"message": "review added", "review": review}), 201
 
 
 # ---------------------------------------------------------------------------
