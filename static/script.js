@@ -25,6 +25,98 @@ function isLoggedIn() {
   return !!getToken();
 }
 
+// ---------------------------------------------------------------------------
+// Favoris (aucune connexion requise, stockage local navigateur)
+// ---------------------------------------------------------------------------
+const FAVORITES_KEY = "gt_favorites";
+
+function getFavorites() {
+  try {
+    return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function isFavorite(destinationId) {
+  return getFavorites().includes(destinationId);
+}
+
+function toggleFavorite(destinationId) {
+  let favs = getFavorites();
+  if (favs.includes(destinationId)) {
+    favs = favs.filter((id) => id !== destinationId);
+  } else {
+    favs.push(destinationId);
+  }
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favs));
+  return favs.includes(destinationId);
+}
+
+function favoritesCount() {
+  return getFavorites().length;
+}
+
+// ---------------------------------------------------------------------------
+// Météo (Open-Meteo) — utilitaires partagés par plusieurs pages
+// ---------------------------------------------------------------------------
+const WEATHER_CODES = {
+  0: { icon: "☀️", label: "Ciel dégagé" },
+  1: { icon: "🌤️", label: "Plutôt dégagé" },
+  2: { icon: "⛅", label: "Partiellement nuageux" },
+  3: { icon: "☁️", label: "Couvert" },
+  45: { icon: "🌫️", label: "Brouillard" },
+  48: { icon: "🌫️", label: "Brouillard givrant" },
+  51: { icon: "🌦️", label: "Bruine légère" },
+  53: { icon: "🌦️", label: "Bruine" },
+  55: { icon: "🌦️", label: "Bruine dense" },
+  61: { icon: "🌧️", label: "Pluie légère" },
+  63: { icon: "🌧️", label: "Pluie" },
+  65: { icon: "🌧️", label: "Forte pluie" },
+  80: { icon: "🌦️", label: "Averses" },
+  81: { icon: "🌦️", label: "Fortes averses" },
+  82: { icon: "⛈️", label: "Averses violentes" },
+  95: { icon: "⛈️", label: "Orage" },
+  96: { icon: "⛈️", label: "Orage avec grêle" },
+  99: { icon: "⛈️", label: "Orage violent" },
+};
+
+function weatherInfo(code) {
+  return WEATHER_CODES[code] || { icon: "🌡️", label: "Conditions variables" };
+}
+
+async function fetchWeatherData(lat, lng) {
+  try {
+    const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}`);
+    const data = await res.json();
+    if (!res.ok || data.error || !data.current_weather) return null;
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Taxonomie des catégories (partagée par toutes les pages)
+// ---------------------------------------------------------------------------
+const CATEGORY_META = {
+  "Plages": { icon: "🏖️", cls: "cat-beach", badge: "badge-cat-beach" },
+  "Sites naturels": { icon: "🌿", cls: "cat-nature", badge: "badge-cat-nature" },
+  "Restaurants": { icon: "🍽️", cls: "cat-food", badge: "badge-cat-food" },
+  "Hôtels": { icon: "🏨", cls: "cat-hotel", badge: "badge-cat-hotel" },
+  "Activités": { icon: "🚴", cls: "cat-activity", badge: "badge-cat-activity" },
+  "Loisirs": { icon: "🎉", cls: "cat-fun", badge: "badge-cat-fun" },
+  "Monuments": { icon: "🏛️", cls: "cat-heritage", badge: "badge-cat-heritage" },
+  "Marchés et artisanat": { icon: "🛍️", cls: "cat-market", badge: "badge-cat-market" },
+  "Bars et vie nocturne": { icon: "🍹", cls: "cat-nightlife", badge: "badge-cat-nightlife" },
+  "Excursions": { icon: "🧭", cls: "cat-excursion", badge: "badge-cat-excursion" },
+  "Autres": { icon: "📍", cls: "cat-other", badge: "badge-cat-other" },
+};
+
+function categoryMeta(name) {
+  return CATEGORY_META[name] || { icon: "📍", cls: "cat-other", badge: "badge-cat-other" };
+}
+
 async function apiRequest(path, { method = "GET", body = null, auth = false } = {}) {
   const headers = { "Content-Type": "application/json" };
   if (auth) {
@@ -87,6 +179,18 @@ function hydratePhotos(root = document) {
 
 // Update nav login/logout link on every page
 document.addEventListener("DOMContentLoaded", () => {
+  // Met en évidence le lien de navigation correspondant à la page actuelle
+  const currentPath = window.location.pathname;
+  document.querySelectorAll("nav a[href]").forEach((link) => {
+    const href = link.getAttribute("href");
+    if (href === "#") return;
+    const isMatch =
+      href === currentPath ||
+      (href === "/" && currentPath === "/") ||
+      (href !== "/" && currentPath.startsWith(href));
+    if (isMatch) link.classList.add("nav-active");
+  });
+
   const authLink = document.getElementById("auth-link");
   if (!authLink) return;
 

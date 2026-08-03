@@ -100,6 +100,31 @@ def transport_page():
     return render_template("transport.html")
 
 
+@app.route("/kribi-page")
+def kribi_page():
+    return render_template("kribi.html")
+
+
+@app.route("/category/<path:category_name>")
+def category_page(category_name):
+    return render_template("category.html", category_name=category_name)
+
+
+@app.route("/events-page")
+def events_page():
+    return render_template("events.html")
+
+
+@app.route("/services-page")
+def services_page():
+    return render_template("services.html")
+
+
+@app.route("/favorites-page")
+def favorites_page():
+    return render_template("favorites.html")
+
+
 @app.route("/destination/<int:destination_id>")
 def destination_detail_page(destination_id):
     return render_template("destination_detail.html", destination_id=destination_id)
@@ -310,6 +335,27 @@ def login():
 # ---------------------------------------------------------------------------
 # API Layer - Destinations
 # ---------------------------------------------------------------------------
+IMAGES_DIR = os.path.join(os.path.dirname(__file__), "static", "images")
+LOCAL_IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp")
+
+
+def get_local_image_url(destination_id):
+    """Si une image a ete fournie manuellement pour cette destination
+    (fichier nomme d'apres son id dans static/images/), retourne son URL.
+    Sinon retourne None (le frontend se rabattra alors sur Wikimedia/Pexels)."""
+    for ext in LOCAL_IMAGE_EXTENSIONS:
+        filename = f"{destination_id}{ext}"
+        if os.path.isfile(os.path.join(IMAGES_DIR, filename)):
+            return f"/static/images/{filename}"
+    return None
+
+
+def attach_local_image(destination):
+    destination = dict(destination)
+    destination["local_image"] = get_local_image_url(destination["id"])
+    return destination
+
+
 @app.route("/destinations", methods=["GET"])
 def get_destinations():
     """Search destinations, optionally filtered by name, country, tag, category or city."""
@@ -336,7 +382,7 @@ def get_destinations():
     if city:
         destinations = [d for d in destinations if d.get("city", "").lower() == city]
 
-    return jsonify(destinations), 200
+    return jsonify([attach_local_image(d) for d in destinations]), 200
 
 
 @app.route("/destinations/<int:destination_id>", methods=["GET"])
@@ -346,7 +392,7 @@ def get_destination_by_id(destination_id):
     destination = next((d for d in data["destinations"] if d["id"] == destination_id), None)
     if not destination:
         return jsonify({"error": "destination not found"}), 404
-    return jsonify(destination), 200
+    return jsonify(attach_local_image(destination)), 200
 
 
 # ---------------------------------------------------------------------------
@@ -402,6 +448,56 @@ def create_review(destination_id):
     save_data(data)
 
     return jsonify({"message": "review added", "review": review}), 201
+
+
+# ---------------------------------------------------------------------------
+# API Layer - Evenements & Services utiles
+# ---------------------------------------------------------------------------
+KRIBI_CENTER = (2.9464, 9.9074)
+
+
+def haversine_km(lat1, lng1, lat2, lng2):
+    from math import radians, sin, cos, sqrt, atan2
+    r = 6371.0
+    dlat = radians(lat2 - lat1)
+    dlng = radians(lng2 - lng1)
+    a = sin(dlat / 2) ** 2 + cos(radians(lat1)) * cos(radians(lat2)) * sin(dlng / 2) ** 2
+    return r * 2 * atan2(sqrt(a), sqrt(1 - a))
+
+
+@app.route("/events", methods=["GET"])
+def get_events():
+    """List upcoming/all events, sorted by date. ?upcoming=true filters out past events."""
+    data = load_data()
+    events = data.get("events", [])
+    if request.args.get("upcoming", "").lower() == "true":
+        today = datetime.utcnow().strftime("%Y-%m-%d")
+        events = [e for e in events if (e.get("end_date") or e.get("date")) >= today]
+    events = sorted(events, key=lambda e: e["date"])
+    return jsonify(events), 200
+
+
+@app.route("/services", methods=["GET"])
+def get_services():
+    """List useful services (hospitals, pharmacies, banks...), sorted by distance
+    from the Kribi city center. ?type= filters by service type."""
+    data = load_data()
+    services = data.get("services", [])
+
+    service_type = request.args.get("type", "").strip().lower()
+    if service_type:
+        services = [s for s in services if s.get("type", "").lower() == service_type]
+
+    enriched = []
+    for s in services:
+        item = dict(s)
+        item["distance_km"] = round(
+            haversine_km(KRIBI_CENTER[0], KRIBI_CENTER[1], s["lat"], s["lng"]), 2
+        )
+        enriched.append(item)
+
+    enriched.sort(key=lambda s: s["distance_km"])
+    return jsonify(enriched), 200
 
 
 # ---------------------------------------------------------------------------

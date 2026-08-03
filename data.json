@@ -13,952 +13,9 @@
   "destinations": [
     {
       "id": 1,
-      "name": "Aéroport International de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Aéroport International de Douala Douala Cameroon",
-      "description": "Principale porte d'entree aerienne du Cameroun, situe a quelques kilometres du centre-ville.",
-      "city": "Douala",
-      "lat": 4.0061,
-      "lng": 9.7195,
-      "long_description": "L'aeroport international de Douala est le plus grand aeroport du pays, reliant le Cameroun a de nombreuses destinations en Afrique et en Europe. C'est souvent le premier contact des voyageurs avec le pays.",
-      "activities": [
-        "Observer le trafic aerien depuis les abords",
-        "Utiliser les services de transfert vers le centre-ville",
-        "Point de repere pratique pour organiser un sejour"
-      ],
-      "practical_info": {
-        "hours": "Ouvert 24h/24",
-        "price": "Acces public gratuit aux abords",
-        "best_time": "Selon les vols",
-        "access": "A environ 10 km du centre-ville de Douala"
-      },
-      "budget": "Acces aux abords gratuit. Parking : environ 500-1000 FCFA/heure.",
-      "budget_saison_seche": "Acces aux abords gratuit. Parking : environ 500-1000 FCFA/heure. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces aux abords gratuit. Parking : environ 500-1000 FCFA/heure. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 4000-6000 FCFA depuis le centre-ville de Douala (20-30 min)",
-        "moto": "environ 2000-3000 FCFA",
-        "note": "Prevoir plus de temps aux heures de pointe ; de nombreux taxis stationnent a la sortie des arrivees."
-      },
-      "image_query_fallback": "african historic monument architecture"
-    },
-    {
-      "id": 2,
-      "name": "Base Navale de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Base Navale de Douala Douala Cameroon",
-      "description": "Base principale de la Marine Nationale camerounaise, implantee le long du fleuve Wouri.",
-      "city": "Douala",
-      "lat": 4.045,
-      "lng": 9.695,
-      "long_description": "La base navale de Douala abrite les principales installations de la Marine Nationale du Cameroun, chargee de la surveillance du littoral et du golfe de Guinee. Les visites de l'interieur sont reglementees, mais le site reste un point de repere du paysage portuaire de Douala.",
-      "activities": [
-        "Observer les navires depuis les zones accessibles au public",
-        "Comprendre le role de la marine dans la securite maritime nationale"
-      ],
-      "practical_info": {
-        "hours": "Acces reglemente",
-        "price": "Observation exterieure gratuite",
-        "best_time": "Toute l'annee",
-        "access": "Bord du Wouri, secteur portuaire de Douala"
-      },
-      "budget": "Observation exterieure gratuite. Visite de l'interieur non ouverte au public sans autorisation.",
-      "budget_saison_seche": "Observation exterieure gratuite. Visite de l'interieur non ouverte au public sans autorisation. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Observation exterieure gratuite. Visite de l'interieur non ouverte au public sans autorisation. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 2000-3000 FCFA depuis le centre-ville (15-20 min)",
-        "moto": "environ 1000-1500 FCFA",
-        "note": "Zone sensible : eviter toute prise de vue rapprochee des installations militaires."
-      },
-      "image_query_fallback": "african historic monument architecture"
-    },
-    {
-      "id": 3,
-      "name": "Bord du Fleuve a Akwa-Nord",
-      "country": "Akwa-Nord, Douala",
-      "category": "Distraction",
-      "tags": [
-        "relaxation",
-        "city"
-      ],
-      "image": null,
-      "description": "Espace de detente et de loisirs au bord du fleuve, prise avec restaurants et bars en soiree.",
-      "city": "Douala",
-      "lat": 4.053,
-      "lng": 9.699,
-      "long_description": "Akwa-Nord est l'un des quartiers les plus animes de Douala, prolongement direct du centre des affaires d'Akwa vers les berges du fleuve Wouri. C'est un espace de detente prise des Doualais, ou se melent restaurants, bars et lieux de loisirs installes en bordure d'eau.\n\nLe quartier, comme Akwa dans son ensemble, s'anime particulierement en soiree lorsque les habitants viennent profiter de la fraicheur du fleuve, discuter entre amis ou en famille, et savourer des plats locaux dans une ambiance conviviale et decontractee. La proximite immediate avec le centre economique de la ville en fait un lieu de passage frequent, aussi bien pour les habitants que pour les visiteurs de passage a Douala.",
-      "activities": [
-        "Se detendre au bord du fleuve Wouri en fin de journee",
-        "Diner dans un restaurant ou bar les pieds dans l'eau",
-        "Observer l'activite fluviale (pirogues, bateaux de peche)",
-        "Profiter de l'ambiance conviviale caracteristique des soirees doualaises"
-      ],
-      "practical_info": {
-        "hours": "Actif surtout en fin d'apres-midi et en soiree",
-        "price": "Variable selon les etablissements",
-        "best_time": "Coucher du soleil, pour la lumiere sur le fleuve",
-        "access": "Quartier Akwa-Nord, en bordure du fleuve Wouri"
-      },
-      "budget": "Acces libre. Compter 3000-8000 FCFA pour un repas/boisson dans un etablissement du bord du fleuve.",
-      "transport": {
-        "taxi": "environ 300-500 FCFA",
-        "moto": "environ 150-350 FCFA",
-        "note": "(5 min), zone tres centrale."
-      },
-      "image_query": "Bord du Fleuve a Akwa-Nord Douala Cameroon",
-      "budget_saison_seche": "Acces libre. Compter 3300-8800 FCFA pour un repas/boisson dans un etablissement du bord du fleuve. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Acces libre. Compter 2800-7600 FCFA pour un repas/boisson dans un etablissement du bord du fleuve. (basse saison : tarifs plus souples).",
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 4,
-      "name": "Cathédrale Saint-Pierre-et-Paul de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Cathédrale Saint-Pierre-et-Paul de Douala Douala Cameroon",
-      "description": "Principale cathedrale catholique de Douala, un edifice marquant du paysage religieux de la ville.",
-      "city": "Douala",
-      "lat": 4.048,
-      "lng": 9.698,
-      "long_description": "La cathedrale Saint-Pierre-et-Paul de Douala est le siege de l'archidiocese de Douala. Son architecture et son animation lors des offices en font un lieu emblematique de la vie religieuse et sociale de la ville.",
-      "activities": [
-        "Assister a une messe dominicale",
-        "Admirer l'architecture religieuse",
-        "Photographier l'edifice et ses environs"
-      ],
-      "practical_info": {
-        "hours": "Ouverte en journee, offices le dimanche",
-        "price": "Acces libre",
-        "best_time": "Dimanche matin pour l'ambiance des offices",
-        "access": "Centre-ville de Douala, quartier de Bonanjo/Akwa"
-      },
-      "budget": "Acces gratuit. Don libre lors des offices.",
-      "budget_saison_seche": "Acces gratuit. Don libre lors des offices. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces gratuit. Don libre lors des offices. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
-        "moto": "environ 500-800 FCFA",
-        "note": "Situee en plein centre-ville, tres accessible."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 5,
-      "name": "Croisière sur le Fleuve Wouri",
-      "country": "Douala, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "relaxation",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Croisière sur le Fleuve Wouri Douala Cameroon",
-      "description": "Balade en bateau sur le fleuve Wouri, avec vue sur le port, le pont et les rives de Douala.",
-      "city": "Douala",
-      "lat": 4.048,
-      "lng": 9.73,
-      "long_description": "Plusieurs operateurs locaux proposent des sorties en bateau sur le fleuve Wouri, offrant une perspective differente sur Douala : le port autonome, le pont sur le Wouri, et les rives boisees en amont. C'est une activite appreciee au coucher du soleil.",
-      "activities": [
-        "Observer le coucher de soleil depuis le fleuve",
-        "Photographier le pont sur le Wouri sous un autre angle",
-        "Decouvrir l'activite portuaire depuis l'eau"
-      ],
-      "practical_info": {
-        "hours": "Departs generalement en fin d'apres-midi, sur reservation",
-        "price": "Sortie en bateau : environ 5000-15000 FCFA par personne",
-        "best_time": "Coucher de soleil",
-        "access": "Embarcadere pres du centre-ville de Douala"
-      },
-      "budget": "Sortie en bateau collective : 5000-10000 FCFA/pers. Location privee : 30000-60000 FCFA pour le bateau.",
-      "budget_saison_seche": "Sortie en bateau collective : 5000-10000 FCFA/pers. Location privee : 30000-60000 FCFA pour le bateau. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Sortie en bateau collective : 5000-10000 FCFA/pers. Location privee : 30000-60000 FCFA pour le bateau. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 1000-1500 FCFA depuis le centre-ville jusqu'a l'embarcadere",
-        "moto": "environ 500-800 FCFA",
-        "note": "Reserver a l'avance aupres d'un operateur local, les departs dependent de la maree."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 6,
-      "name": "Doual'Art (Galerie d'art contemporain)",
-      "country": "Bonanjo, Douala",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "relaxation"
-      ],
-      "image": null,
-      "description": "Centre d'art contemporain mettant en avant des artistes camerounais et internationaux.",
-      "city": "Douala",
-      "lat": 4.045,
-      "lng": 9.698,
-      "long_description": "Fonde en 1991 par Marilyn Douala Bell et Didier Schaub, Doual'Art est un centre d'art contemporain et un laboratoire experimental de nouvelles pratiques urbaines. Depuis 1999, il occupe un batiment de la Place du Gouvernement a Bonanjo, dans lequel est enchasse un vestige de l'ancien Palais des Rois Doualas.\n\nSa mission est de soutenir la creation contemporaine camerounaise tout en questionnant la place de l'art dans l'espace public. Doual'Art diffuse en moyenne huit expositions par an et a produit plus de 60 projets artistiques permanents ou temporaires disperses dans la ville, dont la celebre statue \"La Nouvelle Liberte\" de Joseph-Francis Sumegne (1996), devenue un des monuments les plus reconnaissables de Douala.\n\nDepuis 2007, l'institution organise le Salon Urbain de Douala (SUD), un festival triennal reunissant une vingtaine d'artistes camerounais et internationaux autour de thematiques urbaines. Le Prince Claus Fund decrit Doual'Art comme une \"organisation qui a revolutionne la scene artistique au Cameroun\".",
-      "activities": [
-        "Visiter les expositions temporaires d'artistes camerounais et internationaux",
-        "Decouvrir le vestige de l'ancien Palais des Rois Doualas integre au batiment",
-        "Se detendre dans le jardin et la cafeteria de l'espace",
-        "Explorer le parcours d'oeuvres d'art public disseminees dans Douala",
-        "Assister a des conferences, ateliers ou residences d'artistes selon la programmation"
-      ],
-      "practical_info": {
-        "hours": "Du mardi au samedi, journee",
-        "price": "Entree generalement libre pour les expositions",
-        "best_time": "Toute l'annee ; le SUD (festival triennal) a lieu en decembre",
-        "access": "Place du Gouvernement, quartier Bonanjo"
-      },
-      "budget": "Entree generalement libre pour les expositions courantes.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA",
-        "moto": "environ 250-600 FCFA",
-        "note": "(10 min). Situe Place du Gouvernement, Bonanjo."
-      },
-      "image_query": "Doual'Art Douala Cameroon",
-      "budget_saison_seche": "Entree generalement libre pour les expositions courantes. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Entree generalement libre pour les expositions courantes. Aucune variation saisonniere (acces gratuit).",
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 7,
-      "name": "Hotel Akwa Palace",
-      "country": "Boulevard de la Liberte, Akwa, Douala",
-      "category": "Hôtel",
-      "tags": [
-        "hebergement",
-        "relaxation",
-        "city"
-      ],
-      "image": null,
-      "description": "Hotel emblematique 4 etoiles de Douala, avec restaurant gastronomique, piscine et sky-bar.",
-      "city": "Douala",
-      "lat": 4.05,
-      "lng": 9.7,
-      "long_description": "Institution historique du paysage hotelier de Douala, l'Akwa Palace est situe au coeur du quartier des affaires, sur le celebre boulevard de la Liberte. Avec ses 70 chambres, il incarne depuis des decennies l'hospitalite haut de gamme de la capitale economique du Cameroun.\n\nL'hotel dispose d'une piscine, d'un bar a cocktails et d'un agreable sky-bar offrant une vue sur la ville. Son restaurant gastronomique, La Pirogue, est reconnu pour ses grillades, fruits de mer et specialites camerounaises, servis dans un cadre apaisant au bord de la piscine.\n\nAu-dela de l'hebergement, l'Akwa Palace est un veritable point de repere urbain a Douala : sa silhouette est visible de loin sur le boulevard, et de nombreux commerces et restaurants du quartier s'organisent autour de lui.",
-      "activities": [
-        "Diner au restaurant La Pirogue, specialites camerounaises et fruits de mer",
-        "Profiter du sky-bar avec vue sur Douala",
-        "Se detendre au bord de la piscine de l'hotel",
-        "Explorer le quartier animee d'Akwa juste autour de l'hotel"
-      ],
-      "practical_info": {
-        "hours": "Restaurant et bar ouverts toute la journee",
-        "price": "Repas au restaurant : 8000-20000 FCFA. Chambres a partir de 40000-60000 FCFA/nuit.",
-        "best_time": "Soiree pour le sky-bar et l'ambiance",
-        "access": "Boulevard de la Liberte, en plein coeur d'Akwa"
-      },
-      "budget": "Repas restaurant : 8000-20000 FCFA. Chambre : a partir de 40000-60000 FCFA/nuit selon saison.",
-      "transport": {
-        "taxi": "Coeur de ville, accessible facilement en taxi (300-500 FCFA depuis Akwa) ou a pied.",
-        "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
-        "note": "Coeur de ville, accessible facilement en taxi (300-500 FCFA depuis Akwa) ou a pied."
-      },
-      "image_query": "Hotel Akwa Palace Douala Cameroon",
-      "budget_saison_seche": "Repas restaurant : 8800-22000 FCFA. Chambre : a partir de 44000-66000 FCFA/nuit selon saison. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Repas restaurant : 7600-19000 FCFA. Chambre : a partir de 38000-57000 FCFA/nuit selon saison. (basse saison : tarifs plus souples).",
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 8,
-      "name": "Hôtel Ibis Douala",
-      "country": "Douala, Cameroun",
-      "category": "Hôtel",
-      "tags": [
-        "city",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Hôtel Ibis Douala Douala Cameroon",
-      "description": "Hotel international de standing moyen-superieur, situe en plein centre des affaires de Douala.",
-      "city": "Douala",
-      "lat": 4.05,
-      "lng": 9.702,
-      "long_description": "L'Hotel Ibis Douala fait partie d'une chaine internationale et propose un confort standardise apprecie des voyageurs d'affaires comme des touristes, avec restaurant, piscine et acces facile aux quartiers d'affaires de Bonanjo et Akwa.",
-      "activities": [
-        "Profiter de la piscine et du restaurant de l'hotel",
-        "Sejour pratique pour les rendez-vous d'affaires",
-        "Point de depart central pour visiter Douala"
-      ],
-      "practical_info": {
-        "hours": "Reception 24h/24",
-        "price": "Chambre double : environ 45000-70000 FCFA/nuit",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Douala, quartier Bonanjo"
-      },
-      "budget": "Chambre double : 45000-70000 FCFA/nuit selon saison. Petit-dejeuner : 5000-8000 FCFA.",
-      "budget_saison_seche": "Chambre double : 45000-70000 FCFA/nuit selon saison. Petit-dejeuner : 5000-8000 FCFA. (haute saison, decembre-fevrier et juillet-aout : tarifs souvent majores, reservation fortement conseillee).",
-      "budget_saison_pluies": "Chambre double : 45000-70000 FCFA/nuit selon saison. Petit-dejeuner : 5000-8000 FCFA. (basse saison : tarifs plus bas et disponibilites nombreuses, negociation possible pour un long sejour).",
-      "transport": {
-        "taxi": "environ 1500-2000 FCFA depuis l'aeroport (compris souvent dans les navettes hotel)",
-        "moto": "environ 800-1200 FCFA",
-        "note": "Situe en plein centre-ville, tres accessible depuis l'aeroport et le port."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 9,
-      "name": "Hôtel Pullman Douala Rabingha",
-      "country": "Douala, Cameroun",
-      "category": "Hôtel",
-      "tags": [
-        "city",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Hôtel Pullman Douala Rabingha Douala Cameroon",
-      "description": "Hotel haut de gamme de Douala, prise pour ses evenements d'affaires et sa vue sur le Wouri.",
-      "city": "Douala",
-      "lat": 4.043,
-      "lng": 9.698,
-      "long_description": "Le Pullman Douala Rabingha est l'un des hotels les plus prestigieux de la ville, avec vue sur le fleuve Wouri, plusieurs restaurants et des salles de conference utilisees pour de grands evenements d'affaires et diplomatiques.",
-      "activities": [
-        "Profiter d'un sejour haut de gamme avec vue sur le Wouri",
-        "Diner dans l'un des restaurants de l'hotel",
-        "Assister a des conferences ou evenements d'affaires"
-      ],
-      "practical_info": {
-        "hours": "Reception 24h/24",
-        "price": "Chambre double : environ 90000-150000 FCFA/nuit",
-        "best_time": "Toute l'annee",
-        "access": "Bord du Wouri, quartier Bonanjo, Douala"
-      },
-      "budget": "Chambre double : 90000-150000 FCFA/nuit selon saison et disponibilite. Petit-dejeuner : 8000-12000 FCFA.",
-      "budget_saison_seche": "Chambre double : 90000-150000 FCFA/nuit selon saison et disponibilite. Petit-dejeuner : 8000-12000 FCFA. (haute saison, decembre-fevrier et juillet-aout : tarifs souvent majores, reservation fortement conseillee).",
-      "budget_saison_pluies": "Chambre double : 90000-150000 FCFA/nuit selon saison et disponibilite. Petit-dejeuner : 8000-12000 FCFA. (basse saison : tarifs plus bas et disponibilites nombreuses, negociation possible pour un long sejour).",
-      "transport": {
-        "taxi": "environ 2000-3000 FCFA depuis l'aeroport",
-        "moto": "environ 1000-1500 FCFA",
-        "note": "Adresse centrale bien desservie, navette possible depuis l'aeroport."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 10,
-      "name": "Ile de Jebale",
-      "country": "Fleuve Wouri, Douala",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "relaxation"
-      ],
-      "image": null,
-      "description": "Petite ile accessible par pirogue sur le fleuve Wouri, ambiance paisible loin de l'agitation urbaine.",
-      "city": "Douala",
-      "lat": 4.07,
-      "lng": 9.68,
-      "long_description": "Situee au coeur du fleuve Wouri, l'ile de Djebale (aussi orthographiee Jebale ou Jébalè) est une ile fluviale d'environ 3000 hectares administrativement rattachee a la commune de Bonaberi (Douala IV). Selon la legende locale, son nom viendrait de Djobalè, une femme sirene rencontree par l'ancetre fondateur Malè Mbongo, frere de Mbedi Mbongo, geniteur du peuple Douala.\n\nLa traversee s'effectue depuis le debarcadere de Bonassama, en pirogue a pagaie (45 minutes) ou a moteur (15 minutes seulement). L'ile, peuplee d'environ 300 a 1000 habitants selon les sources, a conserve un charme unique : maisons de style colonial aux murs defraichis, vestiges de la Premiere Guerre mondiale (dont un canon), et certaines des plus anciennes ecoles et eglises du pays.\n\nJebale est aussi un haut lieu spirituel et culturel du peuple Sawa, abritant le sanctuaire du celebre festival Ngondo. Depuis 2018, le festival culturel \"Musina\" y est organise chaque annee en fevrier par les jeunes originaires de l'ile, contribuant a faire connaitre ce village longtemps reste isole malgre sa proximite avec Douala.",
-      "activities": [
-        "Traverser le fleuve Wouri en pirogue depuis le debarcadere de Bonassama",
-        "Decouvrir les vestiges coloniaux, dont un canon de la Premiere Guerre mondiale",
-        "Visiter les plus anciennes ecoles et eglises du Cameroun",
-        "Se promener dans les ruelles etroites du village au rythme de la vie insulaire",
-        "Assister au festival Musina en fevrier, celebrant le patrimoine culturel Sawa"
-      ],
-      "practical_info": {
-        "hours": "Traversees en journee depuis le debarcadere de Bonassama",
-        "price": "Prix de la traversee en pirogue variable selon negociation",
-        "best_time": "Week-ends, ou en fevrier pour le festival Musina",
-        "access": "Depart en pirogue depuis le debarcadere de Bonassama (Douala IV)"
-      },
-      "budget": "Traversee en pirogue : 500-2000 FCFA selon negociation et type de pirogue (pagaie ou moteur).",
-      "transport": {
-        "taxi": "environ 1000-2000 FCFA",
-        "moto": "environ 500-1200 FCFA",
-        "note": "Puis pirogue : 15-45 min selon le type."
-      },
-      "image_query": "Ile de Jebale Douala Cameroon",
-      "budget_saison_seche": "Traversee en pirogue : 600-2300 FCFA selon negociation et type de pirogue (pagaie ou moteur). (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
-      "budget_saison_pluies": "Traversee en pirogue : 400-1800 FCFA selon negociation et type de pirogue (pagaie ou moteur). (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 11,
-      "name": "K Hotel Douala",
-      "country": "Rue Christian Tobie Kuoh, Bonanjo, Douala",
-      "category": "Hôtel",
-      "tags": [
-        "hebergement",
-        "relaxation",
-        "culture"
-      ],
-      "image": null,
-      "description": "Hotel 4 etoiles moderne a Bonanjo, reconnu pour son restaurant Kotcha et son cadre elegant melant art local et hospitalite internationale.",
-      "city": "Douala",
-      "lat": 4.04,
-      "lng": 9.705,
-      "long_description": "Niche au coeur du quartier des affaires de Bonanjo, le K Hotel est regulierement cite comme l'un des meilleurs hotels de Douala, avec une note moyenne de 9,2/10 sur les plateformes de voyage. Anciennement connu sous le nom d'hotel Arcade, l'etablissement a ete entierement repense par le Groupe Kadji, l'un des conglomerats les plus influents du Cameroun.\n\nDes l'entree, des oeuvres d'art locales et des photographies du vieux Douala ornent chaque espace, offrant une experience qui allie authenticite camerounaise et raffinement international. L'hotel propose plusieurs espaces de restauration et de detente : le restaurant Kotcha pour l'exubérance culinaire, le N'Shi Pool Bar pour la serenite tropicale, et le K Bar pour une ambiance plus intimiste.\n\nLe K Hotel dispose egalement de salles de reunion et de conference, en faisant une adresse prisee aussi bien des voyageurs d'affaires que des visiteurs en quete d'une experience haut de gamme a Douala.",
-      "activities": [
-        "Diner au restaurant Kotcha, cuisine raffinee dans un cadre elegant",
-        "Se detendre au N'Shi Pool Bar en journee",
-        "Decouvrir les oeuvres d'art local exposees dans l'hotel",
-        "Explorer le quartier historique de Bonanjo aux alentours"
-      ],
-      "practical_info": {
-        "hours": "Restaurant et bars ouverts toute la journee",
-        "price": "Repas au restaurant : 10000-25000 FCFA. Chambres a partir de 50000-70000 FCFA/nuit.",
-        "best_time": "Soiree pour le K Bar, journee pour le pool bar",
-        "access": "Rue Christian Tobie Kuoh, quartier Bonanjo"
-      },
-      "budget": "Repas restaurant : 10000-25000 FCFA. Chambre : a partir de 50000-70000 FCFA/nuit selon saison.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA",
-        "moto": "environ 250-600 FCFA",
-        "note": "(10 min), quartier Bonanjo."
-      },
-      "image_query": "K Hotel Douala Douala Cameroon",
-      "budget_saison_seche": "Repas restaurant : 11000-27500 FCFA. Chambre : a partir de 55000-77000 FCFA/nuit selon saison. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Repas restaurant : 9500-23800 FCFA. Chambre : a partir de 47500-66500 FCFA/nuit selon saison. (basse saison : tarifs plus souples).",
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 12,
-      "name": "La Pagode (Palais du Roi Manga Bell)",
-      "country": "Bonanjo, Douala",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "history"
-      ],
-      "image": null,
-      "description": "Residence royale construite en 1905 dans le style japonais, symbole historique du quartier de Bonanjo.",
-      "city": "Douala",
-      "lat": 4.0483,
-      "lng": 9.6928,
-      "long_description": "Surnomme \"La Pagode\" en raison de son architecture originale mêlant styles europeen et asiatique, ce palais fut construit en 1905 par le roi Auguste Manga Ndoumbe, 11e souverain de la dynastie Bell, a son retour d'Angleterre ou il avait etudie le commerce a l'universite de Bristol.\n\nLe surnom \"Pagode\" lui a ete donne par l'ecrivain francais Louis-Ferdinand Celine, qui sejourna a Douala entre 1916 et 1917 et decrivit le batiment dans son roman \"Voyage au bout de la nuit\".\n\nSon fils, Rudolf Douala Manga Bell, y regna de 1908 a 1914 avant d'etre arrete et pendu par les autorites allemandes pour s'etre oppose au projet d'expropriation des populations Douala. Il est aujourd'hui celebre comme l'un des premiers heros de la resistance anticoloniale en Afrique.\n\nLe batiment abrite aujourd'hui l'espace culturel Doual'Art, fonde par une descendante de la dynastie Bell.",
-      "activities": [
-        "Admirer l'architecture unique melant influences europeennes et asiatiques",
-        "Decouvrir l'histoire de la dynastie royale Bell et de la resistance anticoloniale",
-        "Visiter les expositions d'art contemporain de l'espace Doual'Art",
-        "Photographier la facade emblematique, l'une des plus reconnaissables de Douala"
-      ],
-      "practical_info": {
-        "hours": "Variable selon les expositions en cours",
-        "price": "Acces exterieur libre, tarif variable pour les expositions",
-        "best_time": "Matinee, pour une lumiere favorable aux photos",
-        "access": "Quartier Bonanjo, a proximite de la place du Gouvernement"
-      },
-      "budget": "Acces exterieur gratuit. Entree exposition Doual'Art : 0 - 2000 FCFA selon evenement.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA",
-        "moto": "environ 250-600 FCFA",
-        "note": "(10-15 min). Accessible aussi a pied depuis Bonanjo."
-      },
-      "image_query": "La Pagode Douala Cameroon",
-      "budget_saison_seche": "Acces exterieur gratuit. Entree exposition Doual'Art : 0 - 2000 FCFA selon evenement. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Acces exterieur gratuit. Entree exposition Doual'Art : 0 - 2000 FCFA selon evenement. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 13,
-      "name": "Lac Municipal de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Lac Municipal de Douala Douala Cameroon",
-      "description": "Petit lac amenage au coeur de Douala, prise pour une promenade ou une pause au calme.",
-      "city": "Douala",
-      "lat": 4.043,
-      "lng": 9.71,
-      "long_description": "Le Lac Municipal de Douala est un espace vert amenage autour d'un plan d'eau, offrant une bulle de calme relative au milieu de l'agitation urbaine. Les abords sont frequentes en fin de journee par les familles et les joggeurs.",
-      "activities": [
-        "Se promener autour du lac",
-        "Pique-niquer en famille",
-        "Profiter d'un moment de calme en pleine ville"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Gratuit",
-        "best_time": "Fin d'apres-midi",
-        "access": "Quartier de Bonanjo/Bali, Douala"
-      },
-      "budget": "Acces gratuit. Location de pedalo si disponible : environ 1000-2000 FCFA.",
-      "budget_saison_seche": "Acces gratuit. Location de pedalo si disponible : environ 1000-2000 FCFA. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Acces gratuit. Location de pedalo si disponible : environ 1000-2000 FCFA. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 1000-2000 FCFA depuis le centre-ville",
-        "moto": "environ 500-1000 FCFA",
-        "note": "Facilement accessible depuis la plupart des quartiers centraux."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 14,
-      "name": "Lycée Général Leclerc de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Lycée Général Leclerc de Douala Douala Cameroon",
-      "description": "L'un des lycees historiques et reputes de Douala, etabli depuis l'epoque coloniale.",
-      "city": "Douala",
-      "lat": 4.057,
-      "lng": 9.705,
-      "long_description": "Le Lycee General Leclerc de Douala fait partie des etablissements secondaires les plus anciens et reputes du Cameroun, ayant forme plusieurs generations de cadres du pays. Son architecture et son ancien portail temoignent de l'histoire educative de la ville.",
-      "activities": [
-        "Observer l'architecture du batiment historique",
-        "Comprendre l'histoire du systeme educatif camerounais"
-      ],
-      "practical_info": {
-        "hours": "Acces aux abords en journee",
-        "price": "Gratuit (exterieur)",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Douala"
-      },
-      "budget": "Acces exterieur gratuit ; visite de l'interieur sur autorisation de l'administration.",
-      "budget_saison_seche": "Acces exterieur gratuit ; visite de l'interieur sur autorisation de l'administration. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces exterieur gratuit ; visite de l'interieur sur autorisation de l'administration. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
-        "moto": "environ 500-800 FCFA",
-        "note": "Situe en centre-ville, facilement accessible."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 15,
-      "name": "Musee Maritime de Douala",
-      "country": "Bonanjo, Douala",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "history"
-      ],
-      "image": null,
-      "description": "Musee en forme de bateau retracant l'histoire maritime du fleuve Wouri et du commerce portuaire.",
-      "city": "Douala",
-      "lat": 4.0469,
-      "lng": 9.6942,
-      "long_description": "Inaugure le 17 decembre 2013 dans le quartier de Bonanjo, non loin de la zone portuaire, le Musee Maritime de Douala occupe un batiment moderne dont l'architecture evoque la forme d'un navire. C'est le troisieme emplacement du musee depuis sa creation initiale en 1986 par le Conseil National des Chargeurs du Cameroun.\n\nLa mission du musee est de collecter, restaurer et transmettre le patrimoine maritime camerounais : richesses ancestrales et modernes, culture des peuples cotiers, histoire des echanges commerciaux dans les ports du pays. Ses collections comptent environ 3 000 objets historiques, culturels et artistiques : sculptures, peintures, photographies, cartes, instruments de peche et de navigation traditionnels.\n\nLe parcours de visite se deploie sur plusieurs etages : le rez-de-chaussee retrace l'histoire de la cote du Wouri, du peuple Sawa et de l'origine du nom \"Cameroun\" ; un autre niveau est consacre a la navigation, avec une salle de controle de navire reconstituee et une exposition sur les differents types de bateaux.",
-      "activities": [
-        "Explorer les collections d'objets maritimes traditionnels et modernes (environ 3000 pieces)",
-        "Tester le simulateur de navigation, pour se mettre dans la peau d'un marin",
-        "Vivre l'experience de la Case des tempetes, dispositif 3D simulant un voyage en haute mer",
-        "Suivre une visite guidee sur l'histoire des peuples Sawa et l'origine du nom Cameroun",
-        "Assister aux expositions temporaires organisees lors du festival Ngondo"
-      ],
-      "practical_info": {
-        "hours": "Du mardi au dimanche, visites guidees et libres",
-        "price": "Tarif d'entree variable selon visite libre ou guidee",
-        "best_time": "Toute l'annee, prevoir 1h30 a 2h pour une visite complete",
-        "access": "Quartier Bonanjo, a proximite immediate de la zone portuaire"
-      },
-      "budget": "Visite libre : environ 2000 FCFA. Visite guidee : 5000 FCFA. Tarif reduit etudiants/enfants.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA",
-        "moto": "environ 250-600 FCFA",
-        "note": "(10 min). Zone facilement accessible en journee."
-      },
-      "image_query": "Musee Maritime de Douala Douala Cameroon",
-      "budget_saison_seche": "Visite libre : environ 2000 FCFA. Visite guidee : 5000 FCFA. Tarif reduit etudiants/enfants. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Visite libre : environ 2000 FCFA. Visite guidee : 5000 FCFA. Tarif reduit etudiants/enfants. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 16,
-      "name": "Pont sur le Wouri",
-      "country": "Bonaberi, Douala",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "description": "Vue panoramique sur le fleuve Wouri, tres animee au coucher du soleil.",
-      "city": "Douala",
-      "lat": 4.0614,
-      "lng": 9.7,
-      "long_description": "Le premier pont sur le Wouri, aussi appele pont de Bonaberi, est mis en service en 1954 apres avoir ete construit entre 1951 et 1954 par des entreprises francaises (Societe de construction des Batignolles, Campenon-Bernard, Hersent). Long de 1830 metres, il est a son inauguration le 3e pont le plus long d'Afrique et le plus long pont en beton du continent.\n\nFace a la saturation croissante du trafic, un deuxieme pont est construit entre 2013 et 2017, situe seulement 8 metres en aval du premier. Long de 760 metres et large de 25 metres, ce second ouvrage comprend cinq voies routieres et deux voies ferroviaires, pour un investissement d'environ 119 milliards de francs CFA finance par l'Agence Francaise de Developpement.\n\nEnsemble, ces deux ponts relient Bonaberi (zone industrielle) au centre-ville de Douala et constituent le passage oblige vers le port autonome, l'aeroport, et les grands axes routiers reliant le Nord-Ouest, le Sud-Ouest et l'Ouest du pays. Un troisieme pont, plus en amont, est a l'etude depuis 2019.",
-      "activities": [
-        "Admirer la vue panoramique sur le fleuve Wouri, particulierement au coucher du soleil",
-        "Observer le va-et-vient incessant des pirogues et bateaux de peche",
-        "Photographier les deux ponts cote a cote depuis les berges",
-        "Decouvrir un ouvrage embleme du developpement economique du Cameroun"
-      ],
-      "practical_info": {
-        "hours": "Accessible en permanence (pont routier ouvert 24h/24)",
-        "price": "Gratuit",
-        "best_time": "Fin d'apres-midi pour la lumiere du coucher de soleil sur le fleuve",
-        "access": "Relie le centre-ville de Douala au quartier de Bonaberi"
-      },
-      "budget": "Gratuit (observation depuis les berges ou en passant sur le pont).",
-      "transport": {
-        "taxi": "environ 1000-1500 FCFA",
-        "moto": "environ 500-800 FCFA",
-        "note": "(15-20 min selon trafic)."
-      },
-      "image_query": "Pont sur le Wouri Douala Cameroon",
-      "budget_saison_seche": "Gratuit (observation depuis les berges ou en passant sur le pont). Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Gratuit (observation depuis les berges ou en passant sur le pont). Aucune variation saisonniere (acces gratuit).",
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 17,
-      "name": "Port Autonome de Douala",
-      "country": "Bonaberi / Bonanjo, Douala",
-      "category": "Site historique",
-      "tags": [
-        "history",
-        "city"
-      ],
-      "image": null,
-      "description": "L'un des plus grands ports d'Afrique centrale, coeur economique historique de la ville.",
-      "city": "Douala",
-      "lat": 4.049,
-      "lng": 9.69,
-      "long_description": "Cree en 1868 par les autorites allemandes et inaugure en 1875, le Port Autonome de Douala (PAD) celebre en 2025 ses 150 ans d'existence. C'est aujourd'hui le principal moteur economique du Cameroun : il represente plus de 70% du commerce exterieur du pays et assure 75% de ses echanges maritimes, tout en desservant les pays enclaves voisins (Tchad, Republique Centrafricaine, nord du Congo).\n\nSitue dans l'estuaire du fleuve Wouri, le port dispose de 66 000 m² de magasins, 10 km de quais, 20 km de routes bitumees et 20 km de voies ferrees connectees au chemin de fer Transcamerounais (Douala-Yaounde-Ngaoundere). Il est le premier port de la zone CEMAC (Communaute economique et monetaire de l'Afrique centrale).\n\nAu-dela de son role economique majeur, le port porte une histoire riche : c'est sur ses rives que fut signe en 1884 le traite de protectorat germano-douala, moment fondateur de l'histoire coloniale du Cameroun. La celebration de son cent-cinquantenaire en septembre 2025 a mis a l'honneur l'heritage culturel des peuples Sawa, historiquement lies au developpement du port.",
-      "activities": [
-        "Observer l'activite portuaire intense (cargos, conteneurs, pirogues de peche)",
-        "Decouvrir un lieu charge d'histoire, temoin du traite de protectorat de 1884",
-        "Photographier le contraste entre activite industrielle moderne et vie fluviale traditionnelle",
-        "Comprendre le role economique cle du port pour le Cameroun et l'Afrique centrale"
-      ],
-      "practical_info": {
-        "hours": "Zone portuaire active en continu ; acces reglemente aux zones industrielles",
-        "price": "Observation depuis les berges generalement libre",
-        "best_time": "Matinee pour l'activite portuaire, fin de journee pour la lumiere",
-        "access": "Estuaire du Wouri, entre Bonaberi et Bonanjo"
-      },
-      "budget": "Observation depuis les berges gratuite. Acces aux zones industrielles reglemente.",
-      "transport": {
-        "taxi": "environ 1000 FCFA",
-        "moto": "environ 500-700 FCFA",
-        "note": "(15 min selon trafic, souvent dense pres du port)."
-      },
-      "image_query": "Port Autonome de Douala Douala Cameroon",
-      "budget_saison_seche": "Observation depuis les berges gratuite. Acces aux zones industrielles reglemente. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Observation depuis les berges gratuite. Acces aux zones industrielles reglemente. Aucune variation saisonniere (acces gratuit).",
-      "image_query_fallback": "old african building heritage"
-    },
-    {
-      "id": 18,
-      "name": "Quartier Akwa",
-      "country": "Akwa, Douala",
-      "category": "Distraction",
-      "tags": [
-        "city",
-        "shopping"
-      ],
-      "image": null,
-      "description": "Quartier animee et commercial, restaurants, boutiques et vie nocturne de Douala.",
-      "city": "Douala",
-      "lat": 4.051,
-      "lng": 9.702,
-      "long_description": "Akwa est le veritable coeur commercial et economique de Douala, souvent surnomme le \"centre-ville\" de la capitale economique du Cameroun. C'est ici que se concentrent banques, sieges d'entreprises, grands magasins, hotels et une intense vie nocturne, faisant du quartier l'un des poles les plus animes de toute la ville.\n\nHistoriquement, Akwa doit son nom au roi Akwa, l'un des souverains locaux ayant negocie avec les puissances europeennes au XIXe siecle. Aujourd'hui, le quartier melange architecture moderne (tours d'affaires, hotels comme l'embleme Akwa Palace) et scenes de rue tres animees, avec ses artisans, ses vendeurs ambulants et ses embouteillages caracteristiques aux heures de pointe.\n\nAkwa est egalement reconnu, avec Bonapriso, comme l'un des principaux centres de la vie nocturne doualaise : bars, restaurants et clubs y attirent une population jeune et dynamique en quete d'animation apres la tombee de la nuit.",
-      "activities": [
-        "Explorer le centre des affaires et observer l'effervescence urbaine",
-        "Faire du shopping dans les boutiques et grands magasins du quartier",
-        "Decouvrir l'hotel emblematique Akwa Palace, embleme architectural de Douala",
-        "Profiter de la vie nocturne animee (bars, restaurants, clubs)"
-      ],
-      "practical_info": {
-        "hours": "Actif toute la journee, tres anime en soiree",
-        "price": "Variable selon activites",
-        "best_time": "Journee pour le shopping, soiree pour l'ambiance nocturne",
-        "access": "Centre-ville de Douala, facilement accessible en taxi"
-      },
-      "budget": "Acces libre au quartier. Restaurants/bars : 3000-15000 FCFA selon l'etablissement.",
-      "transport": {
-        "taxi": "Coeur de ville, accessible facilement en taxi (300-500 FCFA) ou a pied depuis les quartiers voisins.",
-        "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
-        "note": "Coeur de ville, accessible facilement en taxi (300-500 FCFA) ou a pied depuis les quartiers voisins."
-      },
-      "image_query": "Quartier Akwa Douala Cameroon",
-      "budget_saison_seche": "Acces libre au quartier. Restaurants/bars : 3300-16500 FCFA selon l'etablissement. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Acces libre au quartier. Restaurants/bars : 2800-14200 FCFA selon l'etablissement. (basse saison : tarifs plus souples).",
-      "image_query_fallback": "african market colorful stalls"
-    },
-    {
-      "id": 19,
-      "name": "Reserve de Faune de Douala-Edea",
-      "country": "Peripherie de Douala",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "description": "Reserve naturelle abritant lamantins, crocodiles et une grande diversite d'oiseaux, a la sortie de Douala.",
-      "city": "Douala",
-      "lat": 3.85,
-      "lng": 9.75,
-      "long_description": "Creee en 1932 par l'administration coloniale francaise, la reserve de faune de Douala-Edea est l'une des plus anciennes aires protegees du Cameroun. Situee dans le departement de la Sanaga Maritime, elle s'etend sur environ 160 000 a 262 935 hectares (selon les sources) le long de la cote atlantique, a la sortie de Douala.\n\nLe 25 septembre 2018, un decret presidentiel a acte sa transformation en Parc National de Douala-Edea, une reclassification destinee a mieux proteger sa biodiversite exceptionnelle face aux pressions demographiques et environnementales croissantes.\n\nLe site est compose a 80% de foret tropicale humide et 15% de mangroves atlantiques, traverse par plusieurs cours d'eau (dont l'embouchure des fleuves Sanaga, Nyong, Dibamba et Wouri) et parseme de lacs, le plus grand etant le lac Tissongo. Plus de 80 especes de grands et moyens mammiferes y ont ete recensees, dont l'elephant de foret, le chimpanzé, le lamantin (une espece menacee), le drill et le crocodile nain, ainsi que plus de 230 especes d'oiseaux. Des tortues marines viennent pondre sur les plages du littoral entre novembre et janvier.",
-      "activities": [
-        "Observer la faune sauvage lors de safaris guides (elephants, chimpanzes, oiseaux)",
-        "Naviguer en pirogue a travers les chenaux de mangrove",
-        "Assister a la ponte des tortues marines (saison novembre-janvier)",
-        "Decouvrir le lac Tissongo et les paysages de foret inondee",
-        "Rencontrer les communautes de pecheurs installees le long des rivieres"
-      ],
-      "practical_info": {
-        "hours": "Visites organisees en journee, generalement avec un guide",
-        "price": "Variable selon excursion (safari, pirogue, guide) - se renseigner aupres d'agences locales",
-        "best_time": "Novembre a janvier pour la ponte des tortues marines ; saison seche pour les safaris",
-        "access": "A la sortie sud de Douala, accessible par route puis pirogue selon les zones"
-      },
-      "budget": "Safari guide : 15000-30000 FCFA selon duree et prestataire. Sortie pirogue en supplement.",
-      "transport": {
-        "taxi": "Taxi ou vehicule prive depuis Douala : 30-45 min jusqu'a l'embarcadere, puis pirogue. Compter 15000-25000 FCFA pour un aller-retour en taxi/vehicule loue.",
-        "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
-        "note": "Taxi ou vehicule prive depuis Douala : 30-45 min jusqu'a l'embarcadere, puis pirogue. Compter 15000-25000 FCFA pour un aller-retour en taxi/vehicule loue."
-      },
-      "image_query": "Reserve de Faune de Douala-Edea Douala Cameroon",
-      "budget_saison_seche": "Safari guide : 17200-34500 FCFA selon duree et prestataire. Sortie pirogue en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
-      "budget_saison_pluies": "Safari guide : 13500-27000 FCFA selon duree et prestataire. Sortie pirogue en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 20,
-      "name": "Restaurant La Marina",
-      "country": "Douala, Cameroun",
-      "category": "Restaurant",
-      "tags": [
-        "gastronomie",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Restaurant La Marina Douala Cameroon",
-      "description": "Restaurant en bord du fleuve Wouri, reputé pour ses poissons et fruits de mer.",
-      "city": "Douala",
-      "lat": 4.046,
-      "lng": 9.701,
-      "long_description": "Restaurant La Marina profite d'un emplacement en bord de fleuve, avec une carte orientee produits de la mer et cuisine camerounaise. Une adresse appreciee pour un dejeuner d'affaires ou un diner avec vue sur le Wouri.",
-      "activities": [
-        "Diner avec vue sur le fleuve Wouri",
-        "Deguster des specialites de poisson",
-        "Dejeuner d'affaires dans un cadre agreable"
-      ],
-      "practical_info": {
-        "hours": "11h-22h en general (a confirmer sur place)",
-        "price": "Plat : environ 4000-10000 FCFA",
-        "best_time": "Dejeuner ou diner",
-        "access": "Bord du Wouri, quartier Bonanjo, Douala"
-      },
-      "budget": "Plat principal : 4000-10000 FCFA. Fruits de mer selon arrivage : 10000-18000 FCFA. Boissons : 1000-3000 FCFA.",
-      "budget_saison_seche": "Plat principal : 4000-10000 FCFA. Fruits de mer selon arrivage : 10000-18000 FCFA. Boissons : 1000-3000 FCFA. (haute saison et periode des fetes : affluence en soiree, reservation conseillee).",
-      "budget_saison_pluies": "Plat principal : 4000-10000 FCFA. Fruits de mer selon arrivage : 10000-18000 FCFA. Boissons : 1000-3000 FCFA. (basse saison : tarifs stables, plus de disponibilites).",
-      "transport": {
-        "taxi": "environ 1500-2000 FCFA depuis le centre-ville",
-        "moto": "environ 800-1200 FCFA",
-        "note": "Adresse centrale, facilement accessible."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 21,
-      "name": "Stade de la Réunification",
-      "country": "Douala, Cameroun",
-      "category": "Distraction",
-      "tags": [
-        "adventure",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Stade de la Réunification Douala Cameroon",
-      "description": "Stade omnisport historique de Douala, haut lieu du football et des grands evenements sportifs.",
-      "city": "Douala",
-      "lat": 4.0392,
-      "lng": 9.75,
-      "long_description": "Le Stade de la Reunification est l'un des plus anciens et symboliques stades du Cameroun, temoin de nombreux matchs de football et evenements nationaux. Assister a un match dans ce stade est une experience immersive dans la passion du football camerounais.",
-      "activities": [
-        "Assister a un match de football local",
-        "Visiter les abords et l'ambiance des jours de match",
-        "Decouvrir la culture sportive camerounaise"
-      ],
-      "practical_info": {
-        "hours": "Selon calendrier des matchs et evenements",
-        "price": "Billet match : environ 1000-5000 FCFA selon evenement",
-        "best_time": "Jours de match, generalement le week-end",
-        "access": "Quartier de Bepanda, Douala"
-      },
-      "budget": "Billet match : 1000-5000 FCFA selon l'affiche. Acces aux abords hors match : gratuit.",
-      "budget_saison_seche": "Billet match : 1000-5000 FCFA selon l'affiche. Acces aux abords hors match : gratuit. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Billet match : 1000-5000 FCFA selon l'affiche. Acces aux abords hors match : gratuit. (basse saison : tarifs plus souples).",
-      "transport": {
-        "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
-        "moto": "environ 800-1200 FCFA",
-        "note": "Prevoir plus de temps les jours de grand match en raison de l'affluence."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 22,
-      "name": "Temple du Centenaire",
-      "country": "Akwa, Douala",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "history"
-      ],
-      "image": null,
-      "description": "Eglise construite au XIXe siecle pour commemorer le premier siecle du christianisme au Cameroun.",
-      "city": "Douala",
-      "lat": 4.052,
-      "lng": 9.701,
-      "long_description": "Construit et inaugure le 30 mars 1947, le Temple du Centenaire commemore les cent ans de l'arrivee du christianisme a Douala : en 1847, le pasteur britannique Alfred Saker y avait fait edifier la premiere eglise chretienne du pays, nommee \"Bethel\", sur un terrain mis a disposition par le roi Akwa.\n\nAlfred Saker, premier Europeen autorise a s'installer durablement sur le sol camerounais des 1845, restera la figure emblematique de la mission protestante au Cameroun jusqu'a son depart en 1876. Le temple, affilie a l'Eglise Evangelique du Cameroun, se dresse aujourd'hui a l'emplacement exact de ce premier lieu de culte historique.\n\nSon architecture, melant elements modernes et traditionnels, se distingue par sa haute facade blanche surmontee d'un clocher elance et son toit vert caracteristique. Situe dans le quartier tres anime d'Akwa I, le temple reste un lieu de culte actif et un point de repere incontournable du patrimoine religieux de la ville.",
-      "activities": [
-        "Admirer l'architecture typique, entre modernite et tradition, avec sa haute facade blanche et son toit vert",
-        "Decouvrir l'histoire de l'arrivee du christianisme au Cameroun en 1847",
-        "Assister a un culte pour vivre l'ambiance de la communaute evangelique locale",
-        "Explorer le quartier animee d'Akwa aux alentours du temple"
-      ],
-      "practical_info": {
-        "hours": "Ouvert lors des cultes et evenements religieux",
-        "price": "Acces libre",
-        "best_time": "Dimanche matin pour assister a un culte, ou en journee pour l'architecture",
-        "access": "Quartier Akwa I, a proximite du boulevard de la Liberte"
-      },
-      "budget": "Acces libre.",
-      "transport": {
-        "taxi": "environ 500 FCFA",
-        "moto": "environ 250-450 FCFA",
-        "note": "(5-10 min), tres central."
-      },
-      "image_query": "Temple du Centenaire Douala Cameroon",
-      "budget_saison_seche": "Acces libre. Aucune variation saisonniere (acces gratuit).",
-      "budget_saison_pluies": "Acces libre. Aucune variation saisonniere (acces gratuit).",
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 23,
-      "name": "Université de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Université de Douala Douala Cameroon",
-      "description": "Grande universite publique camerounaise, repartie sur plusieurs campus dans la ville.",
-      "city": "Douala",
-      "lat": 4.05,
-      "lng": 9.7,
-      "long_description": "L'Universite de Douala est l'une des principales universites publiques du pays, avec plusieurs facultes et grandes ecoles reparties sur differents campus (Ndogbong, Akwa, Bassa). Le campus principal offre une ambiance estudiantine animee, avec cafeterias et espaces verts.",
-      "activities": [
-        "Se promener sur le campus principal",
-        "Decouvrir la vie estudiantine camerounaise",
-        "Visiter la bibliotheque universitaire"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee en semaine",
-        "price": "Gratuit",
-        "best_time": "Periode scolaire (oct-juin)",
-        "access": "Plusieurs campus repartis dans Douala"
-      },
-      "budget": "Acces gratuit au campus.",
-      "budget_saison_seche": "Acces gratuit au campus. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces gratuit au campus. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 1000-2000 FCFA depuis le centre-ville",
-        "moto": "environ 500-800 FCFA",
-        "note": "Bien desservi, plusieurs campus a des endroits differents de la ville."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 24,
-      "name": "Village Artisanal de Douala",
-      "country": "Douala, Cameroun",
-      "category": "Distraction",
-      "tags": [
-        "culture",
-        "shopping"
-      ],
-      "image": null,
-      "image_query": "Village Artisanal de Douala Douala Cameroon",
-      "description": "Marche artisanal regroupant sculpteurs, tisserands et artisans du bois et du bronze.",
-      "city": "Douala",
-      "lat": 4.051,
-      "lng": 9.708,
-      "long_description": "Le Village Artisanal de Douala rassemble des artisans locaux proposant sculptures sur bois, bronzes, tissus et objets d'art traditionnels. C'est une bonne adresse pour rapporter un souvenir authentique tout en soutenant l'artisanat local.",
-      "activities": [
-        "Observer les artisans sculpter le bois en direct",
-        "Acheter des souvenirs et objets d'art locaux",
-        "Discuter avec les artisans de leurs techniques traditionnelles"
-      ],
-      "practical_info": {
-        "hours": "9h-18h en general",
-        "price": "Acces libre, achats a partir de 1000 FCFA",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Douala"
-      },
-      "budget": "Acces gratuit. Objets d'artisanat : 1000-30000 FCFA selon la piece.",
-      "budget_saison_seche": "Acces gratuit. Objets d'artisanat : 1000-30000 FCFA selon la piece. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Acces gratuit. Objets d'artisanat : 1000-30000 FCFA selon la piece. (basse saison : tarifs plus souples).",
-      "transport": {
-        "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
-        "moto": "environ 500-800 FCFA",
-        "note": "Marche facilement accessible, prevoir de negocier les prix."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 25,
-      "name": "Île de Manoka",
-      "country": "Douala, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "relaxation",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Île de Manoka Douala Cameroon",
-      "description": "Ile paisible de l'estuaire du Wouri, accessible en pirogue, avec plages et villages de pecheurs.",
-      "city": "Douala",
-      "lat": 3.9333,
-      "lng": 9.6167,
-      "long_description": "L'ile de Manoka se situe dans l'estuaire du Wouri, au large de Douala. Accessible uniquement par voie fluviale, elle offre des plages tranquilles, des villages de pecheurs traditionnels et une atmosphere tres eloignee de l'agitation de la ville, a moins d'une heure de bateau.",
-      "activities": [
-        "Traverser l'estuaire en pirogue ou en bateau rapide",
-        "Se detendre sur une plage isolee",
-        "Decouvrir la vie des communautes de pecheurs"
-      ],
-      "practical_info": {
-        "hours": "Traversees en journee, selon les departs de bateau",
-        "price": "Traversee en pirogue collective : 1000-2000 FCFA",
-        "best_time": "Saison seche pour une traversee plus confortable",
-        "access": "Embarcadere de Douala (Bonaberi ou Wouri), traversee de 45-60 min"
-      },
-      "budget": "Traversee en pirogue/bateau : 1000-3000 FCFA aller simple. Repas de poisson sur place : 2000-4000 FCFA.",
-      "budget_saison_seche": "Traversee en pirogue/bateau : 1000-3000 FCFA aller simple. Repas de poisson sur place : 2000-4000 FCFA. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Traversee en pirogue/bateau : 1000-3000 FCFA aller simple. Repas de poisson sur place : 2000-4000 FCFA. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "non applicable (traversee fluviale requise, pas de route directe)",
-        "moto": "non applicable (traversee fluviale requise)",
-        "note": "L'acces se fait uniquement par bateau depuis l'embarcadere de Douala ; se renseigner sur les horaires de depart."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 26,
       "name": "Akiba Beach Lounge",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Bars et vie nocturne",
       "tags": [
         "gastronomie",
         "relaxation"
@@ -989,13 +46,16 @@
         "moto": "environ 300-800 FCFA",
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Bars et vie nocturne"
     },
     {
-      "id": 27,
+      "id": 2,
       "name": "Au Plaisir du Goût",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Restaurants",
       "tags": [
         "gastronomie"
       ],
@@ -1025,13 +85,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Situe en centre-ville, facile d'acces a pied ou en moto-taxi."
       },
-      "image_query_fallback": "african restaurant food dining"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Restaurants"
     },
     {
-      "id": 28,
+      "id": 3,
       "name": "Aérodrome de Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Site historique",
+      "category": "Monuments",
       "tags": [
         "histoire",
         "city"
@@ -1061,13 +124,16 @@
         "moto": "environ 1000-1500 FCFA",
         "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi."
       },
-      "image_query_fallback": "african historic monument architecture"
+      "image_query_fallback": "african historic monument architecture",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Autres"
     },
     {
-      "id": 29,
+      "id": 4,
       "name": "Base Navale de Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Site historique",
+      "category": "Monuments",
       "tags": [
         "histoire",
         "city"
@@ -1097,13 +163,16 @@
         "moto": "environ 800-1200 FCFA",
         "note": "Zone sensible : eviter les prises de vue rapprochees des installations."
       },
-      "image_query_fallback": "african historic monument architecture"
+      "image_query_fallback": "african historic monument architecture",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Autres"
     },
     {
-      "id": 30,
+      "id": 5,
       "name": "Campements Bagyeli",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Site historique",
+      "category": "Excursions",
       "tags": [
         "culture",
         "adventure"
@@ -1135,14 +204,17 @@
         "moto": "envisageable par temps sec uniquement, tarif a negocier",
         "note": "Passer par une association locale ou un guide de Kribi est recommande pour organiser une visite respectueuse."
       },
-      "image_query_fallback": "african traditional culture heritage"
+      "image_query_fallback": "african historic monument architecture",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Excursions"
     },
     {
-      "id": 31,
+      "id": 6,
       "name": "Chutes de la Lobe",
       "country": "Kribi",
       "city": "Kribi",
-      "category": "Nature",
+      "category": "Sites naturels",
       "tags": [
         "nature",
         "adventure"
@@ -1173,13 +245,16 @@
       "image_query": "Chutes de la Lobe Kribi Cameroon",
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
-      "image_query_fallback": "african waterfall river adventure"
+      "image_query_fallback": "african waterfall river nature landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Sites naturels"
     },
     {
-      "id": 32,
+      "id": 7,
       "name": "Ebodjé",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Nature",
+      "category": "Excursions",
       "tags": [
         "nature",
         "adventure",
@@ -1212,13 +287,16 @@
         "moto": "deconseille sur cette distance ; taxi ou vehicule loue recommande",
         "note": "Piste en partie non bitumee ; prevoir un vehicule robuste, surtout en saison des pluies."
       },
-      "image_query_fallback": "african waterfall river adventure"
+      "image_query_fallback": "african waterfall river nature landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Excursions"
     },
     {
-      "id": 33,
+      "id": 8,
       "name": "Estuaire de la Kienké",
       "country": "Kribi, Cameroun",
-      "category": "Nature",
+      "category": "Sites naturels",
       "tags": [
         "nature",
         "relaxation"
@@ -1249,13 +327,16 @@
         "moto": "environ 500-800 FCFA",
         "note": "Facilement accessible a pied depuis le centre-ville selon l'hebergement."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "african lake river coast landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Sites naturels"
     },
     {
-      "id": 34,
+      "id": 9,
       "name": "Framotel Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Hôtel",
+      "category": "Hôtels",
       "tags": [
         "relaxation",
         "city"
@@ -1286,13 +367,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Emplacement central, tres accessible."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "hotel resort pool relaxation",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Hôtels"
     },
     {
-      "id": 35,
+      "id": 10,
       "name": "Hôtel Ilomba Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Hôtel",
+      "category": "Hôtels",
       "tags": [
         "relaxation",
         "nature"
@@ -1323,13 +407,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Situe sur le front de mer, tres accessible depuis le centre-ville."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "hotel resort pool relaxation",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Hôtels"
     },
     {
-      "id": 36,
+      "id": 11,
       "name": "La Fourchette",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Restaurants",
       "tags": [
         "gastronomie"
       ],
@@ -1358,13 +445,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Adresse de quartier facilement accessible."
       },
-      "image_query_fallback": "african restaurant food dining"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Restaurants"
     },
     {
-      "id": 37,
+      "id": 12,
       "name": "Le Boj",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Bars et vie nocturne",
       "tags": [
         "gastronomie",
         "relaxation"
@@ -1395,13 +485,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Situe en centre-ville, accessible facilement."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Bars et vie nocturne"
     },
     {
-      "id": 38,
+      "id": 13,
       "name": "Le Glacier Moderne",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Restaurants",
       "tags": [
         "gastronomie",
         "relaxation"
@@ -1432,13 +525,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Adresse centrale, tres accessible a pied."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Restaurants"
     },
     {
-      "id": 39,
+      "id": 14,
       "name": "Londji",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Nature",
+      "category": "Plages",
       "tags": [
         "nature",
         "relaxation",
@@ -1471,13 +567,16 @@
         "moto": "environ 1500-2500 FCFA",
         "note": "Piste praticable ; prevoir un peu plus de temps en saison des pluies."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "african waterfall river nature landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Plages"
     },
     {
-      "id": 40,
+      "id": 15,
       "name": "Lycée Bilingue de Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Site historique",
+      "category": "Autres",
       "tags": [
         "culture",
         "city"
@@ -1507,13 +606,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Facilement accessible en centre-ville."
       },
-      "image_query_fallback": "african traditional culture heritage"
+      "image_query_fallback": "african historic monument architecture",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Autres"
     },
     {
-      "id": 41,
+      "id": 16,
       "name": "Maison H",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Restaurants",
       "tags": [
         "gastronomie",
         "relaxation"
@@ -1544,13 +646,16 @@
         "moto": "environ 300-800 FCFA",
         "note": "Facilement accessible depuis les hebergements du centre-ville."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Restaurants"
     },
     {
-      "id": 42,
+      "id": 17,
       "name": "Marché Central de Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Distraction",
+      "category": "Marchés et artisanat",
       "tags": [
         "shopping",
         "city"
@@ -1581,13 +686,16 @@
         "moto": "environ 300-500 FCFA",
         "note": "Marche central tres accessible a pied depuis la plupart des hebergements."
       },
-      "image_query_fallback": "african market colorful stalls"
+      "image_query_fallback": "african market colorful stalls",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Marchés et artisanat"
     },
     {
-      "id": 43,
+      "id": 18,
       "name": "Parc National de Campo-Ma'an",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Nature",
+      "category": "Excursions",
       "tags": [
         "nature",
         "adventure"
@@ -1619,13 +727,16 @@
         "moto": "non recommande sur cette distance en foret",
         "note": "Un 4x4 ou un vehicule loue avec chauffeur est fortement recommande ; certaines pistes sont impraticables en saison des pluies."
       },
-      "image_query_fallback": "african waterfall river adventure"
+      "image_query_fallback": "african waterfall river nature landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Excursions"
     },
     {
-      "id": 44,
+      "id": 19,
       "name": "Parcours Vita de Kribi",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Distraction",
+      "category": "Loisirs",
       "tags": [
         "nature",
         "relaxation",
@@ -1658,14 +769,17 @@
         "moto": "environ 300-500 FCFA",
         "note": "Situe en plein centre touristique de Kribi, facilement accessible a pied depuis la plupart des hebergements."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "african market colorful stalls",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Activités"
     },
     {
-      "id": 45,
+      "id": 20,
       "name": "Phare de Kribi",
       "country": "Kribi",
       "city": "Kribi",
-      "category": "Site historique",
+      "category": "Monuments",
       "tags": [
         "history",
         "culture"
@@ -1696,14 +810,17 @@
       "image_query": "Phare de Kribi Kribi Cameroon",
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
-      "image_query_fallback": "old african building heritage"
+      "image_query_fallback": "african historic monument architecture",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Monuments"
     },
     {
-      "id": 46,
+      "id": 21,
       "name": "Plage de Ngoye",
       "country": "Kribi",
       "city": "Kribi",
-      "category": "Nature",
+      "category": "Plages",
       "tags": [
         "nature",
         "relaxation"
@@ -1734,13 +851,16 @@
       "image_query": "Plage de Ngoye Kribi Cameroon",
       "budget_saison_seche": "Acces gratuit. Location transat/parasol : 1200-2300 FCFA selon etablissement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Acces gratuit. Location transat/parasol : 900-1800 FCFA selon etablissement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "african waterfall river nature landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Plages"
     },
     {
-      "id": 47,
+      "id": 22,
       "name": "Port en eau profonde de Kribi (Port de Kribi-Mboro)",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Site historique",
+      "category": "Monuments",
       "tags": [
         "histoire",
         "city"
@@ -1771,13 +891,16 @@
         "moto": "environ 4000-6000 FCFA, trajet plus long recommande en taxi",
         "note": "Route bitumee, accessible toute l'annee ; prevoir un vehicule pour l'aller-retour."
       },
-      "image_query_fallback": "african historic monument architecture"
+      "image_query_fallback": "african historic monument architecture",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Autres"
     },
     {
-      "id": 48,
+      "id": 23,
       "name": "Restaurant Idodo",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Restaurants",
       "tags": [
         "gastronomie",
         "relaxation"
@@ -1808,13 +931,16 @@
         "moto": "environ 300-800 FCFA",
         "note": "Situe en bord de plage, facilement accessible depuis la plupart des hotels de Kribi."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Restaurants"
     },
     {
-      "id": 49,
+      "id": 24,
       "name": "Terrasse de l'Océan",
       "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Restaurant",
+      "category": "Restaurants",
       "tags": [
         "gastronomie",
         "relaxation"
@@ -1845,13 +971,16 @@
         "moto": "environ 300-800 FCFA",
         "note": "Adresse centrale du front de mer, tres accessible."
       },
-      "image_query_fallback": "hotel resort pool relaxation"
+      "image_query_fallback": "restaurant food dining plate",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Restaurants"
     },
     {
-      "id": 50,
+      "id": 25,
       "name": "Îlot aux Oiseaux de Kribi",
       "country": "Kribi, Cameroun",
-      "category": "Nature",
+      "category": "Excursions",
       "tags": [
         "nature",
         "adventure"
@@ -1882,915 +1011,118 @@
         "moto": "environ 300-500 FCFA",
         "note": "Sortie soumise aux conditions meteo ; confirmer le depart avec le piroguier le jour meme."
       },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 51,
-      "name": "Auberge La Flamme",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Hôtel",
-      "tags": [
-        "city",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Auberge La Flamme Ngaoundere Cameroon",
-      "description": "Auberge simple et economique de Ngaoundere, prisee des voyageurs a petit budget.",
-      "city": "Ngaoundere",
-      "lat": 7.328,
-      "lng": 13.585,
-      "long_description": "L'Auberge La Flamme propose un hebergement simple et abordable a Ngaoundere, une bonne option pour les voyageurs a budget serre souhaitant explorer le plateau de l'Adamaoua sans se ruiner.",
-      "activities": [
-        "Sejourner a petit budget en centre-ville",
-        "Rencontrer d'autres voyageurs",
-        "Point de depart economique pour explorer la region"
-      ],
-      "practical_info": {
-        "hours": "Reception en journee et soiree",
-        "price": "Chambre simple : environ 8000-15000 FCFA/nuit",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Chambre simple : 8000-15000 FCFA/nuit. Petit-dejeuner : 1000-2000 FCFA en supplement.",
-      "budget_saison_seche": "Chambre simple : 8000-15000 FCFA/nuit. Petit-dejeuner : 1000-2000 FCFA en supplement. (haute saison, decembre-fevrier et juillet-aout : tarifs souvent majores, reservation fortement conseillee).",
-      "budget_saison_pluies": "Chambre simple : 8000-15000 FCFA/nuit. Petit-dejeuner : 1000-2000 FCFA en supplement. (basse saison : tarifs plus bas et disponibilites nombreuses, negociation possible pour un long sejour).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Emplacement central, facile d'acces."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 52,
-      "name": "Aéroport de Ngaoundéré Salak",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Aéroport de Ngaoundéré Salak Ngaoundere Cameroon",
-      "description": "Aeroport regional desservant Ngaoundere et le plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.3561,
-      "lng": 13.5589,
-      "long_description": "L'aeroport de Ngaoundere Salak assure la liaison aerienne entre le plateau de l'Adamaoua et les grandes villes du Cameroun, une alternative au long trajet routier ou au train Camrail.",
-      "activities": [
-        "Observer le trafic aerien regional",
-        "Point de repere pratique pour organiser un sejour dans l'Adamaoua"
-      ],
-      "practical_info": {
-        "hours": "Selon les vols",
-        "price": "Acces public gratuit aux abords",
-        "best_time": "Toute l'annee",
-        "access": "A environ 25 km au sud-ouest du centre-ville de Ngaoundere"
-      },
-      "budget": "Acces aux abords gratuit.",
-      "budget_saison_seche": "Acces aux abords gratuit. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces aux abords gratuit. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 8000-12000 FCFA depuis le centre-ville (30-40 min)",
-        "moto": "non recommande sur cette distance",
-        "note": "Prevoir un vehicule pour rejoindre l'aeroport, situe en dehors de la ville."
-      },
-      "image_query_fallback": "african historic monument architecture"
-    },
-    {
-      "id": 53,
-      "name": "Camp Militaire de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Camp Militaire de Ngaoundéré Ngaoundere Cameroon",
-      "description": "Garnison militaire historique de Ngaoundere, temoin de la presence de l'armee dans le plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.33,
-      "lng": 13.57,
-      "long_description": "Le camp militaire de Ngaoundere abrite une garnison des Forces Armees Camerounaises, jouant un role important dans la securite du plateau de l'Adamaoua, region strategique entre le nord et le sud du pays.",
-      "activities": [
-        "Observer les installations depuis les zones accessibles",
-        "Comprendre le role strategique de Ngaoundere"
-      ],
-      "practical_info": {
-        "hours": "Acces reglemente",
-        "price": "Observation exterieure gratuite",
-        "best_time": "Toute l'annee",
-        "access": "Peripherie de Ngaoundere"
-      },
-      "budget": "Observation exterieure gratuite. Acces a l'interieur non autorise.",
-      "budget_saison_seche": "Observation exterieure gratuite. Acces a l'interieur non autorise. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Observation exterieure gratuite. Acces a l'interieur non autorise. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
-        "moto": "environ 800-1200 FCFA",
-        "note": "Zone sensible : eviter toute prise de vue rapprochee."
-      },
-      "image_query_fallback": "african historic monument architecture"
-    },
-    {
-      "id": 54,
-      "name": "Cathédrale de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Cathédrale de Ngaoundéré Ngaoundere Cameroon",
-      "description": "Principale eglise catholique de Ngaoundere, reflet de la diversite religieuse de la ville.",
-      "city": "Ngaoundere",
-      "lat": 7.318,
-      "lng": 13.576,
-      "long_description": "La cathedrale de Ngaoundere illustre la coexistence des traditions religieuses dans le plateau de l'Adamaoua, region a la fois marquee par l'islam du lamidat et la presence chretienne depuis l'epoque coloniale.",
-      "activities": [
-        "Assister a une messe dominicale",
-        "Observer l'architecture religieuse",
-        "Comprendre la diversite religieuse locale"
-      ],
-      "practical_info": {
-        "hours": "Ouverte en journee, offices le dimanche",
-        "price": "Acces libre",
-        "best_time": "Dimanche matin",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Acces gratuit. Don libre lors des offices.",
-      "budget_saison_seche": "Acces gratuit. Don libre lors des offices. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces gratuit. Don libre lors des offices. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Facilement accessible en centre-ville."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 55,
-      "name": "Chutes de Ndaka",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Chutes de Ndaka Ngaoundere Cameroon",
-      "description": "Cascade moins frequentee que celle de Tello, appreciee pour son cadre sauvage et paisible.",
-      "city": "Ngaoundere",
-      "lat": 7.45,
-      "lng": 13.45,
-      "long_description": "Les Chutes de Ndaka offrent une alternative plus tranquille aux Chutes de Tello, dans un cadre naturel preserve du plateau de l'Adamaoua, ideal pour les amateurs de randonnee loin des sentiers battus.",
-      "activities": [
-        "Randonner dans un cadre naturel preserve",
-        "Observer la faune et la flore du plateau",
-        "Se baigner si le debit le permet"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Contribution guide local : environ 1000-2000 FCFA",
-        "best_time": "Saison seche pour un acces plus facile",
-        "access": "A environ 25 km de Ngaoundere"
-      },
-      "budget": "Contribution/guide local : 1000-2000 FCFA.",
-      "budget_saison_seche": "Contribution/guide local : 1000-2000 FCFA. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Contribution/guide local : 1000-2000 FCFA. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 7000-10000 FCFA pour un aller-retour depuis Ngaoundere",
-        "moto": "environ 3500-5000 FCFA, praticable par temps sec uniquement",
-        "note": "Site moins amenage que les Chutes de Tello ; un guide local est recommande."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 56,
-      "name": "Chutes de Tello",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Chutes de Tello Ngaoundere Cameroon",
-      "description": "Chutes d'eau pittoresques sur le plateau de l'Adamaoua, entourees de paysages de savane.",
-      "city": "Ngaoundere",
-      "lat": 7.2,
-      "lng": 13.65,
-      "long_description": "Les Chutes de Tello offrent un spectacle rafraichissant sur le plateau de l'Adamaoua, avec une cascade se jetant dans un bassin naturel entoure de vegetation. Un site prise pour la randonnee et la baignade.",
-      "activities": [
-        "Se baigner dans le bassin naturel",
-        "Randonner jusqu'aux chutes",
-        "Pique-niquer avec vue sur la cascade"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Contribution guide local : environ 1000-2000 FCFA",
-        "best_time": "Saison seche pour un acces plus facile, saison des pluies pour un debit plus impressionnant",
-        "access": "A environ 30 km de Ngaoundere"
-      },
-      "budget": "Contribution/guide local : 1000-2000 FCFA. Acces au site : gratuit.",
-      "budget_saison_seche": "Contribution/guide local : 1000-2000 FCFA. Acces au site : gratuit. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Contribution/guide local : 1000-2000 FCFA. Acces au site : gratuit. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 8000-12000 FCFA pour un aller-retour taxi/vehicule depuis Ngaoundere",
-        "moto": "environ 4000-6000 FCFA, praticable par temps sec uniquement",
-        "note": "Piste rurale ; un vehicule robuste est recommande, surtout en saison des pluies."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 57,
-      "name": "Gare de Ngaoundere",
-      "country": "Ngaoundere",
-      "city": "Ngaoundere",
-      "category": "Site historique",
-      "tags": [
-        "history",
-        "city"
-      ],
-      "image": null,
-      "lat": 7.33,
-      "lng": 13.57,
-      "description": "Terminus historique du chemin de fer Transcamerounais, porte d'entree vers le Grand Nord.",
-      "image_query": "Gare de Ngaoundere Ngaoundere Cameroon",
-      "budget": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville de Ngaoundere",
-        "moto": "environ 300-500 FCFA",
-        "note": "Terminus historique de la ligne Camrail reliant Ngaoundere a Yaounde."
-      },
-      "budget_saison_seche": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Acces libre a la gare. Billet de train Yaounde-Ngaoundere (Camrail) : 15000-40000 FCFA selon classe. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "image_query_fallback": "old african building heritage"
-    },
-    {
-      "id": 58,
-      "name": "Hôtel Relais Saint-Hubert",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Hôtel",
-      "tags": [
-        "city",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Hôtel Relais Saint-Hubert Ngaoundere Cameroon",
-      "description": "Hotel calme de Ngaoundere, appreciee pour son jardin et son ambiance familiale.",
-      "city": "Ngaoundere",
-      "lat": 7.315,
-      "lng": 13.57,
-      "long_description": "L'Hotel Relais Saint-Hubert propose un cadre calme avec jardin, appreciee des voyageurs souhaitant se reposer apres une longue route ou un trajet en train sur la ligne Transcamerounaise.",
-      "activities": [
-        "Se reposer dans un cadre calme et verdoyant",
-        "Profiter d'un accueil familial",
-        "Bon point de depart pour explorer le plateau de l'Adamaoua"
-      ],
-      "practical_info": {
-        "hours": "Reception 24h/24",
-        "price": "Chambre double : environ 18000-30000 FCFA/nuit",
-        "best_time": "Toute l'annee",
-        "access": "Ngaoundere"
-      },
-      "budget": "Chambre double : 18000-30000 FCFA/nuit selon saison. Petit-dejeuner : 2000-3500 FCFA.",
-      "budget_saison_seche": "Chambre double : 18000-30000 FCFA/nuit selon saison. Petit-dejeuner : 2000-3500 FCFA. (haute saison, decembre-fevrier et juillet-aout : tarifs souvent majores, reservation fortement conseillee).",
-      "budget_saison_pluies": "Chambre double : 18000-30000 FCFA/nuit selon saison. Petit-dejeuner : 2000-3500 FCFA. (basse saison : tarifs plus bas et disponibilites nombreuses, negociation possible pour un long sejour).",
-      "transport": {
-        "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
-        "moto": "environ 500-800 FCFA",
-        "note": "Legerement excentre, prevoir un moyen de transport le soir."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 59,
-      "name": "Hôtel Transcam Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Hôtel",
-      "tags": [
-        "city",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Hôtel Transcam Ngaoundéré Ngaoundere Cameroon",
-      "description": "Hotel historique de Ngaoundere, lie a l'epoque de la construction de la voie ferree Transcamerounaise.",
-      "city": "Ngaoundere",
-      "lat": 7.324,
-      "lng": 13.583,
-      "long_description": "L'Hotel Transcam est une adresse bien connue de Ngaoundere, dont le nom rappelle la ligne de chemin de fer Transcamerounaise qui relie la ville a Yaounde. Un bon point de chute en centre-ville pour explorer le plateau de l'Adamaoua.",
-      "activities": [
-        "Sejourner en plein centre-ville",
-        "Profiter du restaurant de l'hotel",
-        "Organiser des excursions vers les chutes et lacs environnants"
-      ],
-      "practical_info": {
-        "hours": "Reception 24h/24",
-        "price": "Chambre double : environ 20000-35000 FCFA/nuit",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Chambre double : 20000-35000 FCFA/nuit selon saison. Petit-dejeuner : 2000-4000 FCFA.",
-      "budget_saison_seche": "Chambre double : 20000-35000 FCFA/nuit selon saison. Petit-dejeuner : 2000-4000 FCFA. (haute saison, decembre-fevrier et juillet-aout : tarifs souvent majores, reservation fortement conseillee).",
-      "budget_saison_pluies": "Chambre double : 20000-35000 FCFA/nuit selon saison. Petit-dejeuner : 2000-4000 FCFA. (basse saison : tarifs plus bas et disponibilites nombreuses, negociation possible pour un long sejour).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Emplacement central, tres accessible."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 60,
-      "name": "Lac Tison",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Lac Tison Ngaoundere Cameroon",
-      "description": "Lac de cratere paisible pres de Ngaoundere, entoure de collines verdoyantes.",
-      "city": "Ngaoundere",
-      "lat": 7.4,
-      "lng": 13.6,
-      "long_description": "Le Lac Tison est un lac de cratere situe non loin de Ngaoundere, dont les eaux calmes et les rives verdoyantes en font un lieu de promenade et de detente appreciee des habitants du plateau de l'Adamaoua.",
-      "activities": [
-        "Se promener autour du lac",
-        "Pique-niquer face a l'eau",
-        "Photographier le paysage de cratere"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Gratuit, contribution guide local possible",
-        "best_time": "Toute l'annee, plus verdoyant en saison des pluies",
-        "access": "A environ 15-20 km de Ngaoundere"
-      },
-      "budget": "Acces gratuit. Guide local (facultatif) : 1000-2000 FCFA.",
-      "budget_saison_seche": "Acces gratuit. Guide local (facultatif) : 1000-2000 FCFA. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Acces gratuit. Guide local (facultatif) : 1000-2000 FCFA. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 5000-7000 FCFA pour un aller-retour depuis Ngaoundere",
-        "moto": "environ 2500-4000 FCFA",
-        "note": "Piste praticable, un peu plus difficile en saison des pluies."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 61,
-      "name": "Lamidat de Ngaoundere (Palais du Lamido)",
-      "country": "Ngaoundere",
-      "city": "Ngaoundere",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "history"
-      ],
-      "image": null,
-      "lat": 7.3167,
-      "lng": 13.5833,
-      "description": "Palais traditionnel du Lamido, chef coutumier peul, symbole de l'histoire de l'Adamaoua.",
-      "image_query": "Lamidat de Ngaoundere Ngaoundere Cameroon",
-      "budget": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville de Ngaoundere (10 min)",
-        "moto": "environ 300-500 FCFA",
-        "note": "Situe pres du centre-ville, facile d'acces."
-      },
-      "budget_saison_seche": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "budget_saison_pluies": "Entree et visite guidee du palais du Lamido : environ 2000-3000 FCFA. Tarifs stables toute l'annee (visite en interieur peu sensible a la saison).",
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 62,
-      "name": "Le Foyer du Cheminot",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Distraction",
-      "tags": [
-        "culture",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Le Foyer du Cheminot Ngaoundere Cameroon",
-      "description": "Bar-restaurant historique pres de la gare, lie a la culture des cheminots du Transcamerounais.",
-      "city": "Ngaoundere",
-      "lat": 7.317,
-      "lng": 13.582,
-      "long_description": "Le Foyer du Cheminot est un lieu de convivialite pres de la Gare de Ngaoundere, historiquement frequente par les employes du chemin de fer Transcamerounais. On y vient pour un verre ou un repas simple, dans une ambiance chargee d'histoire ferroviaire.",
-      "activities": [
-        "Prendre un verre dans un lieu charge d'histoire ferroviaire",
-        "Rencontrer les habitues autour d'un repas simple",
-        "Completer une visite de la Gare de Ngaoundere"
-      ],
-      "practical_info": {
-        "hours": "11h-23h environ (a confirmer sur place)",
-        "price": "Plat/boisson : environ 1000-3000 FCFA",
-        "best_time": "Soiree, notamment les jours d'arrivee du train",
-        "access": "Proche de la Gare de Ngaoundere"
-      },
-      "budget": "Plat : 1500-3500 FCFA. Boissons : 500-1500 FCFA.",
-      "budget_saison_seche": "Plat : 1500-3500 FCFA. Boissons : 500-1500 FCFA. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Plat : 1500-3500 FCFA. Boissons : 500-1500 FCFA. (basse saison : tarifs plus souples).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Situe pres de la gare, facilement accessible."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 63,
-      "name": "Lycée Classique de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Lycée Classique de Ngaoundéré Ngaoundere Cameroon",
-      "description": "L'un des lycees historiques de la ville, formant des generations d'eleves du plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.322,
-      "lng": 13.575,
-      "long_description": "Le Lycee Classique de Ngaoundere est un etablissement reconnu de la region, temoin du developpement du systeme educatif dans le nord du Cameroun.",
-      "activities": [
-        "Observer l'architecture de l'etablissement",
-        "Comprendre le systeme educatif regional"
-      ],
-      "practical_info": {
-        "hours": "Acces aux abords en journee",
-        "price": "Gratuit (exterieur)",
-        "best_time": "Periode scolaire",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Acces exterieur gratuit.",
-      "budget_saison_seche": "Acces exterieur gratuit. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces exterieur gratuit. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Situe en centre-ville, facile d'acces."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 64,
-      "name": "Marché Central de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Distraction",
-      "tags": [
-        "shopping",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Marché Central de Ngaoundéré Ngaoundere Cameroon",
-      "description": "Marche anime du centre-ville, reputé pour l'artisanat en cuir et les produits d'elevage.",
-      "city": "Ngaoundere",
-      "lat": 7.321,
-      "lng": 13.579,
-      "long_description": "Le Marche Central de Ngaoundere est connu pour son artisanat en cuir (selles, sacs, chaussures), lie a la forte tradition d'elevage de la region, ainsi que pour ses produits agricoles et son ambiance commercante animee.",
-      "activities": [
-        "Acheter de l'artisanat en cuir local",
-        "Decouvrir les produits agricoles du plateau",
-        "S'immerger dans l'ambiance commercante de la ville"
-      ],
-      "practical_info": {
-        "hours": "6h-18h en general",
-        "price": "Acces libre",
-        "best_time": "Matin pour le plus d'affluence",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Acces gratuit. Artisanat en cuir : 2000-15000 FCFA selon la piece.",
-      "budget_saison_seche": "Acces gratuit. Artisanat en cuir : 2000-15000 FCFA selon la piece. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Acces gratuit. Artisanat en cuir : 2000-15000 FCFA selon la piece. (basse saison : tarifs plus souples).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis n'importe quel point du centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Marche central tres accessible a pied depuis le centre-ville."
-      },
-      "image_query_fallback": "african market colorful stalls"
-    },
-    {
-      "id": 65,
-      "name": "Mosquée Centrale de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "histoire",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Mosquée Centrale de Ngaoundéré Ngaoundere Cameroon",
-      "description": "Grande mosquee de Ngaoundere, temoin de l'importance de la tradition islamique dans la region.",
-      "city": "Ngaoundere",
-      "lat": 7.326,
-      "lng": 13.581,
-      "long_description": "La Mosquee Centrale de Ngaoundere reflete l'heritage islamique et l'histoire du lamidat de la ville, fonde par les Peuls au 19e siecle. Son architecture et l'appel a la priere rythment la vie du centre-ville.",
-      "activities": [
-        "Admirer l'architecture de la mosquee",
-        "Observer la vie religieuse du centre-ville",
-        "Comprendre l'histoire du lamidat de Ngaoundere"
-      ],
-      "practical_info": {
-        "hours": "Acces aux abords en journee ; interieur reserve aux pratiquants",
-        "price": "Gratuit (exterieur)",
-        "best_time": "Vendredi pour l'ambiance de la grande priere",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Acces exterieur gratuit. Tenue respectueuse recommandee a proximite.",
-      "budget_saison_seche": "Acces exterieur gratuit. Tenue respectueuse recommandee a proximite. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces exterieur gratuit. Tenue respectueuse recommandee a proximite. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Situee en plein centre-ville, tres accessible."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 66,
-      "name": "Musée Régional de l'Adamaoua",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "histoire"
-      ],
-      "image": null,
-      "image_query": "Musée Régional de l'Adamaoua Ngaoundere Cameroon",
-      "description": "Musee presentant l'histoire, l'artisanat et les traditions des peuples du plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.323,
-      "lng": 13.582,
-      "long_description": "Le Musee Regional de l'Adamaoua retrace l'histoire du lamidat de Ngaoundere et des peuples de la region (Peuls, Mboum, Gbaya et autres), a travers objets traditionnels, costumes et outils d'elevage et d'artisanat.",
-      "activities": [
-        "Decouvrir l'histoire du lamidat de Ngaoundere",
-        "Observer les costumes et objets traditionnels des peuples locaux",
-        "Comprendre les traditions pastorales de l'Adamaoua"
-      ],
-      "practical_info": {
-        "hours": "9h-17h, ferme le lundi (a confirmer)",
-        "price": "Entree : environ 1000-2000 FCFA",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Entree : 1000-2000 FCFA. Guide sur place inclus ou en supplement selon le musee.",
-      "budget_saison_seche": "Entree : 1000-2000 FCFA. Guide sur place inclus ou en supplement selon le musee. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Entree : 1000-2000 FCFA. Guide sur place inclus ou en supplement selon le musee. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Situe en centre-ville, facilement accessible."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 67,
-      "name": "Plateau de l'Adamaoua (point de vue)",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Plateau de l'Adamaoua Ngaoundere Cameroon",
-      "description": "Point de vue panoramique sur les vastes prairies et collines du plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.28,
-      "lng": 13.62,
-      "long_description": "Ce point de vue offre un panorama saisissant sur le plateau de l'Adamaoua, avec ses vastes prairies verdoyantes, ses collines douces et ses troupeaux de zebus au loin. Un des paysages les plus caracteristiques du centre du Cameroun.",
-      "activities": [
-        "Photographier le panorama sur le plateau",
-        "Observer les troupeaux et paturages a perte de vue",
-        "Profiter d'une randonnee legere jusqu'au point de vue"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Gratuit",
-        "best_time": "Fin de journee pour la lumiere",
-        "access": "A environ 20 km de Ngaoundere"
-      },
-      "budget": "Acces gratuit.",
-      "budget_saison_seche": "Acces gratuit. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Acces gratuit. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 6000-9000 FCFA pour un aller-retour depuis Ngaoundere",
-        "moto": "environ 3000-4500 FCFA",
-        "note": "Piste rurale, prevoir un vehicule adapte selon la saison."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 68,
-      "name": "Ranch de Wassande",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Ranch de Wassande Ngaoundere Cameroon",
-      "description": "Vaste ranch d'elevage bovin, embleme de la tradition pastorale du plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.25,
-      "lng": 13.5,
-      "long_description": "Le Ranch de Wassande illustre la vocation d'elevage du plateau de l'Adamaoua, region reputee pour ses vastes paturages et son betail zebu. Une visite permet de decouvrir les techniques d'elevage traditionnelles et modernes de la region.",
-      "activities": [
-        "Decouvrir les techniques d'elevage du plateau",
-        "Observer les troupeaux de zebus",
-        "Rencontrer les eleveurs peuls locaux"
-      ],
-      "practical_info": {
-        "hours": "Visites en journee, sur demande prealable",
-        "price": "Visite guidee : environ 3000-5000 FCFA",
-        "best_time": "Saison seche pour un acces plus facile",
-        "access": "A environ 35 km de Ngaoundere"
-      },
-      "budget": "Visite guidee : 3000-5000 FCFA par personne.",
-      "budget_saison_seche": "Visite guidee : 3000-5000 FCFA par personne. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Visite guidee : 3000-5000 FCFA par personne. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 10000-15000 FCFA pour un aller-retour vehicule depuis Ngaoundere",
-        "moto": "non recommande sur cette distance",
-        "note": "Prevoir un vehicule ; contacter le ranch a l'avance pour organiser la visite."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 69,
-      "name": "Restaurant Chez Maman Adamaoua",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Restaurant",
-      "tags": [
-        "gastronomie"
-      ],
-      "image": null,
-      "image_query": "Restaurant Chez Maman Adamaoua Ngaoundere Cameroon",
-      "description": "Restaurant familial de Ngaoundere, prise pour sa cuisine traditionnelle genereuse et abordable.",
-      "city": "Ngaoundere",
-      "lat": 7.32,
-      "lng": 13.576,
-      "long_description": "Chez Maman Adamaoua est une adresse conviviale ou deguster une cuisine camerounaise traditionnelle et genereuse, dans une ambiance familiale typique du plateau de l'Adamaoua.",
-      "activities": [
-        "Decouvrir la cuisine traditionnelle de l'Adamaoua",
-        "Profiter d'un repas copieux a prix accessible",
-        "Rencontrer les habitants dans une ambiance conviviale"
-      ],
-      "practical_info": {
-        "hours": "10h-21h en general (a confirmer sur place)",
-        "price": "Plat : environ 1500-4000 FCFA",
-        "best_time": "Dejeuner",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Plat principal : 1500-4000 FCFA. Boissons : 500-1500 FCFA.",
-      "budget_saison_seche": "Plat principal : 1500-4000 FCFA. Boissons : 500-1500 FCFA. (haute saison et periode des fetes : affluence en soiree, reservation conseillee).",
-      "budget_saison_pluies": "Plat principal : 1500-4000 FCFA. Boissons : 500-1500 FCFA. (basse saison : tarifs stables, plus de disponibilites).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Adresse de quartier facilement accessible."
-      },
-      "image_query_fallback": "african restaurant food dining"
-    },
-    {
-      "id": 70,
-      "name": "Restaurant Le Relais de l'Adamaoua",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Restaurant",
-      "tags": [
-        "gastronomie",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Restaurant Le Relais de l'Adamaoua Ngaoundere Cameroon",
-      "description": "Restaurant reputé de Ngaoundere pour ses grillades de boeuf, specialite du plateau d'elevage.",
-      "city": "Ngaoundere",
-      "lat": 7.323,
-      "lng": 13.58,
-      "long_description": "Le Relais de l'Adamaoua met a l'honneur les grillades de boeuf, viande reputee du plateau d'elevage de la region, accompagnees de plats traditionnels camerounais. Une adresse incontournable pour gouter la gastronomie locale.",
-      "activities": [
-        "Deguster des grillades de boeuf du plateau de l'Adamaoua",
-        "Decouvrir la cuisine traditionnelle regionale",
-        "Profiter d'une ambiance conviviale en soiree"
-      ],
-      "practical_info": {
-        "hours": "11h-22h en general (a confirmer sur place)",
-        "price": "Plat : environ 3000-8000 FCFA",
-        "best_time": "Diner",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Plat principal : 3000-8000 FCFA. Grillades a la portion : 2000-5000 FCFA. Boissons : 500-2000 FCFA.",
-      "budget_saison_seche": "Plat principal : 3000-8000 FCFA. Grillades a la portion : 2000-5000 FCFA. Boissons : 500-2000 FCFA. (haute saison et periode des fetes : affluence en soiree, reservation conseillee).",
-      "budget_saison_pluies": "Plat principal : 3000-8000 FCFA. Grillades a la portion : 2000-5000 FCFA. Boissons : 500-2000 FCFA. (basse saison : tarifs stables, plus de disponibilites).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Adresse centrale, facilement accessible."
-      },
-      "image_query_fallback": "hotel resort pool relaxation"
-    },
-    {
-      "id": 71,
-      "name": "Rivière Vina",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Rivière Vina Ngaoundere Cameroon",
-      "description": "Riviere traversant le plateau de l'Adamaoua, appreciee pour ses rives paisibles et sa peche.",
-      "city": "Ngaoundere",
-      "lat": 7.35,
-      "lng": 13.68,
-      "long_description": "La riviere Vina traverse le plateau de l'Adamaoua non loin de Ngaoundere, offrant des rives paisibles propices a la promenade et a la peche. Elle alimente egalement certaines des chutes d'eau de la region.",
-      "activities": [
-        "Se promener le long des rives",
-        "Pratiquer la peche avec les habitants locaux",
-        "Pique-niquer au bord de l'eau"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Gratuit",
-        "best_time": "Saison seche pour un acces facile",
-        "access": "A environ 15 km de Ngaoundere"
-      },
-      "budget": "Acces gratuit.",
-      "budget_saison_seche": "Acces gratuit. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Acces gratuit. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "environ 5000-7000 FCFA pour un aller-retour depuis Ngaoundere",
-        "moto": "environ 2500-4000 FCFA",
-        "note": "Piste rurale praticable, plus difficile en saison des pluies."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 72,
-      "name": "Réserve de Faune du Mbam et Djerem",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Nature",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Réserve de Faune du Mbam et Djerem Ngaoundere Cameroon",
-      "description": "Vaste reserve de faune abritant elephants, buffles et une riche biodiversite du centre du Cameroun.",
-      "city": "Ngaoundere",
-      "lat": 6.4,
-      "lng": 13.0,
-      "long_description": "La Reserve de Faune du Mbam et Djerem s'etend sur une large zone entre le plateau de l'Adamaoua et le centre du Cameroun. Elle abrite elephants, buffles, chimpanzes et une avifaune riche, dans un ecosysteme de transition entre savane et foret.",
-      "activities": [
-        "Safari d'observation de la faune avec un guide certifie",
-        "Decouvrir l'ecosysteme de transition savane-foret",
-        "Observer les oiseaux et primates de la reserve"
-      ],
-      "practical_info": {
-        "hours": "Acces reglemente, sur reservation aupres du poste de conservation",
-        "price": "Droit d'entree et guide : environ 10000-20000 FCFA",
-        "best_time": "Saison seche (nov-avril) pour l'observation de la faune",
-        "access": "A environ 150-200 km au sud-ouest de Ngaoundere"
-      },
-      "budget": "Droit d'entree : 5000-8000 FCFA. Guide obligatoire : 5000-12000 FCFA/jour. Hebergement rustique sur place : variable.",
-      "budget_saison_seche": "Droit d'entree : 5000-8000 FCFA. Guide obligatoire : 5000-12000 FCFA/jour. Hebergement rustique sur place : variable. (haute saison seche, nov-mars : forte affluence, tarifs guides au plus haut).",
-      "budget_saison_pluies": "Droit d'entree : 5000-8000 FCFA. Guide obligatoire : 5000-12000 FCFA/jour. Hebergement rustique sur place : variable. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; acces parfois plus difficile).",
-      "transport": {
-        "taxi": "vehicule 4x4 avec chauffeur recommande pour le trajet complet : tarif a negocier (agence de voyage conseillee)",
-        "moto": "non applicable sur cette distance",
-        "note": "Distance importante depuis Ngaoundere ; organiser le trajet via une agence ou un vehicule loue avec chauffeur, plusieurs jours conseilles."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 73,
-      "name": "Stade Omnisport de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Distraction",
-      "tags": [
-        "adventure",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Stade Omnisport de Ngaoundéré Ngaoundere Cameroon",
-      "description": "Principal stade de Ngaoundere, lieu des matchs de football et evenements sportifs regionaux.",
-      "city": "Ngaoundere",
-      "lat": 7.327,
-      "lng": 13.587,
-      "long_description": "Le Stade Omnisport de Ngaoundere accueille les matchs de football local et regional, ainsi que divers evenements sportifs et rassemblements de la ville, dans une ambiance conviviale typique du plateau de l'Adamaoua.",
-      "activities": [
-        "Assister a un match de football local",
-        "Decouvrir l'ambiance sportive de Ngaoundere",
-        "Profiter des evenements organises au stade"
-      ],
-      "practical_info": {
-        "hours": "Selon calendrier des matchs",
-        "price": "Billet match : environ 500-2000 FCFA selon evenement",
-        "best_time": "Jours de match, generalement le week-end",
-        "access": "Centre-ville de Ngaoundere"
-      },
-      "budget": "Billet match : 500-2000 FCFA. Acces aux abords hors match : gratuit.",
-      "budget_saison_seche": "Billet match : 500-2000 FCFA. Acces aux abords hors match : gratuit. (haute saison : frequentation et tarifs en hausse).",
-      "budget_saison_pluies": "Billet match : 500-2000 FCFA. Acces aux abords hors match : gratuit. (basse saison : tarifs plus souples).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Facilement accessible en centre-ville."
-      },
-      "image_query_fallback": "african waterfall river adventure"
-    },
-    {
-      "id": 74,
-      "name": "Université de Ngaoundéré",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "city"
-      ],
-      "image": null,
-      "image_query": "Université de Ngaoundéré Ngaoundere Cameroon",
-      "description": "Universite publique du plateau de l'Adamaoua, avec plusieurs facultes et instituts.",
-      "city": "Ngaoundere",
-      "lat": 7.32,
-      "lng": 13.58,
-      "long_description": "L'Universite de Ngaoundere est un pole universitaire important du nord du Cameroun, avec des facultes de sciences, lettres, et une ecole d'ingenieurs agroalimentaires reputee au niveau national.",
-      "activities": [
-        "Se promener sur le campus",
-        "Decouvrir la vie estudiantine du plateau de l'Adamaoua"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee en semaine",
-        "price": "Gratuit",
-        "best_time": "Periode scolaire (oct-juin)",
-        "access": "Peripherie de Ngaoundere"
-      },
-      "budget": "Acces gratuit au campus.",
-      "budget_saison_seche": "Acces gratuit au campus. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces gratuit au campus. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
-        "moto": "environ 800-1200 FCFA",
-        "note": "Situe en peripherie, prevoir un moyen de transport."
-      },
-      "image_query_fallback": "african traditional culture heritage"
-    },
-    {
-      "id": 75,
-      "name": "Village Peul Traditionnel",
-      "country": "Ngaoundere, Cameroun",
-      "category": "Site historique",
-      "tags": [
-        "culture",
-        "histoire"
-      ],
-      "image": null,
-      "image_query": "Village Peul Traditionnel Ngaoundere Cameroon",
-      "description": "Village illustrant le mode de vie traditionnel des eleveurs peuls du plateau de l'Adamaoua.",
-      "city": "Ngaoundere",
-      "lat": 7.3,
-      "lng": 13.55,
-      "long_description": "Un village peul traditionnel proche de Ngaoundere permet de decouvrir le mode de vie pastoral des eleveurs peuls : habitat, elevage de zebus, artisanat en cuir et coutumes transmises de generation en generation.",
-      "activities": [
-        "Rencontrer une famille d'eleveurs peuls",
-        "Decouvrir l'habitat et le mode de vie traditionnel",
-        "Observer les techniques d'elevage transhumant"
-      ],
-      "practical_info": {
-        "hours": "Visites en journee, sur reservation via un guide local",
-        "price": "Visite guidee : environ 3000-5000 FCFA",
-        "best_time": "Saison seche pour un acces plus facile",
-        "access": "A environ 20 km de Ngaoundere"
-      },
-      "budget": "Visite guidee : 3000-5000 FCFA par personne, contribution a la communaute.",
-      "budget_saison_seche": "Visite guidee : 3000-5000 FCFA par personne, contribution a la communaute. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Visite guidee : 3000-5000 FCFA par personne, contribution a la communaute. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 6000-9000 FCFA pour un aller-retour depuis Ngaoundere",
-        "moto": "environ 3000-4500 FCFA, praticable par temps sec",
-        "note": "Passer par un guide local pour une visite respectueuse de la communaute."
-      },
-      "image_query_fallback": "african traditional culture heritage"
+      "image_query_fallback": "african waterfall river nature landscape",
+      "contact": null,
+      "rating_note": null,
+      "category_old": "Excursions"
     }
   ],
-  "itineraries": [
+  "itineraries": [],
+  "reviews": [],
+  "events": [
     {
       "id": 1,
-      "user_id": 1,
-      "title": "divertisement",
-      "destination_id": 44,
-      "start_date": "2026-07-30",
-      "end_date": "2026-07-31",
-      "notes": ""
+      "name": "Festival Kribi Plage",
+      "type": "Festival",
+      "description": "Exemple de festival cotier reunissant musique, artisanat et gastronomie locale sur le front de mer.",
+      "location": "Front de mer de Kribi",
+      "lat": 2.948,
+      "lng": 9.905,
+      "price": "Entree libre, certaines animations payantes (1000-3000 FCFA)",
+      "contact": null,
+      "image_query": "beach festival Africa music",
+      "date": "2026-08-15",
+      "end_date": "2026-08-17"
+    },
+    {
+      "id": 2,
+      "name": "Tournoi de Beach Volley de Kribi",
+      "type": "Compétition sportive",
+      "description": "Exemple de competition sportive locale de beach-volley organisee sur la plage principale.",
+      "location": "Plage de Kribi",
+      "lat": 2.947,
+      "lng": 9.906,
+      "price": "Entree libre pour les spectateurs",
+      "contact": null,
+      "image_query": "beach volleyball tournament Africa",
+      "date": "2026-09-05",
+      "end_date": "2026-09-06"
+    },
+    {
+      "id": 3,
+      "name": "Soirée Concert Akwa Nights",
+      "type": "Concert",
+      "description": "Exemple de soiree concert avec artistes locaux, dans un bar-lounge du front de mer.",
+      "location": "Akiba Beach Lounge, Kribi",
+      "lat": 2.949,
+      "lng": 9.904,
+      "price": "Entree : 2000-5000 FCFA selon programmation",
+      "contact": null,
+      "image_query": "live concert night beach bar",
+      "date": "2026-08-30",
+      "end_date": "2026-08-30"
     }
   ],
-  "reviews": []
+  "services": [
+    {
+      "id": 1,
+      "type": "Hôpital",
+      "name": "Hôpital de District de Kribi",
+      "lat": 2.944,
+      "lng": 9.909,
+      "address": "Centre-ville de Kribi",
+      "phone": null,
+      "hours": "Urgences 24h/24"
+    },
+    {
+      "id": 2,
+      "type": "Pharmacie",
+      "name": "Pharmacie du Centre Kribi",
+      "lat": 2.9455,
+      "lng": 9.9075,
+      "address": "Centre-ville de Kribi",
+      "phone": null,
+      "hours": "8h-21h"
+    },
+    {
+      "id": 3,
+      "type": "Banque",
+      "name": "Agence bancaire de Kribi",
+      "lat": 2.945,
+      "lng": 9.9065,
+      "address": "Centre-ville de Kribi",
+      "phone": null,
+      "hours": "8h-15h30, lun-ven"
+    },
+    {
+      "id": 4,
+      "type": "Station-service",
+      "name": "Station-service Route de Campo",
+      "lat": 2.938,
+      "lng": 9.902,
+      "address": "Route de Campo, Kribi",
+      "phone": null,
+      "hours": "6h-22h"
+    },
+    {
+      "id": 5,
+      "type": "Commissariat",
+      "name": "Commissariat Central de Kribi",
+      "lat": 2.9445,
+      "lng": 9.9085,
+      "address": "Centre-ville de Kribi",
+      "phone": null,
+      "hours": "24h/24"
+    },
+    {
+      "id": 6,
+      "type": "Taxi/Moto",
+      "name": "Station de taxis-motos du marché",
+      "lat": 2.946,
+      "lng": 9.907,
+      "address": "Pres du Marche Central, Kribi",
+      "phone": null,
+      "hours": "6h-23h"
+    }
+  ]
 }

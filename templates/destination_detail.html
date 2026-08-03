@@ -8,24 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
-  <header>
-    <h1>🌍 GlobeTrotter</h1>
-    <nav>
-      <a href="/">Accueil</a>
-      <a href="/destinations-page">Destinations</a>
-      <a href="/map-page">Carte</a>
-      <a href="/transport-page">Transport</a>
-      <a href="/itineraries-page">Mes itinéraires</a>
-      <a href="/register-page">Inscription</a>
-      <a href="#" id="auth-link" class="nav-cta">Connexion</a>
-    </nav>
-  </header>
+  {% include '_navbar.html' %}
 
-  <main>
-    <a href="/destinations-page" class="back-link">&larr; Retour aux destinations</a>
+  <main class="container my-4">
+    <a href="/destinations-page" class="d-inline-block mb-3 text-decoration-none">&larr; Retour aux destinations</a>
 
     <div id="detail-content">
       <p class="hint">Chargement...</p>
@@ -33,133 +23,114 @@
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   <script>
     const DESTINATION_ID = {{ destination_id }};
     const container = document.getElementById("detail-content");
 
-    const CATEGORY_CLASS = {
-      "Site historique": "cat-heritage",
-      "Nature": "cat-nature",
-      "Distraction": "cat-fun",
-      "Restaurant": "cat-food",
-      "Hôtel": "cat-hotel",
-    };
-    const CATEGORY_ICON = {
-      "Site historique": "🏛️",
-      "Nature": "🌿",
-      "Distraction": "🎉",
-      "Restaurant": "🍽️",
-      "Hôtel": "🏨",
-    };
-
-    // ---------------------------------------------------------------------
-    // Météo (Open-Meteo, via /api/weather)
-    // ---------------------------------------------------------------------
-    const WEATHER_CODES = {
-      0: { icon: "☀️", label: "Ciel dégagé" },
-      1: { icon: "🌤️", label: "Plutôt dégagé" },
-      2: { icon: "⛅", label: "Partiellement nuageux" },
-      3: { icon: "☁️", label: "Couvert" },
-      45: { icon: "🌫️", label: "Brouillard" },
-      48: { icon: "🌫️", label: "Brouillard givrant" },
-      51: { icon: "🌦️", label: "Bruine légère" },
-      53: { icon: "🌦️", label: "Bruine" },
-      55: { icon: "🌦️", label: "Bruine dense" },
-      61: { icon: "🌧️", label: "Pluie légère" },
-      63: { icon: "🌧️", label: "Pluie" },
-      65: { icon: "🌧️", label: "Forte pluie" },
-      80: { icon: "🌦️", label: "Averses" },
-      81: { icon: "🌦️", label: "Fortes averses" },
-      82: { icon: "⛈️", label: "Averses violentes" },
-      95: { icon: "⛈️", label: "Orage" },
-      96: { icon: "⛈️", label: "Orage avec grêle" },
-      99: { icon: "⛈️", label: "Orage violent" },
-    };
-
-    function weatherInfo(code) {
-      return WEATHER_CODES[code] || { icon: "🌡️", label: "Conditions variables" };
+    function updateFavButton() {
+      const btn = document.getElementById("fav-btn");
+      const icon = document.getElementById("fav-icon");
+      const label = document.getElementById("fav-label");
+      if (!btn) return;
+      const fav = isFavorite(DESTINATION_ID);
+      icon.textContent = fav ? "♥" : "♡";
+      label.textContent = fav ? "Dans vos favoris" : "Ajouter aux favoris";
+      btn.classList.toggle("btn-danger", fav);
+      btn.classList.toggle("btn-outline-danger", !fav);
+      btn.classList.toggle("text-white", fav);
     }
 
+    function handleDetailFavorite() {
+      toggleFavorite(DESTINATION_ID);
+      updateFavButton();
+    }
+
+    // ---------------------------------------------------------------------
+    // Météo (Open-Meteo, via /api/weather) — WEATHER_CODES/weatherInfo/fetchWeatherData
+    // sont définis dans script.js et partagés entre les pages.
+    // ---------------------------------------------------------------------
     const DAY_LABELS = ["Aujourd'hui", "Demain", "Après-demain", "Dans 3 jours"];
 
     async function loadWeather(lat, lng) {
       const card = document.getElementById("weather-card");
       const content = document.getElementById("weather-content");
-      try {
-        const res = await fetch(`/api/weather?lat=${lat}&lng=${lng}`);
-        const data = await res.json();
-        if (!res.ok || data.error || !data.current_weather) {
-          return; // pas de meteo disponible : on laisse simplement le bloc masque
-        }
+      const data = await fetchWeatherData(lat, lng);
+      if (!data) return;
 
-        const cur = data.current_weather;
-        const curInfo = weatherInfo(cur.weathercode);
-        const month = new Date().getMonth() + 1; // 1-12
-        const isDrySeason = month <= 3 || month >= 11;
-        const seasonNote = isDrySeason
-          ? "Nous sommes en grande saison sèche : les tarifs \"saison sèche\" affichés plus bas sont les plus pertinents en ce moment."
-          : "Nous sommes en saison des pluies : les tarifs \"saison des pluies\" affichés plus bas sont les plus pertinents en ce moment.";
+      const cur = data.current_weather;
+      const curInfo = weatherInfo(cur.weathercode);
+      const month = new Date().getMonth() + 1;
+      const isDrySeason = month <= 3 || month >= 11;
+      const seasonNote = isDrySeason
+        ? "Nous sommes en grande saison sèche : les tarifs \"saison sèche\" affichés plus bas sont les plus pertinents en ce moment."
+        : "Nous sommes en saison des pluies : les tarifs \"saison des pluies\" affichés plus bas sont les plus pertinents en ce moment.";
 
-        const daily = data.daily;
-        let forecastHTML = "";
-        if (daily && daily.time) {
-          forecastHTML = `
-            <div class="weather-forecast">
-              ${daily.time.map((date, i) => {
-                if (i === 0) return "";
-                const info = weatherInfo(daily.weathercode[i]);
-                return `
+      const daily = data.daily;
+      let forecastHTML = "";
+      if (daily && daily.time) {
+        forecastHTML = `
+          <div class="row row-cols-3 g-2 mb-3">
+            ${daily.time.map((date, i) => {
+              if (i === 0) return "";
+              const info = weatherInfo(daily.weathercode[i]);
+              return `
+                <div class="col">
                   <div class="weather-day">
-                    <p class="weather-day-label">${DAY_LABELS[i] || date}</p>
-                    <p class="weather-day-icon">${info.icon}</p>
-                    <p class="weather-day-temp">${Math.round(daily.temperature_2m_max[i])}° / ${Math.round(daily.temperature_2m_min[i])}°</p>
+                    <p class="small text-muted mb-1">${DAY_LABELS[i] || date}</p>
+                    <p class="mb-1 fs-5">${info.icon}</p>
+                    <p class="small fw-semibold mb-0">${Math.round(daily.temperature_2m_max[i])}° / ${Math.round(daily.temperature_2m_min[i])}°</p>
                   </div>
-                `;
-              }).join("")}
-            </div>
-          `;
-        }
-
-        content.innerHTML = `
-          <div class="weather-current">
-            <span class="weather-current-icon">${curInfo.icon}</span>
-            <div>
-              <p class="weather-current-temp">${Math.round(cur.temperature)}°C</p>
-              <p class="weather-current-label">${curInfo.label}</p>
-            </div>
+                </div>
+              `;
+            }).join("")}
           </div>
-          ${forecastHTML}
-          <p class="hint">🔎 ${seasonNote}</p>
-          <p class="hint" style="font-size:0.72rem;">Données fournies par Open-Meteo, mises à jour régulièrement.</p>
         `;
-        card.style.display = "block";
-      } catch {
-        // API indisponible : le bloc reste simplement masque, sans casser la page.
       }
+
+      content.innerHTML = `
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <span class="weather-current-icon">${curInfo.icon}</span>
+          <div>
+            <p class="weather-current-temp mb-0">${Math.round(cur.temperature)}°C</p>
+            <p class="small text-muted mb-0">${curInfo.label}</p>
+          </div>
+        </div>
+        ${forecastHTML}
+        <p class="hint mb-1">🔎 ${seasonNote}</p>
+        <p class="hint mb-0" style="font-size:0.72rem;">Données fournies par Open-Meteo, mises à jour régulièrement.</p>
+      `;
+      card.style.display = "block";
     }
 
     function renderDetail(d) {
-      const catClass = CATEGORY_CLASS[d.category] || "cat-heritage";
-      const icon = CATEGORY_ICON[d.category] || "📍";
-      const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
-      const fallbackQuery = (d.image_query_fallback || "").replace(/"/g, "");
-      const media = `<div class="placeholder-media photo-slot ${catClass} detail-placeholder" data-photo-query="${query}" data-photo-fallback="${fallbackQuery}"><span>${icon}</span></div>`;
+      const meta = categoryMeta(d.category);
+      let media;
+      if (d.local_image) {
+        media = `<img src="${d.local_image}" alt="${d.name}" class="w-100 h-100" style="object-fit:cover;" />`;
+      } else {
+        const query = (d.image_query || `${d.name} ${d.city} Cameroun`).replace(/"/g, "");
+        const fallbackQuery = (d.image_query_fallback || "").replace(/"/g, "");
+        media = `<div class="placeholder-media photo-slot ${meta.cls}" data-photo-query="${query}" data-photo-fallback="${fallbackQuery}"><span>${meta.icon}</span></div>`;
+      }
 
       const activities = (d.activities || [])
-        .map((a) => `<li>${a}</li>`)
+        .map((a) => `<li class="mb-1">${a}</li>`)
         .join("");
 
       const practical = d.practical_info
         ? `
-          <div class="card">
-            <h2>Informations pratiques</h2>
-            <table class="practical-table">
-              ${d.practical_info.hours ? `<tr><td>Horaires</td><td>${d.practical_info.hours}</td></tr>` : ""}
-              ${d.practical_info.price ? `<tr><td>Tarif indicatif</td><td>${d.practical_info.price}</td></tr>` : ""}
-              ${d.practical_info.best_time ? `<tr><td>Meilleure période</td><td>${d.practical_info.best_time}</td></tr>` : ""}
-              ${d.practical_info.access ? `<tr><td>Accès</td><td>${d.practical_info.access}</td></tr>` : ""}
-            </table>
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">Informations pratiques</h2>
+              <table class="table table-borderless mb-0 small">
+                ${d.practical_info.hours ? `<tr><td class="fw-semibold" style="width:35%">Horaires</td><td>${d.practical_info.hours}</td></tr>` : ""}
+                ${d.practical_info.price ? `<tr><td class="fw-semibold">Tarif indicatif</td><td>${d.practical_info.price}</td></tr>` : ""}
+                ${d.practical_info.best_time ? `<tr><td class="fw-semibold">Meilleure période</td><td>${d.practical_info.best_time}</td></tr>` : ""}
+                ${d.practical_info.access ? `<tr><td class="fw-semibold">Accès</td><td>${d.practical_info.access}</td></tr>` : ""}
+              </table>
+            </div>
           </div>
         `
         : "";
@@ -167,108 +138,156 @@
       const hasSeasonal = d.budget_saison_seche || d.budget_saison_pluies;
       const budgetBlock = (d.budget || hasSeasonal)
         ? `
-          <div class="card">
-            <h2>💰 Budget selon la saison</h2>
-            ${hasSeasonal ? `
-              <div class="season-grid">
-                <div class="season-box season-dry">
-                  <p class="season-label">☀️ Saison sèche</p>
-                  <p>${d.budget_saison_seche || d.budget || ""}</p>
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">💰 Budget selon la saison</h2>
+              ${hasSeasonal ? `
+                <div class="row g-3 mb-2">
+                  <div class="col-md-6">
+                    <div class="season-dry rounded-3 p-3 h-100">
+                      <p class="fw-semibold small mb-2">☀️ Saison sèche</p>
+                      <p class="small mb-0">${d.budget_saison_seche || d.budget || ""}</p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="season-wet rounded-3 p-3 h-100">
+                      <p class="fw-semibold small mb-2">🌧️ Saison des pluies</p>
+                      <p class="small mb-0">${d.budget_saison_pluies || d.budget || ""}</p>
+                    </div>
+                  </div>
                 </div>
-                <div class="season-box season-wet">
-                  <p class="season-label">🌧️ Saison des pluies</p>
-                  <p>${d.budget_saison_pluies || d.budget || ""}</p>
-                </div>
-              </div>
-            ` : `<p>${d.budget}</p>`}
-            <p class="hint">Les prix sont indicatifs, à confirmer sur place ; ils varient selon la négociation et l'affluence.</p>
+              ` : `<p class="small">${d.budget}</p>`}
+              <p class="hint mb-0">Les prix sont indicatifs, à confirmer sur place ; ils varient selon la négociation et l'affluence.</p>
+            </div>
           </div>
         `
         : "";
 
       const transportBlock = d.transport
         ? `
-          <div class="card">
-            <h2>🚖 Transport</h2>
-            <table class="practical-table transport-table">
-              ${typeof d.transport === "object"
-                ? `
-                  <tr><td>🚕 Taxi</td><td>${d.transport.taxi || "—"}</td></tr>
-                  <tr><td>🏍️ Moto-taxi</td><td>${d.transport.moto || "—"}</td></tr>
-                  ${d.transport.note ? `<tr><td>ℹ️ Bon à savoir</td><td>${d.transport.note}</td></tr>` : ""}
-                `
-                : `<tr><td>Comment y aller</td><td>${d.transport}</td></tr>`
-              }
-            </table>
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">🚖 Transport</h2>
+              <table class="table table-borderless mb-0 small">
+                ${typeof d.transport === "object"
+                  ? `
+                    <tr><td class="fw-semibold" style="width:35%">🚕 Taxi</td><td>${d.transport.taxi || "—"}</td></tr>
+                    <tr><td class="fw-semibold">🏍️ Moto-taxi</td><td>${d.transport.moto || "—"}</td></tr>
+                    ${d.transport.note ? `<tr><td class="fw-semibold">ℹ️ Bon à savoir</td><td>${d.transport.note}</td></tr>` : ""}
+                  `
+                  : `<tr><td class="fw-semibold">Comment y aller</td><td>${d.transport}</td></tr>`
+                }
+              </table>
+            </div>
           </div>
         `
         : "";
 
       container.innerHTML = `
-        <div class="detail-media">${media}</div>
+        <div class="gt-media mb-4" style="height:320px; border-radius:0.75rem;">${media}</div>
 
-        <div class="detail-header">
-          <div class="card-badges">
-            <span class="category-tag ${catClass}">${icon} ${d.category || ""}</span>
-            <span class="city-tag">📍 ${d.city || ""}</span>
+        <div class="mb-4">
+          <div class="d-flex flex-wrap gap-2 mb-2">
+            <span class="badge ${meta.badge}">${meta.icon} ${d.category || ""}</span>
+            <span class="badge bg-light text-dark border">📍 ${d.city || ""}</span>
           </div>
-          <h1 class="detail-title">${d.name}</h1>
-          <p class="destination-location">${d.country}</p>
+          <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+            <div>
+              <h1 class="h3 mb-1">${d.name}</h1>
+              <p class="text-muted mb-0">${d.country}</p>
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <button id="fav-btn" class="btn btn-outline-danger rounded-pill btn-sm" onclick="handleDetailFavorite()">
+                <span id="fav-icon">♡</span> <span id="fav-label">Ajouter aux favoris</span>
+              </button>
+              <a href="/destinations-page?add_to_itinerary=${d.id}" class="btn btn-gt-teal rounded-pill btn-sm">📅 Voir l'itinéraire</a>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <h2>À propos</h2>
-          <p class="detail-text">${(d.long_description || d.description || "").replace(/\n\n/g, "</p><p class='detail-text'>")}</p>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">À propos</h2>
+            <p>${(d.long_description || d.description || "").replace(/\n\n/g, "</p><p>")}</p>
+          </div>
+        </div>
+
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">📞 Contact &amp; réservation</h2>
+            ${d.contact
+              ? `
+                <p class="mb-3">${d.contact}</p>
+                <a href="tel:${d.contact.replace(/[^\d+]/g, "")}" class="btn btn-gt-orange rounded-pill btn-sm">Appeler pour réserver</a>
+              `
+              : `<p class="hint mb-0">Aucun contact renseigné pour ce lieu pour le moment. Rendez-vous sur place ou consultez la section transport pour vous y rendre.</p>`
+            }
+          </div>
         </div>
 
         ${activities ? `
-          <div class="card">
-            <h2>Que faire sur place</h2>
-            <ul class="activity-list">${activities}</ul>
+          <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4">
+              <h2 class="h5 mb-3">Que faire sur place</h2>
+              <ul class="mb-0">${activities}</ul>
+            </div>
           </div>
         ` : ""}
 
         ${practical}
 
-        <div class="card" id="weather-card" style="display:none;">
-          <h2>🌤️ Météo actuelle</h2>
-          <div id="weather-content"></div>
+        <div class="card shadow-sm border-0 mb-4" id="weather-card" style="display:none;">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">🌤️ Météo actuelle</h2>
+            <div id="weather-content"></div>
+          </div>
         </div>
 
         ${budgetBlock}
         ${transportBlock}
 
-        <div class="card">
-          <h2>Localisation</h2>
-          <div id="detail-map"></div>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">Localisation</h2>
+            <div id="detail-map" style="height:320px; border-radius:0.5rem;"></div>
+          </div>
         </div>
 
-        <div class="card">
-          <div>${d.tags.map((t) => `<span class="tag">${t}</span>`).join("")}</div>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <div>${d.tags.map((t) => `<span class="badge bg-light text-dark border me-1">${t}</span>`).join("")}</div>
+          </div>
         </div>
 
-        <div class="card">
-          <h2>⭐ Avis des visiteurs</h2>
-          <div id="reviews-summary" class="reviews-summary"></div>
-          <div id="reviews-list" class="reviews-list"></div>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">⭐ Avis des visiteurs</h2>
+            <div id="reviews-summary" class="mb-3"></div>
+            <div id="reviews-list" class="mb-4"></div>
 
-          <form id="review-form" class="review-form">
-            <h3>Laisser un avis</h3>
-            <div class="review-form-row">
-              <input type="text" id="review-author" placeholder="Votre nom (facultatif)" maxlength="60" />
-              <div id="review-stars" class="review-stars" data-rating="0">
-                <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
+            <form id="review-form" class="border-top pt-4">
+              <h3 class="h6 mb-3">Laisser un avis</h3>
+              <div class="row g-2 align-items-center mb-2">
+                <div class="col-md-8">
+                  <input type="text" id="review-author" class="form-control" placeholder="Votre nom (facultatif)" maxlength="60" />
+                </div>
+                <div class="col-md-4">
+                  <div id="review-stars" class="review-stars-input" data-rating="0">
+                    <span data-value="1">★</span><span data-value="2">★</span><span data-value="3">★</span><span data-value="4">★</span><span data-value="5">★</span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <textarea id="review-comment" rows="3" placeholder="Partagez votre expérience sur place..." maxlength="1000"></textarea>
-            <button type="submit" class="wood-btn wood-btn-teal" style="max-width:220px;">Publier mon avis</button>
-            <p id="review-message" class="message"></p>
-          </form>
+              <textarea id="review-comment" class="form-control mb-3" rows="3" placeholder="Partagez votre expérience sur place..." maxlength="1000"></textarea>
+              <button type="submit" class="btn btn-gt-teal rounded-pill px-4">Publier mon avis</button>
+              <div id="review-message" class="mt-2"></div>
+            </form>
+          </div>
         </div>
       `;
 
       hydratePhotos(container);
       initReviews();
+      updateFavButton();
       if (typeof d.lat === "number" && typeof d.lng === "number") {
         loadWeather(d.lat, d.lng);
       }
@@ -303,17 +322,17 @@
       if (!ok) return;
 
       summaryEl.innerHTML = data.count > 0
-        ? `<span class="review-average">${starsHTML(data.average)} ${data.average}/5</span> <span class="hint">(${data.count} avis)</span>`
-        : `<p class="hint">Aucun avis pour le moment. Soyez le premier à partager votre expérience !</p>`;
+        ? `<span class="review-stars-static">${starsHTML(data.average)}</span> <strong>${data.average}/5</strong> <span class="hint">(${data.count} avis)</span>`
+        : `<p class="hint mb-0">Aucun avis pour le moment. Soyez le premier à partager votre expérience !</p>`;
 
       listEl.innerHTML = data.reviews.map((r) => `
-        <div class="review-item">
-          <div class="review-item-head">
-            <strong>${r.author}</strong>
-            <span class="review-item-stars">${starsHTML(r.rating)}</span>
+        <div class="border-bottom pb-3 mb-3">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <strong class="small">${r.author}</strong>
+            <span class="review-stars-static small">${starsHTML(r.rating)}</span>
           </div>
-          <p>${r.comment}</p>
-          <span class="review-date">${new Date(r.date).toLocaleDateString("fr-FR")}</span>
+          <p class="small mb-1">${r.comment}</p>
+          <span class="hint">${new Date(r.date).toLocaleDateString("fr-FR")}</span>
         </div>
       `).join("");
     }
@@ -339,11 +358,11 @@
         const comment = document.getElementById("review-comment").value.trim();
 
         if (!rating) {
-          showMessage(msgEl, "Merci de choisir une note (1 à 5 étoiles).", "error");
+          msgEl.innerHTML = `<div class="alert alert-danger py-2 small mb-0">Merci de choisir une note (1 à 5 étoiles).</div>`;
           return;
         }
         if (!comment) {
-          showMessage(msgEl, "Merci d'écrire un petit commentaire.", "error");
+          msgEl.innerHTML = `<div class="alert alert-danger py-2 small mb-0">Merci d'écrire un petit commentaire.</div>`;
           return;
         }
 
@@ -353,13 +372,13 @@
         });
 
         if (ok) {
-          showMessage(msgEl, "Merci pour votre avis !", "success");
+          msgEl.innerHTML = `<div class="alert alert-success py-2 small mb-0">Merci pour votre avis !</div>`;
           form.reset();
           starsEl.dataset.rating = "0";
           stars.forEach((s) => s.classList.remove("filled"));
           loadReviews();
         } else {
-          showMessage(msgEl, data.error || "Une erreur est survenue.", "error");
+          msgEl.innerHTML = `<div class="alert alert-danger py-2 small mb-0">${data.error || "Une erreur est survenue."}</div>`;
         }
       });
     }
