@@ -1,3 +1,11 @@
+<script>
+  // Applique le theme choisi AVANT le rendu de la page, pour eviter tout flash
+  // visuel (theme par defaut : sombre, si rien n'a encore ete choisi).
+  (function () {
+    var saved = localStorage.getItem("gt_theme") || "dark";
+    document.documentElement.setAttribute("data-bs-theme", saved);
+  })();
+</script>
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm gt-navbar">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/">🌍 GlobeTrotter</a>
@@ -16,6 +24,11 @@
         <li class="nav-item"><a class="nav-link" href="/favorites-page">❤️ Favoris</a></li>
         <li class="nav-item"><a class="nav-link" href="/itineraries-page">Mes itinéraires</a></li>
         <li class="nav-item"><a class="nav-link" href="/register-page">Inscription</a></li>
+        <li class="nav-item ms-lg-2">
+          <button id="theme-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Changer de thème">
+            <span id="theme-toggle-icon">☀️</span>
+          </button>
+        </li>
         <li class="nav-item ms-lg-2">
           <a href="#" id="auth-link" class="btn btn-light btn-sm rounded-pill px-3 fw-semibold">Connexion</a>
         </li>

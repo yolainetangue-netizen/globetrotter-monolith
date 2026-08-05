@@ -177,6 +177,29 @@ function hydratePhotos(root = document) {
   });
 }
 
+// Bouton de bascule thème clair / sombre (persiste dans localStorage)
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("theme-toggle-btn");
+  const toggleIcon = document.getElementById("theme-toggle-icon");
+  if (!toggleBtn) return;
+
+  function applyIcon(theme) {
+    // Affiche l'icone du theme VERS LEQUEL on bascule si on clique
+    toggleIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+  }
+
+  const current = document.documentElement.getAttribute("data-bs-theme") || "dark";
+  applyIcon(current);
+
+  toggleBtn.addEventListener("click", () => {
+    const now = document.documentElement.getAttribute("data-bs-theme") || "dark";
+    const next = now === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-bs-theme", next);
+    localStorage.setItem("gt_theme", next);
+    applyIcon(next);
+  });
+});
+
 // Update nav login/logout link on every page
 document.addEventListener("DOMContentLoaded", () => {
   // Met en évidence le lien de navigation correspondant à la page actuelle

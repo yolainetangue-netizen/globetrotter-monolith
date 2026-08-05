@@ -8,47 +8,125 @@
    ========================================================================= */
 
 :root {
-  /* Palette de marque GlobeTrotter (Kribi) */
-  --orange-deep: #b8460e;
-  --orange: #f2751a;
-  --orange-light: #ffb066;
-  --orange-pale: #ffe4c7;
-  --violet: #6d4aa8;
-  --violet-light: #a688d6;
-  --teal: #0f9b8e;
-  --teal-dark: #0b6e64;
-  --coral: #ff5a5f;
-  --earth-dark: #3a1f0e;
-  --earth-deep: #241206;
-  --sand: #fff6ec;
+  /* Palette de marque GlobeTrotter (Kribi) — mode sombre */
+  --turquoise: #14b8c4;
+  --turquoise-dark: #0a7d88;
+  --navy: #0e3a5c;
+  --navy-deep: #082438;
+  --emerald: #10b981;
+  --emerald-dark: #0a7a56;
+  --coral: #ff6b4a;
+  --coral-dark: #d94a2c;
+  --white-frame: #ffffff;
+  --anthracite: #1c1f22;
+  --anthracite-light: #26292d;
+  --anthracite-lighter: #32363b;
+  --text-light: #e8e9eb;
+  --text-muted-dark: #9a9fa6;
+  --border-dark: #383c41;
+  --text-on-light-surface: #1c1f22; /* texte des badges bg-light (lisible sur fond clair) */
+
+  /* Alias conserves pour compatibilite avec le reste du CSS/HTML existant */
+  --orange-deep: var(--coral-dark);
+  --orange: var(--coral);
+  --orange-light: #ff9478;
+  --orange-pale: #4a2a20;
+  --violet: var(--navy);
+  --violet-light: var(--turquoise);
+  --teal: var(--turquoise);
+  --teal-dark: var(--turquoise-dark);
+  --earth-dark: var(--anthracite-light);
+  --earth-deep: var(--text-light);
+  --sand: var(--anthracite);
 
   /* Surcharge des variables Bootstrap : tous les .btn-primary, .bg-primary,
      .text-primary, badges, spinners, etc. utilisent desormais nos couleurs. */
-  --bs-primary: var(--orange);
-  --bs-primary-rgb: 242, 117, 26;
-  --bs-secondary: var(--violet);
-  --bs-secondary-rgb: 109, 74, 168;
-  --bs-success: #1a8a4a;
-  --bs-danger: #dc2626;
-  --bs-body-font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
-  --bs-link-color: var(--orange-deep);
-  --bs-link-hover-color: var(--violet);
+  --bs-primary: var(--turquoise);
+  --bs-primary-rgb: 20, 184, 196;
+  --bs-secondary: var(--navy);
+  --bs-secondary-rgb: 14, 58, 92;
+  --bs-success: var(--emerald);
+  --bs-danger: #ef4444;
+  --bs-body-font-family: "Poppins", "Segoe UI", Roboto, Arial, sans-serif;
+  --bs-body-bg: var(--anthracite);
+  --bs-body-color: var(--text-light);
+  --bs-link-color: var(--turquoise);
+  --bs-link-hover-color: var(--emerald);
+  --bs-border-color: var(--border-dark);
+}
+
+/* ---------------------------------------------------------------------
+   Thème clair — active quand <html data-bs-theme="light">
+   (bascule via le bouton de la navbar, voir script.js)
+   --------------------------------------------------------------------- */
+[data-bs-theme="light"] {
+  --anthracite: #f7f7f5;         /* fond de page */
+  --anthracite-light: #ffffff;   /* fond des cartes */
+  --anthracite-lighter: #eef0f2; /* fond "bg-light" (badges, encarts) */
+  --text-light: #22262b;         /* texte principal */
+  --text-muted-dark: #667085;
+  --border-dark: #e2e5e9;
+  --text-on-light-surface: #1c1f22;
+
+  --bs-body-bg: var(--anthracite);
+  --bs-body-color: var(--text-light);
+  --bs-border-color: var(--border-dark);
 }
 
 body {
-  background: linear-gradient(180deg, var(--sand) 0%, #f3ece1 45%, #efe6d8 100%);
+  background: linear-gradient(180deg, var(--anthracite) 0%, var(--anthracite-light) 100%);
+  color: var(--text-light);
   min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 h1, h2, h3, .font-serif {
   font-family: "Fraunces", serif;
+  color: var(--text-light);
 }
+
+h1, .display-5, .display-4 { font-weight: 600; letter-spacing: -0.01em; }
+h1 { font-size: clamp(2.1rem, 4vw, 3rem) !important; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem) !important; }
+h2.h4, h2.h5 { font-size: clamp(1.25rem, 2.4vw, 1.5rem) !important; }
+h3 { font-size: clamp(1.15rem, 2vw, 1.4rem) !important; }
+
+/* Cartes, listes et surfaces sombres (theme Bootstrap surchargent) */
+.card {
+  background-color: var(--anthracite-light) !important;
+  border-color: var(--border-dark) !important;
+  color: var(--text-light);
+}
+
+.bg-white { background-color: var(--anthracite-light) !important; }
+.bg-light { background-color: var(--anthracite-lighter) !important; }
+.text-dark { color: var(--text-on-light-surface) !important; }
+.text-muted { color: var(--text-muted-dark) !important; }
+.border { border-color: var(--border-dark) !important; }
+hr { border-color: var(--border-dark); opacity: 1; }
+
+.form-control, .form-select {
+  background-color: var(--anthracite-lighter);
+  border-color: var(--border-dark);
+  color: var(--text-light);
+}
+.form-control:focus, .form-select:focus {
+  background-color: var(--anthracite-lighter);
+  color: var(--text-light);
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 0.2rem rgba(20, 184, 196, 0.25);
+}
+.form-control::placeholder { color: var(--text-muted-dark); }
+.form-label { color: var(--text-light); }
+
+/* Le blanc est reserve aux cadres/fonds d'images uniquement */
+.gt-media, .placeholder-media { background-color: var(--white-frame); }
 
 /* ---------------------------------------------------------------------
    Barre de navigation
    --------------------------------------------------------------------- */
 .gt-navbar {
-  background: linear-gradient(120deg, var(--violet) 0%, var(--orange-deep) 100%);
+  background: linear-gradient(120deg, var(--navy-deep) 0%, var(--turquoise-dark) 100%);
 }
 
 .gt-navbar .nav-link {
@@ -67,19 +145,19 @@ h1, h2, h3, .font-serif {
 
 .gt-navbar .nav-link.nav-active {
   background: rgba(255, 255, 255, 0.95);
-  color: var(--violet) !important;
+  color: var(--navy-deep) !important;
   font-weight: 700;
 }
 
 /* ---------------------------------------------------------------------
    Boutons de marque (variantes utilisees pour l'accueil / CTA)
    --------------------------------------------------------------------- */
-.btn-gt-violet { background: linear-gradient(135deg, #3a1f6b 0%, var(--violet) 100%); color: #fff; border: none; }
-.btn-gt-orange { background: linear-gradient(135deg, #7a4d1a 0%, var(--orange-deep) 100%); color: #fff; border: none; }
-.btn-gt-teal   { background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%); color: #fff; border: none; }
-.btn-gt-coral  { background: linear-gradient(135deg, #b8302f 0%, var(--coral) 100%); color: #fff; border: none; }
+.btn-gt-violet { background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%); color: #fff; border: none; }
+.btn-gt-orange { background: linear-gradient(135deg, var(--coral-dark) 0%, var(--coral) 100%); color: #fff; border: none; }
+.btn-gt-teal   { background: linear-gradient(135deg, var(--turquoise-dark) 0%, var(--turquoise) 100%); color: #fff; border: none; }
+.btn-gt-coral  { background: linear-gradient(135deg, var(--emerald-dark) 0%, var(--emerald) 100%); color: #fff; border: none; }
 .btn-gt-violet:hover, .btn-gt-orange:hover, .btn-gt-teal:hover, .btn-gt-coral:hover {
-  color: #fff; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(36, 18, 6, 0.25);
+  color: #fff; transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
 }
 
 /* ---------------------------------------------------------------------

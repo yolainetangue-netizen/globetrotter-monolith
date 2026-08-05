@@ -139,6 +139,57 @@ def destination_detail_page(destination_id):
 WIKIMEDIA_API_URL = "https://commons.wikimedia.org/w/api.php"
 
 
+WIKIPEDIA_FR_API_URL = "https://fr.wikipedia.org/w/api.php"
+WIKIPEDIA_EN_API_URL = "https://en.wikipedia.org/w/api.php"
+
+
+def _search_wikipedia_pageimage(query, api_url):
+    """Cherche l'article Wikipedia le plus pertinent pour la requete, et retourne
+    l'image principale de cet article (celle de l'infobox en general). Cette
+    approche est plus precise qu'une recherche de fichiers Commons "en vrac",
+    car elle s'appuie sur le bon article plutot que sur un mot-cle isole."""
+    try:
+        search_resp = requests.get(
+            api_url,
+            params={
+                "action": "query",
+                "list": "search",
+                "srsearch": query,
+                "srlimit": 1,
+                "format": "json",
+            },
+            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            timeout=6,
+        )
+        search_resp.raise_for_status()
+        results = search_resp.json().get("query", {}).get("search", [])
+        if not results:
+            return None
+        page_title = results[0]["title"]
+
+        image_resp = requests.get(
+            api_url,
+            params={
+                "action": "query",
+                "titles": page_title,
+                "prop": "pageimages",
+                "piprop": "original",
+                "format": "json",
+            },
+            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            timeout=6,
+        )
+        image_resp.raise_for_status()
+        pages = image_resp.json().get("query", {}).get("pages", {})
+        for page in pages.values():
+            original = page.get("original")
+            if original:
+                return original.get("source")
+        return None
+    except (requests.RequestException, ValueError, KeyError, IndexError):
+        return None
+
+
 def _search_wikimedia_commons(query):
     """Cherche une image libre de droits sur Wikimedia Commons pour la requete.
 
@@ -213,11 +264,15 @@ def _search_pexels(query):
 def get_photo():
     """Retourne l'URL d'une photo libre de droits correspondant a la requete.
 
-    Essaie d'abord Wikimedia Commons avec la requete precise (nom du lieu),
-    puis Pexels avec la meme requete, puis Pexels avec une requete generique
-    de repli (?fallback=) si rien de pertinent n'a ete trouve. Si aucune
+    Ordre de recherche, du plus precis au plus large :
+      1. Image principale de l'article Wikipedia francophone correspondant
+      2. Idem sur Wikipedia anglophone (au cas ou l'article FR n'existe pas)
+      3. Recherche de fichier sur Wikimedia Commons (requete precise)
+      4. Recherche de fichier sur Wikimedia Commons (requete generique de repli, ?fallback=)
+    Pexels a ete volontairement exclu : les resultats etaient trop generiques
+    et ne correspondaient pas toujours au lieu exact recherche. Si aucune
     source ne renvoie de resultat, url=None : le frontend affiche alors une
-    vignette generique (icone de categorie).
+    vignette generique (icone de categorie) plutot qu'une photo non pertinente.
     """
     query = request.args.get("q", "").strip()
     fallback_query = request.args.get("fallback", "").strip()
@@ -228,16 +283,20 @@ def get_photo():
     if cache_key in _photo_cache:
         return jsonify({"url": _photo_cache[cache_key]}), 200
 
-    url = _search_wikimedia_commons(query)
-    source = "wikimedia" if url else None
+    url = _search_wikipedia_pageimage(query, WIKIPEDIA_FR_API_URL)
+    source = "wikipedia-fr" if url else None
 
     if not url:
-        url = _search_pexels(query)
-        source = "pexels" if url else None
+        url = _search_wikipedia_pageimage(query, WIKIPEDIA_EN_API_URL)
+        source = "wikipedia-en" if url else None
+
+    if not url:
+        url = _search_wikimedia_commons(query)
+        source = "wikimedia-commons" if url else None
 
     if not url and fallback_query:
-        url = _search_pexels(fallback_query)
-        source = "pexels-fallback" if url else None
+        url = _search_wikimedia_commons(fallback_query)
+        source = "wikimedia-commons-fallback" if url else None
 
     _photo_cache[cache_key] = url
     return jsonify({"url": url, "source": source}), 200
