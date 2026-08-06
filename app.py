@@ -72,7 +72,9 @@ def index():
 
 @app.route("/register-page")
 def register_page():
-    return render_template("register.html")
+    # Meme page que la connexion, desormais fusionnees avec un bouton
+    # de bascule (voir templates/login.html)
+    return render_template("login.html")
 
 
 @app.route("/login-page")

@@ -284,44 +284,6 @@
     },
     {
       "id": 8,
-      "name": "Boutique d'artisanat",
-      "country": "Kribi, Région du Sud, Cameroun",
-      "category": "Loisirs",
-      "tags": [
-        "shopping",
-        "culture"
-      ],
-      "image": null,
-      "image_query": "Boutique d'artisanat Kribi Cameroun",
-      "image_query_fallback": "Kribi Cameroon local life market",
-      "description": "Boutique regroupant sculptures, bijoux et textiles fabriques par des artisans locaux.",
-      "city": "Kribi",
-      "lat": 2.9458,
-      "lng": 9.9078,
-      "long_description": "Cette boutique d'artisanat met en valeur le savoir-faire des artisans de la region de Kribi et du Sud-Cameroun : sculptures sur bois, bijoux, textiles et objets decoratifs traditionnels. Une bonne adresse pour un souvenir authentique.",
-      "activities": [
-        "Decouvrir l'artisanat local (bois, bijoux, textiles)",
-        "Acheter un souvenir authentique",
-        "Echanger avec les artisans sur leurs techniques"
-      ],
-      "practical_info": {
-        "hours": "9h-18h en general",
-        "price": "Acces libre, achats a partir de 1000 FCFA",
-        "best_time": "Toute l'annee",
-        "access": "Centre-ville de Kribi"
-      },
-      "budget": "Acces gratuit. Objets d'artisanat : 1000-25000 FCFA selon la piece.",
-      "budget_saison_seche": "Acces gratuit. Objets d'artisanat : 1000-25000 FCFA selon la piece. Tarifs stables toute l'annee.",
-      "budget_saison_pluies": "Acces gratuit. Objets d'artisanat : 1000-25000 FCFA selon la piece. Tarifs stables toute l'annee.",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Situee en centre-ville, facilement accessible."
-      },
-      "contact": null
-    },
-    {
-      "id": 9,
       "name": "Campements Bagyeli",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Excursions",
@@ -362,7 +324,7 @@
       "category_old": "Excursions"
     },
     {
-      "id": 10,
+      "id": 9,
       "name": "Cathédrale Saint-Joseph de Kribi",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Monuments",
@@ -400,7 +362,7 @@
       "contact": null
     },
     {
-      "id": 11,
+      "id": 10,
       "name": "Centre-ville de Kribi",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Loisirs",
@@ -439,7 +401,7 @@
       "contact": null
     },
     {
-      "id": 12,
+      "id": 11,
       "name": "Chutes de la Lobe",
       "country": "Kribi",
       "city": "Kribi",
@@ -480,7 +442,7 @@
       "category_old": "Sites naturels"
     },
     {
-      "id": 13,
+      "id": 12,
       "name": "Coucher de soleil sur la plage",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Sites naturels",
@@ -518,45 +480,7 @@
       "contact": null
     },
     {
-      "id": 14,
-      "name": "Croisière en bateau",
-      "country": "Kribi, Région du Sud, Cameroun",
-      "category": "Activités",
-      "tags": [
-        "relaxation",
-        "nature"
-      ],
-      "image": null,
-      "image_query": "Croisière en bateau Kribi Cameroun",
-      "image_query_fallback": "Kribi Cameroon beach activity",
-      "description": "Sortie en bateau au large de Kribi, pour une vue d'ensemble sur la cote.",
-      "city": "Kribi",
-      "lat": 2.942,
-      "lng": 9.903,
-      "long_description": "Une croisiere en bateau au depart de Kribi permet de decouvrir la cote depuis le large, entre plages, embouchures et parfois observation de dauphins selon la saison. Une activite plus confortable qu'une sortie en pirogue pour les groupes ou familles.",
-      "activities": [
-        "Profiter d'une sortie en mer confortable",
-        "Observer la cote de Kribi depuis le large",
-        "Possibilite d'apercevoir des dauphins selon la saison"
-      ],
-      "practical_info": {
-        "hours": "Sorties en journee, sur reservation",
-        "price": "environ 10000-25000 FCFA par personne selon duree",
-        "best_time": "Mer calme, saison seche de preference",
-        "access": "Depart depuis le port ou la plage centrale de Kribi"
-      },
-      "budget": "environ 10000-25000 FCFA par personne selon la duree et le prestataire.",
-      "budget_saison_seche": "environ 10000-25000 FCFA par personne selon la duree et le prestataire. (haute saison seche, nov-mars : forte affluence, tarifs guides/materiel au plus haut).",
-      "budget_saison_pluies": "environ 10000-25000 FCFA par personne selon la duree et le prestataire. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; certaines activites peuvent etre suspendues par mauvais temps).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville jusqu'au point de depart",
-        "moto": "environ 300-500 FCFA",
-        "note": "Reservation recommandee la veille aupres d'un prestataire local."
-      },
-      "contact": null
-    },
-    {
-      "id": 15,
+      "id": 13,
       "name": "Débarcadère de Mboamanga",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Monuments",
@@ -595,87 +519,7 @@
       "contact": null
     },
     {
-      "id": 16,
-      "name": "Ebodjé",
-      "country": "Kribi, Region du Sud, Cameroun",
-      "category": "Excursions",
-      "tags": [
-        "nature",
-        "adventure",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Ebodjé Kribi Cameroon",
-      "description": "Village cotier au sud de Kribi, connu pour la protection des tortues marines et son ecotourisme communautaire.",
-      "city": "Kribi",
-      "lat": 2.6,
-      "lng": 9.83,
-      "long_description": "Ebodje est un village situe a une cinquantaine de kilometres au sud de Kribi, sur la route de Campo. Il est celebre pour son programme communautaire de protection des tortues marines (luths, olivatres et vertes), qui viennent pondre sur ses plages entre novembre et fevrier. Le village propose un ecotourisme communautaire avec hebergement chez l'habitant et sorties nocturnes d'observation encadrees par des guides locaux formes a la conservation.",
-      "activities": [
-        "Participer a une sortie nocturne d'observation des tortues marines (saison de ponte, nov-fev)",
-        "Sejourner dans un campement ecotouristique communautaire",
-        "Se detendre sur une plage sauvage bordee de cocotiers",
-        "Rencontrer les guides-conservateurs locaux et comprendre les enjeux de protection des tortues"
-      ],
-      "practical_info": {
-        "hours": "Sorties nocturnes organisees en saison de ponte (nov-fev)",
-        "price": "Sortie observation tortues : environ 3000-5000 FCFA. Hebergement communautaire : 5000-10000 FCFA/nuit.",
-        "best_time": "Nov-fevrier pour les tortues ; toute l'annee pour la plage",
-        "access": "A environ 50 km au sud de Kribi, route puis piste"
-      },
-      "budget": "Sortie observation tortues (nov-fev) : environ 3000-5000 FCFA. Hebergement chez l'habitant : 5000-10000 FCFA/nuit. Repas : 1500-3000 FCFA.",
-      "budget_saison_seche": "Sortie observation tortues (nov-fev) : environ 3000-5000 FCFA. Hebergement chez l'habitant : 5000-10000 FCFA/nuit. Repas : 1500-3000 FCFA. (haute saison, nov-mars/juil-aout : forte affluence touristique, tarifs au plus haut, reservation conseillee).",
-      "budget_saison_pluies": "Sortie observation tortues (nov-fev) : environ 3000-5000 FCFA. Hebergement chez l'habitant : 5000-10000 FCFA/nuit. Repas : 1500-3000 FCFA. (saison des pluies, avr-juin/sept-oct : frequentation plus calme, tarifs souvent negociables).",
-      "transport": {
-        "taxi": "environ 15000-20000 FCFA pour un aller-retour taxi/vehicule depuis Kribi (1h-1h15, 50 km)",
-        "moto": "deconseille sur cette distance ; taxi ou vehicule loue recommande",
-        "note": "Piste en partie non bitumee ; prevoir un vehicule robuste, surtout en saison des pluies."
-      },
-      "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Excursions"
-    },
-    {
-      "id": 17,
-      "name": "Embouchure de la Lobé",
-      "country": "Kribi, Région du Sud, Cameroun",
-      "category": "Sites naturels",
-      "tags": [
-        "nature",
-        "relaxation"
-      ],
-      "image": null,
-      "image_query": "Embouchure de la Lobé Kribi Cameroun",
-      "image_query_fallback": "Kribi Cameroon nature landscape",
-      "description": "Le point precis ou le fleuve Lobe se jette directement dans l'ocean Atlantique, en chute.",
-      "city": "Kribi",
-      "lat": 2.88,
-      "lng": 9.878,
-      "long_description": "L'embouchure de la Lobe est le site emblematique ou se rencontrent eau douce et eau salee, juste au niveau des Chutes de la Lobe. C'est l'un des rares endroits au monde ou une chute d'eau se deverse directement dans l'ocean, offrant un spectacle et un point de vue photogenique unique.",
-      "activities": [
-        "Photographier la rencontre entre le fleuve et l'ocean",
-        "Se baigner dans les eaux calmes a proximite",
-        "Observer les pirogues de peche traversant l'embouchure"
-      ],
-      "practical_info": {
-        "hours": "Acces libre en journee",
-        "price": "Inclus avec la visite des Chutes de la Lobe",
-        "best_time": "Toute l'annee",
-        "access": "Chutes de la Lobe, au sud de Kribi"
-      },
-      "budget": "Acces inclus avec le droit d'entree des Chutes de la Lobe (1000-2000 FCFA).",
-      "budget_saison_seche": "Acces inclus avec le droit d'entree des Chutes de la Lobe (1000-2000 FCFA). (haute saison seche, nov-mars : forte affluence, tarifs guides/materiel au plus haut).",
-      "budget_saison_pluies": "Acces inclus avec le droit d'entree des Chutes de la Lobe (1000-2000 FCFA). (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; certaines activites peuvent etre suspendues par mauvais temps).",
-      "transport": {
-        "taxi": "environ 2000-3000 FCFA depuis le centre-ville",
-        "moto": "environ 1000-1500 FCFA",
-        "note": "Se visite avec les Chutes de la Lobe, meme site."
-      },
-      "contact": null
-    },
-    {
-      "id": 18,
+      "id": 14,
       "name": "Fleuve Lobé",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Sites naturels",
@@ -713,45 +557,7 @@
       "contact": null
     },
     {
-      "id": 19,
-      "name": "Forêt tropicale de Campo",
-      "country": "Kribi, Région du Sud, Cameroun",
-      "category": "Sites naturels",
-      "tags": [
-        "nature",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Forêt tropicale de Campo Kribi Cameroun",
-      "image_query_fallback": "Kribi Cameroon nature landscape",
-      "description": "Massif forestier tropical au sud de Kribi, aux portes du Parc National de Campo-Ma'an.",
-      "city": "Kribi",
-      "lat": 2.4,
-      "lng": 9.9,
-      "long_description": "La foret tropicale qui entoure Campo, au sud de Kribi, abrite une biodiversite exceptionnelle typique des forets denses d'Afrique centrale. Des sentiers de randonnee guidee permettent de decouvrir cet ecosysteme, souvent en complement d'une visite du Parc National de Campo-Ma'an voisin.",
-      "activities": [
-        "Randonnee guidee en foret tropicale",
-        "Observation de la flore et de la faune locale",
-        "Rencontre avec les communautes forestieres environnantes"
-      ],
-      "practical_info": {
-        "hours": "Acces reglemente, guide recommande",
-        "price": "Guide : 5000-10000 FCFA/jour",
-        "best_time": "Saison seche (nov-mars)",
-        "access": "A environ 70-75 km au sud de Kribi, vers Campo"
-      },
-      "budget": "Guide obligatoire recommande : 5000-10000 FCFA/jour.",
-      "budget_saison_seche": "Guide obligatoire recommande : 5000-10000 FCFA/jour. (haute saison seche, nov-mars : forte affluence, tarifs guides/materiel au plus haut).",
-      "budget_saison_pluies": "Guide obligatoire recommande : 5000-10000 FCFA/jour. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; certaines activites peuvent etre suspendues par mauvais temps).",
-      "transport": {
-        "taxi": "vehicule loue avec chauffeur recommande pour le trajet complet : tarif a negocier",
-        "moto": "non applicable sur cette distance",
-        "note": "Distance importante ; un vehicule loue avec chauffeur ou une agence locale est recommande."
-      },
-      "contact": null
-    },
-    {
-      "id": 20,
+      "id": 15,
       "name": "Framotel Kribi",
       "country": "Kribi, Cameroun",
       "category": "Hôtels",
@@ -791,7 +597,7 @@
       "category_old": "Hôtels"
     },
     {
-      "id": 21,
+      "id": 16,
       "name": "Hôtel Ilomba Kribi",
       "country": "Kribi, Cameroun",
       "category": "Hôtels",
@@ -831,7 +637,7 @@
       "category_old": "Hôtels"
     },
     {
-      "id": 22,
+      "id": 17,
       "name": "Hôtel des Anges",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Hôtels",
@@ -869,7 +675,7 @@
       "contact": null
     },
     {
-      "id": 23,
+      "id": 18,
       "name": "Hôtel du Phare",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Hôtels",
@@ -907,7 +713,7 @@
       "contact": null
     },
     {
-      "id": 24,
+      "id": 19,
       "name": "Jet-ski",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Activités",
@@ -945,7 +751,7 @@
       "contact": null
     },
     {
-      "id": 25,
+      "id": 20,
       "name": "La Crevette de la Lobé",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Restaurants",
@@ -983,7 +789,7 @@
       "contact": null
     },
     {
-      "id": 26,
+      "id": 21,
       "name": "La Fourchette",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Restaurants",
@@ -1021,7 +827,7 @@
       "category_old": "Restaurants"
     },
     {
-      "id": 27,
+      "id": 22,
       "name": "Le Badamier chez Paul",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Restaurants",
@@ -1059,7 +865,7 @@
       "contact": null
     },
     {
-      "id": 28,
+      "id": 23,
       "name": "Le Glacier Moderne",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Restaurants",
@@ -1099,7 +905,7 @@
       "category_old": "Restaurants"
     },
     {
-      "id": 29,
+      "id": 24,
       "name": "Les Gîtes de Kribi",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Hôtels",
@@ -1137,7 +943,7 @@
       "contact": null
     },
     {
-      "id": 30,
+      "id": 25,
       "name": "Londji",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Plages",
@@ -1179,7 +985,7 @@
       "category_old": "Plages"
     },
     {
-      "id": 31,
+      "id": 26,
       "name": "Lycée Bilingue de Kribi",
       "country": "Kribi, Cameroun",
       "category": "Autres",
@@ -1218,7 +1024,7 @@
       "category_old": "Autres"
     },
     {
-      "id": 32,
+      "id": 27,
       "name": "Mairie de Kribi",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Autres",
@@ -1255,7 +1061,7 @@
       "contact": null
     },
     {
-      "id": 33,
+      "id": 28,
       "name": "Mangroves de Londji",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Sites naturels",
@@ -1293,7 +1099,7 @@
       "contact": null
     },
     {
-      "id": 34,
+      "id": 29,
       "name": "Marché Central de Kribi",
       "country": "Kribi, Cameroun",
       "category": "Marchés et artisanat",
@@ -1333,7 +1139,7 @@
       "category_old": "Marchés et artisanat"
     },
     {
-      "id": 35,
+      "id": 30,
       "name": "Marché aux poissons",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Loisirs",
@@ -1372,7 +1178,7 @@
       "contact": null
     },
     {
-      "id": 36,
+      "id": 31,
       "name": "Mémorial Batanga",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Monuments",
@@ -1410,7 +1216,7 @@
       "contact": null
     },
     {
-      "id": 37,
+      "id": 32,
       "name": "Observation des tortues marines",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Activités",
@@ -1448,7 +1254,7 @@
       "contact": null
     },
     {
-      "id": 38,
+      "id": 33,
       "name": "Parc National de Campo-Ma'an",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Excursions",
@@ -1489,7 +1295,7 @@
       "category_old": "Excursions"
     },
     {
-      "id": 39,
+      "id": 34,
       "name": "Phare de Kribi",
       "country": "Kribi",
       "city": "Kribi",
@@ -1530,7 +1336,7 @@
       "category_old": "Monuments"
     },
     {
-      "id": 40,
+      "id": 35,
       "name": "Pied dans l'Eau",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Restaurants",
@@ -1568,7 +1374,7 @@
       "contact": null
     },
     {
-      "id": 41,
+      "id": 36,
       "name": "Place des Fêtes de Kribi",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Autres",
@@ -1607,7 +1413,7 @@
       "contact": null
     },
     {
-      "id": 42,
+      "id": 37,
       "name": "Plage centrale de Kribi",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Plages",
@@ -1645,7 +1451,7 @@
       "contact": null
     },
     {
-      "id": 43,
+      "id": 38,
       "name": "Plage d'Ebodjé",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Plages",
@@ -1684,7 +1490,7 @@
       "contact": null
     },
     {
-      "id": 44,
+      "id": 39,
       "name": "Plage de Mboamanga",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Plages",
@@ -1723,7 +1529,7 @@
       "contact": null
     },
     {
-      "id": 45,
+      "id": 40,
       "name": "Plage de Ngoye",
       "country": "Kribi",
       "city": "Kribi",
@@ -1764,7 +1570,7 @@
       "category_old": "Plages"
     },
     {
-      "id": 46,
+      "id": 41,
       "name": "Port en eau profonde de Kribi (Port de Kribi-Mboro)",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Monuments",
@@ -1804,45 +1610,7 @@
       "category_old": "Autres"
     },
     {
-      "id": 47,
-      "name": "Promenade à cheval",
-      "country": "Kribi, Région du Sud, Cameroun",
-      "category": "Activités",
-      "tags": [
-        "relaxation",
-        "adventure"
-      ],
-      "image": null,
-      "image_query": "Promenade à cheval Kribi Cameroun",
-      "image_query_fallback": "Kribi Cameroon beach activity",
-      "description": "Balade a cheval le long de la plage de Kribi, activite appreciee en famille.",
-      "city": "Kribi",
-      "lat": 2.947,
-      "lng": 9.902,
-      "long_description": "Certains prestataires proposent des promenades a cheval le long du littoral de Kribi, une activite ludique appreciee des familles et des amateurs de photos originales, avec l'ocean en arriere-plan.",
-      "activities": [
-        "Se promener a cheval le long de la plage",
-        "Prendre des photos originales face a l'ocean",
-        "Activite adaptee aux familles avec enfants"
-      ],
-      "practical_info": {
-        "hours": "Matin ou fin d'apres-midi, selon disponibilite",
-        "price": "environ 5000-10000 FCFA pour 30 minutes",
-        "best_time": "Matin ou fin d'apres-midi",
-        "access": "Plage de Kribi"
-      },
-      "budget": "environ 5000-10000 FCFA pour environ 30 minutes de promenade.",
-      "budget_saison_seche": "environ 5000-10000 FCFA pour environ 30 minutes de promenade. (haute saison seche, nov-mars : forte affluence, tarifs guides/materiel au plus haut).",
-      "budget_saison_pluies": "environ 5000-10000 FCFA pour environ 30 minutes de promenade. (saison des pluies, avr-oct : frequentation plus calme, tarifs souvent negociables ; certaines activites peuvent etre suspendues par mauvais temps).",
-      "transport": {
-        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
-        "moto": "environ 300-500 FCFA",
-        "note": "Disponibilite variable ; se renseigner sur place ou aupres de son hebergement."
-      },
-      "contact": null
-    },
-    {
-      "id": 48,
+      "id": 42,
       "name": "Pêche artisanale",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Activités",
@@ -1881,7 +1649,7 @@
       "contact": null
     },
     {
-      "id": 49,
+      "id": 43,
       "name": "Restaurant Idodo",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Restaurants",
@@ -1921,7 +1689,7 @@
       "category_old": "Restaurants"
     },
     {
-      "id": 50,
+      "id": 44,
       "name": "Tara Plage",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Plages",
@@ -1959,7 +1727,7 @@
       "contact": null
     },
     {
-      "id": 51,
+      "id": 45,
       "name": "Tara Plage Hôtel",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Hôtels",
@@ -1997,7 +1765,7 @@
       "contact": null
     },
     {
-      "id": 52,
+      "id": 46,
       "name": "Terrasse de l'Océan",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Restaurants",
@@ -2037,21 +1805,11 @@
       "category_old": "Restaurants"
     }
   ],
-  "itineraries": [
-    {
-      "id": 1,
-      "user_id": 1,
-      "title": "divertisement",
-      "destination_id": 9,
-      "start_date": "2026-07-30",
-      "end_date": "2026-07-31",
-      "notes": ""
-    }
-  ],
+  "itineraries": [],
   "reviews": [
     {
       "id": 1,
-      "destination_id": 12,
+      "destination_id": 11,
       "author": "Sandra M.",
       "rating": 5,
       "comment": "Le spectacle des chutes qui se jettent directement dans l'ocean est vraiment impressionnant, surtout en fin de journee avec la lumiere. On a pris une pirogue pour remonter un peu le fleuve, ca vaut le detour.",
@@ -2059,7 +1817,7 @@
     },
     {
       "id": 2,
-      "destination_id": 12,
+      "destination_id": 11,
       "author": "Herve T.",
       "rating": 4,
       "comment": "Tres beau site mais assez frequente le week-end, prevoir d'y aller tot le matin pour profiter du calme.",
@@ -2067,7 +1825,7 @@
     },
     {
       "id": 3,
-      "destination_id": 39,
+      "destination_id": 34,
       "author": "Chantal E.",
       "rating": 5,
       "comment": "Le phare est charge d'histoire et la vue sur l'ocean depuis les abords est magnifique au coucher du soleil.",
@@ -2075,7 +1833,7 @@
     },
     {
       "id": 4,
-      "destination_id": 42,
+      "destination_id": 37,
       "author": "Junior A.",
       "rating": 5,
       "comment": "La plage centrale est parfaite en fin de journee, ambiance tres conviviale avec les bars a proximite. Sable propre et acces facile depuis le centre-ville.",
@@ -2091,7 +1849,7 @@
     },
     {
       "id": 6,
-      "destination_id": 21,
+      "destination_id": 16,
       "author": "Marc-Aurele B.",
       "rating": 5,
       "comment": "Chambre avec vue directe sur la plage, personnel tres accueillant. On reviendra sans hesiter lors de notre prochain passage a Kribi.",
@@ -2099,19 +1857,11 @@
     },
     {
       "id": 7,
-      "destination_id": 49,
+      "destination_id": 43,
       "author": "Odile N.",
       "rating": 4,
       "comment": "Tres bon poisson braise, cadre simple mais authentique. Petit plus : le personnel parle bien anglais pour les touristes.",
       "date": "2026-05-30T13:45:00Z"
-    },
-    {
-      "id": 8,
-      "destination_id": 16,
-      "author": "Patrick F.",
-      "rating": 5,
-      "comment": "Sortie nocturne pour observer les tortues inoubliable, le guide etait tres pedagogue sur les enjeux de conservation. A faire absolument en saison.",
-      "date": "2026-01-12T21:00:00Z"
     },
     {
       "id": 9,
@@ -2123,7 +1873,7 @@
     },
     {
       "id": 10,
-      "destination_id": 34,
+      "destination_id": 29,
       "author": "Ibrahim S.",
       "rating": 3,
       "comment": "Marche interessant pour le poisson frais tot le matin, mais ca peut etre bonde et un peu chaotique en pleine journee.",

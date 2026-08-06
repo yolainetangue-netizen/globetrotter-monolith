@@ -40,6 +40,13 @@
               </select>
               <button type="button" id="gps-btn" class="btn btn-primary btn-sm">🛰️ Utiliser ma position GPS</button>
             </div>
+            <div class="mt-2" id="custom-departure-wrap" style="display:none;">
+              <div class="input-group input-group-sm" style="max-width: 320px;">
+                <input type="text" id="custom-departure-input" class="form-control" placeholder="Nom de votre point de départ (ex: chez un ami, autre hôtel...)" />
+                <button type="button" id="custom-departure-btn" class="btn btn-outline-primary">Valider</button>
+              </div>
+              <p class="hint mt-1">Ce point sera positionné approximativement au centre de Kribi (nous n'avons pas ses coordonnées exactes) ; utilisez plutôt le bouton GPS pour une position précise.</p>
+            </div>
             <div id="departure-status" class="hint mt-1"></div>
           </div>
 
@@ -241,7 +248,8 @@
 
     departureSelect.addEventListener("change", () => {
       const id = departureSelect.value;
-      if (!id) return;
+      customWrap.style.display = id === "custom" ? "block" : "none";
+      if (!id || id === "custom") return;
       if (id === "kribi-center") {
         setDeparture(KRIBI_CENTER, "le centre-ville de Kribi");
         return;
@@ -339,7 +347,33 @@
         opt.textContent = `🏨 ${h.name}`;
         departureSelect.appendChild(opt);
       });
+
+      const otherOpt = document.createElement("option");
+      otherOpt.value = "custom";
+      otherOpt.textContent = "✏️ Autre (préciser)";
+      departureSelect.appendChild(otherOpt);
     }
+
+    // Gestion du point de reference personnalise ("Autre")
+    const customWrap = document.getElementById("custom-departure-wrap");
+    const customInput = document.getElementById("custom-departure-input");
+    const customBtn = document.getElementById("custom-departure-btn");
+
+    customBtn.addEventListener("click", () => {
+      const label = customInput.value.trim();
+      if (!label) {
+        customInput.focus();
+        return;
+      }
+      setDeparture(KRIBI_CENTER, label);
+    });
+
+    customInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        customBtn.click();
+      }
+    });
 
     loadMapPoints();
   </script>

@@ -11,12 +11,12 @@
   /* Palette de marque GlobeTrotter (Kribi) — mode sombre */
   --turquoise: #14b8c4;
   --turquoise-dark: #0a7d88;
-  --navy: #0e3a5c;
-  --navy-deep: #082438;
+  --navy: #5ec8eb;       /* bleu ciel (remplace l'ancien bleu marine) */
+  --navy-deep: #2f9bc7;  /* bleu ciel plus soutenu, pour les degrades/hover */
   --emerald: #10b981;
   --emerald-dark: #0a7a56;
-  --coral: #ff6b4a;
-  --coral-dark: #d94a2c;
+  --coral: #9aa3ac;       /* gris (remplace l'ancien orange) */
+  --coral-dark: #6b7480;  /* gris plus soutenu */
   --white-frame: #ffffff;
   --anthracite: #1c1f22;
   --anthracite-light: #26292d;
@@ -29,8 +29,8 @@
   /* Alias conserves pour compatibilite avec le reste du CSS/HTML existant */
   --orange-deep: var(--coral-dark);
   --orange: var(--coral);
-  --orange-light: #ff9478;
-  --orange-pale: #4a2a20;
+  --orange-light: #c3c9cf;
+  --orange-pale: #3a3d40;
   --violet: var(--navy);
   --violet-light: var(--turquoise);
   --teal: var(--turquoise);
@@ -278,7 +278,9 @@ hr { border-color: var(--border-dark); opacity: 1; }
    Illustration carte (page connexion)
    --------------------------------------------------------------------- */
 .auth-hero {
-  background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);
+  background:
+    linear-gradient(135deg, rgba(14, 58, 92, 0.55) 0%, rgba(20, 184, 196, 0.45) 100%),
+    url('/static/images/login-bg.jpeg') center center / cover no-repeat;
   min-height: calc(100vh - 62px);
 }
 
