@@ -2037,7 +2037,17 @@
       "category_old": "Restaurants"
     }
   ],
-  "itineraries": [],
+  "itineraries": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "title": "divertisement",
+      "destination_id": 9,
+      "start_date": "2026-07-30",
+      "end_date": "2026-07-31",
+      "notes": ""
+    }
+  ],
   "reviews": [
     {
       "id": 1,

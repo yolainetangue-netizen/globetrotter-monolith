@@ -27,7 +27,7 @@
     <div class="card shadow-sm border-0">
       <div class="card-body p-4">
         <h2 class="h4 mb-1">Carte des destinations à Kribi</h2>
-        <p class="hint">Explorez 25 lieux à Kribi.</p>
+        <p class="hint">Explorez 48 lieux à Kribi.</p>
 
         <div id="map-legend" class="d-flex flex-wrap gap-3 mb-3 map-legend"></div>
 
@@ -91,13 +91,29 @@
     // et tant que les hotels ne sont pas encore charges)
     const KRIBI_CENTER = [2.9464, 9.9074];
 
-    // Centre sur Kribi (application desormais dediee a cette ville)
-    const map = L.map('map').setView([2.95, 9.91], 12);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors',
-      maxZoom: 18,
-    }).addTo(map);
+    // L'initialisation de la carte visuelle est isolee dans un try/catch :
+    // si Leaflet (charge depuis un CDN externe) echoue a se charger chez
+    // l'utilisateur, le reste de la page (recherche, selection, calcul de
+    // distance) continue quand meme de fonctionner normalement.
+    let map = null;
+    let leafletAvailable = typeof L !== "undefined";
+    if (leafletAvailable) {
+      try {
+        map = L.map('map').setView([2.95, 9.91], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors',
+          maxZoom: 18,
+        }).addTo(map);
+      } catch (err) {
+        console.error("Carte indisponible :", err);
+        leafletAvailable = false;
+        const mapEl = document.getElementById("map");
+        if (mapEl) mapEl.innerHTML = '<p class="hint p-3">🗺️ La carte visuelle n\'a pas pu se charger (connexion au fournisseur de carte impossible), mais la recherche et le calcul de distance restent disponibles ci-dessus.</p>';
+      }
+    } else {
+      const mapEl = document.getElementById("map");
+      if (mapEl) mapEl.innerHTML = '<p class="hint p-3">🗺️ La carte visuelle n\'a pas pu se charger (connexion au fournisseur de carte impossible), mais la recherche et le calcul de distance restent disponibles ci-dessus.</p>';
+    }
 
     let allDestinations = [];
     const markersById = {};
@@ -111,13 +127,6 @@
     const departureStatus = document.getElementById("departure-status");
     const distancePanel = document.getElementById("distance-panel");
     const gpsBtn = document.getElementById("gps-btn");
-
-    Object.keys(CITY_COORDS).sort((a, b) => a.localeCompare(b, "fr")).forEach((city) => {
-      const opt = document.createElement("option");
-      opt.value = city;
-      opt.textContent = city;
-      departureSelect.appendChild(opt);
-    });
 
     function haversineKm(lat1, lon1, lat2, lon2) {
       const R = 6371;
@@ -201,12 +210,14 @@
         departureSelect.value = "";
       });
 
-      if (routeLine) map.removeLayer(routeLine);
-      routeLine = L.polyline([departureCoords, [destination.lat, destination.lng]], {
-        color: "#f2751a",
-        weight: 3,
-        dashArray: "6,8",
-      }).addTo(map);
+      if (map) {
+        if (routeLine) map.removeLayer(routeLine);
+        routeLine = L.polyline([departureCoords, [destination.lat, destination.lng]], {
+          color: "#f2751a",
+          weight: 3,
+          dashArray: "6,8",
+        }).addTo(map);
+      }
     }
 
     function setDeparture(coords, label) {
@@ -214,10 +225,12 @@
       departureLabel = label;
       departureStatus.textContent = `Point de référence : ${label}`;
 
-      if (departureMarker) map.removeLayer(departureMarker);
-      departureMarker = L.marker(coords, {
-        icon: L.divIcon({ className: "departure-pin", html: "🚩", iconSize: [24, 24] }),
-      }).addTo(map).bindPopup(`Point de référence : ${label}`);
+      if (map) {
+        if (departureMarker) map.removeLayer(departureMarker);
+        departureMarker = L.marker(coords, {
+          icon: L.divIcon({ className: "departure-pin", html: "🚩", iconSize: [24, 24] }),
+        }).addTo(map).bindPopup(`Point de référence : ${label}`);
+      }
 
       const selectedId = destinationSelect.value;
       if (selectedId) {
@@ -263,7 +276,7 @@
       const dest = allDestinations.find((d) => String(d.id) === id);
       if (!dest) return;
 
-      map.setView([dest.lat, dest.lng], 14);
+      if (map) map.setView([dest.lat, dest.lng], 14);
       const marker = markersById[dest.id];
       if (marker) marker.openPopup();
 
@@ -277,29 +290,31 @@
       allDestinations = data.filter((d) => typeof d.lat === "number" && typeof d.lng === "number");
       const bounds = [];
 
-      allDestinations.forEach((d) => {
-        const color = CATEGORY_COLOR[d.category] || "#1e3a6e";
-        const marker = L.circleMarker([d.lat, d.lng], {
-          radius: 8,
-          fillColor: color,
-          color: "#ffffff",
-          weight: 2,
-          fillOpacity: 0.9,
-        }).addTo(map);
+      if (map) {
+        allDestinations.forEach((d) => {
+          const color = CATEGORY_COLOR[d.category] || "#1e3a6e";
+          const marker = L.circleMarker([d.lat, d.lng], {
+            radius: 8,
+            fillColor: color,
+            color: "#ffffff",
+            weight: 2,
+            fillOpacity: 0.9,
+          }).addTo(map);
 
-        marker.bindPopup(`
-          <strong>${d.name}</strong><br/>
-          <span style="color:#6b7280;font-size:0.85em;">${d.city || d.country}</span><br/>
-          <span style="font-size:0.85em;">${d.description}</span><br/>
-          <a href="/destination/${d.id}" style="font-size:0.85em;">Voir la fiche &rarr;</a>
-        `);
+          marker.bindPopup(`
+            <strong>${d.name}</strong><br/>
+            <span style="color:#6b7280;font-size:0.85em;">${d.city || d.country}</span><br/>
+            <span style="font-size:0.85em;">${d.description}</span><br/>
+            <a href="/destination/${d.id}" style="font-size:0.85em;">Voir la fiche &rarr;</a>
+          `);
 
-        markersById[d.id] = marker;
-        bounds.push([d.lat, d.lng]);
-      });
+          markersById[d.id] = marker;
+          bounds.push([d.lat, d.lng]);
+        });
 
-      if (bounds.length > 0) {
-        map.fitBounds(bounds, { padding: [30, 30] });
+        if (bounds.length > 0) {
+          map.fitBounds(bounds, { padding: [30, 30] });
+        }
       }
 
       const sorted = [...allDestinations].sort((a, b) => a.name.localeCompare(b.name, "fr"));

@@ -113,35 +113,47 @@
     loadKribiWeather();
 
     // --- Grille de catégories (11 catégories tourisme + Événements + Services) ---
+    // Chaque carte affiche desormais une VRAIE photo tiree au hasard parmi les
+    // destinations de sa categorie (celles qui ont une image locale), et cette
+    // photo change automatiquement toutes les quelques secondes - comme demande.
     const CATEGORIES = [
-      { name: "Plages", href: "/category/Plages", query: "Kribi beach ocean" },
-      { name: "Sites naturels", href: "/category/Sites naturels", query: "Kribi waterfall nature" },
-      { name: "Restaurants", href: "/category/Restaurants", query: "seafood restaurant Cameroon" },
-      { name: "Hôtels", href: "/category/Hôtels", query: "beach hotel resort Africa" },
-      { name: "Activités", href: "/category/Activités", query: "outdoor activity coast Africa" },
-      { name: "Loisirs", href: "/category/Loisirs", query: "leisure jogging path coast" },
-      { name: "Monuments", href: "/category/Monuments", query: "african historic monument lighthouse" },
-      { name: "Marchés et artisanat", href: "/category/Marchés et artisanat", query: "african market colorful stalls" },
-      { name: "Bars et vie nocturne", href: "/category/Bars et vie nocturne", query: "beach bar lounge night" },
-      { name: "Excursions", href: "/category/Excursions", query: "boat excursion river Africa" },
-      { name: "Autres", href: "/category/Autres", query: "Kribi Cameroon street" },
-      { name: "Événements", href: "/events-page", query: "beach festival music Africa", isEvent: true },
-      { name: "Services utiles", href: "/services-page", query: "pharmacy hospital city street", isService: true },
+      { name: "Plages", href: "/category/Plages" },
+      { name: "Sites naturels", href: "/category/Sites naturels" },
+      { name: "Restaurants", href: "/category/Restaurants" },
+      { name: "Hôtels", href: "/category/Hôtels" },
+      { name: "Activités", href: "/category/Activités" },
+      { name: "Loisirs", href: "/category/Loisirs" },
+      { name: "Monuments", href: "/category/Monuments" },
+      { name: "Marchés et artisanat", href: "/category/Marchés et artisanat" },
+      { name: "Bars et vie nocturne", href: "/category/Bars et vie nocturne" },
+      { name: "Excursions", href: "/category/Excursions" },
+      { name: "Autres", href: "/category/Autres" },
+      { name: "Événements", href: "/events-page", isEvent: true, query: "beach festival music Africa" },
+      { name: "Services utiles", href: "/services-page", isService: true, query: "pharmacy hospital city street" },
     ];
 
-    function categoryCardHTML(cat) {
+    function categoryCardHTML(cat, images) {
       const meta = cat.isEvent
         ? { icon: "🎉", cls: "cat-nightlife" }
         : cat.isService
         ? { icon: "🏥", cls: "cat-heritage" }
         : categoryMeta(cat.name);
+
+      // Si on a de vraies photos locales pour cette categorie : on les fait
+      // toutes defiler aleatoirement. Sinon, repli sur une recherche generique.
+      const media = images.length > 0
+        ? `<div class="category-card-media" style="height:110px;">
+             ${images.map((url, i) => `<div class="category-card-slide${i === 0 ? " active" : ""}" style="background-image:url('${url}')"></div>`).join("")}
+           </div>`
+        : `<div class="placeholder-media photo-slot ${meta.cls}" style="height:110px;" data-photo-query="${cat.query || cat.name + ' Kribi Cameroun'}">
+             <span>${meta.icon}</span>
+           </div>`;
+
       return `
         <div class="col">
           <a href="${cat.href}" class="text-decoration-none text-reset">
             <div class="card h-100 shadow-sm border-0 card-hover overflow-hidden">
-              <div class="placeholder-media photo-slot ${meta.cls}" style="height:110px;" data-photo-query="${cat.query}">
-                <span>${meta.icon}</span>
-              </div>
+              ${media}
               <div class="card-body text-center py-3">
                 <p class="small fw-semibold mb-0">${meta.icon} ${cat.name}</p>
               </div>
@@ -151,9 +163,45 @@
       `;
     }
 
-    const grid = document.getElementById("category-grid");
-    grid.innerHTML = CATEGORIES.map(categoryCardHTML).join("");
-    hydratePhotos(grid);
+    async function loadCategoryGrid() {
+      const grid = document.getElementById("category-grid");
+
+      // On recupere une seule fois toutes les destinations, pour en extraire
+      // les vraies photos locales disponibles par categorie.
+      const { ok, data } = await apiRequest("/destinations");
+      const destinations = ok ? data : [];
+
+      const imagesByCategory = {};
+      destinations.forEach((d) => {
+        if (d.local_image) {
+          if (!imagesByCategory[d.category]) imagesByCategory[d.category] = [];
+          imagesByCategory[d.category].push(d.local_image);
+        }
+      });
+
+      // Melange aleatoire des images de chaque categorie (ordre different a chaque chargement)
+      Object.values(imagesByCategory).forEach((arr) => arr.sort(() => Math.random() - 0.5));
+
+      grid.innerHTML = CATEGORIES
+        .map((cat) => categoryCardHTML(cat, imagesByCategory[cat.name] || []))
+        .join("");
+
+      hydratePhotos(grid);
+
+      // Fait defiler automatiquement les photos de chaque carte ayant plusieurs images
+      document.querySelectorAll(".category-card-media").forEach((container) => {
+        const slides = container.querySelectorAll(".category-card-slide");
+        if (slides.length < 2) return;
+        let current = 0;
+        setInterval(() => {
+          slides[current].classList.remove("active");
+          current = (current + 1) % slides.length;
+          slides[current].classList.add("active");
+        }, 3000 + Math.random() * 1500); // decale legerement chaque carte pour un effet plus naturel
+      });
+    }
+
+    loadCategoryGrid();
   </script>
 </body>
 </html>
