@@ -400,12 +400,12 @@ IMAGES_DIR = os.path.join(os.path.dirname(__file__), "static", "images")
 LOCAL_IMAGE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp")
 
 
-def get_local_image_url(destination_id):
-    """Si une image a ete fournie manuellement pour cette destination
-    (fichier nomme d'apres son id dans static/images/), retourne son URL.
+def get_local_image_url(image_id, prefix=""):
+    """Si une image a ete fournie manuellement (fichier nomme d'apres son id,
+    eventuellement prefixe pour les evenements/services), retourne son URL.
     Sinon retourne None (le frontend se rabattra alors sur Wikimedia/Pexels)."""
     for ext in LOCAL_IMAGE_EXTENSIONS:
-        filename = f"{destination_id}{ext}"
+        filename = f"{prefix}{image_id}{ext}"
         if os.path.isfile(os.path.join(IMAGES_DIR, filename)):
             return f"/static/images/{filename}"
     return None
@@ -415,6 +415,12 @@ def attach_local_image(destination):
     destination = dict(destination)
     destination["local_image"] = get_local_image_url(destination["id"])
     return destination
+
+
+def attach_event_image(event):
+    event = dict(event)
+    event["local_image"] = get_local_image_url(event["id"], prefix="event-")
+    return event
 
 
 @app.route("/destinations", methods=["GET"])
@@ -535,7 +541,7 @@ def get_events():
         today = datetime.utcnow().strftime("%Y-%m-%d")
         events = [e for e in events if (e.get("end_date") or e.get("date")) >= today]
     events = sorted(events, key=lambda e: e["date"])
-    return jsonify(events), 200
+    return jsonify([attach_event_image(e) for e in events]), 200
 
 
 @app.route("/services", methods=["GET"])

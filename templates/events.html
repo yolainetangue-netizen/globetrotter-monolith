@@ -62,15 +62,19 @@
 
     function eventCardHTML(e) {
       const icon = EVENT_TYPE_ICON[e.type] || "📅";
-      const query = (e.image_query || `${e.name} Kribi Cameroun`).replace(/"/g, "");
       const past = isPast(e);
+      let media;
+      if (e.local_image) {
+        media = `<img src="${e.local_image}" alt="${e.name}" class="w-100 h-100" style="object-fit:cover;" />`;
+      } else {
+        const query = (e.image_query || `${e.name} Kribi Cameroun`).replace(/"/g, "");
+        media = `<div class="placeholder-media photo-slot cat-nightlife" data-photo-query="${query}"><span>${icon}</span></div>`;
+      }
 
       return `
         <div class="col">
           <div class="card h-100 shadow-sm border-0 card-hover ${past ? "opacity-75" : ""}">
-            <div class="gt-media">
-              <div class="placeholder-media photo-slot cat-nightlife" data-photo-query="${query}"><span>${icon}</span></div>
-            </div>
+            <div class="gt-media">${media}</div>
             <div class="card-body">
               <div class="d-flex flex-wrap gap-2 mb-2">
                 <span class="badge badge-cat-nightlife">${icon} ${e.type || "Événement"}</span>

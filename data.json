@@ -8,6 +8,12 @@
         "beach",
         "culture"
       ]
+    },
+    {
+      "id": 2,
+      "username": "hozane",
+      "password": "daina123",
+      "preferences": []
     }
   ],
   "destinations": [
@@ -47,9 +53,7 @@
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Bars et vie nocturne"
+      "contact": null
     },
     {
       "id": 2,
@@ -86,9 +90,7 @@
         "note": "Situe en centre-ville, facile d'acces a pied ou en moto-taxi."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Restaurants"
+      "contact": null
     },
     {
       "id": 3,
@@ -125,9 +127,7 @@
         "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Autres"
+      "contact": null
     },
     {
       "id": 4,
@@ -240,9 +240,7 @@
         "note": "Zone sensible : eviter les prises de vue rapprochees des installations."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Autres"
+      "contact": null
     },
     {
       "id": 7,
@@ -319,9 +317,7 @@
         "note": "Passer par une association locale ou un guide de Kribi est recommande pour organiser une visite respectueuse."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Excursions"
+      "contact": null
     },
     {
       "id": 9,
@@ -437,9 +433,7 @@
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Sites naturels"
+      "contact": null
     },
     {
       "id": 12,
@@ -592,9 +586,7 @@
         "note": "Emplacement central, tres accessible."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Hôtels"
+      "contact": null
     },
     {
       "id": 16,
@@ -632,9 +624,7 @@
         "note": "Situe sur le front de mer, tres accessible depuis le centre-ville."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Hôtels"
+      "contact": null
     },
     {
       "id": 17,
@@ -822,9 +812,7 @@
         "note": "Adresse de quartier facilement accessible."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Restaurants"
+      "contact": null
     },
     {
       "id": 22,
@@ -866,7 +854,7 @@
     },
     {
       "id": 23,
-      "name": "Le Glacier Moderne",
+      "name": "Glacier Coppa Cabbana",
       "country": "Kribi, Region du Sud, Cameroun",
       "category": "Restaurants",
       "tags": [
@@ -874,12 +862,12 @@
         "relaxation"
       ],
       "image": null,
-      "image_query": "Le Glacier Moderne Kribi Cameroon",
+      "image_query": "glacier-coppa-cabbana Kribi Cameroon",
       "description": "Salon de glaces et de patisseries a Kribi, ideal pour une pause sucree en famille.",
       "city": "Kribi",
       "lat": 2.9475,
       "lng": 9.9055,
-      "long_description": "Le Glacier Moderne est un salon de glaces et de patisseries appreciee a Kribi, ideal pour une pause fraicheur en journee ou un dessert apres le diner. Une adresse familiale, prisee des enfants comme des adultes.",
+      "long_description": "Glacier Coppa Cabbana est un salon de glaces et de patisseries appreciee a Kribi, ideal pour une pause fraicheur en journee ou un dessert apres le diner. Une adresse familiale, prisee des enfants comme des adultes.",
       "activities": [
         "Deguster une glace artisanale par temps chaud",
         "Faire une pause patisserie en journee",
@@ -900,9 +888,7 @@
         "note": "Adresse centrale, tres accessible a pied."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Restaurants"
+      "contact": null
     },
     {
       "id": 24,
@@ -980,9 +966,7 @@
         "note": "Piste praticable ; prevoir un peu plus de temps en saison des pluies."
       },
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Plages"
+      "contact": null
     },
     {
       "id": 26,
@@ -1019,9 +1003,7 @@
         "note": "Facilement accessible en centre-ville."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Autres"
+      "contact": null
     },
     {
       "id": 27,
@@ -1134,9 +1116,7 @@
         "note": "Marche central tres accessible a pied depuis la plupart des hebergements."
       },
       "image_query_fallback": "african market colorful stalls",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Marchés et artisanat"
+      "contact": null
     },
     {
       "id": 30,
@@ -1290,9 +1270,7 @@
         "note": "Un 4x4 ou un vehicule loue avec chauffeur est fortement recommande ; certaines pistes sont impraticables en saison des pluies."
       },
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Excursions"
+      "contact": null
     },
     {
       "id": 34,
@@ -1331,9 +1309,7 @@
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Monuments"
+      "contact": null
     },
     {
       "id": 35,
@@ -1565,9 +1541,7 @@
       "budget_saison_seche": "Acces gratuit. Location transat/parasol : 1200-2300 FCFA selon etablissement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Acces gratuit. Location transat/parasol : 900-1800 FCFA selon etablissement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Plages"
+      "contact": null
     },
     {
       "id": 41,
@@ -1605,9 +1579,7 @@
         "note": "Route bitumee, accessible toute l'annee ; prevoir un vehicule pour l'aller-retour."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Autres"
+      "contact": null
     },
     {
       "id": 42,
@@ -1684,9 +1656,7 @@
         "note": "Situe en bord de plage, facilement accessible depuis la plupart des hotels de Kribi."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Restaurants"
+      "contact": null
     },
     {
       "id": 44,
@@ -1800,9 +1770,7 @@
         "note": "Adresse centrale du front de mer, tres accessible."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "rating_note": null,
-      "category_old": "Restaurants"
+      "contact": null
     }
   ],
   "itineraries": [],
@@ -1883,45 +1851,59 @@
   "events": [
     {
       "id": 1,
-      "name": "Festival Kribi Plage",
+      "name": "Kribi Waves Festival 2026",
       "type": "Festival",
-      "description": "Exemple de festival cotier reunissant musique, artisanat et gastronomie locale sur le front de mer.",
-      "location": "Front de mer de Kribi",
-      "lat": 2.948,
-      "lng": 9.905,
-      "price": "Entree libre, certaines animations payantes (1000-3000 FCFA)",
-      "contact": null,
-      "image_query": "beach festival Africa music",
-      "date": "2026-08-15",
-      "end_date": "2026-08-17"
+      "description": "Festival de plage a Kribi (Plage de Ngoye) mêlant musique live, soleil et bonne ambiance. Le concert phare du 8 aout 2026 accueille l'artiste Maahlox Le Vibeur en guest star. Reservation des pass conseillee a l'avance.",
+      "location": "Plage de Ngoye, Kribi",
+      "lat": 2.95,
+      "lng": 9.9,
+      "price": "Pass Classique : 500 FCFA. Pass VIP : 3000 FCFA (concert du 8 aout).",
+      "contact": "+237 680 25 53 05",
+      "image_query": "Kribi Waves Festival beach music",
+      "date": "2026-07-31",
+      "end_date": "2026-08-16"
     },
     {
       "id": 2,
-      "name": "Tournoi de Beach Volley de Kribi",
+      "name": "Circuit National de Beach-Volleyball 2026 - Étape de Kribi",
       "type": "Compétition sportive",
-      "description": "Exemple de competition sportive locale de beach-volley organisee sur la plage principale.",
-      "location": "Plage de Kribi",
-      "lat": 2.947,
-      "lng": 9.906,
-      "price": "Entree libre pour les spectateurs",
+      "description": "Etape balneaire de Kribi comptant pour le Circuit National de Beach-Volleyball 2026 au Cameroun, organisee sous l'egide de la Federation Camerounaise de Volleyball (Fecavolley). Initialement programmee du 5 au 8 aout 2026 a l'Hotel Lemar ; se renseigner sur place pour confirmer le maintien des dates.",
+      "location": "Hôtel Lemar, Kribi",
+      "lat": 2.9464,
+      "lng": 9.9074,
+      "price": "Non précisé — entrée généralement libre pour les spectateurs sur ce type d'étape.",
       "contact": null,
-      "image_query": "beach volleyball tournament Africa",
-      "date": "2026-09-05",
-      "end_date": "2026-09-06"
+      "image_query": "beach volleyball tournament Cameroon",
+      "date": "2026-08-05",
+      "end_date": "2026-08-08"
     },
     {
       "id": 3,
-      "name": "Soirée Concert Akwa Nights",
+      "name": "Le Gala des Amoureux",
       "type": "Concert",
-      "description": "Exemple de soiree concert avec artistes locaux, dans un bar-lounge du front de mer.",
-      "location": "Akiba Beach Lounge, Kribi",
-      "lat": 2.949,
-      "lng": 9.904,
-      "price": "Entree : 2000-5000 FCFA selon programmation",
+      "description": "Soiree evenementielle organisee a Akwa, Kribi, a partir de 18h00, accessible gratuitement. Fait partie des animations culturelles du week-end du 8 aout 2026 a Kribi, aux cotes du Kribi Waves Festival.",
+      "location": "Akwa, Kribi",
+      "lat": 2.9464,
+      "lng": 9.9074,
+      "price": "Entrée gratuite",
       "contact": null,
-      "image_query": "live concert night beach bar",
-      "date": "2026-08-30",
-      "end_date": "2026-08-30"
+      "image_query": "evening gala event Africa beach",
+      "date": "2026-08-08",
+      "end_date": "2026-08-08"
+    },
+    {
+      "id": 4,
+      "name": "Festival Mayi (Peuple Batanga)",
+      "type": "Festival",
+      "description": "Principal grand evenement culturel de Kribi. Le festival Mayi a celebre sa 110e edition du 25 avril au 9 mai 2026, marquant les traditions du peuple Batanga avec un defile-carnaval, des rites memoriels et une fete populaire sur les plages. A voir aussi dans la meme veine : le festival Nguma-Mabi (peuple Mabi), rassemblement cotier avec danses traditionnelles, courses de pirogues et foire gastronomique.",
+      "location": "Plages de Kribi (ville)",
+      "lat": 2.9464,
+      "lng": 9.9074,
+      "price": "Non précisé",
+      "contact": null,
+      "image_query": "Mayi festival Batanga Kribi Cameroon",
+      "date": "2026-04-25",
+      "end_date": "2026-05-09"
     }
   ],
   "services": [
@@ -1929,61 +1911,111 @@
       "id": 1,
       "type": "Hôpital",
       "name": "Hôpital de District de Kribi",
-      "lat": 2.944,
-      "lng": 9.909,
+      "lat": 2.945,
+      "lng": 9.9085,
       "address": "Centre-ville de Kribi",
-      "phone": null,
+      "phone": "+237 233 46 11 31",
       "hours": "Urgences 24h/24"
     },
     {
       "id": 2,
-      "type": "Pharmacie",
-      "name": "Pharmacie du Centre Kribi",
-      "lat": 2.9455,
-      "lng": 9.9075,
-      "address": "Centre-ville de Kribi",
-      "phone": null,
-      "hours": "8h-21h"
+      "type": "Hôpital",
+      "name": "Hôpital Régional Annexe de Kribi",
+      "lat": 2.948,
+      "lng": 9.904,
+      "address": "Kribi",
+      "phone": "+237 233 46 10 51",
+      "hours": "Urgences 24h/24"
     },
     {
       "id": 3,
-      "type": "Banque",
-      "name": "Agence bancaire de Kribi",
-      "lat": 2.945,
-      "lng": 9.9065,
-      "address": "Centre-ville de Kribi",
-      "phone": null,
-      "hours": "8h-15h30, lun-ven"
+      "type": "Pharmacie",
+      "name": "Pharmacie de l'Océan Kribi",
+      "lat": 2.9455,
+      "lng": 9.907,
+      "address": "Kribi",
+      "phone": "+237 697 81 51 95",
+      "hours": "Ouvert 24h/24"
     },
     {
       "id": 4,
-      "type": "Station-service",
-      "name": "Station-service Route de Campo",
-      "lat": 2.938,
-      "lng": 9.902,
-      "address": "Route de Campo, Kribi",
-      "phone": null,
-      "hours": "6h-22h"
+      "type": "Pharmacie",
+      "name": "Pharmacie de la Gloire",
+      "lat": 2.9465,
+      "lng": 9.9095,
+      "address": "Kribi",
+      "phone": "+237 222 46 22 29",
+      "hours": "Ferme à 21h00"
     },
     {
       "id": 5,
-      "type": "Commissariat",
-      "name": "Commissariat Central de Kribi",
-      "lat": 2.9445,
-      "lng": 9.9085,
-      "address": "Centre-ville de Kribi",
+      "type": "Banque",
+      "name": "BICEC Kribi",
+      "lat": 2.947,
+      "lng": 9.906,
+      "address": "Kribi",
       "phone": null,
-      "hours": "24h/24"
+      "hours": "Ferme à 12h30"
     },
     {
       "id": 6,
+      "type": "Banque",
+      "name": "ACEP Cameroun Kribi",
+      "lat": 2.944,
+      "lng": 9.91,
+      "address": "Kribi",
+      "phone": "+237 695 17 27 92",
+      "hours": "Ferme à 17h00"
+    },
+    {
+      "id": 7,
+      "type": "Station-service",
+      "name": "TotalEnergies Kribi",
+      "lat": 2.949,
+      "lng": 9.905,
+      "address": "Rue des Banques, Kribi (repère : près des ministères)",
+      "phone": null,
+      "hours": "06h00 - 22h00 tous les jours"
+    },
+    {
+      "id": 8,
+      "type": "Station-service",
+      "name": "Station Service Tawaal Oil",
+      "lat": 2.942,
+      "lng": 9.911,
+      "address": "Kribi",
+      "phone": null,
+      "hours": "Ouvert 24h/24, 7j/7"
+    },
+    {
+      "id": 9,
+      "type": "Station-service",
+      "name": "Neptune Oil Talla Kribi",
+      "lat": 2.95,
+      "lng": 9.909,
+      "address": "Kribi",
+      "phone": null,
+      "hours": "Ouvert 24h/24, 7j/7"
+    },
+    {
+      "id": 10,
+      "type": "Commissariat",
+      "name": "Commissariat Central de Kribi",
+      "lat": 2.946,
+      "lng": 9.9075,
+      "address": "Centre-ville de Kribi",
+      "phone": null,
+      "hours": "Ouvert 24h/24"
+    },
+    {
+      "id": 11,
       "type": "Taxi/Moto",
       "name": "Station de taxis-motos du marché",
-      "lat": 2.946,
-      "lng": 9.907,
-      "address": "Pres du Marche Central, Kribi",
+      "lat": 2.9465,
+      "lng": 9.908,
+      "address": "Marché Central de Kribi",
       "phone": null,
-      "hours": "6h-23h"
+      "hours": "6h - 22h environ"
     }
   ]
 }

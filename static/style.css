@@ -181,6 +181,18 @@ hr { border-color: var(--border-dark); opacity: 1; }
   color: #fff;
 }
 
+/* Sur la fiche detail : la photo est montree EN ENTIER (non recadree),
+   centree sur un fond neutre au lieu d'etre decoupee pour remplir le cadre. */
+.gt-media-full {
+  height: auto;
+  background: var(--anthracite-lighter);
+}
+
+.gt-media-full img {
+  object-fit: contain;
+  background: var(--anthracite-lighter);
+}
+
 .placeholder-media.cat-heritage  { background: linear-gradient(135deg, #1e3a6e 0%, #0f2247 100%); }
 .placeholder-media.cat-nature    { background: linear-gradient(135deg, #2f6b4f 0%, #163a29 100%); }
 .placeholder-media.cat-fun       { background: linear-gradient(135deg, var(--orange) 0%, var(--orange-deep) 100%); }
@@ -279,7 +291,7 @@ hr { border-color: var(--border-dark); opacity: 1; }
    --------------------------------------------------------------------- */
 .auth-hero {
   background:
-    linear-gradient(135deg, rgba(14, 58, 92, 0.55) 0%, rgba(20, 184, 196, 0.45) 100%),
+    linear-gradient(135deg, rgba(5, 5, 5, 0.55) 0%, rgba(14, 141, 150, 0.45) 100%),
     url('/static/images/login-bg.jpeg') center center / cover no-repeat;
   min-height: calc(100vh - 62px);
 }
@@ -287,13 +299,13 @@ hr { border-color: var(--border-dark); opacity: 1; }
 .gt-glass-card {
   background: rgba(255, 255, 255, 0.97);
   border-radius: 1rem;
-  box-shadow: 0 20px 45px rgba(36, 18, 6, 0.25);
+  box-shadow: 0 20px 45px rgba(80, 75, 72, 0.25);
 }
 
 /* ---------------------------------------------------------------------
    Divers
    --------------------------------------------------------------------- */
-.hint { color: #6b7280; font-size: 0.85rem; }
+.hint { color: var(--text-muted-dark); font-size: 0.85rem; }
 .mode-chip { font-size: 0.78rem; border-radius: 999px; }
 .card-hover { transition: transform 0.15s ease, box-shadow 0.15s ease; }
 .card-hover:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(36, 18, 6, 0.15); }
@@ -310,8 +322,8 @@ hr { border-color: var(--border-dark); opacity: 1; }
   border-radius: 50%;
   display: inline-block;
 }
-.dot-heritage { background: #1e3a6e; }
-.dot-nature   { background: #2f6b4f; }
+.dot-heritage { background: #2a426e; }
+.dot-nature   { background: #33664e; }
 .dot-fun      { background: var(--orange); }
 .dot-food     { background: var(--orange-deep); }
 .dot-hotel    { background: var(--violet); }
@@ -319,8 +331,8 @@ hr { border-color: var(--border-dark); opacity: 1; }
 .departure-pin { font-size: 1.3rem; text-align: center; line-height: 24px; }
 
 .distance-panel {
-  background: linear-gradient(160deg, #fff7ed 0%, #ffe9d1 100%);
-  border: 1px solid rgba(242, 117, 26, 0.25);
+  background: linear-gradient(160deg, #e6d3bd 0%, #fde3c6 100%);
+  border: 1px solid rgba(245, 108, 11, 0.25);
   border-radius: 0.75rem;
   padding: 1rem 1.2rem;
 }
@@ -361,15 +373,15 @@ hr { border-color: var(--border-dark); opacity: 1; }
   height: 34px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
-  color: #b91c1c;
+  background: rgba(231, 212, 212, 0.9);
+  color: #a32e2e;
   font-size: 1rem;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgba(31, 30, 30, 0.15);
   transition: transform 0.15s ease, background 0.15s ease;
 }
 
