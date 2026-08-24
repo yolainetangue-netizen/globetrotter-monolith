@@ -3,6 +3,7 @@ GlobeTrotter Travel Assistant - Phase 1: The Monolith
 A single Flask server handling all requests, with data stored in a JSON file.
 """
 
+import io
 import json
 import os
 import time
@@ -10,7 +11,7 @@ from datetime import datetime, timedelta
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, send_file
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
@@ -643,6 +644,137 @@ def get_itineraries():
 
     user_itineraries = [it for it in data["itineraries"] if it["user_id"] == user_id]
     return jsonify(user_itineraries), 200
+
+
+def build_itinerary_pdf(itinerary, destination):
+    """Genere un PDF autonome (consultable hors-ligne, imprimable) pour un
+    itineraire, avec les infos pratiques de la destination associee."""
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+    from reportlab.lib.units import cm
+    from reportlab.lib import colors
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, HRFlowable
+
+    buffer = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buffer, pagesize=A4,
+        topMargin=2 * cm, bottomMargin=2 * cm, leftMargin=2 * cm, rightMargin=2 * cm,
+    )
+    styles = getSampleStyleSheet()
+    title_style = ParagraphStyle(
+        "GTTitle", parent=styles["Title"], fontSize=22, textColor=colors.HexColor("#0e3a5c"),
+    )
+    heading_style = ParagraphStyle(
+        "GTHeading", parent=styles["Heading2"], fontSize=13, spaceBefore=14, spaceAfter=6,
+        textColor=colors.HexColor("#0e3a5c"),
+    )
+    normal_style = ParagraphStyle("GTNormal", parent=styles["Normal"], fontSize=10.5, leading=15)
+    muted_style = ParagraphStyle("GTMuted", parent=styles["Normal"], fontSize=9, textColor=colors.grey)
+
+    story = []
+    story.append(Paragraph("GlobeTrotter-Kribi", muted_style))
+    story.append(Paragraph(itinerary.get("title") or "Mon itineraire", title_style))
+    story.append(Spacer(1, 4))
+    story.append(HRFlowable(width="100%", color=colors.HexColor("#0e3a5c"), thickness=1))
+    story.append(Spacer(1, 10))
+
+    dest_name = destination["name"] if destination else f"Destination #{itinerary.get('destination_id')}"
+    dest_category = destination.get("category", "") if destination else ""
+
+    story.append(Paragraph("Destination", heading_style))
+    story.append(Paragraph(f"<b>{dest_name}</b>" + (f" &nbsp;&nbsp;<font color='grey'>({dest_category})</font>" if dest_category else ""), normal_style))
+    if destination and destination.get("description"):
+        story.append(Spacer(1, 4))
+        story.append(Paragraph(destination["description"], normal_style))
+
+    story.append(Paragraph("Dates du sejour", heading_style))
+    date_rows = [
+        ["Depart", itinerary.get("start_date") or "Non precise"],
+        ["Retour", itinerary.get("end_date") or "Non precise"],
+    ]
+    date_table = Table(date_rows, colWidths=[4 * cm, 10 * cm])
+    date_table.setStyle(TableStyle([
+        ("FONTSIZE", (0, 0), (-1, -1), 10.5),
+        ("TEXTCOLOR", (0, 0), (0, -1), colors.HexColor("#0e3a5c")),
+        ("FONTNAME", (0, 0), (0, -1), "Helvetica-Bold"),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        ("TOPPADDING", (0, 0), (-1, -1), 2),
+    ]))
+    story.append(date_table)
+
+    if itinerary.get("notes"):
+        story.append(Paragraph("Notes personnelles", heading_style))
+        story.append(Paragraph(itinerary["notes"], normal_style))
+
+    if destination:
+        if destination.get("budget"):
+            story.append(Paragraph("Budget indicatif", heading_style))
+            story.append(Paragraph(destination["budget"], normal_style))
+
+        transport = destination.get("transport")
+        if transport:
+            story.append(Paragraph("Transport", heading_style))
+            if isinstance(transport, dict):
+                if transport.get("taxi"):
+                    story.append(Paragraph(f"<b>Taxi :</b> {transport['taxi']}", normal_style))
+                if transport.get("moto"):
+                    story.append(Paragraph(f"<b>Moto-taxi :</b> {transport['moto']}", normal_style))
+                if transport.get("note"):
+                    story.append(Paragraph(f"<i>{transport['note']}</i>", muted_style))
+            else:
+                story.append(Paragraph(str(transport), normal_style))
+
+        if destination.get("contact"):
+            story.append(Paragraph("Contact", heading_style))
+            story.append(Paragraph(destination["contact"], normal_style))
+
+        practical = destination.get("practical_info") or {}
+        if practical:
+            story.append(Paragraph("Informations pratiques", heading_style))
+            for label, key in [("Horaires", "hours"), ("Meilleure periode", "best_time"), ("Acces", "access")]:
+                if practical.get(key):
+                    story.append(Paragraph(f"<b>{label} :</b> {practical[key]}", normal_style))
+
+    story.append(Spacer(1, 20))
+    story.append(HRFlowable(width="100%", color=colors.HexColor("#cccccc"), thickness=0.5))
+    story.append(Spacer(1, 6))
+    story.append(Paragraph(
+        f"Genere le {datetime.utcnow().strftime('%d/%m/%Y')} depuis GlobeTrotter-Kribi. "
+        "Document telechargeable, consultable sans connexion internet.",
+        muted_style,
+    ))
+
+    doc.build(story)
+    buffer.seek(0)
+    return buffer
+
+
+@app.route("/itineraries/<int:itinerary_id>/download", methods=["GET"])
+@jwt_required()
+def download_itinerary(itinerary_id):
+    """Genere et renvoie un PDF telechargeable de l'itineraire, pour une
+    consultation hors-ligne (utile la ou le reseau est absent)."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    itinerary = next((it for it in data["itineraries"] if it["id"] == itinerary_id), None)
+    if not itinerary:
+        return jsonify({"error": "itinerary not found"}), 404
+    if itinerary["user_id"] != user_id:
+        return jsonify({"error": "not authorized to access this itinerary"}), 403
+
+    destination = next((d for d in data["destinations"] if d["id"] == itinerary["destination_id"]), None)
+
+    pdf_buffer = build_itinerary_pdf(itinerary, destination)
+    safe_title = "".join(c if c.isalnum() or c in " -_" else "" for c in (itinerary.get("title") or "itineraire")).strip() or "itineraire"
+    filename = f"{safe_title}.pdf"
+
+    return send_file(
+        pdf_buffer,
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name=filename,
+    )
 
 
 # ---------------------------------------------------------------------------

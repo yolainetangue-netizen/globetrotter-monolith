@@ -63,20 +63,59 @@
           <td>${it.start_date || "—"}</td>
           <td>${it.end_date || "—"}</td>
           <td class="text-muted small">${it.notes || "—"}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary download-pdf-btn" data-id="${it.id}" data-title="${(it.title || "itineraire").replace(/"/g, "")}">
+              📥 PDF
+            </button>
+          </td>
         </tr>`
         )
         .join("");
 
       content.innerHTML = `
+        <p class="hint mb-3">💡 Télécharge un itinéraire en PDF pour le consulter même sans connexion internet.</p>
         <div class="table-responsive">
           <table class="table align-middle">
             <thead>
-              <tr><th>Titre</th><th>Destination</th><th>Début</th><th>Fin</th><th>Notes</th></tr>
+              <tr><th>Titre</th><th>Destination</th><th>Début</th><th>Fin</th><th>Notes</th><th>Hors-ligne</th></tr>
             </thead>
             <tbody>${rows}</tbody>
           </table>
         </div>
       `;
+
+      document.querySelectorAll(".download-pdf-btn").forEach((btn) => {
+        btn.addEventListener("click", () => downloadItineraryPdf(btn.dataset.id, btn, btn.dataset.title));
+      });
+    }
+
+    // Le PDF est protege par JWT (comme le reste de l'API), donc un simple
+    // lien <a href> ne suffit pas : on recupere le fichier via fetch() avec
+    // l'en-tete Authorization, puis on declenche le telechargement nous-memes.
+    async function downloadItineraryPdf(id, btn, title) {
+      const originalLabel = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = "⏳ ...";
+      try {
+        const res = await fetch(`/itineraries/${id}/download`, {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        });
+        if (!res.ok) throw new Error("Échec du téléchargement");
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${title || "itineraire"}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      } catch (err) {
+        alert("Impossible de télécharger le PDF. Réessaie dans un instant.");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+      }
     }
 
     loadItineraries();

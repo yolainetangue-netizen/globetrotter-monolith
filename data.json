@@ -1773,7 +1773,17 @@
       "contact": null
     }
   ],
-  "itineraries": [],
+  "itineraries": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "title": "divertisement",
+      "destination_id": 7,
+      "start_date": "2026-08-26",
+      "end_date": "2026-08-26",
+      "notes": ""
+    }
+  ],
   "reviews": [
     {
       "id": 1,
