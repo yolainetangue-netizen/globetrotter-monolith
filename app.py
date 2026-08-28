@@ -34,6 +34,20 @@ jwt = JWTManager(app)
 DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
 
 # ---------------------------------------------------------------------------
+# Supabase Storage configuration
+# Permet de conserver data.json ailleurs que sur le disque local de Render,
+# qui n'est pas persistant sur le plan gratuit (les donnees sont perdues a
+# chaque redeploiement / reveil apres mise en veille). Si ces variables ne
+# sont pas definies, l'app continue de fonctionner uniquement avec le fichier
+# local (comportement precedent), pour ne jamais bloquer le demarrage.
+# ---------------------------------------------------------------------------
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
+SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
+SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET", "globetrotter-data")
+SUPABASE_STORAGE_ENABLED = bool(SUPABASE_URL and SUPABASE_SECRET_KEY)
+SUPABASE_OBJECT_PATH = "data.json"
+
+# ---------------------------------------------------------------------------
 # Google Sign-In configuration
 # ---------------------------------------------------------------------------
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
@@ -56,6 +70,66 @@ WEATHER_CACHE_TTL = 1800  # 30 minutes
 # ---------------------------------------------------------------------------
 # Data Access Layer (reads/writes the JSON "database")
 # ---------------------------------------------------------------------------
+def _supabase_object_url():
+    return f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{SUPABASE_OBJECT_PATH}"
+
+
+def _supabase_download_to_disk():
+    """Telecharge data.json depuis Supabase Storage et l'ecrit sur le disque
+    local. Retourne True si reussi. Ne leve jamais d'exception : en cas
+    d'echec (reseau, fichier absent la 1ere fois...), on continue avec la
+    copie locale existante (celle du zip deploye)."""
+    try:
+        resp = requests.get(
+            _supabase_object_url(),
+            headers={
+                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
+                "apiKey": SUPABASE_SECRET_KEY,
+            },
+            timeout=10,
+        )
+        if resp.status_code == 200:
+            with open(DATA_FILE, "wb") as f:
+                f.write(resp.content)
+            return True
+    except requests.RequestException:
+        pass
+    return False
+
+
+def _supabase_upload_from_disk():
+    """Envoie le data.json local vers Supabase Storage (upsert). Ne leve
+    jamais d'exception : si Supabase est injoignable, l'ecriture locale reste
+    valable pour la duree de vie du process, mais ne survivra pas a un
+    redemarrage - on log simplement l'echec."""
+    try:
+        with open(DATA_FILE, "rb") as f:
+            content = f.read()
+        resp = requests.post(
+            _supabase_object_url(),
+            headers={
+                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
+                "apiKey": SUPABASE_SECRET_KEY,
+                "Content-Type": "application/json",
+                "x-upsert": "true",
+            },
+            data=content,
+            timeout=10,
+        )
+        if resp.status_code not in (200, 201):
+            print(f"[supabase] echec upload data.json: {resp.status_code} {resp.text[:200]}")
+    except requests.RequestException as exc:
+        print(f"[supabase] erreur reseau upload data.json: {exc}")
+
+
+# Au demarrage du process, on tente une seule fois de recuperer la derniere
+# version connue depuis Supabase (qui peut contenir des utilisateurs/avis
+# crees depuis le dernier deploiement). Si indisponible, on garde le
+# data.json du zip deploye tel quel.
+if SUPABASE_STORAGE_ENABLED:
+    _supabase_download_to_disk()
+
+
 def load_data():
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
@@ -64,6 +138,9 @@ def load_data():
 def save_data(data):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+
+    if SUPABASE_STORAGE_ENABLED:
+        _supabase_upload_from_disk()
 
 
 def next_id(items):
