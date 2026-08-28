@@ -18,6 +18,8 @@ from flask_jwt_extended import (
     get_jwt_identity,
     jwt_required,
 )
+from google.auth.transport import requests as google_requests
+from google.oauth2 import id_token as google_id_token
 
 load_dotenv()  # charge automatiquement les variables definies dans un fichier .env
 
@@ -30,6 +32,11 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=6)
 jwt = JWTManager(app)
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
+
+# ---------------------------------------------------------------------------
+# Google Sign-In configuration
+# ---------------------------------------------------------------------------
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", "")
 
 # ---------------------------------------------------------------------------
 # Image API configuration (Pexels — gratuit, cle sur https://www.pexels.com/api/)
@@ -75,12 +82,12 @@ def index():
 def register_page():
     # Meme page que la connexion, desormais fusionnees avec un bouton
     # de bascule (voir templates/login.html)
-    return render_template("login.html")
+    return render_template("login.html", google_client_id=GOOGLE_CLIENT_ID)
 
 
 @app.route("/login-page")
 def login_page():
-    return render_template("login.html")
+    return render_template("login.html", google_client_id=GOOGLE_CLIENT_ID)
 
 
 @app.route("/destinations-page")
@@ -387,8 +394,70 @@ def login():
     data = load_data()
     user = next((u for u in data["users"] if u["username"] == username), None)
 
-    if not user or user["password"] != password:
+    if not user or user.get("password") is None or user["password"] != password:
         return jsonify({"error": "invalid username or password"}), 401
+
+    token = create_access_token(identity=str(user["id"]))
+    return jsonify({"access_token": token, "user": {"id": user["id"], "username": user["username"]}}), 200
+
+
+@app.route("/auth/google", methods=["POST"])
+def auth_google():
+    """Connecte ou cree un utilisateur a partir d'un jeton d'identite Google.
+
+    Le front-end recupere un "credential" (jeton signe) via Google Identity
+    Services, puis l'envoie ici. On le verifie aupres de Google (signature,
+    audience, expiration) avant de faire confiance a son contenu.
+    """
+    if not GOOGLE_CLIENT_ID:
+        return jsonify({"error": "Google sign-in is not configured on the server"}), 503
+
+    body = request.get_json(silent=True) or {}
+    credential = body.get("credential", "").strip()
+
+    if not credential:
+        return jsonify({"error": "missing Google credential"}), 400
+
+    try:
+        payload = google_id_token.verify_oauth2_token(
+            credential, google_requests.Request(), GOOGLE_CLIENT_ID
+        )
+    except ValueError:
+        return jsonify({"error": "invalid Google credential"}), 401
+
+    google_sub = payload.get("sub")
+    email = payload.get("email", "")
+    name = payload.get("name") or (email.split("@")[0] if email else f"user{google_sub}")
+
+    if not google_sub:
+        return jsonify({"error": "invalid Google credential"}), 401
+
+    data = load_data()
+
+    # Un compte Google est retrouve via son identifiant Google unique (sub),
+    # jamais via le mot de passe puisqu'il n'y en a pas pour ce type de compte.
+    user = next((u for u in data["users"] if u.get("google_sub") == google_sub), None)
+
+    if not user:
+        # Evite les collisions avec un nom d'utilisateur "classique" existant.
+        username = name
+        suffix = 1
+        existing_usernames = {u["username"] for u in data["users"]}
+        while username in existing_usernames:
+            suffix += 1
+            username = f"{name}{suffix}"
+
+        user = {
+            "id": next_id(data["users"]),
+            "username": username,
+            "password": None,  # pas de mot de passe pour les comptes Google
+            "preferences": [],
+            "auth_provider": "google",
+            "google_sub": google_sub,
+            "email": email,
+        }
+        data["users"].append(user)
+        save_data(data)
 
     token = create_access_token(identity=str(user["id"]))
     return jsonify({"access_token": token, "user": {"id": user["id"], "username": user["username"]}}), 200
@@ -593,7 +662,7 @@ def get_recommendations():
             if preferences.intersection(t.lower() for t in d["tags"])
         ]
 
-    return jsonify(recommended), 200
+    return jsonify([attach_local_image(d) for d in recommended]), 200
 
 
 # ---------------------------------------------------------------------------

@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
   {% include '_navbar.html' %}
@@ -31,6 +32,15 @@
             <div id="panel-login">
               <h2 class="h4 mb-1" style="font-family: 'Playfair Display', serif; font-style: italic;">Bon retour ! 👋</h2>
               <p class="text-muted small mb-4">Connectez-vous pour retrouver vos sorties</p>
+
+              <!-- Connexion avec Google -->
+              <div id="google-signin-login" class="d-flex justify-content-center mb-3"></div>
+              <div id="google-msg-login" class="mb-2"></div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <hr class="flex-grow-1" />
+                <span class="text-muted small">ou</span>
+                <hr class="flex-grow-1" />
+              </div>
 
               <form id="login-form">
                 <div class="mb-3">
@@ -72,6 +82,15 @@
             <div id="panel-register" style="display:none;">
               <h2 class="h4 mb-1" style="font-family: 'Playfair Display', serif; font-style: italic;">Créer un compte</h2>
               <p class="text-muted small mb-4">Rejoignez la communauté des explorateurs</p>
+
+              <!-- Inscription avec Google -->
+              <div id="google-signin-register" class="d-flex justify-content-center mb-3"></div>
+              <div id="google-msg-register" class="mb-2"></div>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <hr class="flex-grow-1" />
+                <span class="text-muted small">ou</span>
+                <hr class="flex-grow-1" />
+              </div>
 
               <form id="register-form">
                 <div class="mb-3">
@@ -238,6 +257,51 @@
         registerMsg.innerHTML = `<div class="alert alert-danger py-2 small mb-0">${data.error || "Inscription echouee."}</div>`;
       }
     });
+
+    // ---------------------------------------------------------------------
+    // Connexion / inscription avec Google
+    // ---------------------------------------------------------------------
+    const GOOGLE_CLIENT_ID = "{{ google_client_id }}";
+
+    async function handleGoogleCredential(response) {
+      const { ok, data } = await apiRequest("/auth/google", {
+        method: "POST",
+        body: { credential: response.credential },
+      });
+
+      const msgLogin = document.getElementById("google-msg-login");
+      const msgRegister = document.getElementById("google-msg-register");
+
+      if (ok) {
+        setToken(data.access_token, true);
+        const msg = `<div class="alert alert-success py-2 small mb-0">Bienvenue, ${data.user.username} !</div>`;
+        msgLogin.innerHTML = msg;
+        msgRegister.innerHTML = msg;
+        setTimeout(() => (window.location.href = "/destinations-page"), 800);
+      } else {
+        const msg = `<div class="alert alert-danger py-2 small mb-0">${data.error || "Connexion Google echouee."}</div>`;
+        msgLogin.innerHTML = msg;
+        msgRegister.innerHTML = msg;
+      }
+    }
+
+    if (GOOGLE_CLIENT_ID) {
+      window.onload = () => {
+        if (typeof google === "undefined") return;
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleGoogleCredential,
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("google-signin-login"),
+          { theme: "outline", size: "large", text: "signin_with", shape: "pill", width: 280 }
+        );
+        google.accounts.id.renderButton(
+          document.getElementById("google-signin-register"),
+          { theme: "outline", size: "large", text: "signup_with", shape: "pill", width: 280 }
+        );
+      };
+    }
   </script>
 </body>
 </html>

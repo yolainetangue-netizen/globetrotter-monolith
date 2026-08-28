@@ -1,5 +1,64 @@
 // Shared helpers for all pages of the GlobeTrotter monolith frontend
 
+// ---------------------------------------------------------------------
+// Traduction de l'interface (FR / EN)
+// Ne traduit que les elements d'interface (menus, boutons, formulaires),
+// pas le contenu des destinations qui reste en francais pour l'instant.
+// ---------------------------------------------------------------------
+const GT_TRANSLATIONS = {
+  fr: {
+    "nav.home": "Accueil",
+    "nav.kribi": "Découvrir Kribi",
+    "nav.destinations": "Destinations",
+    "nav.events": "Événements",
+    "nav.services": "Services utiles",
+    "nav.map": "Carte",
+    "nav.transport": "Transport",
+    "nav.favorites": "Favoris",
+    "nav.itineraries": "Mes itinéraires",
+    "nav.login": "Connexion",
+    "nav.logout": "Déconnexion",
+  },
+  en: {
+    "nav.home": "Home",
+    "nav.kribi": "Discover Kribi",
+    "nav.destinations": "Destinations",
+    "nav.events": "Events",
+    "nav.services": "Useful services",
+    "nav.map": "Map",
+    "nav.transport": "Transport",
+    "nav.favorites": "Favorites",
+    "nav.itineraries": "My itineraries",
+    "nav.login": "Log in",
+    "nav.logout": "Log out",
+  },
+};
+
+function getLang() {
+  return localStorage.getItem("gt_lang") || "fr";
+}
+
+function setLang(lang) {
+  localStorage.setItem("gt_lang", lang);
+}
+
+// Traduit une cle i18n dans la langue courante (retourne la cle si absente)
+function t(key) {
+  const lang = getLang();
+  return (GT_TRANSLATIONS[lang] && GT_TRANSLATIONS[lang][key]) || GT_TRANSLATIONS.fr[key] || key;
+}
+
+// Applique les traductions a tous les elements [data-i18n] du document
+function applyTranslations() {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    el.setAttribute("placeholder", t(el.dataset.i18nPlaceholder));
+  });
+  document.documentElement.setAttribute("lang", getLang());
+}
+
 // "Se souvenir de moi" coche -> localStorage (persiste apres fermeture du navigateur)
 // decoche -> sessionStorage (efface a la fermeture de l'onglet/navigateur)
 function getToken() {
@@ -177,6 +236,29 @@ function hydratePhotos(root = document) {
   });
 }
 
+// Bouton de bascule langue FR / EN (persiste dans localStorage)
+document.addEventListener("DOMContentLoaded", () => {
+  applyTranslations();
+
+  const langBtn = document.getElementById("lang-toggle-btn");
+  const langLabel = document.getElementById("lang-toggle-label");
+  if (!langBtn) return;
+
+  function applyLangLabel(lang) {
+    // Affiche la langue VERS LAQUELLE on bascule si on clique
+    langLabel.textContent = lang === "fr" ? "EN" : "FR";
+  }
+
+  applyLangLabel(getLang());
+
+  langBtn.addEventListener("click", () => {
+    const next = getLang() === "fr" ? "en" : "fr";
+    setLang(next);
+    applyLangLabel(next);
+    applyTranslations();
+  });
+});
+
 // Bouton de bascule thème clair / sombre (persiste dans localStorage)
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("theme-toggle-btn");
@@ -218,7 +300,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!authLink) return;
 
   if (isLoggedIn()) {
-    authLink.textContent = "Déconnexion";
+    authLink.removeAttribute("data-i18n");
+    authLink.textContent = t("nav.logout");
     authLink.href = "#";
     authLink.addEventListener("click", (e) => {
       e.preventDefault();
@@ -226,7 +309,8 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/login-page";
     });
   } else {
-    authLink.textContent = "Connexion";
+    authLink.setAttribute("data-i18n", "nav.login");
+    authLink.textContent = t("nav.login");
     authLink.href = "/login-page";
   }
 });

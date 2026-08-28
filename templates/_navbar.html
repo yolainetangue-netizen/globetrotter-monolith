@@ -14,22 +14,27 @@
     </button>
     <div class="collapse navbar-collapse" id="gtNavbar">
       <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" href="/">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="/kribi-page">Découvrir Kribi</a></li>
-        <li class="nav-item"><a class="nav-link" href="/destinations-page">Destinations</a></li>
-        <li class="nav-item"><a class="nav-link" href="/events-page">Événements</a></li>
-        <li class="nav-item"><a class="nav-link" href="/services-page">Services utiles</a></li>
-        <li class="nav-item"><a class="nav-link" href="/map-page">Carte</a></li>
-        <li class="nav-item"><a class="nav-link" href="/transport-page">Transport</a></li>
-        <li class="nav-item"><a class="nav-link" href="/favorites-page">❤️ Favoris</a></li>
-        <li class="nav-item"><a class="nav-link" href="/itineraries-page">Mes itinéraires</a></li>
+        <li class="nav-item"><a class="nav-link" href="/" data-i18n="nav.home">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="/kribi-page" data-i18n="nav.kribi">Découvrir Kribi</a></li>
+        <li class="nav-item"><a class="nav-link" href="/destinations-page" data-i18n="nav.destinations">Destinations</a></li>
+        <li class="nav-item"><a class="nav-link" href="/events-page" data-i18n="nav.events">Événements</a></li>
+        <li class="nav-item"><a class="nav-link" href="/services-page" data-i18n="nav.services">Services utiles</a></li>
+        <li class="nav-item"><a class="nav-link" href="/map-page" data-i18n="nav.map">Carte</a></li>
+        <li class="nav-item"><a class="nav-link" href="/transport-page" data-i18n="nav.transport">Transport</a></li>
+        <li class="nav-item"><a class="nav-link" href="/favorites-page">❤️ <span data-i18n="nav.favorites">Favoris</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="/itineraries-page" data-i18n="nav.itineraries">Mes itinéraires</a></li>
+        <li class="nav-item ms-lg-2">
+          <button id="lang-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Change language / Changer de langue">
+            <span id="lang-toggle-label">EN</span>
+          </button>
+        </li>
         <li class="nav-item ms-lg-2">
           <button id="theme-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Changer de thème">
             <span id="theme-toggle-icon">☀️</span>
           </button>
         </li>
         <li class="nav-item ms-lg-2">
-          <a href="#" id="auth-link" class="btn btn-light btn-sm rounded-pill px-3 fw-semibold">Connexion</a>
+          <a href="#" id="auth-link" class="btn btn-light btn-sm rounded-pill px-3 fw-semibold" data-i18n="nav.login">Connexion</a>
         </li>
       </ul>
     </div>
