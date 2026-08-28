@@ -11,6 +11,18 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
+  <!-- Écran de bienvenue, affiché une fois par session au premier chargement -->
+  <div id="welcome-overlay" class="welcome-overlay">
+    <div class="welcome-overlay-content">
+      <div class="welcome-emoji mb-3">🌊</div>
+      <h1 id="welcome-title" class="welcome-title mb-3">Hello !</h1>
+      <p id="welcome-subtitle" class="welcome-subtitle mb-4">Bienvenue sur GlobeTrotter Kribi</p>
+      <button id="welcome-close-btn" class="btn btn-light btn-lg rounded-pill px-5 fw-semibold">
+        Découvrir Kribi →
+      </button>
+    </div>
+  </div>
+
   {% include '_navbar.html' %}
 
   <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
@@ -46,7 +58,7 @@
   <div class="container">
     <div class="row text-center g-0 shadow-sm rounded-3 overflow-hidden bg-white mt-n4 position-relative" style="z-index:3; max-width:900px; margin-inline:auto;">
       <div class="col-4 py-3 border-end">
-        <div class="stat-num">46</div>
+        <div class="stat-num">68</div>
         <div class="hint">Destinations &amp; adresses à Kribi</div>
       </div>
       <div class="col-4 py-3 border-end">
@@ -181,6 +193,49 @@
       }, 4500);
     }
     initHeroCarousel();
+
+    // ---------------------------------------------------------------------
+    // Écran de bienvenue au démarrage
+    // Affiché une seule fois par session (sessionStorage), avec un message
+    // d'accroche tiré au hasard parmi plusieurs propositions.
+    // ---------------------------------------------------------------------
+    const WELCOME_MESSAGES = [
+      { title: "Hello 👋", subtitle: "Bienvenue sur GlobeTrotter Kribi" },
+      { title: "Bienvenue !", subtitle: "Découvrez Kribi plus facilement" },
+      { title: "Karibu ! 🌴", subtitle: "Votre guide pour explorer Kribi comme un local" },
+      { title: "Prêt(e) à explorer ?", subtitle: "Plages, restaurants, marchés et sorties : tout Kribi dans votre poche" },
+      { title: "Bon retour parmi nous 😊", subtitle: "De nouvelles adresses vous attendent à Kribi" },
+    ];
+
+    function initWelcomeOverlay() {
+      const overlay = document.getElementById("welcome-overlay");
+      if (!overlay) return;
+
+      // Ne s'affiche qu'une fois par session (onglet/navigateur ouvert)
+      if (sessionStorage.getItem("gt_welcome_shown")) {
+        overlay.remove();
+        return;
+      }
+
+      const pick = WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)];
+      document.getElementById("welcome-title").textContent = pick.title;
+      document.getElementById("welcome-subtitle").textContent = pick.subtitle;
+
+      function closeWelcome() {
+        overlay.classList.add("welcome-overlay-hidden");
+        sessionStorage.setItem("gt_welcome_shown", "1");
+        setTimeout(() => overlay.remove(), 500);
+      }
+
+      document.getElementById("welcome-close-btn").addEventListener("click", closeWelcome);
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeWelcome();
+      });
+
+      // Fermeture automatique apres quelques secondes si l'utilisateur n'interagit pas
+      setTimeout(closeWelcome, 4000);
+    }
+    initWelcomeOverlay();
   </script>
 </body>
 </html>

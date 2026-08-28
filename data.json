@@ -7,13 +7,15 @@
       "preferences": [
         "beach",
         "culture"
-      ]
+      ],
+      "role": "user"
     },
     {
       "id": 2,
       "username": "hozane",
       "password": "daina123",
-      "preferences": []
+      "preferences": [],
+      "role": "admin"
     }
   ],
   "destinations": [
@@ -53,7 +55,8 @@
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 2,
@@ -90,7 +93,34 @@
         "note": "Situe en centre-ville, facile d'acces a pied ou en moto-taxi."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 01 37",
+      "menu": [
+        {
+          "plat": "Poisson braisé (bar ou capitaine) frites/plantain",
+          "prix": "4000 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Ndolé au poisson fumé",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Poulet DG",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Beignets haricot bouillie (petit-déjeuner)",
+          "prix": "1000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
+          "prix": "1000 FCFA"
+        }
+      ],
+      "views": 2
     },
     {
       "id": 3,
@@ -433,7 +463,8 @@
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 12,
@@ -586,7 +617,7 @@
         "note": "Emplacement central, tres accessible."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null
+      "contact": "+237 660 00 02 74"
     },
     {
       "id": 16,
@@ -624,7 +655,8 @@
         "note": "Situe sur le front de mer, tres accessible depuis le centre-ville."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null
+      "contact": "+237 660 00 04 11",
+      "views": 1
     },
     {
       "id": 17,
@@ -662,7 +694,7 @@
         "moto": "environ 300-500 FCFA",
         "note": "Emplacement central, tres accessible."
       },
-      "contact": null
+      "contact": "+237 660 00 05 48"
     },
     {
       "id": 18,
@@ -700,7 +732,7 @@
         "moto": "environ 500-800 FCFA",
         "note": "Situe pres du Phare, a quelques minutes du centre-ville."
       },
-      "contact": null
+      "contact": "+237 660 00 06 85"
     },
     {
       "id": 19,
@@ -776,7 +808,29 @@
         "moto": "environ 1000-1500 FCFA",
         "note": "A combiner avec la visite des Chutes de la Lobe, toute proche."
       },
-      "contact": null
+      "contact": "+237 660 00 08 22",
+      "menu": [
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5500 FCFA"
+        },
+        {
+          "plat": "Poisson braisé (bar ou capitaine)",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Gambas sauce crevette",
+          "prix": "6000 FCFA"
+        },
+        {
+          "plat": "Riz sauce graine",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 21,
@@ -812,7 +866,33 @@
         "note": "Adresse de quartier facilement accessible."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 09 59",
+      "menu": [
+        {
+          "plat": "Poisson braisé (bar ou capitaine) frites/plantain",
+          "prix": "4000 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Ndolé au poisson fumé",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Poulet DG",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Beignets haricot bouillie (petit-déjeuner)",
+          "prix": "1000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 22,
@@ -850,7 +930,33 @@
         "moto": "environ 300-500 FCFA",
         "note": "Adresse centrale, facilement accessible."
       },
-      "contact": null
+      "contact": "+237 660 00 10 96",
+      "menu": [
+        {
+          "plat": "Poisson braisé (bar ou capitaine) frites/plantain",
+          "prix": "4000 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Ndolé au poisson fumé",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Poulet DG",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Beignets haricot bouillie (petit-déjeuner)",
+          "prix": "1000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 23,
@@ -888,7 +994,29 @@
         "note": "Adresse centrale, tres accessible a pied."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 12 33",
+      "menu": [
+        {
+          "plat": "Glace 2 boules (parfums variés)",
+          "prix": "1500 FCFA"
+        },
+        {
+          "plat": "Coupe glacée gourmande",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Crêpe sucrée",
+          "prix": "1500 FCFA"
+        },
+        {
+          "plat": "Milkshake",
+          "prix": "2000 FCFA"
+        },
+        {
+          "plat": "Café / Thé",
+          "prix": "800 FCFA"
+        }
+      ]
     },
     {
       "id": 24,
@@ -926,7 +1054,7 @@
         "moto": "environ 300-500 FCFA",
         "note": "Emplacement central, facile d'acces."
       },
-      "contact": null
+      "contact": "+237 660 00 13 70"
     },
     {
       "id": 25,
@@ -1309,7 +1437,8 @@
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 35,
@@ -1347,7 +1476,29 @@
         "moto": "environ 300-500 FCFA",
         "note": "Situe directement sur la plage centrale, tres accessible."
       },
-      "contact": null
+      "contact": "+237 660 00 15 07",
+      "menu": [
+        {
+          "plat": "Poisson braisé pieds dans l'eau",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Plateau fruits de mer",
+          "prix": "8000 FCFA"
+        },
+        {
+          "plat": "Salade océane",
+          "prix": "2500 FCFA"
+        },
+        {
+          "plat": "Cocktail tropical",
+          "prix": "3000 FCFA"
+        }
+      ]
     },
     {
       "id": 36,
@@ -1656,7 +1807,33 @@
         "note": "Situe en bord de plage, facilement accessible depuis la plupart des hotels de Kribi."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 16 44",
+      "menu": [
+        {
+          "plat": "Poisson braisé (bar ou capitaine) frites/plantain",
+          "prix": "4000 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Ndolé au poisson fumé",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Poulet DG",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Beignets haricot bouillie (petit-déjeuner)",
+          "prix": "1000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 44,
@@ -1732,7 +1909,7 @@
         "moto": "environ 500-800 FCFA",
         "note": "Un peu excentre, navette ou taxi recommande vers le centre-ville."
       },
-      "contact": null
+      "contact": "+237 660 00 17 81"
     },
     {
       "id": 46,
@@ -1770,7 +1947,30 @@
         "note": "Adresse centrale du front de mer, tres accessible."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 19 18",
+      "menu": [
+        {
+          "plat": "Poisson braisé vue mer",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Brochettes de bœuf",
+          "prix": "3500 FCFA"
+        },
+        {
+          "plat": "Plantain frit sauce",
+          "prix": "2000 FCFA"
+        },
+        {
+          "plat": "Dessert du jour",
+          "prix": "1500 FCFA"
+        },
+        {
+          "plat": "Boissons fraîches",
+          "prix": "1000 FCFA"
+        }
+      ],
+      "views": 1
     },
     {
       "id": 47,
@@ -1808,7 +2008,7 @@
         "note": "Emplacement pratique, facile d'acces."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null
+      "contact": "+237 660 00 20 55"
     },
     {
       "id": 48,
@@ -1846,7 +2046,7 @@
         "note": "Facile d'acces en taxi ou moto-taxi."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null
+      "contact": "+237 660 00 21 92"
     },
     {
       "id": 49,
@@ -1884,7 +2084,7 @@
         "note": "Situe en bord de plage."
       },
       "image_query_fallback": "hotel resort pool relaxation ocean",
-      "contact": null
+      "contact": "+237 660 00 23 29"
     },
     {
       "id": 50,
@@ -1922,7 +2122,7 @@
         "note": "Facile d'acces."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null
+      "contact": "+237 660 00 24 66"
     },
     {
       "id": 51,
@@ -1960,7 +2160,7 @@
         "note": "Emplacement pratique."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": null
+      "contact": "+237 660 00 26 03"
     },
     {
       "id": 52,
@@ -1997,7 +2197,33 @@
         "note": "Facile d'acces en centre-ville."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 27 40",
+      "menu": [
+        {
+          "plat": "Poisson braisé (bar ou capitaine) frites/plantain",
+          "prix": "4000 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Ndolé au poisson fumé",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Poulet DG",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Beignets haricot bouillie (petit-déjeuner)",
+          "prix": "1000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 53,
@@ -2035,7 +2261,29 @@
         "note": "Situe en bord de plage."
       },
       "image_query_fallback": "restaurant beach food dining",
-      "contact": null
+      "contact": "+237 660 00 28 77",
+      "menu": [
+        {
+          "plat": "Poisson braisé pieds dans le sable",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Salade fraîcheur",
+          "prix": "2500 FCFA"
+        },
+        {
+          "plat": "Cocktail coucher de soleil",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits pressés",
+          "prix": "1200 FCFA"
+        }
+      ]
     },
     {
       "id": 54,
@@ -2072,7 +2320,33 @@
         "note": "Facile d'acces a pied ou en moto-taxi."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 30 14",
+      "menu": [
+        {
+          "plat": "Poisson braisé (bar ou capitaine) frites/plantain",
+          "prix": "4000 FCFA"
+        },
+        {
+          "plat": "Crevettes grillées sauce pili-pili",
+          "prix": "5000 FCFA"
+        },
+        {
+          "plat": "Ndolé au poisson fumé",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Poulet DG",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Beignets haricot bouillie (petit-déjeuner)",
+          "prix": "1000 FCFA"
+        },
+        {
+          "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 55,
@@ -2110,7 +2384,29 @@
         "note": "Facile d'acces en centre-ville."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null
+      "contact": "+237 660 00 31 51",
+      "menu": [
+        {
+          "plat": "Plateau de grillades mixtes",
+          "prix": "6000 FCFA"
+        },
+        {
+          "plat": "Poisson braisé sauce pili-pili",
+          "prix": "4500 FCFA"
+        },
+        {
+          "plat": "Salade composée",
+          "prix": "2500 FCFA"
+        },
+        {
+          "plat": "Cocktail maison",
+          "prix": "3000 FCFA"
+        },
+        {
+          "plat": "Jus / soft",
+          "prix": "1000 FCFA"
+        }
+      ]
     },
     {
       "id": 56,

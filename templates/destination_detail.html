@@ -216,6 +216,26 @@
           </div>
         </div>
 
+        ${d.menu && d.menu.length
+          ? `
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h2 class="h5 mb-3">🍽️ Menu</h2>
+            <ul class="list-group list-group-flush">
+              ${d.menu.map(item => `
+                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                  <span>${item.plat}</span>
+                  <span class="fw-semibold text-nowrap ms-3">${item.prix}</span>
+                </li>
+              `).join("")}
+            </ul>
+            <p class="hint mb-0 mt-3">Menu indicatif, susceptible d'évoluer selon disponibilité et saison.</p>
+          </div>
+        </div>
+          `
+          : ""
+        }
+
         <div class="card shadow-sm border-0 mb-4">
           <div class="card-body p-4">
             <h2 class="h5 mb-3">📞 Contact &amp; réservation</h2>

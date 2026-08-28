@@ -478,3 +478,44 @@ hr { border-color: var(--border-dark); opacity: 1; }
 .category-card-slide.active {
   opacity: 1;
 }
+
+/* Écran de bienvenue au démarrage (page d'accueil uniquement) */
+.welcome-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  padding: 1.5rem;
+}
+
+.welcome-overlay-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.welcome-overlay-content {
+  text-align: center;
+  color: #fff;
+  max-width: 420px;
+}
+
+.welcome-emoji {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.welcome-title {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.welcome-subtitle {
+  font-size: 1.05rem;
+  opacity: 0.92;
+}

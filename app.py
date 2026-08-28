@@ -70,6 +70,23 @@ def next_id(items):
     return max((item["id"] for item in items), default=0) + 1
 
 
+def admin_required(fn):
+    """Decorateur : verifie que l'utilisateur JWT courant a le role 'admin'.
+    A utiliser en plus (et apres) de @jwt_required()."""
+    from functools import wraps
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        user_id = int(get_jwt_identity())
+        data = load_data()
+        user = next((u for u in data["users"] if u["id"] == user_id), None)
+        if not user or user.get("role") != "admin":
+            return jsonify({"error": "admin access required"}), 403
+        return fn(*args, **kwargs)
+
+    return wrapper
+
+
 # ---------------------------------------------------------------------------
 # Frontend routes (serve the HTML pages)
 # ---------------------------------------------------------------------------
@@ -133,6 +150,21 @@ def services_page():
 @app.route("/favorites-page")
 def favorites_page():
     return render_template("favorites.html")
+
+
+@app.route("/profile-page")
+def profile_page():
+    # La verification de connexion se fait cote client (redirection si non
+    # connecte), la route API /me exige elle un token JWT valide.
+    return render_template("profile.html")
+
+
+@app.route("/admin-page")
+def admin_page():
+    # La verification du role admin se fait cote client (redirection si non
+    # admin) et surtout cote serveur sur la route API /admin/stats, qui est
+    # la seule a exposer des donnees sensibles.
+    return render_template("admin.html")
 
 
 @app.route("/destination/<int:destination_id>")
@@ -463,6 +495,31 @@ def auth_google():
     return jsonify({"access_token": token, "user": {"id": user["id"], "username": user["username"]}}), 200
 
 
+@app.route("/me", methods=["GET"])
+@jwt_required()
+def get_me():
+    """Retourne le profil complet de l'utilisateur actuellement connecte
+    (utilise par l'onglet Profil et pour savoir si le lien admin doit
+    s'afficher dans la navigation)."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    user = next((u for u in data["users"] if u["id"] == user_id), None)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+
+    # Ne jamais renvoyer le mot de passe, meme hashe/absent.
+    safe_user = {
+        "id": user["id"],
+        "username": user["username"],
+        "preferences": user.get("preferences", []),
+        "role": user.get("role", "user"),
+        "auth_provider": user.get("auth_provider", "password"),
+        "email": user.get("email"),
+    }
+    return jsonify(safe_user), 200
+
+
 # ---------------------------------------------------------------------------
 # API Layer - Destinations
 # ---------------------------------------------------------------------------
@@ -529,6 +586,12 @@ def get_destination_by_id(destination_id):
     destination = next((d for d in data["destinations"] if d["id"] == destination_id), None)
     if not destination:
         return jsonify({"error": "destination not found"}), 404
+
+    # Compteur de vues, utilise ensuite par le tableau de bord admin
+    # pour identifier les lieux les plus consultes.
+    destination["views"] = destination.get("views", 0) + 1
+    save_data(data)
+
     return jsonify(attach_local_image(destination)), 200
 
 
@@ -844,6 +907,82 @@ def download_itinerary(itinerary_id):
         as_attachment=True,
         download_name=filename,
     )
+
+
+# ---------------------------------------------------------------------------
+# API Layer - Administration
+# ---------------------------------------------------------------------------
+@app.route("/admin/stats", methods=["GET"])
+@jwt_required()
+@admin_required
+def admin_stats():
+    """Tableau de bord admin : vue d'ensemble de l'activite de l'application."""
+    data = load_data()
+
+    destinations = data.get("destinations", [])
+    reviews = data.get("reviews", [])
+    users = data.get("users", [])
+    itineraries = data.get("itineraries", [])
+    events = data.get("events", [])
+    services = data.get("services", [])
+
+    # Endroits les plus consultes (compteur de vues incremente a chaque
+    # ouverture de fiche detail, voir /destinations/<id>)
+    most_viewed = sorted(destinations, key=lambda d: d.get("views", 0), reverse=True)[:10]
+    most_viewed_list = [
+        {
+            "id": d["id"],
+            "name": d["name"],
+            "category": d.get("category"),
+            "views": d.get("views", 0),
+        }
+        for d in most_viewed
+        if d.get("views", 0) > 0
+    ]
+
+    # Note moyenne globale et repartition des notes
+    ratings = [r["rating"] for r in reviews]
+    average_rating = round(sum(ratings) / len(ratings), 2) if ratings else None
+
+    # Avis les plus recents, avec le nom de la destination concernee pour lisibilite
+    dest_by_id = {d["id"]: d["name"] for d in destinations}
+    recent_reviews = sorted(reviews, key=lambda r: r["date"], reverse=True)[:10]
+    recent_reviews_list = [
+        {
+            "id": r["id"],
+            "destination_id": r["destination_id"],
+            "destination_name": dest_by_id.get(r["destination_id"], "?"),
+            "author": r["author"],
+            "rating": r["rating"],
+            "comment": r["comment"],
+            "date": r["date"],
+        }
+        for r in recent_reviews
+    ]
+
+    # Repartition des destinations par categorie (utile pour voir la couverture du catalogue)
+    by_category = {}
+    for d in destinations:
+        cat = d.get("category", "Autres")
+        by_category[cat] = by_category.get(cat, 0) + 1
+
+    stats = {
+        "totals": {
+            "users": len(users),
+            "destinations": len(destinations),
+            "reviews": len(reviews),
+            "itineraries": len(itineraries),
+            "events": len(events),
+            "services": len(services),
+            "total_views": sum(d.get("views", 0) for d in destinations),
+        },
+        "average_rating": average_rating,
+        "most_viewed_destinations": most_viewed_list,
+        "recent_reviews": recent_reviews_list,
+        "destinations_by_category": by_category,
+    }
+
+    return jsonify(stats), 200
 
 
 # ---------------------------------------------------------------------------

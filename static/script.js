@@ -16,6 +16,7 @@ const GT_TRANSLATIONS = {
     "nav.transport": "Transport",
     "nav.favorites": "Favoris",
     "nav.itineraries": "Mes itinéraires",
+    "nav.profile": "👤 Profil",
     "nav.login": "Connexion",
     "nav.logout": "Déconnexion",
   },
@@ -29,6 +30,7 @@ const GT_TRANSLATIONS = {
     "nav.transport": "Transport",
     "nav.favorites": "Favorites",
     "nav.itineraries": "My itineraries",
+    "nav.profile": "👤 Profile",
     "nav.login": "Log in",
     "nav.logout": "Log out",
   },
@@ -308,6 +310,16 @@ document.addEventListener("DOMContentLoaded", () => {
       clearToken();
       window.location.href = "/login-page";
     });
+
+    // Affiche le lien "Tableau de bord" uniquement pour l'administrateur.
+    const adminNavItem = document.getElementById("admin-nav-item");
+    if (adminNavItem) {
+      apiRequest("/me", { auth: true }).then(({ ok, data }) => {
+        if (ok && data.role === "admin") {
+          adminNavItem.style.display = "";
+        }
+      });
+    }
   } else {
     authLink.setAttribute("data-i18n", "nav.login");
     authLink.textContent = t("nav.login");
