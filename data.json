@@ -119,8 +119,7 @@
           "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
           "prix": "1000 FCFA"
         }
-      ],
-      "views": 2
+      ]
     },
     {
       "id": 3,
@@ -157,7 +156,8 @@
         "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 4,
@@ -464,7 +464,7 @@
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
       "contact": null,
-      "views": 2
+      "views": 1
     },
     {
       "id": 12,
@@ -579,7 +579,8 @@
         "moto": "environ 1000-1500 FCFA",
         "note": "Se combine facilement avec la visite des Chutes de la Lobe toutes proches."
       },
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 15,
@@ -655,8 +656,7 @@
         "note": "Situe sur le front de mer, tres accessible depuis le centre-ville."
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": "+237 660 00 04 11",
-      "views": 1
+      "contact": "+237 660 00 04 11"
     },
     {
       "id": 17,
@@ -956,7 +956,8 @@
           "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
           "prix": "1000 FCFA"
         }
-      ]
+      ],
+      "views": 1
     },
     {
       "id": 23,
@@ -1437,8 +1438,7 @@
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "views": 2
+      "contact": null
     },
     {
       "id": 35,
@@ -1969,8 +1969,7 @@
           "plat": "Boissons fraîches",
           "prix": "1000 FCFA"
         }
-      ],
-      "views": 1
+      ]
     },
     {
       "id": 47,
@@ -2898,7 +2897,17 @@
       "contact": null
     }
   ],
-  "itineraries": [],
+  "itineraries": [
+    {
+      "id": 1,
+      "user_id": 2,
+      "title": "visite",
+      "destination_id": 14,
+      "start_date": "2026-08-31",
+      "end_date": "2026-08-31",
+      "notes": ""
+    }
+  ],
   "reviews": [
     {
       "id": 1,
@@ -3142,5 +3151,6 @@
       "phone": null,
       "hours": "6h - 22h environ"
     }
-  ]
+  ],
+  "reservations": []
 }

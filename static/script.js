@@ -239,25 +239,33 @@ function hydratePhotos(root = document) {
 }
 
 // Bouton de bascule langue FR / EN (persiste dans localStorage)
+// Il peut y avoir plusieurs boutons sur la page (version mobile hors-tiroir
+// + version desktop dans le menu) : on les synchronise tous ensemble.
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations();
 
-  const langBtn = document.getElementById("lang-toggle-btn");
-  const langLabel = document.getElementById("lang-toggle-label");
-  if (!langBtn) return;
+  const langBtns = [
+    { btn: document.getElementById("lang-toggle-btn"), label: document.getElementById("lang-toggle-label") },
+    { btn: document.getElementById("lang-toggle-btn-desktop"), label: document.getElementById("lang-toggle-label-desktop") },
+  ].filter((pair) => pair.btn && pair.label);
+
+  if (!langBtns.length) return;
 
   function applyLangLabel(lang) {
     // Affiche la langue VERS LAQUELLE on bascule si on clique
-    langLabel.textContent = lang === "fr" ? "EN" : "FR";
+    const nextLabel = lang === "fr" ? "EN" : "FR";
+    langBtns.forEach(({ label }) => { label.textContent = nextLabel; });
   }
 
   applyLangLabel(getLang());
 
-  langBtn.addEventListener("click", () => {
-    const next = getLang() === "fr" ? "en" : "fr";
-    setLang(next);
-    applyLangLabel(next);
-    applyTranslations();
+  langBtns.forEach(({ btn }) => {
+    btn.addEventListener("click", () => {
+      const next = getLang() === "fr" ? "en" : "fr";
+      setLang(next);
+      applyLangLabel(next);
+      applyTranslations();
+    });
   });
 });
 

@@ -9,36 +9,52 @@
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm gt-navbar">
   <div class="container">
     <a class="navbar-brand fw-bold" href="/">🌍 GlobeTrotter-Kribi</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#gtNavbar" aria-controls="gtNavbar" aria-expanded="false" aria-label="Ouvrir la navigation">
+
+    <!-- Bouton langue : toujours visible, a l'ecart du reste du menu -->
+    <button id="lang-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3 ms-auto me-2 d-lg-none" title="Change language / Changer de langue">
+      <span id="lang-toggle-label">EN</span>
+    </button>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#gtNavbar" aria-controls="gtNavbar" aria-expanded="false" aria-label="Ouvrir la navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="gtNavbar">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
-        <li class="nav-item"><a class="nav-link" href="/" data-i18n="nav.home">Accueil</a></li>
-        <li class="nav-item"><a class="nav-link" href="/kribi-page" data-i18n="nav.kribi">Découvrir Kribi</a></li>
-        <li class="nav-item"><a class="nav-link" href="/destinations-page" data-i18n="nav.destinations">Destinations</a></li>
-        <li class="nav-item"><a class="nav-link" href="/events-page" data-i18n="nav.events">Événements</a></li>
-        <li class="nav-item"><a class="nav-link" href="/services-page" data-i18n="nav.services">Services utiles</a></li>
-        <li class="nav-item"><a class="nav-link" href="/map-page" data-i18n="nav.map">Carte</a></li>
-        <li class="nav-item"><a class="nav-link" href="/transport-page" data-i18n="nav.transport">Transport</a></li>
-        <li class="nav-item"><a class="nav-link" href="/favorites-page">❤️ <span data-i18n="nav.favorites">Favoris</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="/itineraries-page" data-i18n="nav.itineraries">Mes itinéraires</a></li>
-        <li class="nav-item"><a class="nav-link" href="/profile-page" data-i18n="nav.profile">👤 Profil</a></li>
-        <li class="nav-item" id="admin-nav-item" style="display:none;"><a class="nav-link" href="/admin-page">📊 Tableau de bord</a></li>
-        <li class="nav-item ms-lg-2">
-          <button id="lang-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Change language / Changer de langue">
-            <span id="lang-toggle-label">EN</span>
-          </button>
-        </li>
-        <li class="nav-item ms-lg-2">
-          <button id="theme-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Changer de thème">
-            <span id="theme-toggle-icon">☀️</span>
-          </button>
-        </li>
-        <li class="nav-item ms-lg-2">
-          <a href="#" id="auth-link" class="btn btn-light btn-sm rounded-pill px-3 fw-semibold" data-i18n="nav.login">Connexion</a>
-        </li>
-      </ul>
+
+    <!-- Sur desktop (lg+) : menu horizontal classique.
+         Sur mobile : tiroir qui arrive du cote (offcanvas-end). -->
+    <div class="offcanvas offcanvas-end gt-offcanvas" tabindex="-1" id="gtNavbar" aria-labelledby="gtNavbarLabel">
+      <div class="offcanvas-header d-lg-none">
+        <h5 class="offcanvas-title" id="gtNavbarLabel">Menu</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="/" data-i18n="nav.home">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="/kribi-page" data-i18n="nav.kribi">Découvrir Kribi</a></li>
+          <li class="nav-item"><a class="nav-link" href="/destinations-page" data-i18n="nav.destinations">Destinations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/events-page" data-i18n="nav.events">Événements</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services-page" data-i18n="nav.services">Services utiles</a></li>
+          <li class="nav-item"><a class="nav-link" href="/map-page" data-i18n="nav.map">Carte</a></li>
+          <li class="nav-item"><a class="nav-link" href="/transport-page" data-i18n="nav.transport">Transport</a></li>
+          <li class="nav-item"><a class="nav-link" href="/favorites-page">❤️ <span data-i18n="nav.favorites">Favoris</span></a></li>
+          <li class="nav-item"><a class="nav-link" href="/itineraries-page" data-i18n="nav.itineraries">Mes itinéraires</a></li>
+          <li class="nav-item"><a class="nav-link" href="/profile-page" data-i18n="nav.profile">👤 Profil</a></li>
+          <li class="nav-item" id="admin-nav-item" style="display:none;"><a class="nav-link" href="/admin-page">📊 Tableau de bord</a></li>
+          <!-- Sur desktop, le bouton langue reprend sa place dans le menu -->
+          <li class="nav-item ms-lg-2 d-none d-lg-block">
+            <button id="lang-toggle-btn-desktop" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Change language / Changer de langue">
+              <span id="lang-toggle-label-desktop">EN</span>
+            </button>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <button id="theme-toggle-btn" type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Changer de thème">
+              <span id="theme-toggle-icon">☀️</span>
+            </button>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <a href="#" id="auth-link" class="btn btn-light btn-sm rounded-pill px-3 fw-semibold" data-i18n="nav.login">Connexion</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

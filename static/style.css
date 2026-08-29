@@ -149,6 +149,57 @@ hr { border-color: var(--border-dark); opacity: 1; }
   font-weight: 700;
 }
 
+/* Tiroir de navigation mobile (offcanvas), arrive du cote droit.
+   Sur desktop (lg+), redevient un menu horizontal classique inline. */
+.gt-offcanvas {
+  background: linear-gradient(160deg, var(--navy-deep) 0%, var(--turquoise-dark) 100%);
+  color: #fff;
+  width: min(78vw, 320px);
+}
+
+.gt-offcanvas .offcanvas-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.gt-offcanvas .navbar-nav {
+  flex-direction: column;
+  align-items: stretch !important;
+  gap: 0.35rem;
+}
+
+.gt-offcanvas .nav-item {
+  width: 100%;
+}
+
+.gt-offcanvas .nav-link {
+  padding: 0.6rem 0.75rem !important;
+}
+
+@media (min-width: 992px) {
+  .gt-offcanvas {
+    position: static !important;
+    width: auto !important;
+    background: transparent !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  .gt-offcanvas .offcanvas-body {
+    display: block;
+    padding: 0;
+  }
+
+  .gt-offcanvas .navbar-nav {
+    flex-direction: row;
+    gap: 0.4rem;
+  }
+
+  .gt-offcanvas .nav-item {
+    width: auto;
+  }
+}
+
 /* ---------------------------------------------------------------------
    Boutons de marque (variantes utilisees pour l'accueil / CTA)
    --------------------------------------------------------------------- */
@@ -518,4 +569,56 @@ hr { border-color: var(--border-dark); opacity: 1; }
 .welcome-subtitle {
   font-size: 1.05rem;
   opacity: 0.92;
+}
+
+/* Champs de saisie redessinés pour la page de connexion/inscription */
+.gt-input-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--anthracite-light, #fff);
+  border: 1.5px solid rgba(150, 150, 150, 0.25);
+  border-radius: 999px;
+  padding: 0 0.5rem 0 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gt-input-wrap:focus-within {
+  border-color: var(--turquoise);
+  box-shadow: 0 0 0 3px rgba(20, 184, 196, 0.15);
+}
+
+.gt-input-icon {
+  font-size: 0.95rem;
+  opacity: 0.75;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+}
+
+.gt-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.65rem 0.25rem;
+  font-size: 0.95rem;
+  color: inherit;
+  min-width: 0;
+}
+
+.gt-input::placeholder {
+  color: var(--text-muted-dark, #9a9fa6);
+  opacity: 0.8;
+}
+
+.gt-input-action {
+  border: none;
+  background: transparent;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.gt-input-action:hover {
+  opacity: 1;
 }

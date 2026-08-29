@@ -27,6 +27,7 @@
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   <script>
     const DESTINATION_ID = {{ destination_id }};
+    const RESERVABLE_CATEGORIES = ["Hôtels", "Restaurants"];
     const container = document.getElementById("detail-content");
 
     function updateFavButton() {
@@ -242,10 +243,48 @@
             ${d.contact
               ? `
                 <p class="mb-3">${d.contact}</p>
-                <a href="tel:${d.contact.replace(/[^\d+]/g, "")}" class="btn btn-gt-orange rounded-pill btn-sm">Appeler pour réserver</a>
+                <div class="d-flex flex-wrap gap-2">
+                  <a href="tel:${d.contact.replace(/[^\d+]/g, "")}" class="btn btn-gt-orange rounded-pill btn-sm">Appeler pour réserver</a>
+                  ${RESERVABLE_CATEGORIES.includes(d.category) ? `<button type="button" id="open-reservation-btn" class="btn btn-outline-secondary rounded-pill btn-sm">📅 Réserver en ligne</button>` : ""}
+                </div>
               `
-              : `<p class="hint mb-0">Aucun contact renseigné pour ce lieu pour le moment. Rendez-vous sur place ou consultez la section transport pour vous y rendre.</p>`
+              : RESERVABLE_CATEGORIES.includes(d.category)
+                ? `
+                  <p class="hint mb-3">Aucun contact renseigné pour ce lieu pour le moment.</p>
+                  <button type="button" id="open-reservation-btn" class="btn btn-outline-secondary rounded-pill btn-sm">📅 Réserver en ligne</button>
+                `
+                : `<p class="hint mb-0">Aucun contact renseigné pour ce lieu pour le moment. Rendez-vous sur place ou consultez la section transport pour vous y rendre.</p>`
             }
+
+            ${RESERVABLE_CATEGORIES.includes(d.category) ? `
+              <form id="reservation-form" class="mt-4 pt-4 border-top" style="display:none;">
+                <h3 class="h6 mb-3">Réserver une table / une chambre</h3>
+                <div class="row g-2">
+                  <div class="col-12 col-sm-6">
+                    <label class="form-label small fw-semibold">Nom</label>
+                    <input type="text" id="res-guest-name" class="form-control form-control-sm" placeholder="Votre nom" required />
+                  </div>
+                  <div class="col-6 col-sm-3">
+                    <label class="form-label small fw-semibold">Date</label>
+                    <input type="date" id="res-date" class="form-control form-control-sm" required />
+                  </div>
+                  <div class="col-6 col-sm-3">
+                    <label class="form-label small fw-semibold">Heure</label>
+                    <input type="time" id="res-time" class="form-control form-control-sm" required />
+                  </div>
+                  <div class="col-6 col-sm-4">
+                    <label class="form-label small fw-semibold">Nombre de personnes</label>
+                    <input type="number" id="res-party-size" min="1" value="2" class="form-control form-control-sm" required />
+                  </div>
+                  <div class="col-12 col-sm-8">
+                    <label class="form-label small fw-semibold">Note (facultatif)</label>
+                    <input type="text" id="res-note" class="form-control form-control-sm" placeholder="Allergie, occasion particulière..." />
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-gt-orange rounded-pill btn-sm mt-3">Confirmer la réservation</button>
+                <div id="reservation-msg" class="mt-2"></div>
+              </form>
+            ` : ""}
           </div>
         </div>
 
@@ -329,9 +368,53 @@
       const { ok, data } = await apiRequest(`/destinations/${DESTINATION_ID}`);
       if (ok) {
         renderDetail(data);
+        bindReservationForm();
       } else {
         container.innerHTML = "<p class='hint'>Ce lieu est introuvable.</p>";
       }
+    }
+
+    function bindReservationForm() {
+      const openBtn = document.getElementById("open-reservation-btn");
+      const form = document.getElementById("reservation-form");
+      if (!openBtn || !form) return;
+
+      openBtn.addEventListener("click", () => {
+        const isHidden = form.style.display === "none";
+        form.style.display = isHidden ? "block" : "none";
+        if (isHidden) form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const msgEl = document.getElementById("reservation-msg");
+        const submitBtn = form.querySelector("button[type='submit']");
+
+        const payload = {
+          destination_id: DESTINATION_ID,
+          guest_name: document.getElementById("res-guest-name").value.trim(),
+          date: document.getElementById("res-date").value,
+          time: document.getElementById("res-time").value,
+          party_size: document.getElementById("res-party-size").value,
+          note: document.getElementById("res-note").value.trim(),
+        };
+
+        submitBtn.disabled = true;
+        const { ok, data } = await apiRequest("/reservations", {
+          method: "POST",
+          body: payload,
+          auth: isLoggedIn(),
+        });
+        submitBtn.disabled = false;
+
+        if (ok) {
+          msgEl.innerHTML = `<div class="alert alert-success py-2 small mb-0">Réservation envoyée pour le ${payload.date} à ${payload.time} (${payload.party_size} pers.). L'établissement vous contactera pour confirmer.</div>`;
+          form.reset();
+          document.getElementById("res-party-size").value = 2;
+        } else {
+          msgEl.innerHTML = `<div class="alert alert-danger py-2 small mb-0">${data.error || "Impossible d'envoyer la réservation, réessayez."}</div>`;
+        }
+      });
     }
 
     function starsHTML(rating) {

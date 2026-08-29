@@ -52,6 +52,7 @@
           ${statCard("📍", "Destinations", t.destinations)}
           ${statCard("👁️", "Vues totales", t.total_views)}
           ${statCard("⭐", "Avis", t.reviews)}
+          ${statCard("📅", "Réservations", t.reservations)}
           ${statCard("🗓️", "Événements", t.events)}
           ${statCard("🧭", "Itinéraires", t.itineraries)}
         </div>
@@ -99,6 +100,35 @@
         </li>
       `).join("");
 
+      const reservationsHTML = stats.recent_reservations.length
+        ? `
+          <div class="table-responsive">
+            <table class="table table-sm align-middle mb-0">
+              <thead>
+                <tr class="small text-muted">
+                  <th>Lieu</th>
+                  <th>Client</th>
+                  <th>Date</th>
+                  <th>Heure</th>
+                  <th>Pers.</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${stats.recent_reservations.map((r) => `
+                  <tr>
+                    <td><a href="/destination/${r.destination_id}">${r.destination_name}</a></td>
+                    <td>${r.guest_name}</td>
+                    <td>${r.date}</td>
+                    <td>${r.time}</td>
+                    <td>${r.party_size}</td>
+                  </tr>
+                `).join("")}
+              </tbody>
+            </table>
+          </div>
+        `
+        : `<p class="hint mb-0">Aucune réservation pour le moment.</p>`;
+
       contentEl.innerHTML = `
         ${totalsHTML}
         ${avgRatingHTML}
@@ -117,6 +147,14 @@
               <div class="card-body p-4">
                 <h2 class="h5 mb-3">💬 Avis récents</h2>
                 ${recentReviewsHTML}
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h2 class="h5 mb-3">📅 Réservations récentes (hôtels &amp; restaurants)</h2>
+                ${reservationsHTML}
               </div>
             </div>
           </div>

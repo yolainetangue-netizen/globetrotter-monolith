@@ -17,6 +17,7 @@ from flask_jwt_extended import (
     create_access_token,
     get_jwt_identity,
     jwt_required,
+    verify_jwt_in_request,
 )
 from google.auth.transport import requests as google_requests
 from google.oauth2 import id_token as google_id_token
@@ -987,8 +988,85 @@ def download_itinerary(itinerary_id):
 
 
 # ---------------------------------------------------------------------------
-# API Layer - Administration
+# API Layer - Reservations (hotels et restaurants uniquement)
 # ---------------------------------------------------------------------------
+RESERVABLE_CATEGORIES = {"Hôtels", "Restaurants"}
+
+
+@app.route("/reservations", methods=["POST"])
+def create_reservation():
+    """Cree une reservation pour un hotel ou restaurant. Ne necessite pas
+    d'etre connecte (formulaire accessible a tout visiteur), mais si un
+    jeton JWT valide est fourni, la reservation est rattachee au compte."""
+    body = request.get_json(silent=True) or {}
+
+    destination_id = body.get("destination_id")
+    guest_name = body.get("guest_name", "").strip()
+    date = body.get("date", "").strip()
+    time = body.get("time", "").strip()
+    party_size = body.get("party_size")
+    note = body.get("note", "").strip()
+
+    if not destination_id or not guest_name or not date or not time or not party_size:
+        return jsonify({"error": "destination_id, guest_name, date, time et party_size sont requis"}), 400
+
+    try:
+        party_size = int(party_size)
+        if party_size < 1:
+            raise ValueError
+    except (TypeError, ValueError):
+        return jsonify({"error": "party_size doit etre un nombre entier positif"}), 400
+
+    data = load_data()
+    destination = next((d for d in data["destinations"] if d["id"] == destination_id), None)
+
+    if not destination:
+        return jsonify({"error": "destination not found"}), 404
+    if destination.get("category") not in RESERVABLE_CATEGORIES:
+        return jsonify({"error": "les reservations ne sont disponibles que pour les hotels et restaurants"}), 400
+
+    # Rattache la reservation au compte connecte si un jeton valide est present,
+    # sans exiger de connexion (visiteur de passage accepte aussi).
+    user_id = None
+    try:
+        verify_jwt_in_request(optional=True)
+        identity = get_jwt_identity()
+        if identity:
+            user_id = int(identity)
+    except Exception:
+        user_id = None
+
+    reservation = {
+        "id": next_id(data["reservations"]),
+        "destination_id": destination_id,
+        "destination_name": destination["name"],
+        "user_id": user_id,
+        "guest_name": guest_name,
+        "date": date,
+        "time": time,
+        "party_size": party_size,
+        "note": note,
+        "status": "pending",
+        "created_at": datetime.utcnow().isoformat() + "Z",
+    }
+    data["reservations"].append(reservation)
+    save_data(data)
+
+    return jsonify(reservation), 201
+
+
+@app.route("/reservations", methods=["GET"])
+@jwt_required()
+def get_my_reservations():
+    """Retourne les reservations de l'utilisateur connecte."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+    my_reservations = [r for r in data["reservations"] if r.get("user_id") == user_id]
+    my_reservations.sort(key=lambda r: r["created_at"], reverse=True)
+    return jsonify(my_reservations), 200
+
+
+
 @app.route("/admin/stats", methods=["GET"])
 @jwt_required()
 @admin_required
@@ -1043,6 +1121,10 @@ def admin_stats():
         cat = d.get("category", "Autres")
         by_category[cat] = by_category.get(cat, 0) + 1
 
+    # Reservations les plus recentes (hotels/restaurants), toutes confondues
+    reservations = data.get("reservations", [])
+    recent_reservations = sorted(reservations, key=lambda r: r["created_at"], reverse=True)[:20]
+
     stats = {
         "totals": {
             "users": len(users),
@@ -1052,11 +1134,13 @@ def admin_stats():
             "events": len(events),
             "services": len(services),
             "total_views": sum(d.get("views", 0) for d in destinations),
+            "reservations": len(reservations),
         },
         "average_rating": average_rating,
         "most_viewed_destinations": most_viewed_list,
         "recent_reviews": recent_reviews_list,
         "destinations_by_category": by_category,
+        "recent_reservations": recent_reservations,
     }
 
     return jsonify(stats), 200
