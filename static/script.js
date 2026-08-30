@@ -171,6 +171,8 @@ const CATEGORY_META = {
   "Marchés et artisanat": { icon: "🛍️", cls: "cat-market", badge: "badge-cat-market" },
   "Bars et vie nocturne": { icon: "🍹", cls: "cat-nightlife", badge: "badge-cat-nightlife" },
   "Excursions": { icon: "🧭", cls: "cat-excursion", badge: "badge-cat-excursion" },
+  "Shopping": { icon: "🛒", cls: "cat-shopping", badge: "badge-cat-shopping" },
+  "Salons de beauté": { icon: "💇", cls: "cat-beauty", badge: "badge-cat-beauty" },
   "Autres": { icon: "📍", cls: "cat-other", badge: "badge-cat-other" },
 };
 

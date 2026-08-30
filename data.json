@@ -1434,7 +1434,8 @@
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 35,
@@ -2654,7 +2655,8 @@
         "best_time": "Matin pour les produits les plus frais",
         "access": "Quartier Mpangou, Kribi"
       },
-      "budget": "Acces gratuit. Achats a partir de quelques centaines de FCFA.",
+      "budget": "Acces gratuit. Achats a partir de quelques ,
+      "budget_sa,
       "budget_saison_seche": "Acces gratuit. Achats a partir de quelques centaines de FCFA. (haute saison, nov-mars/juil-aout : forte affluence touristique, tarifs au plus haut, reservation conseillee).",
       "budget_saison_pluies": "Acces gratuit. Achats a partir de quelques centaines de FCFA. (saison des pluies, avr-juin/sept-oct : frequentation plus calme, tarifs souvent negociables).",
       "transport": {
@@ -2826,7 +2828,7 @@
         "adventure"
       ],
       "image": null,
-      "image_query": "Live Music DJ Kribi Cameroun Kribi Cameroon",
+  "Live Music DJ Krib"Live Music DJ Kribi Cameroun Kribi Cameroon",
       "description": "Lieu de vie nocturne a Kribi propose de la musique live et des sets DJ.",
       "city": "Kribi",
       "lat": 2.9514,
@@ -2890,6 +2892,348 @@
         "note": "Situe en bord de plage."
       },
       "image_query_fallback": "beach bar sunset ocean",
+      "contact": null
+    },
+    {
+      "id": 69,
+      "name": "Arno Market Kribi",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Shopping",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Arno Market Kribi Kribi Cameroon",
+      "description": "Supermarche a Kribi, produits alimentaires, beaute et maison.",
+      "city": "Kribi",
+      "lat": 2.9484,
+      "lng": 9.9084,
+      "long_description": "Arno Market est un supermarche pratique a Kribi, proposant des produits alimentaires, des articles de beaute, d'hygiene et de maison. Parking securise sur place.",
+      "activities": [
+        "Faire ses courses du quotidien",
+        "Trouver des produits alimentaires et d'hygiene",
+        "Acheter des souvenirs pratiques"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Face station MRS, Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "supermarket grocery store shopping",
+      "contact": "+237 696 79 32 03"
+    },
+    {
+      "id": 70,
+      "name": "Boutique Meganell",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Shopping",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Boutique Meganell Kribi Cameroon",
+      "description": "Boutique de mode au coeur de Kribi, vetements et artisanat local.",
+      "city": "Kribi",
+      "lat": 2.9454,
+      "lng": 9.9104,
+      "long_description": "Boutique Meganell propose des vetements et articles de mode au coeur de Kribi, melant style contemporain et artisanat local.",
+      "activities": [
+        "Decouvrir la mode locale",
+        "Trouver une tenue ou un accessoire",
+        "Faire du shopping en centre-ville"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Centre-ville de Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "clothing boutique fashion store",
+      "contact": null
+    },
+    {
+      "id": 71,
+      "name": "Ets Amis du Monde",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Shopping",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Ets Amis du Monde Kribi Cameroon",
+      "description": "Supermarche a Kribi, produits locaux et internationaux.",
+      "city": "Kribi",
+      "lat": 2.9494,
+      "lng": 9.9054,
+      "long_description": "Ets Amis du Monde est un supermarche de Kribi propose un choix de produits locaux et internationaux pour les courses du quotidien.",
+      "activities": [
+        "Faire ses courses",
+        "Trouver des produits varies",
+        "Acheter des produits internationaux"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "supermarket grocery store shopping",
+      "contact": null
+    },
+    {
+      "id": 72,
+      "name": "SPAR Kribi",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Shopping",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": null,
+      "image_query": "SPAR Kribi Kribi Cameroon",
+      "description": "Supermarche de la chaine SPAR a Kribi, produits frais et courants.",
+      "city": "Kribi",
+      "lat": 2.9434,
+      "lng": 9.9064,
+      "long_description": "SPAR Kribi propose des produits frais et courants dans un supermarche pratique pour les habitants comme pour les visiteurs de passage.",
+      "activities": [
+        "Faire ses courses",
+        "Trouver des produits frais",
+        "Acheter des en-cas pour une excursion"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "supermarket grocery store shopping",
+      "contact": null
+    },
+    {
+      "id": 73,
+      "name": "Chelle Afrique",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Shopping",
+      "tags": [
+        "shopping",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Chelle Afrique Kribi Cameroon",
+      "description": "Boutique de sacs a main et accessoires a Kribi, artisanat camerounais.",
+      "city": "Kribi",
+      "lat": 2.9474,
+      "lng": 9.9114,
+      "long_description": "Chelle Afrique est une boutique specialisee dans les sacs a main et accessoires, situee face a Black & White Talla. Un bon endroit pour un souvenir original. Ouvert 9h-18h en semaine, jusqu'a 14h le samedi, ferme le dimanche (horaires indicatifs).",
+      "activities": [
+        "Trouver un sac ou accessoire original",
+        "Decouvrir l'artisanat camerounais",
+        "Faire un cadeau souvenir"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Face Black & White Talla, Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "handbag accessories boutique shopping",
+      "contact": null
+    },
+    {
+      "id": 74,
+      "name": "Kribi Hair & Beauty Center",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Salons de beauté",
+      "tags": [
+        "relaxation",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Kribi Hair & Beauty Center Kribi Cameroon",
+      "description": "Salon de coiffure et centre de bien-etre aux Gites de Kribi.",
+      "city": "Kribi",
+      "lat": 2.9514,
+      "lng": 9.9044,
+      "long_description": "Situe aux Gites de Kribi, ce centre de bien-etre et salon de coiffure propose massages, soins de beaute, manucure et pedicure. Prise de rendez-vous conseillee.",
+      "activities": [
+        "Se faire coiffer ou coiffer",
+        "Profiter d'un massage",
+        "Soin manucure/pedicure"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Aux Gites de Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "hair salon beauty spa",
+      "contact": "Jacky : +237 697 26 43 82 / Adrien : +237 655 89 64 13"
+    },
+    {
+      "id": 75,
+      "name": "Kribi Wellness and Beauty Center",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Salons de beauté",
+      "tags": [
+        "relaxation",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Kribi Wellness and Beauty Center Kribi Cameroon",
+      "description": "Institut de bien-etre face au complexe Les Gites de Kribi.",
+      "city": "Kribi",
+      "lat": 2.9504,
+      "lng": 9.9034,
+      "long_description": "Le Kribi Wellness and Beauty Center propose massages aux pierres chaudes, soins de visage et prestations de salon de beaute, face au complexe Les Gites de Kribi.",
+      "activities": [
+        "Profiter d'un massage aux pierres chaudes",
+        "Soin de visage",
+        "Moment de detente et bien-etre"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Face au complexe Les Gites de Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "wellness spa beauty center",
+      "contact": null
+    },
+    {
+      "id": 76,
+      "name": "Kribi Hair Beauty Center (Route de la Lobé)",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Salons de beauté",
+      "tags": [
+        "relaxation",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Kribi Hair Beauty Center (Route de la Lobé) Kribi Cameroon",
+      "description": "Centre de beaute complet route des Chutes de la Lobe : spa, coiffure, onglerie.",
+      "city": "Kribi",
+      "lat": 2.9424,
+      "lng": 9.9124,
+      "long_description": "Situe sur la route des Chutes de la Lobe, ce centre de beaute complet regroupe spa, salon de coiffure et onglerie. Soins du visage, epilation, manucure, pedicure, massages aux pierres chaudes et coiffure pour femmes, hommes et enfants. Tarifs adaptes a differents budgets.",
+      "activities": [
+        "Coiffure femme, homme ou enfant",
+        "Soins esthetiques et manucure/pedicure",
+        "Massage relaxant ou aux pierres chaudes"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Route des Chutes de la Lobé, Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "hair salon beauty spa",
+      "contact": null
+    },
+    {
+      "id": 77,
+      "name": "Institut Coiffure & Esthétique Kribi",
+      "country": "Kribi, Region du Sud, Cameroun",
+      "category": "Salons de beauté",
+      "tags": [
+        "relaxation",
+        "city"
+      ],
+      "image": null,
+      "image_query": "Institut Coiffure & Esthétique Kribi Kribi Cameroon",
+      "description": "Institut de coiffure femme et homme avec hammam/sauna a Kribi.",
+      "city": "Kribi",
+      "lat": 2.9444,
+      "lng": 9.9024,
+      "long_description": "Cet institut propose coiffure femme et homme, nattes et tresses diverses, et esthetique avec hammam/sauna. Une adresse complete pour se faire chouchouter avant de repartir.",
+      "activities": [
+        "Coiffure femme ou homme",
+        "Nattes et tresses",
+        "Hammam et sauna"
+      ],
+      "practical_info": {
+        "hours": "Horaires a confirmer sur place (non communiques publiquement)",
+        "price": "Variable selon les articles/prestations",
+        "best_time": "Journee",
+        "access": "Kribi"
+      },
+      "budget": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_seche": "Tarifs variables selon les articles/prestations choisis.",
+      "budget_saison_pluies": "Tarifs variables selon les articles/prestations choisis.",
+      "transport": {
+        "taxi": "environ 500-1000 FCFA depuis le centre-ville",
+        "moto": "environ 300-500 FCFA",
+        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi."
+      },
+      "image_query_fallback": "hair salon barber beauty",
       "contact": null
     }
   ],
