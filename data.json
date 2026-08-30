@@ -55,8 +55,7 @@
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree."
       },
       "image_query_fallback": "restaurant food dining plate",
-      "contact": null,
-      "views": 1
+      "contact": null
     },
     {
       "id": 2,
@@ -156,8 +155,7 @@
         "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "views": 1
+      "contact": null
     },
     {
       "id": 4,
@@ -579,8 +577,7 @@
         "moto": "environ 1000-1500 FCFA",
         "note": "Se combine facilement avec la visite des Chutes de la Lobe toutes proches."
       },
-      "contact": null,
-      "views": 1
+      "contact": null
     },
     {
       "id": 15,
@@ -956,8 +953,7 @@
           "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
           "prix": "1000 FCFA"
         }
-      ],
-      "views": 1
+      ]
     },
     {
       "id": 23,
@@ -2897,17 +2893,7 @@
       "contact": null
     }
   ],
-  "itineraries": [
-    {
-      "id": 1,
-      "user_id": 2,
-      "title": "visite",
-      "destination_id": 14,
-      "start_date": "2026-08-31",
-      "end_date": "2026-08-31",
-      "notes": ""
-    }
-  ],
+  "itineraries": [],
   "reviews": [
     {
       "id": 1,

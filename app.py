@@ -44,7 +44,7 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
 # ---------------------------------------------------------------------------
 SUPABASE_URL = os.environ.get("SUPABASE_URL", "").rstrip("/")
 SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY", "")
-SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET", "globetrotter-data")
+SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET", "Globetrotter-data")
 SUPABASE_STORAGE_ENABLED = bool(SUPABASE_URL and SUPABASE_SECRET_KEY)
 SUPABASE_OBJECT_PATH = "data.json"
 
@@ -84,7 +84,6 @@ def _supabase_download_to_disk():
         resp = requests.get(
             _supabase_object_url(),
             headers={
-                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
                 "apiKey": SUPABASE_SECRET_KEY,
             },
             timeout=10,
@@ -109,7 +108,6 @@ def _supabase_upload_from_disk():
         resp = requests.post(
             _supabase_object_url(),
             headers={
-                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
                 "apiKey": SUPABASE_SECRET_KEY,
                 "Content-Type": "application/json",
                 "x-upsert": "true",
