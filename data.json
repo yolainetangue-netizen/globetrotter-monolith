@@ -461,8 +461,7 @@
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "views": 1
+      "contact": null
     },
     {
       "id": 12,
@@ -1434,8 +1433,7 @@
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "views": 1
+      "contact": null
     },
     {
       "id": 35,
@@ -2655,8 +2653,7 @@
         "best_time": "Matin pour les produits les plus frais",
         "access": "Quartier Mpangou, Kribi"
       },
-      "budget": "Acces gratuit. Achats a partir de quelques ,
-      "budget_sa,
+      "budget": "Acces gratuit. Achats a partir de quelques centaines de FCFA.",
       "budget_saison_seche": "Acces gratuit. Achats a partir de quelques centaines de FCFA. (haute saison, nov-mars/juil-aout : forte affluence touristique, tarifs au plus haut, reservation conseillee).",
       "budget_saison_pluies": "Acces gratuit. Achats a partir de quelques centaines de FCFA. (saison des pluies, avr-juin/sept-oct : frequentation plus calme, tarifs souvent negociables).",
       "transport": {
@@ -2828,7 +2825,7 @@
         "adventure"
       ],
       "image": null,
-  "Live Music DJ Krib"Live Music DJ Kribi Cameroun Kribi Cameroon",
+      "image_query": "Live Music DJ Kribi Cameroun Kribi Cameroon",
       "description": "Lieu de vie nocturne a Kribi propose de la musique live et des sets DJ.",
       "city": "Kribi",
       "lat": 2.9514,
