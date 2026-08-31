@@ -84,16 +84,31 @@ def _supabase_download_to_disk():
         resp = requests.get(
             _supabase_object_url(),
             headers={
-                "apiKey": SUPABASE_SECRET_KEY,
+                "apikey": SUPABASE_SECRET_KEY,
+                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
             },
             timeout=10,
         )
         if resp.status_code == 200:
+            # Valide que le contenu telecharge est bien un JSON exploitable
+            # AVANT de l'ecrire sur disque : un fichier corrompu sur Supabase
+            # (upload partiel, encodage errone...) ne doit jamais ecraser la
+            # copie locale saine du zip deploye.
+            try:
+                json.loads(resp.content.decode("utf-8"))
+            except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+                print(f"[supabase] fichier data.json distant corrompu, conserve la copie locale: {exc}")
+                return False
+
             with open(DATA_FILE, "wb") as f:
                 f.write(resp.content)
             return True
-    except requests.RequestException:
-        pass
+        elif resp.status_code != 400:
+            # 400 = fichier pas encore cree sur Supabase (1er demarrage), attendu.
+            # Toute autre erreur (401/403/...) est loguee pour diagnostic.
+            print(f"[supabase] echec download data.json: {resp.status_code} {resp.text[:200]}")
+    except requests.RequestException as exc:
+        print(f"[supabase] erreur reseau download data.json: {exc}")
     return False
 
 
@@ -108,7 +123,8 @@ def _supabase_upload_from_disk():
         resp = requests.post(
             _supabase_object_url(),
             headers={
-                "apiKey": SUPABASE_SECRET_KEY,
+                "apikey": SUPABASE_SECRET_KEY,
+                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
                 "Content-Type": "application/json",
                 "x-upsert": "true",
             },
@@ -1063,6 +1079,101 @@ def get_my_reservations():
     my_reservations.sort(key=lambda r: r["created_at"], reverse=True)
     return jsonify(my_reservations), 200
 
+
+
+@app.route("/admin/supabase-repair", methods=["GET"])
+@jwt_required()
+@admin_required
+def admin_supabase_repair():
+    """Outil de secours : diagnostique et tente de reparer le data.json
+    distant sur Supabase s'il est corrompu (caractere de controle invalide,
+    upload partiel...). N'ecrase Supabase que si la reparation aboutit a un
+    JSON valide contenant au moins autant d'utilisateurs que la version
+    locale actuelle (pour ne jamais perdre silencieusement des comptes)."""
+    if not SUPABASE_STORAGE_ENABLED:
+        return jsonify({"error": "Supabase non configure"}), 503
+
+    try:
+        resp = requests.get(
+            _supabase_object_url(),
+            headers={
+                "apikey": SUPABASE_SECRET_KEY,
+                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
+            },
+            timeout=10,
+        )
+    except requests.RequestException as exc:
+        return jsonify({"error": f"impossible de joindre Supabase: {exc}"}), 502
+
+    if resp.status_code != 200:
+        return jsonify({"error": f"Supabase a repondu {resp.status_code}", "detail": resp.text[:500]}), 502
+
+    raw = resp.content
+
+    # 1) Le fichier distant est-il deja valide ?
+    try:
+        remote_data = json.loads(raw.decode("utf-8"))
+        return jsonify({
+            "status": "already_valid",
+            "message": "Le fichier sur Supabase est deja un JSON valide, aucune reparation necessaire.",
+            "users_count": len(remote_data.get("users", [])),
+        }), 200
+    except (json.JSONDecodeError, UnicodeDecodeError) as first_error:
+        pass
+
+    # 2) Tentative de reparation : on retire les caracteres de controle
+    # invalides (hors \n, \r, \t qui sont autorises dans une chaine JSON
+    # correctement echappee) qui sont la cause la plus frequente de ce
+    # type de corruption lors d'un transfert.
+    try:
+        text = raw.decode("utf-8", errors="replace")
+    except Exception as exc:
+        return jsonify({"error": f"decodage impossible: {exc}"}), 500
+
+    cleaned = "".join(
+        ch for ch in text
+        if ch in ("\n", "\r", "\t") or ord(ch) >= 0x20
+    )
+
+    try:
+        repaired_data = json.loads(cleaned)
+    except json.JSONDecodeError as second_error:
+        return jsonify({
+            "status": "repair_failed",
+            "message": "Le fichier distant est corrompu et n'a pas pu etre repare automatiquement.",
+            "first_error": str(first_error),
+            "error_after_cleanup": str(second_error),
+            "hint": "Contacter le support technique avec ce message pour une reparation manuelle.",
+        }), 500
+
+    # 3) Garde-fou : ne jamais ecraser Supabase si la version reparee a
+    # moins d'utilisateurs que la copie locale actuelle (signe que la
+    # reparation a corrompu/perdu des donnees plutot que les restaurer).
+    local_data = load_data()
+    local_users = len(local_data.get("users", []))
+    repaired_users = len(repaired_data.get("users", []))
+
+    if repaired_users < local_users:
+        return jsonify({
+            "status": "repair_rejected",
+            "message": (
+                f"La version reparee ne contient que {repaired_users} utilisateur(s) "
+                f"contre {local_users} dans la copie locale actuelle. Reparation annulee "
+                "par securite pour ne pas perdre de comptes."
+            ),
+        }), 409
+
+    # La reparation semble sure : on l'ecrit localement puis on la renvoie
+    # vers Supabase pour remplacer la version corrompue.
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(repaired_data, f, indent=2, ensure_ascii=False)
+    _supabase_upload_from_disk()
+
+    return jsonify({
+        "status": "repaired",
+        "message": f"Fichier repare avec succes et renvoye vers Supabase. {repaired_users} utilisateur(s) recuperes.",
+        "users": [u.get("username") for u in repaired_data.get("users", [])],
+    }), 200
 
 
 @app.route("/admin/stats", methods=["GET"])
