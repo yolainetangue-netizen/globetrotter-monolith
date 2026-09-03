@@ -137,6 +137,33 @@ def _supabase_upload_from_disk():
         print(f"[supabase] erreur reseau upload data.json: {exc}")
 
 
+def _supabase_upload_bytes(object_path, content, content_type):
+    """Fonction generique : envoie un fichier quelconque (ex: avatar) vers
+    Supabase Storage, dans le meme bucket que data.json mais a un chemin
+    different (ex: 'avatars/user_12.jpg'). Retourne l'URL publique en cas de
+    succes, ou None en cas d'echec (jamais d'exception levee)."""
+    if not SUPABASE_STORAGE_ENABLED:
+        return None
+    try:
+        resp = requests.post(
+            f"{SUPABASE_URL}/storage/v1/object/{SUPABASE_BUCKET}/{object_path}",
+            headers={
+                "apikey": SUPABASE_SECRET_KEY,
+                "Authorization": f"Bearer {SUPABASE_SECRET_KEY}",
+                "Content-Type": content_type,
+                "x-upsert": "true",
+            },
+            data=content,
+            timeout=15,
+        )
+        if resp.status_code in (200, 201):
+            return f"{SUPABASE_URL}/storage/v1/object/public/{SUPABASE_BUCKET}/{object_path}"
+        print(f"[supabase] echec upload {object_path}: {resp.status_code} {resp.text[:200]}")
+    except requests.RequestException as exc:
+        print(f"[supabase] erreur reseau upload {object_path}: {exc}")
+    return None
+
+
 # Au demarrage du process, on tente une seule fois de recuperer la derniere
 # version connue depuis Supabase (qui peut contenir des utilisateurs/avis
 # crees depuis le dernier deploiement). Si indisponible, on garde le
@@ -209,14 +236,14 @@ def itineraries_page():
     return render_template("itineraries.html")
 
 
+@app.route("/reservations-page")
+def reservations_page():
+    return render_template("reservations.html")
+
+
 @app.route("/map-page")
 def map_page():
     return render_template("map.html")
-
-
-@app.route("/transport-page")
-def transport_page():
-    return render_template("transport.html")
 
 
 @app.route("/kribi-page")
@@ -482,10 +509,12 @@ def get_weather():
 # ---------------------------------------------------------------------------
 @app.route("/register", methods=["POST"])
 def register():
-    """Register a new user."""
+    """Register a new user. Un email optionnel peut etre fourni (utilise
+    ensuite pour la connexion par email, en plus du nom d'utilisateur)."""
     body = request.get_json(silent=True) or {}
     username = body.get("username", "").strip()
     password = body.get("password", "").strip()
+    email = body.get("email", "").strip().lower()
     preferences = body.get("preferences", [])
 
     if not username or not password:
@@ -496,12 +525,17 @@ def register():
     if any(u["username"] == username for u in data["users"]):
         return jsonify({"error": "username already exists"}), 409
 
+    if email and any(u.get("email", "").lower() == email for u in data["users"]):
+        return jsonify({"error": "email already exists"}), 409
+
     user = {
         "id": next_id(data["users"]),
         "username": username,
         "password": password,  # NOTE: plain text for the demo/monolith phase only
         "preferences": preferences,
     }
+    if email:
+        user["email"] = email
     data["users"].append(user)
     save_data(data)
 
@@ -510,13 +544,19 @@ def register():
 
 @app.route("/login", methods=["POST"])
 def login():
-    """Authenticate a user and return a JWT access token."""
+    """Authenticate a user and return a JWT access token. Le champ
+    'username' peut contenir soit le nom d'utilisateur, soit l'email
+    (connexion par email), les deux sont acceptes indifferemment."""
     body = request.get_json(silent=True) or {}
-    username = body.get("username", "").strip()
+    identifier = body.get("username", "").strip()
     password = body.get("password", "").strip()
 
     data = load_data()
-    user = next((u for u in data["users"] if u["username"] == username), None)
+    identifier_lower = identifier.lower()
+    user = next(
+        (u for u in data["users"] if u["username"] == identifier or u.get("email", "").lower() == identifier_lower),
+        None,
+    )
 
     if not user or user.get("password") is None or user["password"] != password:
         return jsonify({"error": "invalid username or password"}), 401
@@ -608,8 +648,58 @@ def get_me():
         "role": user.get("role", "user"),
         "auth_provider": user.get("auth_provider", "password"),
         "email": user.get("email"),
+        "avatar_url": user.get("avatar_url"),
     }
     return jsonify(safe_user), 200
+
+
+@app.route("/me/avatar", methods=["POST"])
+@jwt_required()
+def upload_avatar():
+    """Recoit une image envoyee en multipart/form-data (champ 'avatar') et
+    la stocke sur Supabase Storage. Necessite que Supabase soit configure -
+    sans cela l'upload de photo n'est pas disponible (mais le reste de
+    l'app continue de fonctionner normalement)."""
+    if not SUPABASE_STORAGE_ENABLED:
+        return jsonify({"error": "l'upload de photo n'est pas disponible pour le moment"}), 503
+
+    if "avatar" not in request.files:
+        return jsonify({"error": "aucun fichier recu"}), 400
+
+    file = request.files["avatar"]
+    if not file.filename:
+        return jsonify({"error": "aucun fichier recu"}), 400
+
+    allowed_types = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp"}
+    content_type = file.mimetype
+    if content_type not in allowed_types:
+        return jsonify({"error": "format d'image non supporte (JPEG, PNG ou WEBP uniquement)"}), 400
+
+    content = file.read()
+    max_size = 3 * 1024 * 1024  # 3 Mo, largement suffisant pour un avatar
+    if len(content) > max_size:
+        return jsonify({"error": "image trop volumineuse (3 Mo maximum)"}), 400
+
+    user_id = int(get_jwt_identity())
+    ext = allowed_types[content_type]
+    object_path = f"avatars/user_{user_id}.{ext}"
+
+    url = _supabase_upload_bytes(object_path, content, content_type)
+    if not url:
+        return jsonify({"error": "echec de l'envoi de la photo, reessayez"}), 502
+
+    data = load_data()
+    user = next((u for u in data["users"] if u["id"] == user_id), None)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+
+    # Ajoute un parametre de cache-busting pour que le navigateur affiche
+    # bien la nouvelle photo immediatement (sinon il pourrait garder
+    # l'ancienne en cache, l'URL Supabase etant identique a chaque upload).
+    user["avatar_url"] = f"{url}?t={int(time.time())}"
+    save_data(data)
+
+    return jsonify({"avatar_url": user["avatar_url"]}), 200
 
 
 # ---------------------------------------------------------------------------
@@ -993,6 +1083,16 @@ def download_itinerary(itinerary_id):
     safe_title = "".join(c if c.isalnum() or c in " -_" else "" for c in (itinerary.get("title") or "itineraire")).strip() or "itineraire"
     filename = f"{safe_title}.pdf"
 
+    # Journalise le telechargement pour l'historique d'activites du profil.
+    data.setdefault("pdf_downloads", []).append({
+        "id": next_id(data.setdefault("pdf_downloads", [])),
+        "user_id": user_id,
+        "itinerary_id": itinerary_id,
+        "itinerary_title": itinerary.get("title") or "itineraire",
+        "downloaded_at": datetime.utcnow().isoformat() + "Z",
+    })
+    save_data(data)
+
     return send_file(
         pdf_buffer,
         mimetype="application/pdf",
@@ -1078,6 +1178,29 @@ def get_my_reservations():
     my_reservations = [r for r in data["reservations"] if r.get("user_id") == user_id]
     my_reservations.sort(key=lambda r: r["created_at"], reverse=True)
     return jsonify(my_reservations), 200
+
+
+@app.route("/me/activity", methods=["GET"])
+@jwt_required()
+def get_my_activity():
+    """Agrege l'activite de l'utilisateur connecte pour l'onglet Profil :
+    nombre d'itineraires, de reservations, et historique des PDF
+    telecharges (les favoris restent geres cote client via localStorage,
+    donc non inclus ici)."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    my_itineraries = [it for it in data.get("itineraries", []) if it.get("user_id") == user_id]
+    my_reservations = [r for r in data.get("reservations", []) if r.get("user_id") == user_id]
+    my_downloads = [d for d in data.get("pdf_downloads", []) if d.get("user_id") == user_id]
+    my_downloads.sort(key=lambda d: d["downloaded_at"], reverse=True)
+
+    return jsonify({
+        "itineraries_count": len(my_itineraries),
+        "reservations_count": len(my_reservations),
+        "pdf_downloads": my_downloads[:10],  # les 10 plus recents suffisent pour l'affichage
+        "pdf_downloads_count": len(my_downloads),
+    }), 200
 
 
 
