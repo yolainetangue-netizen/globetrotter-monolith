@@ -650,3 +650,39 @@ hr { border-color: var(--border-dark); opacity: 1; }
 .gt-input-action:hover {
   opacity: 1;
 }
+
+/* Bouton flottant "Carte", visible sur toutes les pages (sauf la carte
+   elle-meme) pour y revenir rapidement depuis n'importe ou, ex: une fiche
+   destination. Position bas-gauche pour laisser la place a l'assistant IA
+   (bas-droite) ajoute par ailleurs. */
+.floating-map-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.25rem;
+  z-index: 1040;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--turquoise) 0%, var(--turquoise-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.floating-map-btn:hover {
+  transform: scale(1.08);
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .floating-map-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.2rem;
+    bottom: 1rem;
+    left: 1rem;
+  }
+}

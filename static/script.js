@@ -9,11 +9,10 @@ const GT_TRANSLATIONS = {
   fr: {
     "nav.home": "Accueil",
     "nav.kribi": "Découvrir Kribi",
-    "nav.destinations": "Destinations",
+    "nav.destinations": "Lieux",
     "nav.events": "Événements",
     "nav.services": "Services utiles",
     "nav.map": "Carte",
-    "nav.transport": "Transport",
     "nav.favorites": "Favoris",
     "nav.itineraries": "Mes itinéraires",
     "nav.profile": "👤 Profil",
@@ -23,11 +22,10 @@ const GT_TRANSLATIONS = {
   en: {
     "nav.home": "Home",
     "nav.kribi": "Discover Kribi",
-    "nav.destinations": "Destinations",
+    "nav.destinations": "Places",
     "nav.events": "Events",
     "nav.services": "Useful services",
     "nav.map": "Map",
-    "nav.transport": "Transport",
     "nav.favorites": "Favorites",
     "nav.itineraries": "My itineraries",
     "nav.profile": "👤 Profile",
@@ -249,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const langBtns = [
     { btn: document.getElementById("lang-toggle-btn"), label: document.getElementById("lang-toggle-label") },
     { btn: document.getElementById("lang-toggle-btn-desktop"), label: document.getElementById("lang-toggle-label-desktop") },
+    { btn: document.getElementById("lang-toggle-btn-profile"), label: document.getElementById("lang-toggle-label-profile") },
   ].filter((pair) => pair.btn && pair.label);
 
   if (!langBtns.length) return;
@@ -272,25 +271,45 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Bouton de bascule thème clair / sombre (persiste dans localStorage)
+// Meme principe que la langue : plusieurs boutons possibles sur une page
+// (navbar + page profil), synchronises ensemble.
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleBtn = document.getElementById("theme-toggle-btn");
-  const toggleIcon = document.getElementById("theme-toggle-icon");
-  if (!toggleBtn) return;
+  const themeBtns = [
+    {
+      btn: document.getElementById("theme-toggle-btn"),
+      icon: document.getElementById("theme-toggle-icon"),
+      label: document.getElementById("theme-toggle-label"),
+    },
+    {
+      btn: document.getElementById("theme-toggle-btn-profile"),
+      icon: document.getElementById("theme-toggle-icon-profile"),
+      label: document.getElementById("theme-toggle-label-profile"),
+    },
+  ].filter((entry) => entry.btn);
 
-  function applyIcon(theme) {
-    // Affiche l'icone du theme VERS LEQUEL on bascule si on clique
-    toggleIcon.textContent = theme === "dark" ? "☀️" : "🌙";
+  if (!themeBtns.length) return;
+
+  function applyThemeDisplay(theme) {
+    // Affiche l'etat VERS LEQUEL on bascule si on clique
+    const nextIcon = theme === "dark" ? "☀️" : "🌙";
+    const nextLabel = theme === "dark" ? "Clair" : "Sombre";
+    themeBtns.forEach(({ icon, label }) => {
+      if (icon) icon.textContent = nextIcon;
+      if (label) label.textContent = nextLabel;
+    });
   }
 
   const current = document.documentElement.getAttribute("data-bs-theme") || "dark";
-  applyIcon(current);
+  applyThemeDisplay(current);
 
-  toggleBtn.addEventListener("click", () => {
-    const now = document.documentElement.getAttribute("data-bs-theme") || "dark";
-    const next = now === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-bs-theme", next);
-    localStorage.setItem("gt_theme", next);
-    applyIcon(next);
+  themeBtns.forEach(({ btn }) => {
+    btn.addEventListener("click", () => {
+      const now = document.documentElement.getAttribute("data-bs-theme") || "dark";
+      const next = now === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-bs-theme", next);
+      localStorage.setItem("gt_theme", next);
+      applyThemeDisplay(next);
+    });
   });
 });
 
