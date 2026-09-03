@@ -118,7 +118,8 @@
           "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
           "prix": "1000 FCFA"
         }
-      ]
+      ],
+      "views": 3
     },
     {
       "id": 3,
@@ -155,7 +156,8 @@
         "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi."
       },
       "image_query_fallback": "african historic monument architecture",
-      "contact": null
+      "contact": null,
+      "views": 1
     },
     {
       "id": 4,
@@ -461,11 +463,11 @@
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null
+      "contact": null,
+      "views": 4
     },
     {
-      "id": 12,
-      "name": "Coucher de soleil sur la plage",
+      "id": "Coucher de soleil sur la plage",
       "country": "Kribi, Région du Sud, Cameroun",
       "category": "Sites naturels",
       "tags": [
@@ -1433,7 +1435,8 @@
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null
+      "contact": null,
+      "views": 2
     },
     {
       "id": 35,
@@ -1570,7 +1573,8 @@
         "moto": "environ 300-500 FCFA",
         "note": "Situee en plein centre, accessible a pied depuis la plupart des hebergements."
       },
-      "contact": null
+      "contact": null,
+      "views": 2
     },
     {
       "id": 38,
@@ -1964,7 +1968,8 @@
           "plat": "Boissons fraîches",
           "prix": "1000 FCFA"
         }
-      ]
+      ],
+      "views": 2
     },
     {
       "id": 47,
@@ -2340,7 +2345,8 @@
           "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
           "prix": "1000 FCFA"
         }
-      ]
+      ],
+      "views": 1
     },
     {
       "id": 55,
@@ -3479,5 +3485,6 @@
       "hours": "6h - 22h environ"
     }
   ],
-  "reservations": []
+  "reservations": [],
+  "pdf_downloads": []
 }
