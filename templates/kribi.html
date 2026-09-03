@@ -28,6 +28,72 @@
   </section>
 
   <main class="container my-5">
+    <!-- Fiche d'identité : chiffres clés -->
+    <h2 class="h4 mb-3">Kribi en bref</h2>
+    <div class="row g-3 mb-5">
+      <div class="col-6 col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center py-3">
+          <div class="h4 mb-1">🏛️</div>
+          <p class="fw-bold mb-0">Département de l'Océan</p>
+          <p class="hint small mb-0">Région du Sud, Cameroun</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center py-3">
+          <div class="h4 mb-1">⛰️</div>
+          <p class="fw-bold mb-0">~13-20 m</p>
+          <p class="hint small mb-0">Altitude au niveau de la ville</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center py-3">
+          <div class="h4 mb-1">👥</div>
+          <p class="fw-bold mb-0">~55 000 hab.</p>
+          <p class="hint small mb-0">En ville (agglomération élargie : jusqu'à ~250 000 selon les estimations)</p>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card h-100 shadow-sm border-0 text-center py-3">
+          <div class="h4 mb-1">🛣️</div>
+          <p class="fw-bold mb-0">~150 km</p>
+          <p class="hint small mb-0">Depuis Yaoundé (environ 170 km depuis Douala)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Histoire et origines -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">📜 Histoire et origines</h2>
+        <p class="mb-2">
+          L'origine du nom « Kribi » reste débattue. Une version locale raconte qu'il viendrait de
+          <strong>« Kikiribi »</strong>, surnom donné par les premiers colons à un habitant des lieux ;
+          une autre le rattache au nom de la tribu <strong>« Kibri »</strong> qui peuplait la région avant
+          l'arrivée des Européens. Les deux versions circulent encore aujourd'hui.
+        </p>
+        <div id="kribi-history-more" style="display:none;">
+          <p class="mb-2">
+            Les premiers commerçants et missionnaires allemands débarquent à Kribi en 1889, et y pratiquent
+            le troc (sel, pagnes, ivoire, caoutchouc). L'armée allemande s'empare de la région le
+            <strong>15 octobre 1887</strong>, dans le cadre de la colonisation du Kamerun (1884-1916). La zone
+            connaît alors des résistances locales marquées, notamment de la part du peuple Mabi.
+          </p>
+          <p class="mb-2">
+            Pendant la période coloniale, Kribi se développe autour du commerce du cacao et du caoutchouc.
+            Elle passe ensuite sous administration française avant l'indépendance du Cameroun en 1960.
+          </p>
+          <p class="mb-0">
+            Aujourd'hui, Kribi est devenue un pôle économique majeur grâce à son <strong>port en eau
+            profonde</strong> (construit entre 2012 et 2015), tout en restant la principale destination
+            balnéaire du pays — parfois surnommée « la perle du Golfe de Guinée ».
+          </p>
+        </div>
+        <button type="button" id="toggle-history-btn" class="btn btn-sm btn-outline-secondary rounded-pill mt-2">
+          En savoir plus →
+        </button>
+      </div>
+    </div>
+
     <!-- Localisation + météo -->
     <div class="row g-4 mb-5">
       <div class="col-lg-5">
@@ -111,6 +177,15 @@
       `;
     }
     loadKribiWeather();
+
+    // --- Bouton "En savoir plus" (histoire) ---
+    const historyBtn = document.getElementById("toggle-history-btn");
+    const historyMore = document.getElementById("kribi-history-more");
+    historyBtn.addEventListener("click", () => {
+      const isHidden = historyMore.style.display === "none";
+      historyMore.style.display = isHidden ? "block" : "none";
+      historyBtn.textContent = isHidden ? "← Voir moins" : "En savoir plus →";
+    });
 
     // --- Grille de catégories (11 catégories tourisme + Événements + Services) ---
     // Chaque carte affiche desormais une VRAIE photo tiree au hasard parmi les

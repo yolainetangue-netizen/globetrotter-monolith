@@ -200,19 +200,26 @@
             <div>
               <h1 class="h3 mb-1">${d.name}</h1>
               <p class="text-muted mb-0">${d.country}</p>
+              ${d.practical_info && d.practical_info.access ? `<p class="text-muted small mb-0">📍 ${d.practical_info.access}</p>` : ""}
             </div>
             <div class="d-flex flex-wrap gap-2">
               <button id="fav-btn" class="btn btn-outline-danger rounded-pill btn-sm" onclick="handleDetailFavorite()">
                 <span id="fav-icon">♡</span> <span id="fav-label">Ajouter aux favoris</span>
               </button>
               <a href="/destinations-page?add_to_itinerary=${d.id}" class="btn btn-gt-teal rounded-pill btn-sm">📅 Voir l'itinéraire</a>
+              <a href="/reservations-page" class="btn btn-outline-secondary rounded-pill btn-sm">🗓️ Planifié</a>
             </div>
           </div>
         </div>
 
         <div class="card shadow-sm border-0 mb-4">
           <div class="card-body p-4">
-            <h2 class="h5 mb-3">À propos</h2>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="h5 mb-0">À propos</h2>
+              <button type="button" id="listen-btn" class="btn btn-sm btn-outline-secondary rounded-pill">
+                🔊 Écouter
+              </button>
+            </div>
             <p>${(d.long_description || d.description || "").replace(/\n\n/g, "</p><p>")}</p>
           </div>
         </div>
@@ -369,9 +376,55 @@
       if (ok) {
         renderDetail(data);
         bindReservationForm();
+        bindListenButton(data);
       } else {
         container.innerHTML = "<p class='hint'>Ce lieu est introuvable.</p>";
       }
+    }
+
+    function bindListenButton(d) {
+      const btn = document.getElementById("listen-btn");
+      if (!btn) return;
+
+      if (!("speechSynthesis" in window)) {
+        btn.disabled = true;
+        btn.title = "La lecture vocale n'est pas disponible sur cet appareil";
+        return;
+      }
+
+      const textParts = [d.name];
+      if (d.practical_info && d.practical_info.access) textParts.push(`Situé ${d.practical_info.access}.`);
+      textParts.push(d.long_description || d.description || "");
+      const textToRead = textParts.join(". ");
+
+      let isSpeaking = false;
+
+      btn.addEventListener("click", () => {
+        if (isSpeaking) {
+          window.speechSynthesis.cancel();
+          isSpeaking = false;
+          btn.innerHTML = "🔊 Écouter";
+          return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = "fr-FR";
+        utterance.rate = 0.95;
+
+        utterance.onend = () => {
+          isSpeaking = false;
+          btn.innerHTML = "🔊 Écouter";
+        };
+        utterance.onerror = () => {
+          isSpeaking = false;
+          btn.innerHTML = "🔊 Écouter";
+        };
+
+        window.speechSynthesis.cancel(); // annule toute lecture en cours ailleurs
+        window.speechSynthesis.speak(utterance);
+        isSpeaking = true;
+        btn.innerHTML = "⏹️ Arrêter";
+      });
     }
 
     function bindReservationForm() {

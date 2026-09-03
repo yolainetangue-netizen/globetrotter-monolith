@@ -47,7 +47,7 @@
       google: "Connecté via Google",
     };
 
-    function renderProfile(user, itineraries) {
+    function renderProfile(user, itineraries, activity) {
       const initials = (user.username || "?").slice(0, 2).toUpperCase();
 
       const prefsHTML = user.preferences && user.preferences.length
@@ -81,9 +81,15 @@
         <div class="row g-4">
           <div class="col-lg-4">
             <div class="card border-0 shadow-sm text-center p-4">
-              <div class="mx-auto mb-3 d-flex align-items-center justify-content-center rounded-circle bg-gt-orange text-white fw-bold" style="width:72px;height:72px;font-size:1.5rem;">
-                ${initials}
+              <div id="avatar-wrap" class="mx-auto mb-3 position-relative" style="width:88px;height:88px;cursor:pointer;">
+                ${user.avatar_url
+                  ? `<img id="avatar-img" src="${user.avatar_url}" alt="Photo de profil" class="rounded-circle w-100 h-100" style="object-fit:cover;" />`
+                  : `<div id="avatar-initials" class="d-flex align-items-center justify-content-center rounded-circle bg-gt-orange text-white fw-bold w-100 h-100" style="font-size:1.7rem;">${initials}</div>`
+                }
+                <div class="position-absolute bottom-0 end-0 bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:28px;height:28px;font-size:0.85rem;">📷</div>
               </div>
+              <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" hidden />
+              <div id="avatar-msg" class="small mb-2"></div>
               <h2 class="h5 mb-1">${user.username}${roleBadge}</h2>
               <p class="small text-muted mb-0">${AUTH_PROVIDER_LABELS[user.auth_provider] || "Compte classique"}</p>
               ${user.email ? `<p class="small text-muted mb-0">${user.email}</p>` : ""}
@@ -98,15 +104,153 @@
               </div>
             </div>
 
-            <div class="card border-0 shadow-sm">
+            <div class="card border-0 shadow-sm mb-4">
               <div class="card-body p-4">
                 <h2 class="h6 mb-3">📅 Mes itinéraires (${itineraries.length})</h2>
                 ${itinerariesHTML}
               </div>
             </div>
+
+            <div class="card border-0 shadow-sm mb-4">
+              <div class="card-body p-4">
+                <h2 class="h6 mb-3">📊 Mes activités</h2>
+                <div class="row g-3 text-center mb-3">
+                  <div class="col-4 col-md-2">
+                    <div class="h5 mb-0">${favoritesCount()}</div>
+                    <div class="small text-muted">❤️ Lieux</div>
+                  </div>
+                  <div class="col-4 col-md-2">
+                    <div class="h5 mb-0" id="fav-categories-count">…</div>
+                    <div class="small text-muted">📂 Catégories</div>
+                  </div>
+                  <div class="col-4 col-md-2">
+                    <div class="h5 mb-0">${activity ? activity.reservations_count : "—"}</div>
+                    <div class="small text-muted">🗓️ Sorties</div>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <div class="h5 mb-0">${activity ? activity.reservations_count : "—"}</div>
+                    <div class="small text-muted">📅 Réservations</div>
+                  </div>
+                  <div class="col-6 col-md-3">
+                    <div class="h5 mb-0">${activity ? activity.pdf_downloads_count : "—"}</div>
+                    <div class="small text-muted">📄 PDF téléchargés</div>
+                  </div>
+                </div>
+                ${activity && activity.pdf_downloads.length
+                  ? `
+                    <p class="small fw-semibold mb-2">Téléchargements récents</p>
+                    <ul class="list-group list-group-flush">
+                      ${activity.pdf_downloads.map((d) => `
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0 small">
+                          <span>${d.itinerary_title}</span>
+                          <span class="text-muted">${new Date(d.downloaded_at).toLocaleDateString("fr-FR")}</span>
+                        </li>
+                      `).join("")}
+                    </ul>
+                  `
+                  : `<p class="hint mb-0">Aucun PDF téléchargé pour le moment.</p>`
+                }
+              </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+              <div class="card-body p-4">
+                <h2 class="h6 mb-3">⚙️ Paramètres</h2>
+                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                  <span>Thème</span>
+                  <button id="theme-toggle-btn-profile" type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                    <span id="theme-toggle-icon-profile">☀️</span> <span id="theme-toggle-label-profile">Clair</span>
+                  </button>
+                </div>
+                <div class="d-flex justify-content-between align-items-center py-2">
+                  <span>Langue</span>
+                  <button id="lang-toggle-btn-profile" type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                    <span id="lang-toggle-label-profile">EN</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       `;
+
+      bindAvatarUpload();
+      loadFavoriteCategoriesCount();
+    }
+
+    async function loadFavoriteCategoriesCount() {
+      const el = document.getElementById("fav-categories-count");
+      if (!el) return;
+
+      const favIds = getFavorites();
+      if (!favIds.length) {
+        el.textContent = "0";
+        return;
+      }
+
+      // Recupere toutes les destinations pour croiser avec les IDs favoris
+      // et compter les categories distinctes representees.
+      const { ok, data } = await apiRequest("/destinations");
+      if (!ok) {
+        el.textContent = "—";
+        return;
+      }
+
+      const favIdsStr = favIds.map(String);
+      const categories = new Set(
+        data
+          .filter((d) => favIdsStr.includes(String(d.id)))
+          .map((d) => d.category)
+      );
+      el.textContent = categories.size;
+    }
+
+    function bindAvatarUpload() {
+      const wrap = document.getElementById("avatar-wrap");
+      const input = document.getElementById("avatar-input");
+      const msgEl = document.getElementById("avatar-msg");
+      if (!wrap || !input) return;
+
+      wrap.addEventListener("click", () => input.click());
+
+      input.addEventListener("change", async () => {
+        const file = input.files[0];
+        if (!file) return;
+
+        msgEl.innerHTML = `<span class="text-muted">Envoi en cours...</span>`;
+
+        const formData = new FormData();
+        formData.append("avatar", file);
+
+        try {
+          const res = await fetch("/me/avatar", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${getToken()}` },
+            body: formData,
+          });
+          const data = await res.json().catch(() => ({}));
+
+          if (!res.ok) {
+            msgEl.innerHTML = `<span class="text-danger">${data.error || "Échec de l'envoi de la photo."}</span>`;
+            return;
+          }
+
+          // Met a jour l'affichage immediatement, sans recharger toute la page
+          wrap.querySelectorAll("#avatar-img, #avatar-initials").forEach((el) => el.remove());
+          const img = document.createElement("img");
+          img.id = "avatar-img";
+          img.src = data.avatar_url;
+          img.alt = "Photo de profil";
+          img.className = "rounded-circle w-100 h-100";
+          img.style.objectFit = "cover";
+          wrap.insertBefore(img, wrap.firstChild);
+
+          msgEl.innerHTML = `<span class="text-success">Photo mise à jour ✓</span>`;
+          setTimeout(() => { msgEl.innerHTML = ""; }, 3000);
+        } catch (err) {
+          msgEl.innerHTML = `<span class="text-danger">Échec de l'envoi, réessayez.</span>`;
+        }
+      });
     }
 
     async function loadProfile() {
@@ -115,9 +259,10 @@
         return;
       }
 
-      const [meResult, itinerariesResult] = await Promise.all([
+      const [meResult, itinerariesResult, activityResult] = await Promise.all([
         apiRequest("/me", { auth: true }),
         apiRequest("/itineraries", { auth: true }),
+        apiRequest("/me/activity", { auth: true }),
       ]);
 
       if (meResult.status === 401) {
@@ -131,7 +276,8 @@
       }
 
       const itineraries = itinerariesResult.ok ? itinerariesResult.data : [];
-      renderProfile(meResult.data, itineraries);
+      const activity = activityResult.ok ? activityResult.data : null;
+      renderProfile(meResult.data, itineraries, activity);
     }
 
     loadProfile();

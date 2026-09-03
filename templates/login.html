@@ -19,19 +19,20 @@
       <div class="row justify-content-center align-items-center g-5">
         <div class="col-11 col-sm-8 col-md-6 col-lg-5">
           <div class="gt-glass-card p-4 p-md-5">
-            <p class="text-uppercase small fw-semibold mb-1" style="color: var(--violet); letter-spacing: 3px; font-family: 'Playfair Display', serif;">GlobeTrotter-Kribi</p>
-            <p class="text-muted small mb-4">Explorez Kribi. Voyagez mieux.</p>
+            <div class="text-center mb-3">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="GlobeTrotter-Kribi" style="height:72px;" />
+            </div>
 
-            <!-- Bascule Connexion / Inscription -->
+            <!-- Bascule Connexion / Inscription / Par email -->
             <div class="btn-group w-100 mb-4" role="group">
               <button type="button" id="tab-login" class="btn btn-gt-orange fw-semibold">Se connecter</button>
               <button type="button" id="tab-register" class="btn btn-outline-secondary fw-semibold">Créer un compte</button>
+              <button type="button" id="tab-email" class="btn btn-outline-secondary fw-semibold">Par email</button>
             </div>
 
             <!-- ===================== FORMULAIRE CONNEXION ===================== -->
             <div id="panel-login">
-              <h2 class="h4 mb-1" style="font-family: 'Playfair Display', serif; font-style: italic;">Bon retour ! 👋</h2>
-              <p class="text-muted small mb-4">Connectez-vous pour retrouver vos sorties</p>
+              <h2 class="h4 mb-3" style="font-family: 'Playfair Display', serif; font-style: italic;">Bon retour !</h2>
 
               <form id="login-form">
                 <div class="mb-3">
@@ -79,8 +80,7 @@
 
             <!-- ===================== FORMULAIRE INSCRIPTION ===================== -->
             <div id="panel-register" style="display:none;">
-              <h2 class="h4 mb-1" style="font-family: 'Playfair Display', serif; font-style: italic;">Créer un compte</h2>
-              <p class="text-muted small mb-4">Rejoignez la communauté des explorateurs</p>
+              <h2 class="h4 mb-3" style="font-family: 'Playfair Display', serif; font-style: italic;">Créer un compte</h2>
 
               <form id="register-form">
                 <div class="mb-3">
@@ -125,6 +125,50 @@
               <div id="google-msg-register" class="mb-2"></div>
             </div>
 
+            <!-- ===================== FORMULAIRE PAR EMAIL ===================== -->
+            <div id="panel-email" style="display:none;">
+              <h2 class="h4 mb-3" style="font-family: 'Playfair Display', serif; font-style: italic;">Connexion par email</h2>
+              <p class="hint mb-3">Nouvelle adresse ? Un compte sera créé automatiquement.</p>
+
+              <form id="email-form">
+                <div class="mb-3">
+                  <label class="form-label small fw-semibold">Adresse email</label>
+                  <div class="gt-input-wrap">
+                    <span class="gt-input-icon">📧</span>
+                    <input type="email" id="email-email" class="gt-input" placeholder="vous@exemple.com" required />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-semibold">Mot de passe</label>
+                  <div class="gt-input-wrap">
+                    <span class="gt-input-icon">🔒</span>
+                    <input type="password" id="email-password" class="gt-input" placeholder="Votre mot de passe" required />
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label small fw-semibold">Pseudo <span class="text-muted fw-normal">(pour un nouveau compte)</span></label>
+                  <div class="gt-input-wrap">
+                    <span class="gt-input-icon">👤</span>
+                    <input type="text" id="email-username" class="gt-input" placeholder="Comment vous appeler ?" />
+                  </div>
+                </div>
+
+                <p class="fw-semibold small mb-1 mt-3">Vos préférences <span class="text-muted fw-normal">(pour un nouveau compte)</span></p>
+                <div class="d-flex flex-wrap gap-2 mb-4" id="email-pref-pills">
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="culture">Culture</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="history">Histoire</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="nature">Nature</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="adventure">Aventure</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="shopping">Shopping</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="relaxation">Détente</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill pref-pill" data-value="city">Vie urbaine</button>
+                </div>
+
+                <button type="submit" class="btn btn-gt-orange w-100 py-2 rounded-pill fw-semibold">Continuer →</button>
+              </form>
+              <div id="email-msg" class="mt-3"></div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -135,26 +179,34 @@
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   <script>
     // ---------------------------------------------------------------------
-    // Bascule entre les deux panneaux (Connexion / Inscription)
+    // Bascule entre les trois panneaux (Connexion / Inscription / Par email)
     // ---------------------------------------------------------------------
     const tabLogin = document.getElementById("tab-login");
     const tabRegister = document.getElementById("tab-register");
+    const tabEmail = document.getElementById("tab-email");
     const panelLogin = document.getElementById("panel-login");
     const panelRegister = document.getElementById("panel-register");
+    const panelEmail = document.getElementById("panel-email");
+
+    const TABS = {
+      login: { tab: tabLogin, panel: panelLogin, path: "/login-page" },
+      register: { tab: tabRegister, panel: panelRegister, path: "/register-page" },
+      email: { tab: tabEmail, panel: panelEmail, path: "/login-page" },
+    };
 
     function showPanel(which) {
-      const isLogin = which === "login";
-      panelLogin.style.display = isLogin ? "block" : "none";
-      panelRegister.style.display = isLogin ? "none" : "block";
-      tabLogin.classList.toggle("btn-gt-orange", isLogin);
-      tabLogin.classList.toggle("btn-outline-secondary", !isLogin);
-      tabRegister.classList.toggle("btn-gt-orange", !isLogin);
-      tabRegister.classList.toggle("btn-outline-secondary", isLogin);
-      history.replaceState(null, "", isLogin ? "/login-page" : "/register-page");
+      Object.entries(TABS).forEach(([key, { tab, panel }]) => {
+        const active = key === which;
+        panel.style.display = active ? "block" : "none";
+        tab.classList.toggle("btn-gt-orange", active);
+        tab.classList.toggle("btn-outline-secondary", !active);
+      });
+      history.replaceState(null, "", TABS[which].path);
     }
 
     tabLogin.addEventListener("click", () => showPanel("login"));
     tabRegister.addEventListener("click", () => showPanel("register"));
+    tabEmail.addEventListener("click", () => showPanel("email"));
 
     // Ouvre directement le bon panneau selon la page d'origine
     if (window.location.pathname === "/register-page") showPanel("register");
@@ -217,7 +269,7 @@
     // ---------------------------------------------------------------------
     const registerForm = document.getElementById("register-form");
     const registerMsg = document.getElementById("register-msg");
-    const pills = document.querySelectorAll(".pref-pill");
+    const pills = document.querySelectorAll("#pref-pills .pref-pill");
     const selected = new Set();
 
     pills.forEach((pill) => {
@@ -257,6 +309,83 @@
         setTimeout(() => showPanel("login"), 1200);
       } else {
         registerMsg.innerHTML = `<div class="alert alert-danger py-2 small mb-0">${data.error || "Inscription echouee."}</div>`;
+      }
+    });
+
+    // ---------------------------------------------------------------------
+    // Connexion par email (connexion si le compte existe, sinon creation)
+    // ---------------------------------------------------------------------
+    const emailForm = document.getElementById("email-form");
+    const emailMsg = document.getElementById("email-msg");
+    const emailPills = document.querySelectorAll("#email-pref-pills .pref-pill");
+    const emailSelected = new Set();
+
+    emailPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const val = pill.dataset.value;
+        if (emailSelected.has(val)) {
+          emailSelected.delete(val);
+          pill.classList.remove("btn-gt-orange", "border-0");
+          pill.classList.add("btn-outline-secondary");
+        } else {
+          emailSelected.add(val);
+          pill.classList.remove("btn-outline-secondary");
+          pill.classList.add("btn-gt-orange", "border-0");
+        }
+      });
+    });
+
+    emailForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email-email").value.trim();
+      const password = document.getElementById("email-password").value.trim();
+      const username = document.getElementById("email-username").value.trim();
+      const preferences = Array.from(emailSelected);
+
+      // 1. Tente d'abord une connexion classique (le champ username accepte
+      //    aussi un email cote backend).
+      const loginResult = await apiRequest("/login", {
+        method: "POST",
+        body: { username: email, password },
+      });
+
+      if (loginResult.ok) {
+        setToken(loginResult.data.access_token, true);
+        emailMsg.innerHTML = `<div class="alert alert-success py-2 small mb-0">Bienvenue, ${loginResult.data.user.username} !</div>`;
+        setTimeout(() => (window.location.href = "/destinations-page"), 800);
+        return;
+      }
+
+      // 2. Pas de compte trouve pour cet email -> on en cree un, en
+      //    exigeant un pseudo pour ce nouveau compte.
+      if (!username) {
+        emailMsg.innerHTML = `<div class="alert alert-danger py-2 small mb-0">Aucun compte trouvé pour cet email. Renseignez un pseudo pour en créer un.</div>`;
+        return;
+      }
+
+      const registerResult = await apiRequest("/register", {
+        method: "POST",
+        body: { username, password, email, preferences },
+      });
+
+      if (!registerResult.ok) {
+        emailMsg.innerHTML = `<div class="alert alert-danger py-2 small mb-0">${registerResult.data.error || "Impossible de créer le compte."}</div>`;
+        return;
+      }
+
+      // Compte cree -> connexion immediate pour eviter de redemander le mot de passe.
+      const followUpLogin = await apiRequest("/login", {
+        method: "POST",
+        body: { username: email, password },
+      });
+
+      if (followUpLogin.ok) {
+        setToken(followUpLogin.data.access_token, true);
+        emailMsg.innerHTML = `<div class="alert alert-success py-2 small mb-0">Compte créé, bienvenue ${username} !</div>`;
+        setTimeout(() => (window.location.href = "/destinations-page"), 800);
+      } else {
+        emailMsg.innerHTML = `<div class="alert alert-success py-2 small mb-0">Compte créé ! Vous pouvez maintenant vous connecter.</div>`;
+        setTimeout(() => showPanel("login"), 1200);
       }
     });
 

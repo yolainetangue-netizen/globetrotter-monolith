@@ -30,11 +30,10 @@
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
           <li class="nav-item"><a class="nav-link" href="/" data-i18n="nav.home">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="/kribi-page" data-i18n="nav.kribi">Découvrir Kribi</a></li>
-          <li class="nav-item"><a class="nav-link" href="/destinations-page" data-i18n="nav.destinations">Destinations</a></li>
+          <li class="nav-item"><a class="nav-link" href="/destinations-page" data-i18n="nav.destinations">Lieux</a></li>
           <li class="nav-item"><a class="nav-link" href="/events-page" data-i18n="nav.events">Événements</a></li>
           <li class="nav-item"><a class="nav-link" href="/services-page" data-i18n="nav.services">Services utiles</a></li>
           <li class="nav-item"><a class="nav-link" href="/map-page" data-i18n="nav.map">Carte</a></li>
-          <li class="nav-item"><a class="nav-link" href="/transport-page" data-i18n="nav.transport">Transport</a></li>
           <li class="nav-item"><a class="nav-link" href="/favorites-page">❤️ <span data-i18n="nav.favorites">Favoris</span></a></li>
           <li class="nav-item"><a class="nav-link" href="/itineraries-page" data-i18n="nav.itineraries">Mes itinéraires</a></li>
           <li class="nav-item"><a class="nav-link" href="/profile-page" data-i18n="nav.profile">👤 Profil</a></li>
@@ -58,3 +57,19 @@
     </div>
   </div>
 </nav>
+
+<!-- Bouton flottant "Carte" : raccourci visible sur toutes les pages,
+     pour revenir a la carte generale depuis n'importe ou (ex: une fiche
+     destination). Ne s'affiche pas sur la carte elle-meme. -->
+<a href="/map-page" id="floating-map-btn" class="floating-map-btn shadow" title="Voir la carte" aria-label="Voir la carte">
+  🗺️
+</a>
+<script>
+  // Masque le bouton flottant quand on est deja sur la page carte.
+  if (window.location.pathname === "/map-page") {
+    document.addEventListener("DOMContentLoaded", () => {
+      const btn = document.getElementById("floating-map-btn");
+      if (btn) btn.style.display = "none";
+    });
+  }
+</script>
