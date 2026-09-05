@@ -1,4 +1,4 @@
-// Shared helpers for all pages of the GlobeTrotter monolith frontend
+// Shared helpers for all pages of the Kribi Tour monolith frontend
 
 // ---------------------------------------------------------------------
 // Traduction de l'interface (FR / EN)
@@ -8,12 +8,11 @@
 const GT_TRANSLATIONS = {
   fr: {
     "nav.home": "Accueil",
-    "nav.kribi": "Découvrir Kribi",
+    "nav.kribi": "Le saviez-vous ?",
     "nav.destinations": "Lieux",
-    "nav.events": "Événements",
     "nav.services": "Services utiles",
     "nav.map": "Carte",
-    "nav.favorites": "Favoris",
+    "nav.create_itinerary": "➕ Créer un itinéraire",
     "nav.itineraries": "Mes itinéraires",
     "nav.profile": "👤 Profil",
     "nav.login": "Connexion",
@@ -21,12 +20,11 @@ const GT_TRANSLATIONS = {
   },
   en: {
     "nav.home": "Home",
-    "nav.kribi": "Discover Kribi",
+    "nav.kribi": "Did you know?",
     "nav.destinations": "Places",
-    "nav.events": "Events",
     "nav.services": "Useful services",
     "nav.map": "Map",
-    "nav.favorites": "Favorites",
+    "nav.create_itinerary": "➕ Create an itinerary",
     "nav.itineraries": "My itineraries",
     "nav.profile": "👤 Profile",
     "nav.login": "Log in",
@@ -239,14 +237,13 @@ function hydratePhotos(root = document) {
 }
 
 // Bouton de bascule langue FR / EN (persiste dans localStorage)
-// Il peut y avoir plusieurs boutons sur la page (version mobile hors-tiroir
-// + version desktop dans le menu) : on les synchronise tous ensemble.
+// Vit desormais uniquement dans la page Profil > Parametres (retire de la
+// navbar), mais le systeme reste generique au cas ou d'autres boutons
+// langue seraient ajoutes ailleurs plus tard.
 document.addEventListener("DOMContentLoaded", () => {
   applyTranslations();
 
   const langBtns = [
-    { btn: document.getElementById("lang-toggle-btn"), label: document.getElementById("lang-toggle-label") },
-    { btn: document.getElementById("lang-toggle-btn-desktop"), label: document.getElementById("lang-toggle-label-desktop") },
     { btn: document.getElementById("lang-toggle-btn-profile"), label: document.getElementById("lang-toggle-label-profile") },
   ].filter((pair) => pair.btn && pair.label);
 
@@ -271,15 +268,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Bouton de bascule thème clair / sombre (persiste dans localStorage)
-// Meme principe que la langue : plusieurs boutons possibles sur une page
-// (navbar + page profil), synchronises ensemble.
+// Vit desormais uniquement dans la page Profil > Parametres (retire de la navbar).
 document.addEventListener("DOMContentLoaded", () => {
   const themeBtns = [
-    {
-      btn: document.getElementById("theme-toggle-btn"),
-      icon: document.getElementById("theme-toggle-icon"),
-      label: document.getElementById("theme-toggle-label"),
-    },
     {
       btn: document.getElementById("theme-toggle-btn-profile"),
       icon: document.getElementById("theme-toggle-icon-profile"),
@@ -328,30 +319,41 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const authLink = document.getElementById("auth-link");
-  if (!authLink) return;
+  const authLinkDesktop = document.getElementById("auth-link-desktop");
+  const authLinks = [authLink, authLinkDesktop].filter(Boolean);
+  if (authLinks.length === 0) return;
 
   if (isLoggedIn()) {
-    authLink.removeAttribute("data-i18n");
-    authLink.textContent = t("nav.logout");
-    authLink.href = "#";
-    authLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      clearToken();
-      window.location.href = "/login-page";
+    authLinks.forEach((link) => {
+      link.removeAttribute("data-i18n");
+      link.textContent = t("nav.logout");
+      link.href = "#";
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        clearToken();
+        window.location.href = "/login-page";
+      });
     });
 
-    // Affiche le lien "Tableau de bord" uniquement pour l'administrateur.
-    const adminNavItem = document.getElementById("admin-nav-item");
-    if (adminNavItem) {
-      apiRequest("/me", { auth: true }).then(({ ok, data }) => {
-        if (ok && data.role === "admin") {
-          adminNavItem.style.display = "";
-        }
-      });
-    }
+    // Renseigne l'avatar + le nom d'utilisateur dans l'en-tete du tiroir mobile.
+    const avatarEl = document.getElementById("offcanvas-avatar");
+    const usernameEl = document.getElementById("offcanvas-username");
+    apiRequest("/me", { auth: true }).then(({ ok, data }) => {
+      if (ok && usernameEl) {
+        usernameEl.textContent = data.username || "Mon compte";
+        if (avatarEl) avatarEl.textContent = (data.username || "?").trim().charAt(0).toUpperCase();
+      }
+      // Affiche le lien "Tableau de bord" uniquement pour l'administrateur.
+      const adminNavItem = document.getElementById("admin-nav-item");
+      if (adminNavItem && ok && data.role === "admin") {
+        adminNavItem.style.display = "";
+      }
+    });
   } else {
-    authLink.setAttribute("data-i18n", "nav.login");
-    authLink.textContent = t("nav.login");
-    authLink.href = "/login-page";
+    authLinks.forEach((link) => {
+      link.setAttribute("data-i18n", "nav.login");
+      link.textContent = t("nav.login");
+      link.href = "/login-page";
+    });
   }
 });
