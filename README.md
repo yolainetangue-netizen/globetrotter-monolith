@@ -18,7 +18,7 @@ The app currently covers **25 destinations and addresses in Kribi**, across
 five categories: Site historique (historical site), Nature, Distraction,
 Restaurant and Hôtel. Each destination can be explored via search, category
 filters, tag filters, an interactive map, a transport price comparator, and
-a full detail page (with live weather, seasonal budget, and user reviews).
+a full detail page (with live weather, seasonal budget, and user reviews
 
 ## Architecture
 
