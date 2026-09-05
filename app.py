@@ -1,11 +1,12 @@
 """
-GlobeTrotter Travel Assistant - Phase 1: The Monolith
+Kribi Tour Travel Assistant - Phase 1: The Monolith
 A single Flask server handling all requests, with data stored in a JSON file.
 """
 
 import io
 import json
 import os
+import secrets
 import time
 from datetime import datetime, timedelta
 
@@ -319,7 +320,7 @@ def _search_wikipedia_pageimage(query, api_url):
                 "srlimit": 1,
                 "format": "json",
             },
-            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            headers={"User-Agent": "KribiTourApp/1.0 (student project)"},
             timeout=6,
         )
         search_resp.raise_for_status()
@@ -337,7 +338,7 @@ def _search_wikipedia_pageimage(query, api_url):
                 "piprop": "original",
                 "format": "json",
             },
-            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            headers={"User-Agent": "KribiTourApp/1.0 (student project)"},
             timeout=6,
         )
         image_resp.raise_for_status()
@@ -368,7 +369,7 @@ def _search_wikimedia_commons(query):
                 "srlimit": 1,
                 "format": "json",
             },
-            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            headers={"User-Agent": "KribiTourApp/1.0 (student project)"},
             timeout=6,
         )
         search_resp.raise_for_status()
@@ -389,7 +390,7 @@ def _search_wikimedia_commons(query):
                 "iiurlwidth": 800,
                 "format": "json",
             },
-            headers={"User-Agent": "GlobeTrotterApp/1.0 (student project)"},
+            headers={"User-Agent": "KribiTourApp/1.0 (student project)"},
             timeout=6,
         )
         info_resp.raise_for_status()
@@ -986,7 +987,7 @@ def build_itinerary_pdf(itinerary, destination):
     muted_style = ParagraphStyle("GTMuted", parent=styles["Normal"], fontSize=9, textColor=colors.grey)
 
     story = []
-    story.append(Paragraph("GlobeTrotter-Kribi", muted_style))
+    story.append(Paragraph("Kribi Tour", muted_style))
     story.append(Paragraph(itinerary.get("title") or "Mon itineraire", title_style))
     story.append(Spacer(1, 4))
     story.append(HRFlowable(width="100%", color=colors.HexColor("#0e3a5c"), thickness=1))
@@ -1053,7 +1054,7 @@ def build_itinerary_pdf(itinerary, destination):
     story.append(HRFlowable(width="100%", color=colors.HexColor("#cccccc"), thickness=0.5))
     story.append(Spacer(1, 6))
     story.append(Paragraph(
-        f"Genere le {datetime.utcnow().strftime('%d/%m/%Y')} depuis GlobeTrotter-Kribi. "
+        f"Genere le {datetime.utcnow().strftime('%d/%m/%Y')} depuis Kribi Tour. "
         "Document telechargeable, consultable sans connexion internet.",
         muted_style,
     ))
@@ -1099,6 +1100,56 @@ def download_itinerary(itinerary_id):
         as_attachment=True,
         download_name=filename,
     )
+
+
+@app.route("/itineraries/<int:itinerary_id>/share", methods=["POST"])
+@jwt_required()
+def share_itinerary(itinerary_id):
+    """Genere (ou renvoie, si deja existant) un token de partage public pour
+    cet itineraire. Le token permet a n'importe qui possedant le lien de
+    consulter l'itineraire sans etre connecte, sans pouvoir deviner l'URL
+    d'un autre itineraire (contrairement a un simple ID incremental)."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    itinerary = next((it for it in data["itineraries"] if it["id"] == itinerary_id), None)
+    if not itinerary:
+        return jsonify({"error": "itinerary not found"}), 404
+    if itinerary["user_id"] != user_id:
+        return jsonify({"error": "not authorized to access this itinerary"}), 403
+
+    if not itinerary.get("share_token"):
+        itinerary["share_token"] = secrets.token_urlsafe(16)
+        save_data(data)
+
+    return jsonify({"share_token": itinerary["share_token"]}), 200
+
+
+@app.route("/itineraries/public/<token>", methods=["GET"])
+def get_public_itinerary(token):
+    """Renvoie les infos d'un itineraire partage via son token public,
+    accessible sans compte ni connexion (pour un lien envoye par
+    SMS/WhatsApp/etc.)."""
+    data = load_data()
+
+    itinerary = next((it for it in data["itineraries"] if it.get("share_token") == token), None)
+    if not itinerary:
+        return jsonify({"error": "shared itinerary not found"}), 404
+
+    destination = next((d for d in data["destinations"] if d["id"] == itinerary["destination_id"]), None)
+
+    return jsonify({
+        "title": itinerary.get("title"),
+        "start_date": itinerary.get("start_date"),
+        "end_date": itinerary.get("end_date"),
+        "notes": itinerary.get("notes"),
+        "destination": destination,
+    }), 200
+
+
+@app.route("/itinerary/shared/<token>")
+def public_itinerary_page(token):
+    return render_template("itinerary_public.html", token=token)
 
 
 # ---------------------------------------------------------------------------
