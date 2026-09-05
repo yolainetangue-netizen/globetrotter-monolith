@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Détail du lieu - GlobeTrotter-Kribi</title>
+  <title>Détail du lieu - Kribi Tour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -138,28 +138,12 @@
         `
         : "";
 
-      const hasSeasonal = d.budget_saison_seche || d.budget_saison_pluies;
-      const budgetBlock = (d.budget || hasSeasonal)
+      const budgetBlock = d.budget
         ? `
           <div class="card shadow-sm border-0 mb-4">
             <div class="card-body p-4">
-              <h2 class="h5 mb-3">💰 Budget selon la saison</h2>
-              ${hasSeasonal ? `
-                <div class="row g-3 mb-2">
-                  <div class="col-md-6">
-                    <div class="season-dry rounded-3 p-3 h-100">
-                      <p class="fw-semibold small mb-2">☀️ Saison sèche</p>
-                      <p class="small mb-0">${d.budget_saison_seche || d.budget || ""}</p>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="season-wet rounded-3 p-3 h-100">
-                      <p class="fw-semibold small mb-2">🌧️ Saison des pluies</p>
-                      <p class="small mb-0">${d.budget_saison_pluies || d.budget || ""}</p>
-                    </div>
-                  </div>
-                </div>
-              ` : `<p class="small">${d.budget}</p>`}
+              <h2 class="h5 mb-3">💰 Budget indicatif</h2>
+              <p class="mb-2">${d.budget}</p>
               <p class="hint mb-0">Les prix sont indicatifs, à confirmer sur place ; ils varient selon la négociation et l'affluence.</p>
             </div>
           </div>
@@ -175,8 +159,9 @@
                 <table class="table table-borderless mb-0 small">
                   ${typeof d.transport === "object"
                     ? `
-                      <tr><td class="fw-semibold" style="width:35%">🚕 Taxi</td><td>${d.transport.taxi || "—"}</td></tr>
-                      <tr><td class="fw-semibold">🏍️ Moto-taxi</td><td>${d.transport.moto || "—"}</td></tr>
+                      ${d.transport.walk ? `<tr><td class="fw-semibold" style="width:35%">🚶 À pied</td><td>${d.transport.walk}</td></tr>` : ""}
+                      <tr><td class="fw-semibold" style="width:35%">🏍️ Moto-taxi</td><td>${d.transport.moto || "—"}</td></tr>
+                      <tr><td class="fw-semibold">🚕 Taxi <span class="hint">(longues distances)</span></td><td>${d.transport.taxi || "—"}</td></tr>
                       ${d.transport.note ? `<tr><td class="fw-semibold">ℹ️ Bon à savoir</td><td>${d.transport.note}</td></tr>` : ""}
                     `
                     : `<tr><td class="fw-semibold">Comment y aller</td><td>${d.transport}</td></tr>`

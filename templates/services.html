@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Services utiles - GlobeTrotter Kribi</title>
+  <title>Services utiles - Kribi Tour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,7 +13,7 @@
 <body>
   {% include '_navbar.html' %}
 
-  <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
+  <section class="text-white py-5" style="background: linear-gradient(135deg, rgba(30,20,50,.55) 0%, rgba(40,20,10,.55) 100%), url('{{ url_for('static', filename='images/hero-services-utiles.jpg') }}') center/cover no-repeat;">
     <div class="container py-3">
       <a href="/kribi-page" class="text-white-50 text-decoration-none small">&larr; Toutes les catégories</a>
       <h1 class="display-6 fw-bold mt-2 mb-2">🏥 Services utiles à Kribi</h1>
@@ -22,6 +22,16 @@
   </section>
 
   <main class="container my-4">
+    <a href="/events-page" class="card shadow-sm border-0 mb-4 text-decoration-none text-reset card-hover">
+      <div class="card-body p-4 d-flex justify-content-between align-items-center">
+        <div>
+          <h2 class="h5 mb-1">🎉 Événements à Kribi</h2>
+          <p class="hint mb-0">Festivals, concerts, compétitions sportives et animations locales.</p>
+        </div>
+        <span class="fs-4">→</span>
+      </div>
+    </a>
+
     <div class="d-flex flex-wrap gap-2 mb-4" id="service-type-pills">
       <button class="btn btn-sm rounded-pill btn-gt-orange border-0 pill active" data-type="">Tous</button>
       <button class="btn btn-sm rounded-pill btn-outline-secondary pill" data-type="Hôpital">🏥 Hôpitaux</button>

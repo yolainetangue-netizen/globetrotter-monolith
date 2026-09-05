@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Découvrir Kribi - GlobeTrotter-Kribi</title>
+  <title>Découvrir Kribi - Kribi Tour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,10 +14,10 @@
   {% include '_navbar.html' %}
 
   <!-- Hero : description générale -->
-  <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
+  <section class="text-white py-5" style="background: linear-gradient(135deg, rgba(30,20,50,.55) 0%, rgba(40,20,10,.55) 100%), url('{{ url_for('static', filename='images/hero-kribi-savez-vous.jpg') }}') center/cover no-repeat;">
     <div class="container py-4">
       <p class="text-uppercase fw-semibold small mb-2" style="letter-spacing:2px; opacity:.85;">Découvrir</p>
-      <h1 class="display-5 fw-bold mb-3">Kribi, Cameroun 🌊</h1>
+      <h1 class="display-5 fw-bold mb-3">Le saviez-vous ? 🌊</h1>
       <p class="lead mb-0" style="opacity:.94; max-width:760px;">
         Station balnéaire du littoral sud camerounais, Kribi est réputée pour ses plages de sable fin bordées de
         cocotiers, ses chutes de la Lobe qui se jettent directement dans l'océan Atlantique, et son ambiance de
@@ -100,21 +100,7 @@
         <div class="card h-100 shadow-sm border-0">
           <div class="card-body p-4 text-center">
             <h2 class="h5 mb-3">📍 Où se trouve Kribi ?</h2>
-            <svg viewBox="0 0 300 340" class="cameroon-map" role="img" aria-label="Carte du Cameroun avec Kribi indiquée">
-              <path class="cameroon-shape"
-                d="M110,10 C140,8 165,25 175,45 C195,50 215,60 220,80
-                   C230,90 235,110 225,125 C245,140 255,165 250,190
-                   C260,210 255,235 235,245 C240,265 225,285 200,290
-                   C195,310 175,325 150,320 C130,330 105,325 95,305
-                   C70,300 55,280 60,255 C40,245 30,220 40,200
-                   C25,185 25,160 40,145 C30,125 35,100 55,90
-                   C50,70 65,50 90,45 C90,25 100,12 110,10 Z" />
-              <circle class="kribi-dot" cx="118" cy="255" r="7">
-                <animate attributeName="r" values="7;11;7" dur="2s" repeatCount="indefinite" />
-              </circle>
-              <text x="132" y="260" class="kribi-label">Kribi</text>
-              <text x="150" y="60" class="region-label">Cameroun</text>
-            </svg>
+            <img src="{{ url_for('static', filename='images/cameroon-map.png') }}" alt="Carte du Cameroun avec Kribi indiquée" class="img-fluid" style="max-height:320px;" />
             <p class="hint mb-0 mt-2">
               Kribi se situe dans la <strong>Région du Sud</strong>, sur le littoral atlantique,
               à environ 170 km au sud-ouest de Douala et 150 km de Yaoundé.
@@ -140,6 +126,79 @@
             </p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Gastronomie -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">🍽️ Gastronomie</h2>
+        <p class="mb-2">
+          La cuisine de Kribi est avant tout une <strong>cuisine côtière</strong>, portée par une pêche
+          artisanale quotidienne. Le poisson (bar, capitaine, sole) et les crevettes se dégustent grillés
+          ou braisés, souvent accompagnés de bâton de manioc, de plantain ou de miondo, et servis avec un
+          piment maison qui relève chaque plat.
+        </p>
+        <p class="mb-0">
+          Les paillotes en bord de plage sont l'endroit privilégié pour ces repas : on y choisit son
+          poisson directement au retour des pirogues, préparé sous vos yeux quelques minutes plus tard.
+          Le jus de bissap, de gingembre ou d'ananas frais accompagne généralement le repas.
+        </p>
+      </div>
+    </div>
+
+    <!-- Culture -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">🎭 Culture</h2>
+        <p class="mb-2">
+          Kribi et sa région sont historiquement peuplées par les <strong>Batanga</strong> et les
+          <strong>Mabi</strong>, peuples côtiers dont la vie a longtemps été rythmée par la pêche et le
+          fleuve. Des fêtes commémoratives, comme celle célébrant la résistance batanga face à la
+          colonisation, rassemblent chaque année la communauté en costumes traditionnels et processions
+          festives.
+        </p>
+        <p class="mb-0">
+          La musique et la danse traditionnelles restent très présentes lors des cérémonies locales, aux
+          côtés d'une scène musicale plus urbaine (bars, lounges, soirées DJ) qui anime les soirées de la
+          ville, en particulier le week-end.
+        </p>
+      </div>
+    </div>
+
+    <!-- Sites remarquables -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">🏞️ Sites remarquables</h2>
+        <p class="mb-2">
+          Le site le plus emblématique de Kribi reste les <strong>chutes de la Lobé</strong>, l'une des
+          rares chutes d'eau au monde à se jeter directement dans l'océan. À proximité, le
+          <strong>fleuve Lobé</strong> et ses mangroves se découvrent en pirogue, au fil d'excursions
+          guidées par les pêcheurs locaux.
+        </p>
+        <p class="mb-0">
+          La ville conserve aussi des traces de son passé colonial et portuaire, comme le
+          <strong>phare de Kribi</strong> et le débarcadère de Mboamanga, tandis que le
+          <strong>port en eau profonde</strong> témoigne de son développement économique récent.
+        </p>
+      </div>
+    </div>
+
+    <!-- Mode de vie -->
+    <div class="card shadow-sm border-0 mb-5">
+      <div class="card-body p-4">
+        <h2 class="h4 mb-3">🌴 Mode de vie</h2>
+        <p class="mb-2">
+          Le rythme de vie à Kribi reste marqué par la mer : les journées des pêcheurs commencent tôt,
+          avant le lever du soleil, et les marchés aux poissons animent le bord de mer dès le retour des
+          pirogues. La vie sociale se passe beaucoup en extérieur, entre les marchés, les paillotes et les
+          terrasses en bord de plage.
+        </p>
+        <p class="mb-0">
+          Le tourisme balnéaire a progressivement transformé une partie de l'économie locale, avec
+          l'essor des hôtels, restaurants et activités nautiques, sans pour autant faire disparaître les
+          traditions de pêche artisanale qui restent au cœur du quotidien de nombreux habitants.
+        </p>
       </div>
     </div>
 

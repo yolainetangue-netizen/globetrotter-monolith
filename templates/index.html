@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GlobeTrotter Explore — Kribi</title>
+  <title>Kribi Tour — Kribi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
     <div class="welcome-overlay-content">
       <div class="welcome-emoji mb-3">🌊</div>
       <h1 id="welcome-title" class="welcome-title mb-3">Hello !</h1>
-      <p id="welcome-subtitle" class="welcome-subtitle mb-4">Bienvenue sur GlobeTrotter Kribi</p>
+      <p id="welcome-subtitle" class="welcome-subtitle mb-4">Bienvenue sur Kribi Tour</p>
       <button id="welcome-close-btn" class="btn btn-light btn-lg rounded-pill px-5 fw-semibold">
         Découvrir Kribi →
       </button>
@@ -25,14 +25,14 @@
 
   {% include '_navbar.html' %}
 
-  <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
+  <section class="text-white py-5" style="background: linear-gradient(135deg, rgba(30,20,50,.55) 0%, rgba(40,20,10,.55) 100%), url('{{ url_for('static', filename='images/hero-kribi-port.jpg') }}') center/cover no-repeat;">
     <div class="container py-4">
       <div class="row align-items-center g-5">
         <div class="col-lg-7">
-          <p class="text-uppercase fw-semibold small mb-2" style="letter-spacing:2px; opacity:.85;">GlobeTrotter Explore</p>
+          <p class="text-uppercase fw-semibold small mb-2" style="letter-spacing:2px; opacity:.85;">Kribi Tour</p>
           <h1 class="display-5 fw-bold mb-3">Explorez Kribi comme un local 🌊</h1>
           <p class="lead mb-4" style="opacity:.92;">
-            GlobeTrotter Explore transforme vos envies en itinéraire à Kribi : recherchez
+            Kribi Tour transforme vos envies en itinéraire à Kribi : recherchez
             des lieux dans la ville, comparez les prix selon la saison et le moyen de
             transport (taxi ou moto), recevez des recommandations adaptées à vos goûts,
             et organisez vos sorties.
@@ -55,28 +55,11 @@
     </div>
   </section>
 
-  <div class="container">
-    <div class="row text-center g-0 shadow-sm rounded-3 overflow-hidden bg-white mt-n4 position-relative" style="z-index:3; max-width:900px; margin-inline:auto;">
-      <div class="col-4 py-3 border-end">
-        <div class="stat-num">68</div>
-        <div class="hint">Lieux &amp; adresses à Kribi</div>
-      </div>
-      <div class="col-4 py-3 border-end">
-        <div class="stat-num">11</div>
-        <div class="hint">Catégories à explorer</div>
-      </div>
-      <div class="col-4 py-3">
-        <div class="stat-num">2</div>
-        <div class="hint">Moyens de transport comparés</div>
-      </div>
-    </div>
-  </div>
-
   <main class="container my-5">
     <div class="card shadow-sm border-0 mb-4">
       <div class="card-body p-4">
-        <h2 class="h4 mb-3">Bienvenue sur GlobeTrotter Explore</h2>
-        <p class="mb-2">GlobeTrotter Explore transforme vos envies en itinéraire à Kribi : recherchez des lieux et des
+        <h2 class="h4 mb-3">Bienvenue sur Kribi Tour</h2>
+        <p class="mb-2">Kribi Tour transforme vos envies en itinéraire à Kribi : recherchez des lieux et des
           adresses dans la ville, comparez les prix selon la saison et le moyen de transport (taxi ou moto), recevez
           des recommandations adaptées à vos goûts, et organisez vos sorties.</p>
         <p class="hint mb-0">Compte démo : nom d'utilisateur <code>demo</code>, mot de passe <code>demo123</code></p>
@@ -200,7 +183,7 @@
     // d'accroche tiré au hasard parmi plusieurs propositions.
     // ---------------------------------------------------------------------
     const WELCOME_MESSAGES = [
-      { title: "Hello 👋", subtitle: "Bienvenue sur GlobeTrotter Kribi" },
+      { title: "Hello 👋", subtitle: "Bienvenue sur Kribi Tour" },
       { title: "Bienvenue !", subtitle: "Découvrez Kribi plus facilement" },
       { title: "Karibu ! 🌴", subtitle: "Votre guide pour explorer Kribi comme un local" },
       { title: "Prêt(e) à explorer ?", subtitle: "Plages, restaurants, marchés et sorties : tout Kribi dans votre poche" },

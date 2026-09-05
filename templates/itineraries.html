@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mes itinéraires - GlobeTrotter-Kribi</title>
+  <title>Mes itinéraires - Kribi Tour</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -67,6 +67,9 @@
             <button class="btn btn-sm btn-outline-primary download-pdf-btn" data-id="${it.id}" data-title="${(it.title || "itineraire").replace(/"/g, "")}">
               📥 PDF
             </button>
+            <button class="btn btn-sm btn-outline-secondary share-btn" data-id="${it.id}">
+              🔗 Partager
+            </button>
           </td>
         </tr>`
         )
@@ -74,10 +77,11 @@
 
       content.innerHTML = `
         <p class="hint mb-3">💡 Télécharge un itinéraire en PDF pour le consulter même sans connexion internet.</p>
+        <div id="share-link-box" class="alert alert-info d-none mb-3"></div>
         <div class="table-responsive">
           <table class="table align-middle">
             <thead>
-              <tr><th>Titre</th><th>Destination</th><th>Début</th><th>Fin</th><th>Notes</th><th>Hors-ligne</th></tr>
+              <tr><th>Titre</th><th>Destination</th><th>Début</th><th>Fin</th><th>Notes</th><th>Actions</th></tr>
             </thead>
             <tbody>${rows}</tbody>
           </table>
@@ -87,6 +91,48 @@
       document.querySelectorAll(".download-pdf-btn").forEach((btn) => {
         btn.addEventListener("click", () => downloadItineraryPdf(btn.dataset.id, btn, btn.dataset.title));
       });
+
+      document.querySelectorAll(".share-btn").forEach((btn) => {
+        btn.addEventListener("click", () => shareItinerary(btn.dataset.id, btn));
+      });
+    }
+
+    // Genere (ou recupere) un lien de partage public et l'affiche avec un
+    // bouton "Copier", pour un envoi facile par SMS/WhatsApp/etc.
+    async function shareItinerary(id, btn) {
+      const originalLabel = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = "⏳ ...";
+      try {
+        const { ok, data } = await apiRequest(`/itineraries/${id}/share`, { method: "POST", auth: true });
+        if (!ok) throw new Error("Échec de la génération du lien");
+
+        const link = `${window.location.origin}/itinerary/shared/${data.share_token}`;
+        const box = document.getElementById("share-link-box");
+        box.classList.remove("d-none");
+        box.innerHTML = `
+          <p class="mb-2">🔗 Voici le lien à envoyer :</p>
+          <div class="input-group">
+            <input type="text" class="form-control" value="${link}" id="share-link-input" readonly />
+            <button class="btn btn-outline-primary" id="copy-share-link-btn">Copier le lien</button>
+          </div>
+        `;
+        document.getElementById("copy-share-link-btn").addEventListener("click", () => {
+          const input = document.getElementById("share-link-input");
+          input.select();
+          navigator.clipboard.writeText(input.value).then(() => {
+            const copyBtn = document.getElementById("copy-share-link-btn");
+            copyBtn.textContent = "Copié ✓";
+            setTimeout(() => { copyBtn.textContent = "Copier le lien"; }, 2000);
+          });
+        });
+        box.scrollIntoView({ behavior: "smooth", block: "center" });
+      } catch (err) {
+        alert("Impossible de générer le lien de partage. Réessaie dans un instant.");
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalLabel;
+      }
     }
 
     // Le PDF est protege par JWT (comme le reste de l'API), donc un simple
