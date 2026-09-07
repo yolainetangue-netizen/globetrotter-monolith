@@ -16,12 +16,6 @@
       "password": "daina123",
       "preferences": [],
       "role": "admin"
-    },
-    {
-      "id": 3,
-      "username": "yann",
-      "password": "12345",
-      "preferences": []
     }
   ],
   "destinations": [
@@ -59,7 +53,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "restaurant food dining plate",
       "contact": null
@@ -96,7 +90,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-500 FCFA",
-        "note": "Situe en centre-ville, facile d'acces a pied ou en moto-taxi.",
+        "note": "Situe en centre-ville, facile d'acces a pied ou en moto.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "restaurant food dining plate",
@@ -160,8 +154,8 @@
       "transport": {
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville de Kribi (15-20 min)",
         "moto": "environ 1000-1500 FCFA",
-        "note": "Situe en peripherie, prevoir un vehicule ou une moto-taxi.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "note": "Situe en peripherie, prevoir un vehicule ou une moto.",
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african historic monument architecture",
       "contact": null
@@ -277,7 +271,7 @@
         "taxi": "environ 1500-2500 FCFA depuis le centre-ville",
         "moto": "environ 800-1200 FCFA",
         "note": "Zone sensible : eviter les prises de vue rapprochees des installations.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african historic monument architecture",
       "contact": null
@@ -356,7 +350,7 @@
         "taxi": "environ 12000-18000 FCFA pour un aller-retour taxi/vehicule depuis Kribi (1h-1h30)",
         "moto": "envisageable par temps sec uniquement, tarif a negocier",
         "note": "Passer par une association locale ou un guide de Kribi est recommande pour organiser une visite respectueuse.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african historic monument architecture",
       "contact": null
@@ -398,8 +392,7 @@
         "note": "Situee en plein centre-ville, tres accessible.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
-      "contact": null,
-      "views": 2
+      "contact": null
     },
     {
       "id": 10,
@@ -473,14 +466,13 @@
         "taxi": "environ 2000-3000 FCFA",
         "moto": "environ 1000-1500 FCFA",
         "note": "(15-20 min, 7 km).",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query": "Chutes de la Lobe Kribi Cameroon",
       "budget_saison_seche": "Droit d'acces modique (environ 1200-2300 FCFA). Balade en pirogue : 2300-5800 FCFA en supplement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Droit d'acces modique (environ 900-1800 FCFA). Balade en pirogue : 1800-4500 FCFA en supplement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null,
-      "views": 7
+      "contact": null
     },
     {
       "id": 12,
@@ -557,7 +549,7 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville",
         "moto": "environ 1000-1500 FCFA",
         "note": "Meilleure experience tot le matin, au retour des pirogues.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -596,7 +588,7 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville",
         "moto": "environ 1000-1500 FCFA",
         "note": "Se combine facilement avec la visite des Chutes de la Lobe toutes proches.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -676,8 +668,7 @@
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "hotel resort pool relaxation",
-      "contact": "+237 660 00 04 11",
-      "views": 4
+      "contact": "+237 660 00 04 11"
     },
     {
       "id": 17,
@@ -753,7 +744,7 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Situe pres du Phare, a quelques minutes du centre-ville.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": "+237 660 00 06 85"
     },
@@ -831,7 +822,7 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville",
         "moto": "environ 1000-1500 FCFA",
         "note": "A combiner avec la visite des Chutes de la Lobe, toute proche.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": "+237 660 00 08 22",
       "menu": [
@@ -1121,7 +1112,7 @@
         "taxi": "environ 3000-4500 FCFA depuis le centre de Kribi (15-20 min)",
         "moto": "environ 1500-2500 FCFA",
         "note": "Piste praticable ; prevoir un peu plus de temps en saison des pluies.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african waterfall river nature landscape",
       "contact": null
@@ -1237,7 +1228,7 @@
         "taxi": "environ 3000-4500 FCFA depuis le centre-ville",
         "moto": "environ 1500-2500 FCFA",
         "note": "Sortie dependante des horaires de maree ; se renseigner aupres d'un guide local avant de s'y rendre.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1355,7 +1346,7 @@
         "taxi": "environ 3000-4500 FCFA depuis le centre-ville",
         "moto": "environ 1500-2500 FCFA",
         "note": "Situe dans le secteur de Grand Batanga, au sud du centre-ville.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1394,7 +1385,7 @@
         "taxi": "environ 15000-20000 FCFA pour un aller-retour depuis Kribi",
         "moto": "non recommande sur cette distance de nuit",
         "note": "Sortie uniquement possible en saison de ponte (nov-fev) ; reservation aupres d'une association locale recommandee.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1433,7 +1424,7 @@
         "taxi": "environ 20000-30000 FCFA pour un vehicule loue depuis Kribi jusqu'au poste de Campo (1h30-2h, 75 km)",
         "moto": "non recommande sur cette distance en foret",
         "note": "Un 4x4 ou un vehicule loue avec chauffeur est fortement recommande ; certaines pistes sont impraticables en saison des pluies.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african waterfall river nature landscape",
       "contact": null
@@ -1468,16 +1459,15 @@
       "budget": "Acces gratuit.",
       "transport": {
         "taxi": "A pied depuis la plage de Kribi, ou taxi pour environ 500 FCFA (5 min).",
-        "moto": "moto-taxi disponible localement, prix a negocier (generalement 30-50% moins cher qu'un taxi)",
-        "note": "A pied depuis la plage de Kribi, ou taxi pour environ 500 FCFA (5 min).",
+        "moto": "moto disponible localement, prix a negocier (generalement 30-50% moins cher qu'un voiture)",
+        "note": "A pied depuis la plage de Kribi, ou voiture pour environ 500 FCFA (5 min).",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query": "Phare de Kribi Kribi Cameroon",
       "budget_saison_seche": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "budget_saison_pluies": "Acces gratuit. Aucune variation saisonniere (acces gratuit).",
       "image_query_fallback": "african historic monument architecture",
-      "contact": null,
-      "views": 4
+      "contact": null
     },
     {
       "id": 35,
@@ -1617,7 +1607,8 @@
         "note": "Situee en plein centre, accessible a pied depuis la plupart des hebergements.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
-      "contact": null
+      "contact": null,
+      "video": "/static/images/destination-37-plage-centrale.mp4"
     },
     {
       "id": 38,
@@ -1655,7 +1646,7 @@
         "taxi": "environ 15000-20000 FCFA pour un aller-retour depuis Kribi (1h-1h15)",
         "moto": "non recommande sur cette distance",
         "note": "Piste en partie non bitumee ; prevoir un vehicule robuste, surtout en saison des pluies.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1695,7 +1686,7 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville",
         "moto": "environ 1000-1500 FCFA",
         "note": "Piste praticable, un peu plus longue en saison des pluies.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1737,7 +1728,8 @@
       "budget_saison_seche": "Acces gratuit. Location transat/parasol : 1200-2300 FCFA selon etablissement. (haute saison, nov-mars : forte affluence, tarifs guides/pirogues au plus haut).",
       "budget_saison_pluies": "Acces gratuit. Location transat/parasol : 900-1800 FCFA selon etablissement. (saison des pluies, avr-oct : frequentation plus faible, tarifs souvent negociables ; certains sentiers/pirogues peuvent etre impraticables apres de fortes pluies).",
       "image_query_fallback": "african waterfall river nature landscape",
-      "contact": null
+      "contact": null,
+      "video": "/static/images/destination-40-plage-ngoye.mp4"
     },
     {
       "id": 41,
@@ -1771,9 +1763,9 @@
       "budget_saison_pluies": "Observation exterieure gratuite. Visite guidee des installations : sur autorisation prealable, tarif variable. (saison des pluies, avr-juin/sept-oct : frequentation plus calme, tarifs souvent negociables).",
       "transport": {
         "taxi": "environ 8000-12000 FCFA pour un aller-retour taxi depuis Kribi (35-40 min, 30 km)",
-        "moto": "environ 4000-6000 FCFA, trajet plus long recommande en taxi",
+        "moto": "environ 4000-6000 FCFA, trajet plus long recommande en voiture",
         "note": "Route bitumee, accessible toute l'annee ; prevoir un vehicule pour l'aller-retour.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african historic monument architecture",
       "contact": null
@@ -1814,7 +1806,7 @@
         "taxi": "environ 2000-3000 FCFA depuis le centre-ville",
         "moto": "environ 1000-1500 FCFA",
         "note": "Sortie a organiser la veille aupres d'un pecheur local ou d'un guide.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1852,7 +1844,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Situe en bord de plage, facilement accessible depuis la plupart des hotels de Kribi.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "restaurant food dining plate",
       "contact": "+237 660 00 16 44",
@@ -1881,7 +1873,8 @@
           "plat": "Jus de fruits locaux (bissap, gingembre, ananas)",
           "prix": "1000 FCFA"
         }
-      ]
+      ],
+      "video": "/static/images/destination-43-idodo.mp4"
     },
     {
       "id": 44,
@@ -1918,7 +1911,7 @@
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
         "note": "Un peu excentree, prevoir un moyen de transport depuis le centre.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": null
     },
@@ -1956,8 +1949,8 @@
       "transport": {
         "taxi": "environ 1000-1500 FCFA depuis le centre-ville",
         "moto": "environ 500-800 FCFA",
-        "note": "Un peu excentre, navette ou taxi recommande vers le centre-ville.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "note": "Un peu excentre, navette ou voiture recommande vers le centre-ville.",
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "contact": "+237 660 00 17 81"
     },
@@ -1995,7 +1988,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville de Kribi",
         "moto": "environ 300-800 FCFA",
         "note": "Adresse centrale du front de mer, tres accessible.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "restaurant food dining plate",
       "contact": "+237 660 00 19 18",
@@ -2020,8 +2013,7 @@
           "plat": "Boissons fraîches",
           "prix": "1000 FCFA"
         }
-      ],
-      "views": 3
+      ]
     },
     {
       "id": 47,
@@ -2095,7 +2087,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Facile d'acces en taxi ou moto-taxi.",
+        "note": "Facile d'acces en voiture ou moto.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "hotel resort pool relaxation",
@@ -2135,7 +2127,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
         "note": "Situe en bord de plage.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "hotel resort pool relaxation ocean",
       "contact": "+237 660 00 23 29"
@@ -2316,7 +2308,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
         "note": "Situe en bord de plage.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "restaurant beach food dining",
       "contact": "+237 660 00 28 77",
@@ -2375,7 +2367,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Facile d'acces a pied ou en moto-taxi.",
+        "note": "Facile d'acces a pied ou en moto.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "restaurant food dining plate",
@@ -2579,7 +2571,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "Kribi Cameroon nightlife venue",
       "contact": null
@@ -2655,7 +2647,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "african market colorful stalls",
@@ -2693,7 +2685,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi.",
+        "note": "Accessible en voiture ou moto.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "african market colorful stalls",
@@ -2731,8 +2723,8 @@
       "transport": {
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
-        "note": "Accessible en taxi ou moto-taxi.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "note": "Accessible en voiture ou moto.",
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "african market colorful stalls",
       "contact": null
@@ -2808,7 +2800,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi.",
+        "note": "Accessible en voiture ou moto.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "fish market fishermen boats",
@@ -2848,7 +2840,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "nightclub party lights",
       "contact": null
@@ -2926,7 +2918,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
         "note": "Ambiance nocturne animee ; prevoir un moyen de retour en fin de soiree.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "live music concert stage",
       "contact": null
@@ -2965,7 +2957,7 @@
         "taxi": "environ 500-1500 FCFA depuis le centre-ville",
         "moto": "environ 300-800 FCFA",
         "note": "Situe en bord de plage.",
-        "walk": "trop éloigné pour y aller à pied, préférez la moto-taxi"
+        "walk": "trop éloigné pour y aller à pied, préférez la moto"
       },
       "image_query_fallback": "beach bar sunset ocean",
       "contact": null
@@ -3003,7 +2995,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "supermarket grocery store shopping",
@@ -3042,7 +3034,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "clothing boutique fashion store",
@@ -3081,7 +3073,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "supermarket grocery store shopping",
@@ -3120,7 +3112,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "supermarket grocery store shopping",
@@ -3159,7 +3151,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "handbag accessories boutique shopping",
@@ -3198,7 +3190,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "hair salon beauty spa",
@@ -3237,12 +3229,11 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "wellness spa beauty center",
-      "contact": null,
-      "views": 1
+      "contact": null
     },
     {
       "id": 76,
@@ -3277,7 +3268,7 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "hair salon beauty spa",
@@ -3316,24 +3307,14 @@
       "transport": {
         "taxi": "environ 500-1000 FCFA depuis le centre-ville",
         "moto": "environ 300-500 FCFA",
-        "note": "Accessible en taxi ou moto-taxi depuis le centre-ville de Kribi.",
+        "note": "Accessible en voiture ou moto depuis le centre-ville de Kribi.",
         "walk": "envisageable si vous êtes déjà en centre-ville (15-25 min de marche)"
       },
       "image_query_fallback": "hair salon barber beauty",
       "contact": null
     }
   ],
-  "itineraries": [
-    {
-      "id": 1,
-      "user_id": 2,
-      "title": "divertisement",
-      "destination_id": 9,
-      "start_date": "2026-09-21",
-      "end_date": "2026-09-21",
-      "notes": ""
-    }
-  ],
+  "itineraries": [],
   "reviews": [
     {
       "id": 1,
@@ -3569,8 +3550,8 @@
     },
     {
       "id": 11,
-      "type": "Taxi/Moto",
-      "name": "Station de taxis-motos du marché",
+      "type": "Moto",
+      "name": "Station de motos du marché",
       "lat": 2.9465,
       "lng": 9.908,
       "address": "Marché Central de Kribi",
@@ -3579,5 +3560,10 @@
     }
   ],
   "reservations": [],
-  "pdf_downloads": []
+  "pdf_downloads": [],
+  "public_messages": [],
+  "private_messages": [],
+  "groups": [],
+  "group_messages": [],
+  "stories": []
 }

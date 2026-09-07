@@ -30,6 +30,8 @@
     const RESERVABLE_CATEGORIES = ["Hôtels", "Restaurants"];
     const container = document.getElementById("detail-content");
 
+    recordRecentlyViewed(DESTINATION_ID);
+
     function updateFavButton() {
       const btn = document.getElementById("fav-btn");
       const icon = document.getElementById("fav-icon");
@@ -160,8 +162,8 @@
                   ${typeof d.transport === "object"
                     ? `
                       ${d.transport.walk ? `<tr><td class="fw-semibold" style="width:35%">🚶 À pied</td><td>${d.transport.walk}</td></tr>` : ""}
-                      <tr><td class="fw-semibold" style="width:35%">🏍️ Moto-taxi</td><td>${d.transport.moto || "—"}</td></tr>
-                      <tr><td class="fw-semibold">🚕 Taxi <span class="hint">(longues distances)</span></td><td>${d.transport.taxi || "—"}</td></tr>
+                      <tr><td class="fw-semibold" style="width:35%">🏍️ Moto</td><td>${d.transport.moto || "—"}</td></tr>
+                      <tr><td class="fw-semibold">🚗 Voiture <span class="hint">(longues distances)</span></td><td>${d.transport.taxi || "—"}</td></tr>
                       ${d.transport.note ? `<tr><td class="fw-semibold">ℹ️ Bon à savoir</td><td>${d.transport.note}</td></tr>` : ""}
                     `
                     : `<tr><td class="fw-semibold">Comment y aller</td><td>${d.transport}</td></tr>`
@@ -206,6 +208,12 @@
               </button>
             </div>
             <p>${(d.long_description || d.description || "").replace(/\n\n/g, "</p><p>")}</p>
+            ${d.video ? `
+              <video controls preload="metadata" class="w-100 rounded-3 mt-3" style="max-height:420px; background:#000;">
+                <source src="${d.video}" type="video/mp4" />
+                Votre navigateur ne supporte pas la lecture vidéo.
+              </video>
+            ` : ""}
           </div>
         </div>
 
@@ -333,6 +341,10 @@
                 </div>
               </div>
               <textarea id="review-comment" class="form-control mb-3" rows="3" placeholder="Partagez votre expérience sur place..." maxlength="1000"></textarea>
+              <div class="mb-3">
+                <label for="review-photo" class="form-label small hint mb-1">Ajouter une photo (facultatif)</label>
+                <input type="file" id="review-photo" class="form-control" accept="image/jpeg,image/png,image/webp" />
+              </div>
               <button type="submit" class="btn btn-gt-teal rounded-pill px-4">Publier mon avis</button>
               <div id="review-message" class="mt-2"></div>
             </form>
@@ -477,7 +489,8 @@
             <span class="review-stars-static small">${starsHTML(r.rating)}</span>
           </div>
           <p class="small mb-1">${r.comment}</p>
-          <span class="hint">${new Date(r.date).toLocaleDateString("fr-FR")}</span>
+          ${r.photo_url ? `<img src="${r.photo_url}" alt="Photo ajoutée par ${r.author}" class="rounded-3 mb-1" style="max-width:220px; max-height:160px; object-fit:cover;" />` : ""}
+          <div><span class="hint">${new Date(r.date).toLocaleDateString("fr-FR")}</span></div>
         </div>
       `).join("");
     }
@@ -501,6 +514,7 @@
         const rating = parseInt(starsEl.dataset.rating, 10);
         const author = document.getElementById("review-author").value.trim();
         const comment = document.getElementById("review-comment").value.trim();
+        const photoFile = document.getElementById("review-photo").files[0];
 
         if (!rating) {
           msgEl.innerHTML = `<div class="alert alert-danger py-2 small mb-0">Merci de choisir une note (1 à 5 étoiles).</div>`;
@@ -511,12 +525,23 @@
           return;
         }
 
-        const { ok, data } = await apiRequest(`/destinations/${DESTINATION_ID}/reviews`, {
-          method: "POST",
-          body: { author, rating, comment },
-        });
+        // Utilise FormData (au lieu de apiRequest, qui envoie du JSON) des
+        // qu'une photo est jointe, pour rester compatible avec l'upload de
+        // fichier cote serveur - identique au mecanisme deja utilise pour
+        // la photo de profil.
+        const formData = new FormData();
+        formData.append("author", author);
+        formData.append("rating", rating);
+        formData.append("comment", comment);
+        if (photoFile) formData.append("photo", photoFile);
 
-        if (ok) {
+        const res = await fetch(`/destinations/${DESTINATION_ID}/reviews`, {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok) {
           msgEl.innerHTML = `<div class="alert alert-success py-2 small mb-0">Merci pour votre avis !</div>`;
           form.reset();
           starsEl.dataset.rating = "0";

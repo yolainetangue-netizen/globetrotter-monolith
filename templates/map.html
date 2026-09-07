@@ -194,11 +194,13 @@
       // Si aucune distance routiere reelle n'est fournie, on retombe sur
       // l'approximation route reelle ~ 1,3x la distance a vol d'oiseau
       if (typeof roadKm !== "number") roadKm = straightKm * 1.3;
-      // Prix bornes : moto 150 F - 1000 F, taxi 150 F - 3000 F, selon le nombre de km
+      // Prix bornes : moto 150 F - 1000 F, voiture 150 F - 3000 F, selon le nombre de km
       const clampRound = (value, min, max) => Math.min(max, Math.max(min, Math.round(value / 50) * 50));
-      const taxi = clampRound(150 + roadKm * 130, 150, 3000);
+      const voiture = clampRound(150 + roadKm * 130, 150, 3000);
       const moto = clampRound(150 + roadKm * 100, 150, 1000);
-      return { roadKm, taxi, moto };
+      // Marche a pied : ~5 km/h de moyenne, arrondi a la minute la plus proche
+      const walkMinutes = Math.max(1, Math.round((roadKm / 5) * 60));
+      return { roadKm, voiture, moto, walkMinutes };
     }
 
     function destinationPreviewHTML(destination) {
@@ -270,7 +272,7 @@
       if (updateDistancePanel._token !== requestToken) return;
 
       const roadKm = routeResult ? routeResult.roadKm : straightKm * 1.3;
-      const { taxi, moto } = estimateTransportCost(straightKm, roadKm);
+      const { voiture, moto, walkMinutes } = estimateTransportCost(straightKm, roadKm);
       const roadKmLabel = routeResult
         ? `<strong>${roadKm.toFixed(1)} km</strong> par la route`
         : `≈ <strong>${roadKm.toFixed(1)} km</strong> par la route (estimation, itinéraire indisponible)`;
@@ -280,8 +282,9 @@
         <p class="distance-headline">📏 <strong>${straightKm.toFixed(1)} km</strong> à vol d'oiseau depuis ${departureLabel}
         (${roadKmLabel})</p>
         <div class="distance-prices">
-          <span class="price-line price-taxi">🚕 Taxi <strong>≈ ${taxi.toLocaleString("fr-FR")} FCFA</strong></span>
-          <span class="price-line price-moto">🏍️ Moto-taxi <strong>≈ ${moto.toLocaleString("fr-FR")} FCFA</strong></span>
+          <span class="price-line price-walk">🚶 Marche à pied <strong>≈ ${walkMinutes} min</strong></span>
+          <span class="price-line price-moto">🏍️ Moto <strong>≈ ${moto.toLocaleString("fr-FR")} FCFA</strong></span>
+          <span class="price-line price-car">🚗 Voiture <strong>≈ ${voiture.toLocaleString("fr-FR")} FCFA</strong></span>
         </div>
         <p class="hint">⚠️ Estimation basée sur la distance depuis votre point de référence, sans tenir compte du trafic réel.</p>
         <button type="button" id="continue-from-here-btn" class="btn btn-sm btn-gt-teal rounded-pill">

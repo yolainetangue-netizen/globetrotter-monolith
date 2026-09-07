@@ -20,8 +20,9 @@
         <p class="hint">Vous pouvez aussi <a href="/map-page">explorer la carte interactive</a> de tous les lieux.</p>
 
         <div class="row g-2 mb-3">
-          <div class="col-md-6">
-            <input type="text" id="search-q" class="form-control" placeholder="Rechercher par nom ou lieu..." />
+          <div class="col-md-6 position-relative">
+            <input type="text" id="search-q" class="form-control" placeholder="Rechercher par nom ou lieu..." autocomplete="off" />
+            <div id="search-suggestions" class="list-group position-absolute w-100 shadow-sm" style="z-index:20; display:none; top:100%;"></div>
           </div>
           <div class="col-md-4">
             <select id="search-tag" class="form-select">
@@ -247,6 +248,76 @@
     });
 
     document.getElementById("search-btn").addEventListener("click", loadDestinations);
+
+    // Suggestions en direct : des qu'on tape, propose les lieux correspondants
+    // sous le champ, cliquables, sans devoir taper le nom complet ni appuyer
+    // sur "Rechercher".
+    const searchInput = document.getElementById("search-q");
+    const suggestionsBox = document.getElementById("search-suggestions");
+    let suggestionsTimer = null;
+
+    function hideSuggestions() {
+      suggestionsBox.style.display = "none";
+      suggestionsBox.innerHTML = "";
+    }
+
+    function selectSuggestion(destination) {
+      searchInput.value = destination.name;
+      hideSuggestions();
+      loadDestinations();
+    }
+
+    searchInput.addEventListener("input", () => {
+      clearTimeout(suggestionsTimer);
+      const q = searchInput.value.trim();
+
+      if (q.length === 0) {
+        hideSuggestions();
+        return;
+      }
+
+      // Petit delai (debounce) pour eviter une requete a chaque frappe.
+      suggestionsTimer = setTimeout(async () => {
+        const { ok, data } = await apiRequest(`/destinations?q=${encodeURIComponent(q)}`);
+        if (!ok || data.length === 0) {
+          hideSuggestions();
+          return;
+        }
+
+        suggestionsBox.innerHTML = data.slice(0, 6).map((d) => `
+          <button type="button" class="list-group-item list-group-item-action text-start suggestion-item" data-id="${d.id}">
+            <span class="fw-semibold"></span>
+            <span class="small text-muted d-block"></span>
+          </button>
+        `).join("");
+
+        // textContent (pas innerHTML) pour le nom/categorie : evite toute
+        // injection si jamais un nom de lieu contenait des caracteres HTML.
+        suggestionsBox.querySelectorAll(".suggestion-item").forEach((btn, i) => {
+          const d = data[i];
+          btn.querySelector(".fw-semibold").textContent = d.name;
+          btn.querySelector(".small").textContent = d.category || "";
+          btn.addEventListener("click", () => selectSuggestion(d));
+        });
+
+        suggestionsBox.style.display = "block";
+      }, 200);
+    });
+
+    // Ferme les suggestions si on clique ailleurs sur la page.
+    document.addEventListener("click", (e) => {
+      if (!searchInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+        hideSuggestions();
+      }
+    });
+
+    // Entree = lance la recherche classique et ferme les suggestions.
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        hideSuggestions();
+        loadDestinations();
+      }
+    });
 
     document.getElementById("itinerary-form").addEventListener("submit", async (e) => {
       e.preventDefault();

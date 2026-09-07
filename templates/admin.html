@@ -13,7 +13,7 @@
 <body>
   {% include '_navbar.html' %}
 
-  <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
+  <section class="text-white py-5" style="background: linear-gradient(135deg, rgba(30,20,50,.55) 0%, rgba(40,20,10,.55) 100%), url('{{ url_for('static', filename='images/hero-admin.png') }}') center/cover no-repeat;">
     <div class="container py-3">
       <h1 class="display-6 fw-bold mb-2">📊 Tableau de bord</h1>
       <p class="mb-0" style="opacity:.9;">Vue d'ensemble de l'activité de Kribi Tour</p>

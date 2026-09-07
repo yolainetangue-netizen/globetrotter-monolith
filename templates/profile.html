@@ -13,7 +13,7 @@
 <body>
   {% include '_navbar.html' %}
 
-  <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
+  <section class="text-white py-5" style="background: linear-gradient(135deg, rgba(30,20,50,.55) 0%, rgba(40,20,10,.55) 100%), url('{{ url_for('static', filename='images/hero-profil.webp') }}') center/cover no-repeat;">
     <div class="container py-3">
       <h1 class="display-6 fw-bold mb-2">👤 Mon profil</h1>
       <p class="mb-0" style="opacity:.9;">Votre compte, vos préférences et vos itinéraires</p>
@@ -78,99 +78,96 @@
         `;
 
       contentEl.innerHTML = `
-        <div class="row g-4">
-          <div class="col-lg-4">
-            <div class="card border-0 shadow-sm text-center p-4">
-              <div id="avatar-wrap" class="mx-auto mb-3 position-relative" style="width:88px;height:88px;cursor:pointer;">
-                ${user.avatar_url
-                  ? `<img id="avatar-img" src="${user.avatar_url}" alt="Photo de profil" class="rounded-circle w-100 h-100" style="object-fit:cover;" />`
-                  : `<div id="avatar-initials" class="d-flex align-items-center justify-content-center rounded-circle bg-gt-orange text-white fw-bold w-100 h-100" style="font-size:1.7rem;">${initials}</div>`
-                }
-                <div class="position-absolute bottom-0 end-0 bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:28px;height:28px;font-size:0.85rem;">📷</div>
-              </div>
-              <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" hidden />
-              <div id="avatar-msg" class="small mb-2"></div>
-              <h2 class="h5 mb-1">${user.username}${roleBadge}</h2>
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4 d-flex flex-column flex-sm-row align-items-center gap-4">
+            <div id="avatar-wrap" class="position-relative flex-shrink-0" style="width:96px;height:96px;cursor:pointer;">
+              ${user.avatar_url
+                ? `<img id="avatar-img" src="${user.avatar_url}" alt="Photo de profil" class="rounded-circle w-100 h-100" style="object-fit:cover;" />`
+                : `<div id="avatar-initials" class="d-flex align-items-center justify-content-center rounded-circle bg-gt-orange text-white fw-bold w-100 h-100" style="font-size:1.9rem;">${initials}</div>`
+              }
+              <div class="position-absolute bottom-0 end-0 bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:30px;height:30px;font-size:0.9rem;">📷</div>
+            </div>
+            <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" hidden />
+            <div class="text-center text-sm-start">
+              <div id="avatar-msg" class="small mb-1"></div>
+              <h1 class="h4 mb-1">${user.username}${roleBadge}</h1>
               <p class="small text-muted mb-0">${AUTH_PROVIDER_LABELS[user.auth_provider] || "Compte classique"}</p>
               ${user.email ? `<p class="small text-muted mb-0">${user.email}</p>` : ""}
             </div>
           </div>
+        </div>
 
-          <div class="col-lg-8">
-            <div class="card border-0 shadow-sm mb-4">
-              <div class="card-body p-4">
-                <h2 class="h6 mb-3">Centres d'intérêt</h2>
-                <div>${prefsHTML}</div>
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4">
+            <div class="row g-3 text-center">
+              <div class="col-4 col-md-2">
+                <a href="/favorites-page" class="text-decoration-none text-reset">
+                  <div class="h4 mb-0">${favoritesCount()}</div>
+                  <div class="small text-muted">❤️ Lieux favoris</div>
+                </a>
+              </div>
+              <div class="col-4 col-md-2">
+                <div class="h4 mb-0" id="fav-categories-count">…</div>
+                <div class="small text-muted">📂 Catégories</div>
+              </div>
+              <div class="col-4 col-md-2">
+                <div class="h4 mb-0">${itineraries.length}</div>
+                <div class="small text-muted">📅 Itinéraires</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="h4 mb-0">${activity ? activity.reservations_count : "—"}</div>
+                <div class="small text-muted">🗓️ Réservations</div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="h4 mb-0">${activity ? activity.pdf_downloads_count : "—"}</div>
+                <div class="small text-muted">📄 PDF téléchargés</div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div class="card border-0 shadow-sm mb-4">
-              <div class="card-body p-4">
-                <h2 class="h6 mb-3">📅 Mes itinéraires (${itineraries.length})</h2>
-                ${itinerariesHTML}
-              </div>
-            </div>
+        <h2 class="h5 mb-3">🏅 Badges</h2>
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4">
+            <div class="row g-3 text-center" id="badges-row"></div>
+          </div>
+        </div>
 
-            <div class="card border-0 shadow-sm mb-4">
-              <div class="card-body p-4">
-                <h2 class="h6 mb-3">📊 Mes activités</h2>
-                <div class="row g-3 text-center mb-3">
-                  <div class="col-4 col-md-2">
-                    <a href="/favorites-page" class="text-decoration-none text-reset">
-                      <div class="h5 mb-0">${favoritesCount()}</div>
-                      <div class="small text-muted">❤️ Lieux</div>
-                    </a>
-                  </div>
-                  <div class="col-4 col-md-2">
-                    <div class="h5 mb-0" id="fav-categories-count">…</div>
-                    <div class="small text-muted">📂 Catégories</div>
-                  </div>
-                  <div class="col-4 col-md-2">
-                    <div class="h5 mb-0">${activity ? activity.reservations_count : "—"}</div>
-                    <div class="small text-muted">🗓️ Sorties</div>
-                  </div>
-                  <div class="col-6 col-md-3">
-                    <div class="h5 mb-0">${activity ? activity.reservations_count : "—"}</div>
-                    <div class="small text-muted">📅 Réservations</div>
-                  </div>
-                  <div class="col-6 col-md-3">
-                    <div class="h5 mb-0">${activity ? activity.pdf_downloads_count : "—"}</div>
-                    <div class="small text-muted">📄 PDF téléchargés</div>
-                  </div>
-                </div>
-                ${activity && activity.pdf_downloads.length
-                  ? `
-                    <p class="small fw-semibold mb-2">Téléchargements récents</p>
-                    <ul class="list-group list-group-flush">
-                      ${activity.pdf_downloads.map((d) => `
-                        <li class="list-group-item d-flex justify-content-between align-items-center px-0 small">
-                          <span>${d.itinerary_title}</span>
-                          <span class="text-muted">${new Date(d.downloaded_at).toLocaleDateString("fr-FR")}</span>
-                        </li>
-                      `).join("")}
-                    </ul>
-                  `
-                  : `<p class="hint mb-0">Aucun PDF téléchargé pour le moment.</p>`
-                }
-              </div>
-            </div>
+        <h2 class="h5 mb-3">Mes voyages</h2>
+        <div class="card border-0 shadow-sm mb-2">
+          <div class="card-body p-4">
+            <h3 class="h6 mb-3">Centres d'intérêt</h3>
+            <div class="mb-4">${prefsHTML}</div>
 
-            <div class="card border-0 shadow-sm">
-              <div class="card-body p-4">
-                <h2 class="h6 mb-3">⚙️ Paramètres</h2>
-                <div class="d-flex justify-content-between align-items-center py-2 border-bottom">
-                  <span>Thème</span>
-                  <button id="theme-toggle-btn-profile" type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
-                    <span id="theme-toggle-icon-profile">☀️</span> <span id="theme-toggle-label-profile">Clair</span>
-                  </button>
-                </div>
-                <div class="d-flex justify-content-between align-items-center py-2">
-                  <span>Langue</span>
-                  <button id="lang-toggle-btn-profile" type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
-                    <span id="lang-toggle-label-profile">EN</span>
-                  </button>
-                </div>
-              </div>
+            <h3 class="h6 mb-3">📅 Mes itinéraires (${itineraries.length})</h3>
+            ${itinerariesHTML}
+          </div>
+        </div>
+
+        ${activity && activity.pdf_downloads.length ? `
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-body p-4">
+            <h3 class="h6 mb-3">Téléchargements récents</h3>
+            <ul class="list-group list-group-flush">
+              ${activity.pdf_downloads.map((d) => `
+                <li class="list-group-item d-flex justify-content-between align-items-center px-0 small">
+                  <span>${d.itinerary_title}</span>
+                  <span class="text-muted">${new Date(d.downloaded_at).toLocaleDateString("fr-FR")}</span>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        </div>
+        ` : ""}
+
+        <h2 class="h5 mb-3">Paramètres</h2>
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center py-2">
+              <span>Langue</span>
+              <button id="lang-toggle-btn-profile" type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                <span id="lang-toggle-label-profile">EN</span>
+              </button>
             </div>
           </div>
         </div>
@@ -178,6 +175,37 @@
 
       bindAvatarUpload();
       loadFavoriteCategoriesCount();
+      renderBadges(itineraries.length);
+    }
+
+    // Badges simples, calcules a partir d'actions verifiables : favoris
+    // (stockes localement) et itineraires crees (verifies cote serveur).
+    // Volontairement pas de badge sur les avis, qui ne sont pas rattaches
+    // de facon fiable a un compte pour l'instant.
+    const BADGE_DEFINITIONS = [
+      { icon: "❤️", label: "Premier coup de cœur", check: (favCount) => favCount >= 1 },
+      { icon: "💖", label: "Collectionneur de lieux", check: (favCount) => favCount >= 5 },
+      { icon: "🗺️", label: "Explorateur passionné", check: (favCount) => favCount >= 10 },
+      { icon: "📅", label: "Premier itinéraire", check: (favCount, itinCount) => itinCount >= 1 },
+      { icon: "🧳", label: "Voyageur organisé", check: (favCount, itinCount) => itinCount >= 3 },
+    ];
+
+    function renderBadges(itinerariesCount) {
+      const row = document.getElementById("badges-row");
+      if (!row) return;
+
+      const favCount = favoritesCount();
+      row.innerHTML = BADGE_DEFINITIONS.map((badge) => {
+        const unlocked = badge.check(favCount, itinerariesCount);
+        return `
+          <div class="col-4 col-md-2">
+            <div class="p-2 rounded-3 ${unlocked ? "" : "opacity-25"}" title="${badge.label}">
+              <div style="font-size:1.8rem;">${badge.icon}</div>
+              <div class="small ${unlocked ? "fw-semibold" : "text-muted"}">${badge.label}</div>
+            </div>
+          </div>
+        `;
+      }).join("");
     }
 
     async function loadFavoriteCategoriesCount() {

@@ -13,7 +13,7 @@
 <body>
   {% include '_navbar.html' %}
 
-  <section class="text-white py-5" style="background: linear-gradient(135deg, var(--violet) 0%, var(--orange-deep) 100%);">
+  <section class="text-white py-5" style="background: linear-gradient(135deg, rgba(30,20,50,.55) 0%, rgba(40,20,10,.55) 100%), url('{{ url_for('static', filename='images/hero-evenements.jpg') }}') center/cover no-repeat;">
     <div class="container py-3">
       <a href="/kribi-page" class="text-white-50 text-decoration-none small">&larr; Toutes les catégories</a>
       <h1 class="display-6 fw-bold mt-2 mb-2">🎉 Événements à Kribi</h1>
@@ -60,6 +60,46 @@
       return (e.end_date || e.date) < today;
     }
 
+    // Genere un fichier .ics standard (compatible Google Calendar, Outlook,
+    // Apple Calendar) pour un evenement donne, sans dependance serveur : le
+    // fichier est construit et telecharge entierement cote client.
+    function downloadEventIcs(e) {
+      const toIcsDate = (dateStr) => dateStr.replace(/-/g, "");
+      const startDate = toIcsDate(e.date);
+      // DTEND exclusif en .ics : on ajoute un jour a la date de fin (ou de
+      // debut si pas de fin) pour couvrir la derniere journee de l'evenement.
+      const endBase = e.end_date || e.date;
+      const endDateObj = new Date(endBase + "T00:00:00");
+      endDateObj.setDate(endDateObj.getDate() + 1);
+      const endDate = toIcsDate(endDateObj.toISOString().slice(0, 10));
+
+      const escapeIcs = (text) => (text || "").replace(/[,;]/g, "\\$&").replace(/\n/g, "\\n");
+
+      const ics = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Kribi Tour//Evenements//FR",
+        "BEGIN:VEVENT",
+        `UID:event-${e.id}@kribi-tour`,
+        `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").split(".")[0]}Z`,
+        `DTSTART;VALUE=DATE:${startDate}`,
+        `DTEND;VALUE=DATE:${endDate}`,
+        `SUMMARY:${escapeIcs(e.name)}`,
+        `LOCATION:${escapeIcs(e.location || "Kribi")}`,
+        `DESCRIPTION:${escapeIcs(e.description || "")}`,
+        "END:VEVENT",
+        "END:VCALENDAR",
+      ].join("\r\n");
+
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${e.name.replace(/[^\w\s-]/g, "")}.ics`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
     function eventCardHTML(e) {
       const icon = EVENT_TYPE_ICON[e.type] || "📅";
       const past = isPast(e);
@@ -85,12 +125,17 @@
               <p class="small text-muted mb-2">📍 ${e.location || "Kribi"}</p>
               <p class="small mb-2">${e.description || ""}</p>
               ${e.price ? `<p class="small mb-2"><strong>💰</strong> ${e.price}</p>` : ""}
-              ${e.contact ? `<p class="small mb-0"><strong>📞</strong> ${e.contact}</p>` : ""}
+              ${e.contact ? `<p class="small mb-2"><strong>📞</strong> ${e.contact}</p>` : ""}
+              ${!past ? `<button type="button" class="btn btn-sm btn-outline-primary rounded-pill add-to-calendar-btn" data-event-id="${e.id}">🔔 Me le rappeler</button>` : ""}
             </div>
           </div>
         </div>
       `;
     }
+
+    // Garde les evenements en memoire pour retrouver leurs donnees completes
+    // au clic sur "Me le rappeler" sans refaire d'appel reseau.
+    let loadedEvents = [];
 
     async function loadEvents() {
       const params = upcomingToggle.checked ? "?upcoming=true" : "";
@@ -103,6 +148,14 @@
         }
         listEl.innerHTML = data.map(eventCardHTML).join("");
         hydratePhotos(listEl);
+        loadedEvents = data;
+
+        listEl.querySelectorAll(".add-to-calendar-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const event = loadedEvents.find((e) => e.id === parseInt(btn.dataset.eventId, 10));
+            if (event) downloadEventIcs(event);
+          });
+        });
       } catch {
         listEl.innerHTML = "<p class='hint'>Impossible de charger les événements.</p>";
       }

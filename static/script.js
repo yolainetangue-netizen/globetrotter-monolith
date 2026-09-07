@@ -115,6 +115,28 @@ function favoritesCount() {
 }
 
 // ---------------------------------------------------------------------------
+// Récemment consultés (aucune connexion requise, stockage local navigateur)
+// Garde les 10 derniers lieux visités, le plus recent en premier.
+// ---------------------------------------------------------------------------
+const RECENTLY_VIEWED_KEY = "gt_recently_viewed";
+const RECENTLY_VIEWED_MAX = 10;
+
+function getRecentlyViewed() {
+  try {
+    return JSON.parse(localStorage.getItem(RECENTLY_VIEWED_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function recordRecentlyViewed(destinationId) {
+  let recent = getRecentlyViewed().filter((id) => id !== destinationId);
+  recent.unshift(destinationId);
+  recent = recent.slice(0, RECENTLY_VIEWED_MAX);
+  localStorage.setItem(RECENTLY_VIEWED_KEY, JSON.stringify(recent));
+}
+
+// ---------------------------------------------------------------------------
 // Météo (Open-Meteo) — utilitaires partagés par plusieurs pages
 // ---------------------------------------------------------------------------
 const WEATHER_CODES = {
@@ -267,43 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Bouton de bascule thème clair / sombre (persiste dans localStorage)
-// Vit desormais uniquement dans la page Profil > Parametres (retire de la navbar).
-document.addEventListener("DOMContentLoaded", () => {
-  const themeBtns = [
-    {
-      btn: document.getElementById("theme-toggle-btn-profile"),
-      icon: document.getElementById("theme-toggle-icon-profile"),
-      label: document.getElementById("theme-toggle-label-profile"),
-    },
-  ].filter((entry) => entry.btn);
-
-  if (!themeBtns.length) return;
-
-  function applyThemeDisplay(theme) {
-    // Affiche l'etat VERS LEQUEL on bascule si on clique
-    const nextIcon = theme === "dark" ? "☀️" : "🌙";
-    const nextLabel = theme === "dark" ? "Clair" : "Sombre";
-    themeBtns.forEach(({ icon, label }) => {
-      if (icon) icon.textContent = nextIcon;
-      if (label) label.textContent = nextLabel;
-    });
-  }
-
-  const current = document.documentElement.getAttribute("data-bs-theme") || "dark";
-  applyThemeDisplay(current);
-
-  themeBtns.forEach(({ btn }) => {
-    btn.addEventListener("click", () => {
-      const now = document.documentElement.getAttribute("data-bs-theme") || "dark";
-      const next = now === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-bs-theme", next);
-      localStorage.setItem("gt_theme", next);
-      applyThemeDisplay(next);
-    });
-  });
-});
-
 // Update nav login/logout link on every page
 document.addEventListener("DOMContentLoaded", () => {
   // Met en évidence le lien de navigation correspondant à la page actuelle
@@ -356,4 +341,35 @@ document.addEventListener("DOMContentLoaded", () => {
       link.href = "/login-page";
     });
   }
+});
+
+// ---------------------------------------------------------------------------
+// Notifications de messages (badges dans le menu)
+// Ecoute les nouveaux messages en arriere-plan sur TOUTES les pages (pas
+// seulement /chat-page et /messages-page), pour signaler leur arrivee meme
+// quand l'utilisateur navigue ailleurs sur le site. Ne s'active que si
+// Socket.IO est charge (via le CDN) et que l'utilisateur est connecte.
+// ---------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof io === "undefined" || !isLoggedIn()) return;
+
+  const chatBadge = document.getElementById("chat-badge");
+  const messagesBadge = document.getElementById("messages-badge");
+  const onChatPage = window.location.pathname === "/chat-page";
+  const onMessagesPage = window.location.pathname === "/messages-page";
+
+  const notifSocket = io({ auth: { token: getToken() } });
+
+  // Un nouveau message public n'allume le badge que si on n'est pas deja
+  // en train de regarder le salon (sinon il est deja visible a l'ecran).
+  notifSocket.on("new_public_message", () => {
+    if (!onChatPage && chatBadge) chatBadge.style.display = "inline-block";
+  });
+
+  // Meme logique pour les messages prives : uniquement si on n'est pas deja
+  // sur la page de messagerie (la conversation active gere son propre
+  // affichage en temps reel independamment de ce badge global).
+  notifSocket.on("new_private_message", () => {
+    if (!onMessagesPage && messagesBadge) messagesBadge.style.display = "inline-block";
+  });
 });

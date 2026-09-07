@@ -12,14 +12,16 @@ from datetime import datetime, timedelta
 
 import requests
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, request, send_file
+from flask import Flask, jsonify, render_template, request, send_file, session as flask_session
 from flask_jwt_extended import (
     JWTManager,
     create_access_token,
+    decode_token,
     get_jwt_identity,
     jwt_required,
     verify_jwt_in_request,
 )
+from flask_socketio import SocketIO, join_room, emit, disconnect as socket_disconnect
 from google.auth.transport import requests as google_requests
 from google.oauth2 import id_token as google_id_token
 
@@ -29,9 +31,16 @@ load_dotenv()  # charge automatiquement les variables definies dans un fichier .
 # App configuration
 # ---------------------------------------------------------------------------
 app = Flask(__name__)
+app.config["SECRET_KEY"] = os.environ.get("FLASK_SECRET_KEY", "kribi-tour-dev-secret")
 app.config["JWT_SECRET_KEY"] = os.environ.get("JWT_SECRET_KEY", "globetrotter-dev-secret")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=6)
 jwt = JWTManager(app)
+
+# SocketIO permet la messagerie en temps reel (salon commun + messages prives)
+# sans devoir rafraichir la page. Mode "threading" choisi car il ne demande
+# pas de dependance serveur supplementaire (eventlet/gevent) et reste simple
+# a deployer sur Render aux cotes de gunicorn.
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
 
 DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
 
@@ -277,6 +286,18 @@ def profile_page():
     # La verification de connexion se fait cote client (redirection si non
     # connecte), la route API /me exige elle un token JWT valide.
     return render_template("profile.html")
+
+
+@app.route("/chat-page")
+def chat_page():
+    # Meme logique : la page se rend toujours, la verification de connexion
+    # et le chargement des messages se font cote client.
+    return render_template("chat.html")
+
+
+@app.route("/messages-page")
+def messages_page():
+    return render_template("messages.html")
 
 
 @app.route("/admin-page")
@@ -798,13 +819,20 @@ def get_reviews(destination_id):
 
 @app.route("/destinations/<int:destination_id>/reviews", methods=["POST"])
 def create_review(destination_id):
-    """Ajoute un avis (note + commentaire) sur une destination. Ouvert a tous,
-    connecte ou non (un pseudonyme facultatif peut etre fourni)."""
+    """Ajoute un avis (note + commentaire + photo optionnelle) sur une
+    destination. Ouvert a tous, connecte ou non (un pseudonyme facultatif
+    peut etre fourni). Accepte soit du JSON classique (sans photo), soit du
+    multipart/form-data (avec un champ 'photo' optionnel), pour rester
+    compatible avec les appels existants qui n'envoient pas de photo."""
     data = load_data()
     if not any(d["id"] == destination_id for d in data["destinations"]):
         return jsonify({"error": "destination not found"}), 404
 
-    body = request.get_json(silent=True) or {}
+    if request.content_type and "multipart/form-data" in request.content_type:
+        body = request.form
+    else:
+        body = request.get_json(silent=True) or {}
+
     author = (body.get("author") or "").strip() or "Visiteur anonyme"
     comment = (body.get("comment") or "").strip()
     rating = body.get("rating")
@@ -819,12 +847,33 @@ def create_review(destination_id):
     if not comment:
         return jsonify({"error": "comment is required"}), 400
 
+    review_id = next_id(data.get("reviews", []))
+    photo_url = None
+
+    # La photo est facultative et necessite Supabase Storage (comme pour les
+    # avatars) ; son absence n'empeche jamais la publication de l'avis.
+    if "photo" in request.files and request.files["photo"].filename:
+        if SUPABASE_STORAGE_ENABLED:
+            file = request.files["photo"]
+            allowed_types = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp"}
+            content_type = file.mimetype
+            if content_type in allowed_types:
+                content = file.read()
+                max_size = 5 * 1024 * 1024  # 5 Mo, suffisant pour une photo de lieu
+                if len(content) <= max_size:
+                    ext = allowed_types[content_type]
+                    object_path = f"reviews/destination_{destination_id}_review_{review_id}.{ext}"
+                    uploaded_url = _supabase_upload_bytes(object_path, content, content_type)
+                    if uploaded_url:
+                        photo_url = f"{uploaded_url}?t={int(time.time())}"
+
     review = {
-        "id": next_id(data.get("reviews", [])),
+        "id": review_id,
         "destination_id": destination_id,
         "author": author[:60],
         "rating": rating,
         "comment": comment[:1000],
+        "photo_url": photo_url,
         "date": datetime.utcnow().isoformat() + "Z",
     }
     data.setdefault("reviews", []).append(review)
@@ -1030,10 +1079,12 @@ def build_itinerary_pdf(itinerary, destination):
         if transport:
             story.append(Paragraph("Transport", heading_style))
             if isinstance(transport, dict):
-                if transport.get("taxi"):
-                    story.append(Paragraph(f"<b>Taxi :</b> {transport['taxi']}", normal_style))
+                if transport.get("walk"):
+                    story.append(Paragraph(f"<b>À pied :</b> {transport['walk']}", normal_style))
                 if transport.get("moto"):
-                    story.append(Paragraph(f"<b>Moto-taxi :</b> {transport['moto']}", normal_style))
+                    story.append(Paragraph(f"<b>Moto :</b> {transport['moto']}", normal_style))
+                if transport.get("taxi"):
+                    story.append(Paragraph(f"<b>Voiture :</b> {transport['taxi']}", normal_style))
                 if transport.get("note"):
                     story.append(Paragraph(f"<i>{transport['note']}</i>", muted_style))
             else:
@@ -1430,8 +1481,364 @@ def admin_stats():
 
 
 # ---------------------------------------------------------------------------
+# Stories : photo ou courte video visible par tous pendant 24h, a la maniere
+# de WhatsApp/Instagram. Pas de suppression physique du fichier a l'expiration
+# (simplicite du monolithe) : on filtre simplement les stories de plus de 24h
+# a la lecture, elles restent invisibles sans etre effacees du stockage.
+# ---------------------------------------------------------------------------
+
+@app.route("/stories", methods=["POST"])
+@jwt_required()
+def create_story():
+    """Publie une story (photo ou courte video) pour l'utilisateur connecte."""
+    if not SUPABASE_STORAGE_ENABLED:
+        return jsonify({"error": "story upload is not configured on this server"}), 503
+
+    user_id = int(get_jwt_identity())
+    data = load_data()
+    user = next((u for u in data["users"] if u["id"] == user_id), None)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+
+    if "media" not in request.files or not request.files["media"].filename:
+        return jsonify({"error": "media file is required"}), 400
+
+    file = request.files["media"]
+    allowed_types = {
+        "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp",
+        "video/mp4": "mp4", "video/quicktime": "mov",
+    }
+    content_type = file.mimetype
+    if content_type not in allowed_types:
+        return jsonify({"error": "unsupported media type"}), 400
+
+    content = file.read()
+    max_size = 20 * 1024 * 1024  # 20 Mo, suffisant pour une courte video de story
+    if len(content) > max_size:
+        return jsonify({"error": "file too large (max 20 MB)"}), 400
+
+    story_id = next_id(data.get("stories", []))
+    ext = allowed_types[content_type]
+    object_path = f"stories/user_{user_id}_story_{story_id}.{ext}"
+    uploaded_url = _supabase_upload_bytes(object_path, content, content_type)
+    if not uploaded_url:
+        return jsonify({"error": "upload failed"}), 502
+
+    story = {
+        "id": story_id,
+        "user_id": user_id,
+        "username": user["username"],
+        "media_url": f"{uploaded_url}?t={int(time.time())}",
+        "media_type": "video" if content_type.startswith("video") else "image",
+        "created_at": datetime.utcnow().isoformat() + "Z",
+    }
+    data.setdefault("stories", []).append(story)
+    save_data(data)
+
+    return jsonify({"message": "story published", "story": story}), 201
+
+
+@app.route("/stories", methods=["GET"])
+@jwt_required()
+def list_stories():
+    """Renvoie les stories publiees il y a moins de 24h, groupees par auteur
+    (la plus recente de chaque auteur en tete de son groupe)."""
+    data = load_data()
+    cutoff = datetime.utcnow() - timedelta(hours=24)
+
+    active_stories = [
+        s for s in data.get("stories", [])
+        if datetime.fromisoformat(s["created_at"].replace("Z", "")) > cutoff
+    ]
+
+    by_author = {}
+    for s in sorted(active_stories, key=lambda s: s["created_at"]):
+        by_author.setdefault(s["user_id"], {"user_id": s["user_id"], "username": s["username"], "stories": []})
+        by_author[s["user_id"]]["stories"].append(s)
+
+    return jsonify(list(by_author.values())), 200
+
+
+# ---------------------------------------------------------------------------
+# Messagerie en temps reel (Socket.IO)
+# Un salon commun ("public") ouvert a tous les utilisateurs connectes, et des
+# conversations privees a deux (room nommee par les deux user_id tries).
+# ---------------------------------------------------------------------------
+
+@app.route("/messages/public", methods=["GET"])
+@jwt_required()
+def get_public_messages():
+    """Renvoie les 100 derniers messages du salon commun, pour affichage a
+    l'ouverture de la page de chat (l'historique n'arrive pas par socket)."""
+    data = load_data()
+    messages = data.get("public_messages", [])
+    return jsonify(messages[-100:]), 200
+
+
+@app.route("/users/list", methods=["GET"])
+@jwt_required()
+def list_users_for_messaging():
+    """Renvoie la liste des autres utilisateurs (id + username), pour
+    permettre de choisir avec qui demarrer une conversation privee."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+    others = [
+        {"id": u["id"], "username": u["username"]}
+        for u in data["users"]
+        if u["id"] != user_id
+    ]
+    return jsonify(others), 200
+
+
+@app.route("/messages/private/<int:other_user_id>", methods=["GET"])
+@jwt_required()
+def get_private_messages(other_user_id):
+    """Renvoie l'historique des messages prives entre l'utilisateur connecte
+    et other_user_id (dans les deux sens), tries par date."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    conversation = [
+        m for m in data.get("private_messages", [])
+        if {m["from_user_id"], m["to_user_id"]} == {user_id, other_user_id}
+    ]
+    return jsonify(conversation[-200:]), 200
+
+
+@app.route("/groups", methods=["POST"])
+@jwt_required()
+def create_group():
+    """Cree un groupe de discussion. Le createur est automatiquement membre,
+    meme s'il ne figure pas dans la liste envoyee par le client."""
+    user_id = int(get_jwt_identity())
+    body = request.get_json(silent=True) or {}
+
+    name = (body.get("name") or "").strip()
+    member_ids = body.get("member_ids", [])
+
+    if not name:
+        return jsonify({"error": "group name is required"}), 400
+    if not isinstance(member_ids, list) or len(member_ids) == 0:
+        return jsonify({"error": "at least one other member is required"}), 400
+
+    data = load_data()
+    valid_user_ids = {u["id"] for u in data["users"]}
+    members = sorted(set([user_id] + [int(m) for m in member_ids if int(m) in valid_user_ids]))
+
+    group = {
+        "id": next_id(data.get("groups", [])),
+        "name": name[:60],
+        "creator_id": user_id,
+        "member_ids": members,
+        "created_at": datetime.utcnow().isoformat() + "Z",
+    }
+    data.setdefault("groups", []).append(group)
+    save_data(data)
+
+    return jsonify({"message": "group created", "group": group}), 201
+
+
+@app.route("/groups", methods=["GET"])
+@jwt_required()
+def list_my_groups():
+    """Renvoie les groupes dont l'utilisateur connecte est membre."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    my_groups = [g for g in data.get("groups", []) if user_id in g.get("member_ids", [])]
+    return jsonify(my_groups), 200
+
+
+@app.route("/messages/group/<int:group_id>", methods=["GET"])
+@jwt_required()
+def get_group_messages(group_id):
+    """Renvoie l'historique des messages d'un groupe, uniquement si
+    l'utilisateur connecte en est membre."""
+    user_id = int(get_jwt_identity())
+    data = load_data()
+
+    group = next((g for g in data.get("groups", []) if g["id"] == group_id), None)
+    if not group:
+        return jsonify({"error": "group not found"}), 404
+    if user_id not in group.get("member_ids", []):
+        return jsonify({"error": "not a member of this group"}), 403
+
+    messages = [m for m in data.get("group_messages", []) if m["group_id"] == group_id]
+    return jsonify(messages[-200:]), 200
+
+
+def _private_room_name(user_id_a, user_id_b):
+    """Nom de room stable pour une conversation privee entre 2 utilisateurs,
+    peu importe qui initie la connexion en premier."""
+    a, b = sorted([int(user_id_a), int(user_id_b)])
+    return f"dm_{a}_{b}"
+
+
+@socketio.on("connect")
+def handle_socket_connect(auth):
+    """Authentifie la connexion websocket via le token JWT envoye par le
+    client (meme token que pour les appels HTTP). Refuse la connexion si le
+    token est absent ou invalide, pour eviter les messages anonymes."""
+    token = (auth or {}).get("token") if isinstance(auth, dict) else None
+    if not token:
+        return False  # refuse la connexion
+
+    try:
+        decoded = decode_token(token)
+        user_id = int(decoded["sub"])
+    except Exception:
+        return False  # token invalide ou expire
+
+    data = load_data()
+    user = next((u for u in data["users"] if u["id"] == user_id), None)
+    if not user:
+        return False
+
+    # Associe l'utilisateur a sa session socket courante, et l'inscrit
+    # automatiquement au salon commun.
+    flask_session["user_id"] = user_id
+    flask_session["username"] = user["username"]
+    join_room("public")
+    join_room(f"user_{user_id}")  # room personnelle : utile pour les notifications futures
+
+
+@socketio.on("disconnect")
+def handle_socket_disconnect():
+    pass  # rien a nettoyer pour l'instant (pas d'etat "en ligne" persistant)
+
+
+@socketio.on("send_public_message")
+def handle_public_message(payload):
+    """Recoit un message pour le salon commun, le sauvegarde et le diffuse
+    a tous les utilisateurs connectes au salon."""
+    user_id = flask_session.get("user_id")
+    username = flask_session.get("username")
+    if not user_id:
+        return  # connexion non authentifiee (ne devrait pas arriver)
+
+    text = (payload or {}).get("text", "").strip()
+    if not text or len(text) > 2000:
+        return
+
+    data = load_data()
+    message = {
+        "id": (max([m["id"] for m in data["public_messages"]], default=0) + 1),
+        "user_id": user_id,
+        "username": username,
+        "text": text,
+        "created_at": datetime.utcnow().isoformat() + "Z",
+    }
+    data["public_messages"].append(message)
+    save_data(data)
+
+    emit("new_public_message", message, room="public")
+
+
+@socketio.on("join_private_conversation")
+def handle_join_private_conversation(payload):
+    """Rejoint la room d'une conversation privee avec un autre utilisateur,
+    pour recevoir ses messages en temps reel."""
+    user_id = flask_session.get("user_id")
+    if not user_id:
+        return
+
+    other_user_id = (payload or {}).get("other_user_id")
+    if not other_user_id:
+        return
+
+    join_room(_private_room_name(user_id, other_user_id))
+
+
+@socketio.on("send_private_message")
+def handle_private_message(payload):
+    """Recoit un message prive destine a un autre utilisateur, le sauvegarde
+    et le diffuse uniquement dans la room de cette conversation."""
+    user_id = flask_session.get("user_id")
+    username = flask_session.get("username")
+    if not user_id:
+        return
+
+    other_user_id = (payload or {}).get("other_user_id")
+    text = (payload or {}).get("text", "").strip()
+    if not other_user_id or not text or len(text) > 2000:
+        return
+
+    data = load_data()
+    message = {
+        "id": (max([m["id"] for m in data["private_messages"]], default=0) + 1),
+        "from_user_id": user_id,
+        "from_username": username,
+        "to_user_id": int(other_user_id),
+        "text": text,
+        "created_at": datetime.utcnow().isoformat() + "Z",
+    }
+    data["private_messages"].append(message)
+    save_data(data)
+
+    emit("new_private_message", message, room=_private_room_name(user_id, other_user_id))
+
+
+def _group_room_name(group_id):
+    """Nom de room stable pour un groupe donne."""
+    return f"group_{group_id}"
+
+
+@socketio.on("join_group_room")
+def handle_join_group_room(payload):
+    """Rejoint la room d'un groupe, uniquement si l'utilisateur en est
+    membre, pour recevoir ses messages en temps reel."""
+    user_id = flask_session.get("user_id")
+    if not user_id:
+        return
+
+    group_id = (payload or {}).get("group_id")
+    if not group_id:
+        return
+
+    data = load_data()
+    group = next((g for g in data.get("groups", []) if g["id"] == int(group_id)), None)
+    if not group or user_id not in group.get("member_ids", []):
+        return  # pas membre : on ignore silencieusement, pas d'acces a la room
+
+    join_room(_group_room_name(group_id))
+
+
+@socketio.on("send_group_message")
+def handle_group_message(payload):
+    """Recoit un message destine a un groupe, le sauvegarde et le diffuse a
+    tous les membres actuellement connectes a la room du groupe."""
+    user_id = flask_session.get("user_id")
+    username = flask_session.get("username")
+    if not user_id:
+        return
+
+    group_id = (payload or {}).get("group_id")
+    text = (payload or {}).get("text", "").strip()
+    if not group_id or not text or len(text) > 2000:
+        return
+
+    data = load_data()
+    group = next((g for g in data.get("groups", []) if g["id"] == int(group_id)), None)
+    if not group or user_id not in group.get("member_ids", []):
+        return  # pas membre : message refuse silencieusement
+
+    message = {
+        "id": (max([m["id"] for m in data.get("group_messages", [])], default=0) + 1),
+        "group_id": int(group_id),
+        "from_user_id": user_id,
+        "from_username": username,
+        "text": text,
+        "created_at": datetime.utcnow().isoformat() + "Z",
+    }
+    data.setdefault("group_messages", []).append(message)
+    save_data(data)
+
+    emit("new_group_message", message, room=_group_room_name(group_id))
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    socketio.run(app, host="0.0.0.0", port=port, debug=True)

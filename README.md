@@ -1,7 +1,7 @@
-# GlobeTrotter Explore — Phase 1: The Monolith (Kribi Edition)
+# Kribi Tour — Phase 1: The Monolith (Kribi Edition)
 
 A single Flask server handling all requests, with data stored in a JSON file
-(`data.json`). This is the monolithic baseline for the GlobeTrotter capstone
+(`data.json`). This is the monolithic baseline for the Kribi Tour capstone
 project: a travel discovery app focused exclusively on **Kribi**, Cameroon.
 No database, no microservices, single point of failure by design — this is
 intentional for Phase 1, which serves as a baseline for comparison with the
@@ -18,7 +18,7 @@ The app currently covers **25 destinations and addresses in Kribi**, across
 five categories: Site historique (historical site), Nature, Distraction,
 Restaurant and Hôtel. Each destination can be explored via search, category
 filters, tag filters, an interactive map, a transport price comparator, and
-a full detail page (with live weather, seasonal budget, and user reviews
+a full detail page (with live weather, seasonal budget, and user reviews).
 
 ## Architecture
 
@@ -66,10 +66,40 @@ Client (HTML/CSS/JS) --> Flask API Layer --> Business Logic --> data.json
 | `/destinations-page`           | Search, filter and browse all Kribi destinations   |
 | `/destination/<id>`             | Full detail page: description, weather, seasonal budget, transport, reviews |
 | `/map-page`                     | Interactive map (Leaflet + OpenStreetMap) with departure-point distance/price estimator |
-| `/transport-page`               | Taxi vs. moto-taxi price comparator for every destination |
+| `/transport-page`               | Moto vs. voiture price comparator for every destination |
 | `/itineraries-page`             | View and create itineraries                        |
 
-## Running locally
+## Recent updates
+
+- **Map routing**: the departure → destination line on `/map-page` now
+  follows real roads (via the free OSRM public routing service) instead of
+  a straight line, with the moto/car price estimate based on the actual
+  road distance. Falls back to the previous straight-line estimate if the
+  routing service is unavailable.
+- **Satellite view by default**: `/map-page` now opens in satellite view;
+  the toggle button switches to the standard OpenStreetMap view.
+- **"Le saviez-vous ?" page** (formerly "Découvrir Kribi"): renamed to match
+  the navigation menu, and the hand-drawn Cameroon outline was replaced with
+  a real map image (`static/images/cameroon-map.png`).
+- **Itinerary sharing**: itineraries can now be shared via a public link
+  (`/itinerary/shared/<token>`), viewable without an account. Generate a
+  link from the "🔗 Partager" button on `/itineraries-page`; each itinerary
+  gets a unique, non-guessable share token stored in `data.json`.
+- **Home page**: hero background is now a photo of Kribi's port instead of
+  a color gradient, and the 3-number stats strip (lieux/catégories/transport)
+  was removed.
+- **Category fallback images**: destinations without a photo now show a
+  real photo for their category (Hôtels, Restaurants, Activités, Loisirs,
+  Excursions) instead of a plain color gradient; remaining categories still
+  use the gradient until images are provided.
+- **Welcome overlay**: the first-load welcome screen now shows an aerial
+  photo of Kribi instead of a color gradient.
+- **Mobile navigation drawer**: redesigned as a left-side, translucent/blurred
+  drawer with a profile header (avatar + username), icons next to each link,
+  a highlighted active link, and a distinct logout button — closer to a
+  native app menu.
+
+
 
 ```bash
 cd globetrotter-monolith
